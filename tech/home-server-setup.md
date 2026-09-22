@@ -14,7 +14,7 @@ status: runbook — written before the first run. Every step has a check; if a c
 
 | Requirement | Why, and what was checked |
 |---|---|
-| **PHP ≥ 8.4.1 — and Ubuntu 24.04's stock 8.3 is not enough** | **Read the lock file, not `composer.json`.** `composer.json` declared `^8.3` on 22.09 while `composer.lock` demanded `>=8.4.1` through symfony 8.1 and spatie/crawler, and `composer install` refused with twenty-two conflicts on a box that had already been provisioned. `composer.json` now says `^8.4.1` and a test keeps the two honest. Install 8.5 from `ppa:ondrej/php` to match the laptop exactly. Extensions: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `gd` |
+| **PHP ≥ 8.4.1 — and Ubuntu 24.04's stock 8.3 is not enough** | **Read the lock file, not `composer.json`.** `composer.json` declared `^8.3` on 22.09 while `composer.lock` demanded `>=8.4.1` through symfony 8.1 and spatie/crawler, and `composer install` refused with twenty-two conflicts on a box that had already been provisioned. `composer.json` now says `^8.4.1` and a test keeps the two honest. Install **8.4** from `ppa:ondrej/php` — that PPA has no 8.5 for noble as of 22.09.2026, checked rather than assumed the second time. Extensions: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `gd` |
 | **PostgreSQL** | Any recent version. **No PostGIS**: the migrations use `decimal(9,6)` for coordinates and the only extension in the live database is `plpgsql`. An earlier note assumed PostGIS parity was needed; it is not |
 | **No Redis** | The queue driver is `database`. Sessions and cache can stay on the database or file driver here |
 | **Node** | **Not on the server.** Assets are built off the box (checklist C2) and shipped. A Vite build competing with Postgres for memory is how a deploy kills a database |
@@ -95,15 +95,21 @@ Now install the stack. Inside the container:
 # ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 apt update && apt install -y software-properties-common
 add-apt-repository -y ppa:ondrej/php && apt update
+apt-cache search --names-only '^php8\.[0-9]-cli$'     # see what the PPA actually offers
 apt install -y \
-  php8.5-fpm php8.5-cli php8.5-mbstring php8.5-xml php8.5-curl php8.5-zip \
-  php8.5-bcmath php8.5-intl php8.5-pgsql php8.5-gd \
+  php8.4-fpm php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip \
+  php8.4-bcmath php8.4-intl php8.4-pgsql php8.4-gd \
   postgresql nginx supervisor git unzip curl
-update-alternatives --set php /usr/bin/php8.5
+update-alternatives --set php /usr/bin/php8.4
+apt purge -y 'php8.3-*'
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-**A third-party PHP repository is needed, and an earlier version of this runbook said otherwise.** Ubuntu 24.04 ships PHP 8.3; the locked dependencies demand 8.4.1 or newer. 8.5 is chosen over 8.4 to match the laptop exactly, so "it works here" means something. If ondrej has no 8.5 for noble, 8.4 satisfies the lock — and then every `php8.5-fpm.sock` below becomes `php8.4-fpm.sock`.
+**A third-party PHP repository is needed, and an earlier version of this runbook said otherwise.** Ubuntu 24.04 ships PHP 8.3; the locked dependencies demand 8.4.1 or newer.
+
+**8.4, because as of 22.09.2026 ondrej's PPA has no 8.5 for noble** — asked for, and the answer was ten `Unable to locate package` lines. Hence the `apt-cache search` above: check what exists rather than assume a version, which is the mistake this line records for the second time. 8.4 satisfies the lock's `>=8.4.1` floor and `composer.json`'s `^8.4.1`.
+
+**It is not a byte-identical match with the laptop, which runs 8.5.10**, and that is accepted here — this is the environment where things may differ and be found out. It does mean the suite has only ever run on 8.5, so if something behaves oddly on this box the PHP version is a legitimate suspect rather than something to rule out. **Staging is where the version has to match production**, and which version production standardises on is still open.
 
 **Check:** `php -v` prints 8.5.x, `php -m | grep pdo_pgsql` prints a line, and `composer -V` works. If `pdo_pgsql` is missing nothing later will work, and the failure will present as a database problem rather than a missing extension.
 
@@ -223,7 +229,7 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.5-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
     }
 
     # Nothing outside public/ is ever served.
