@@ -29,6 +29,18 @@ status: runbook — written before the first run. Every step has a check; if a c
 
 **The Tailscale address goes nowhere near a file** ([[decisions/product/no-machine-addresses-in-the-repo]]). It lives in `.env` on the box and in your head.
 
+## Three shells, and knowing which one you are in
+
+Every command block below is tagged with where it runs. Getting this wrong is the easiest mistake in the whole runbook, and the commands often *appear* to succeed in the wrong place.
+
+| Shell | Prompt looks like | What belongs there |
+|---|---|---|
+| **The home server (host)** | your user and the server's hostname | Incus itself, all firewall work, Tailscale |
+| **The container** | `root@uni:~#` | everything the application needs — PHP, Postgres, nginx, the code |
+| **The laptop** | this project's directory | building assets, tagging a release |
+
+**A quick tell:** you are root inside the container, so a command that needs `sudo` is almost certainly a host command. All firewall work is host-side, because Docker's rules and the packet forwarding both live there — nothing inside the container can see or change them.
+
 ## The steps
 
 ### 1. Incus, and a container to put it in
@@ -40,6 +52,7 @@ status: runbook — written before the first run. Every step has a check; if a c
 On the host:
 
 ```bash
+# ==== ON THE HOME SERVER (the host) ====
 sudo apt update && sudo apt install -y incus
 sudo adduser "$USER" incus-admin        # log out and back in, or: newgrp incus-admin
 incus admin init --minimal
@@ -56,6 +69,7 @@ Docker sets the iptables `FORWARD` chain policy to `DROP`. The container gets an
 On the host:
 
 ```bash
+# ==== ON THE HOME SERVER (the host) — all firewall work is host-side ====
 sudo iptables -S FORWARD | head -1          # expect: -P FORWARD DROP
 incus network list                          # confirm the bridge is incusbr0
 sudo iptables -I DOCKER-USER -i incusbr0 -j ACCEPT
@@ -69,6 +83,7 @@ sudo netfilter-persistent save
 The container also has no IPv6 route, so apt tries nine v6 addresses before each v4 one. Inside the container:
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 echo 'Acquire::ForceIPv4 "true";' > /etc/apt/apt.conf.d/99force-ipv4
 ```
 
@@ -77,6 +92,7 @@ echo 'Acquire::ForceIPv4 "true";' > /etc/apt/apt.conf.d/99force-ipv4
 Now install the stack. Inside the container:
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 apt update && apt install -y \
   php8.3-fpm php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip \
   php8.3-bcmath php8.3-intl php8.3-pgsql php8.3-gd \
@@ -95,6 +111,7 @@ Everything there is stock Ubuntu 24.04 — **no third-party PHP repository is ne
 Inside the container:
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 sudo -u postgres psql
 ```
 ```sql
@@ -114,6 +131,7 @@ Two names, environment first — `preprod_uni` and `preprod_uni_app` — for the
 The repository is private, so the container needs its own read-only key rather than your personal one:
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 ssh-keygen -t ed25519 -C "uni-homeserver" -f ~/.ssh/id_ed25519 -N ""
 cat ~/.ssh/id_ed25519.pub
 ```
@@ -121,6 +139,7 @@ cat ~/.ssh/id_ed25519.pub
 Add that public key to **the `undernoinfluence` repository → Settings → Deploy keys**, read-only, *not* to your account. A deploy key reaches one repository; an account key reaches everything you own, and this box is the one that may be broken freely.
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 mkdir -p /var/www && cd /var/www
 git clone git@github.com:Programilewski/undernoinfluence.git undernoinfluence
 cd undernoinfluence
@@ -145,6 +164,7 @@ Copy `.env.example` and change only what the environment demands: `APP_ENV`, `AP
 **Build on the laptop, from the same tag**, then copy across — never on the server (checklist C2):
 
 ```bash
+# ==== ON THE LAPTOP ====
 # on the laptop, on the tag
 npm ci && npm run build
 incus file push -r public/build uni/var/www/undernoinfluence/public/     # or rsync via the host
@@ -155,6 +175,7 @@ incus file push -r public/build uni/var/www/undernoinfluence/public/     # or rs
 **Tailscale, on the host, not in the container:**
 
 ```bash
+# ==== ON THE HOME SERVER (the host) ====
 # on the host, where Tailscale already runs
 tailscale serve --bg --https=443 http://<container-ip>:80
 tailscale serve status
@@ -187,6 +208,7 @@ server {
 ```
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 chown -R www-data:www-data /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache
 nginx -t && systemctl reload nginx
 ```
@@ -198,6 +220,7 @@ nginx -t && systemctl reload nginx
 ### 6. Migrate, and make the first admin
 
 ```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
 php artisan migrate --force
 php artisan uni:create-admin
 ```
