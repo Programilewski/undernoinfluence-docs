@@ -134,6 +134,7 @@ Adopted 2026-09-16.
 | [[decisions/product/posthog-cdn-lazy-init]] | PostHog CDN request deferred until after consent — zero network activity to PostHog before user grants consent | Decided |
 | [[decisions/product/analytics-endpoint-server-gate]] | `/analytics/events` enforces consent server-side; `abort_unless(cookie === 'granted', 403)` before any processing | Decided |
 | [[decisions/product/pii-columns-dropped]] | PII columns dropped from `events` table entirely (not left as nullable) — data model matches compliance intent | Decided |
+| [[decisions/product/demo-data-is-allowed-everywhere-except-production]] | Invented data may exist anywhere but production; one entry point, DemoDataSeeder, which throws rather than no-ops | Decided 22.09 |
 | [[decisions/product/three-environments-and-what-each-is-for]] | Local, home server (Tailscale, real devices), staging, production — each with one stated job; supersedes INFRA-01's "no preprod" | Decided 22.09 |
 | [[decisions/product/a-release-is-a-tag-deployed-from-git]] | Every environment deploys the same git tag; nothing is ever copied from one environment to another | Decided 22.09 |
 | [[decisions/product/the-workspace-git-store-lives-outside-syncthing]] | The workspace repository is created with `--separate-git-dir`, so its object store is never inside the Syncthing folder | Decided 22.09 |
