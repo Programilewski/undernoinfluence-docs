@@ -1,8 +1,8 @@
 ---
-version: 5.1
+version: 6.0
 owner: Paweł Milewski
 updated: 2026-09-22
-status: **session A executed 22.09.2026**. Revised 22.09 (5.1): B1 moves the old `.git` aside rather than deleting it, B4's scanner now exists, and the commute-document naming is applied to the whole folder — all ten steps done, with three deviations recorded below. Session B is not started. Revised 22.09: the Syncthing gate is replaced by `--separate-git-dir`, which removes the per-device configuration the gate depended on.
+status: **executed and complete, 22.09.2026.** Sessions A and B both ran, all sixteen steps. Two repositories exist, each with one initial commit, both pushed and verified; the old repository is archived. This document is now a record of what was done rather than a plan — all ten steps done, with three deviations recorded below. Session B is not started. Revised 22.09: the Syncthing gate is replaced by `--separate-git-dir`, which removes the per-device configuration the gate depended on.
 ---
 
 # Migrating to a fresh repository
@@ -286,7 +286,11 @@ php artisan test            # 1040 pass
 
 **What this step found, which is the reason it exists:** `.env.example` shipped `BACKUP_NOTIFICATION_EMAIL=` empty against a config default, so `env()` returned `''`, spatie/laravel-backup rejected the address and **every artisan command threw before it could run**. A production box built from `.env.example` — which is this project's documented procedure — could not have run `migrate` or `schedule:run`. Fixed and pinned by two tests on 22.09.
 
-**B6. Archive the old repository — renamed to `uni-archive` on 22.09.2026, at `Programilewski/uni-archive`.** GitHub's Archive setting, kept private, its URL written into the workspace `README.md`. **Archive last, not first:** the setting makes a repository read-only, and until B5 has proved the new repository builds from a clean clone the old one is still the fallback you may need to push to. Archived rather than deleted: the history is the only record of early decisions that never reached a journal. Decide about deletion separately, once the new repositories have been the working ones long enough to trust.
+**B6. Archive the old repository. ✅ 22.09** `Programilewski/uni-archive`, private, archived. Verified still readable afterwards, which is its only remaining job.
+
+**What archiving buys, since the step never said.** It blocks pushes at the server, which matters because `../undernoinfluence-legacy.git` still names `uni-archive` as its origin and has `v1` checked out — a push from there would land work in a repository nobody will look at again, and would appear to succeed. It blocks web-UI edits, so no divergence can be created by fixing a typo on github.com. And it puts a read-only banner on every page, which is the real reason: there are now three private repositories with confusable names, and the banner answers "which of these is live?" without comparing commit dates.
+
+**What it does not buy:** it is not a backup and does not make the history more durable — that comes from there being two copies, GitHub and `../undernoinfluence-legacy.git`. It does not protect the local copy. And it does not affect the old-URL hazard, because `Programilewski/UnderNoInfluence` no longer resolves to the archive at all; since the name was reused it resolves to the new application repository, confirmed on 22.09. Archived rather than deleted: the history is the only record of early decisions that never reached a journal. Decide about deletion separately, once the new repositories have been the working ones long enough to trust.
 
 ### The one command never to run here
 

@@ -57,9 +57,13 @@ Not repeated here; [`deploy-checklist.md`](deploy-checklist.md) is the list and 
 
 Also open, and not in that file: `ropa.md` carries **43 `TODO`s** while the code enforces four real retention windows, and the three registers (`vendors/`, `dpa/`, `incidents/`) are still literal placeholder rows reading "Hosting provider / TODO / TBD".
 
-## D. Repository
+## D. Repository — **closed 22.09.2026**
 
-The migration, its own uninterrupted sitting: the credential is in **four** tracked files, 91 MB of research sits in a 68 MB tracked tree, and step 4 (389 commit ids) cannot be redone after the squash. [`../tech/repository-migration.md`](../tech/repository-migration.md).
+**Done.** The migration ran in two sittings and every one of its sixteen steps is executed. `Programilewski/undernoinfluence` holds the application — 687 files, 5.3 MB, one initial commit, no credential, no journals. `Programilewski/undernoinfluence-docs` holds this vault, 410 files, its object store at `~/uni-docs.git` outside Syncthing. `Programilewski/uni-archive` holds the 213-commit history, private and archived, with a second copy at `../undernoinfluence-legacy.git`.
+
+The four things this section tracked are all resolved: the credential is rotated and out of every tracked file, the 93 MB of research is at `~/uni-reference/` outside git and Syncthing, all 76 real commit ids became dates and descriptions before the squash, and a pre-commit scanner now refuses any commit that would add a credential. See [[tech/repository-migration]] for what each step actually involved, including the three places the plan turned out to be wrong.
+
+**Left over, and small:** `core.hooksPath` is set in these two clones and nowhere else — deploy-checklist A13. [`../tech/repository-migration.md`](../tech/repository-migration.md).
 
 ## E. Product — what a visitor would notice
 

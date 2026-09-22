@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-22
 **Status:** Decided
-**Executed:** no — it is how step B2 runs, and session B has not started
+**Executed:** yes — 2026-09-22, step B2. The workspace repository was created with `--separate-git-dir`; `docs/.git` is a 31-byte pointer and the object store is at `~/uni-docs.git`, 3.7 MB, outside every Syncthing folder
 **Supersedes:** the Syncthing ignore-pattern gate added to [[tech/repository-migration]] on 21.09, which stays as a second, cheaper defence
 **Area:** Infrastructure | Process
 
