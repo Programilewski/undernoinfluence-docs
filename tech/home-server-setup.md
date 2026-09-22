@@ -215,7 +215,10 @@ tar -xzf /tmp/uni-assets.tgz -C /var/www/undernoinfluence/public
 chown -R uni:www-data /var/www/undernoinfluence/public
 ls public/build/manifest.json
 ls public/vendor/maplibre-gl/*/maplibre-gl.mjs
+curl -sI http://127.0.0.1/vendor/maplibre-gl/6.9.0/maplibre-gl.mjs | grep -i content-type
 ```
+
+**That last line must say `text/javascript`, not `application/octet-stream`** — see the `.mjs` block in step 5a. A 200 with the wrong type looks like success everywhere except in the browser.
 
 **Confirm `public/hot` does not exist on the server.** If it does, Laravel emits asset URLs pointing at a Vite dev server that is not there, and every page renders unstyled **with nothing in the log** (checklist C3). This is the same fact that made the test suite lie on 22.09.
 
@@ -245,6 +248,19 @@ server {
     index index.php;
 
     location / { try_files $uri $uri/ /index.php?$query_string; }
+
+    # MapLibre ships as ES modules. nginx's mime.types on Ubuntu 24.04 has no entry
+    # for .mjs, so it falls back to application/octet-stream — and a dynamic import()
+    # refuses a module that is not served with a JavaScript type. The file downloads
+    # with a 200 and the browser then declines to execute it, so curl says everything
+    # is fine and every map is blank. Found on the home server, 22.09.
+    #
+    # default_type in a location that only matches .mjs, rather than a types { } block:
+    # a types block inside server REPLACES the inherited map instead of adding to it,
+    # which would silently drop every other MIME type on the site.
+    location ~ \.mjs$ {
+        default_type text/javascript;
+    }
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
