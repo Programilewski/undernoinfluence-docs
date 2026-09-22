@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Under No Influence — Brand Book</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  :root{
+    --primary:#7c3aed; --accent:#825fff; --ok:#00b5ff;
+    --base:#f7f8fb; --surface:#fff; --fg:#0D0F14;
+    --muted:rgba(13,15,20,.66); --faint:rgba(13,15,20,.45);
+    --border:rgba(13,15,20,.12);
+  }
+  body{ font-family:'Inter',-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        color:var(--fg); margin:0; font-size:11px; line-height:1.55; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  h1,h2,h3{ letter-spacing:-.02em; line-height:1.15; }
+  h2{ font-size:17px; margin:30px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--border); }
+  h3{ font-size:12.5px; margin:16px 0 6px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  p{ margin:6px 0; }
+  code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:10px;
+        background:rgba(124,58,237,.08); color:var(--primary); padding:1px 5px; border-radius:4px; }
+  .muted{ color:var(--muted); } .faint{ color:var(--faint); }
+  /* Cover */
+  .cover{ height:255mm; display:flex; flex-direction:column; justify-content:center; page-break-after:always; }
+  .mark{ width:96px; height:96px; border-radius:22px; background:var(--primary);
+         display:flex; align-items:center; justify-content:center; margin-bottom:30px; }
+  .mark svg{ width:62px; }
+  .cover h1{ font-size:46px; margin:0 0 6px; }
+  .cover .em{ color:var(--accent); }
+  .cover .sub{ font-size:14px; color:var(--muted); max-width:46ch; }
+  .cover .ver{ margin-top:40px; font-size:11px; color:var(--faint); letter-spacing:.04em; }
+  /* Swatches */
+  .swatches{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:10px 0; }
+  .sw{ border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  .sw .chip{ height:54px; }
+  .sw .meta{ padding:7px 9px; }
+  .sw .name{ font-weight:600; font-size:10.5px; }
+  .sw .hex{ font-family:ui-monospace,monospace; font-size:9.5px; color:var(--muted); }
+  .sw .use{ font-size:9px; color:var(--faint); margin-top:2px; line-height:1.35; }
+  /* Type specimen */
+  .specimen{ border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin:10px 0; }
+  .specimen .big{ font-size:30px; font-weight:700; letter-spacing:-.02em; }
+  .row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .pill{ border:1px solid var(--border); border-radius:999px; padding:4px 12px; font-size:10px; }
+  table{ width:100%; border-collapse:collapse; margin:8px 0; font-size:10px; }
+  th,td{ text-align:left; padding:6px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th{ color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em; font-size:9px; }
+  .dot{ display:inline-block; width:11px; height:11px; border-radius:3px; vertical-align:middle; margin-right:6px; }
+  .note{ background:var(--base); border:1px solid var(--border); border-left:3px solid var(--accent);
+         border-radius:8px; padding:9px 12px; margin:12px 0; font-size:10px; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .avoid li::marker{ content:"✕  "; color:#c0392b; }
+  .pane{ border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .pane.dark{ background:#0D0F14; color:#e8e4df; border-color:rgba(255,255,255,.12); }
+  .pane .lbl{ font-size:9px; letter-spacing:.08em; text-transform:uppercase; opacity:.6; }
+  .pane .wm{ font-weight:800; font-size:20px; letter-spacing:-.02em; margin-top:6px; }
+  .pane .wm .em{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="mark">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(-52.43 10.54) scale(0.5)" fill="#fff">
+        <path d="M128.426 0.292065V21.5544H124.293L117.619 8.25083V21.5544H113.56V0.292065H117.634L124.366 13.7417V0.292065H128.426Z"/>
+        <path d="M150.4 9.27306V12.8216C150.4 14.3209 150.215 15.6352 149.845 16.7645C149.485 17.8841 148.969 18.8236 148.297 19.5829C147.635 20.3326 146.832 20.8972 145.888 21.2769C144.953 21.6566 143.916 21.8464 142.777 21.8464C141.638 21.8464 140.596 21.6566 139.652 21.2769C138.717 20.8972 137.909 20.3326 137.228 19.5829C136.556 18.8236 136.035 17.8841 135.665 16.7645C135.295 15.6352 135.11 14.3209 135.11 12.8216V9.27306C135.11 7.73485 135.291 6.39135 135.651 5.24256C136.011 4.08404 136.532 3.12023 137.213 2.35112C137.895 1.57228 138.703 0.988153 139.637 0.598733C140.572 0.199578 141.609 0 142.748 0C143.887 0 144.924 0.199578 145.858 0.598733C146.793 0.988153 147.601 1.57228 148.283 2.35112C148.964 3.12023 149.485 4.08404 149.845 5.24256C150.215 6.39135 150.4 7.73485 150.4 9.27306ZM146.151 12.8216V9.24385C146.151 8.23136 146.077 7.36977 145.931 6.65908C145.785 5.93865 145.566 5.34965 145.274 4.89209C144.982 4.43452 144.627 4.09864 144.208 3.88446C143.79 3.67028 143.303 3.56319 142.748 3.56319C142.193 3.56319 141.701 3.67028 141.273 3.88446C140.854 4.09864 140.499 4.43452 140.207 4.89209C139.925 5.34965 139.71 5.93865 139.564 6.65908C139.428 7.36977 139.36 8.23136 139.36 9.24385V12.8216C139.36 13.7952 139.433 14.6276 139.579 15.3188C139.725 16.01 139.944 16.5747 140.236 17.0128C140.528 17.4509 140.884 17.777 141.302 17.9912C141.731 18.1956 142.222 18.2979 142.777 18.2979C143.322 18.2979 143.804 18.1956 144.223 17.9912C144.651 17.777 145.007 17.4509 145.289 17.0128C145.571 16.5747 145.785 16.01 145.931 15.3188C146.077 14.6276 146.151 13.7952 146.151 12.8216Z"/>
+        <path d="M155.449 19.4661C155.449 18.8236 155.663 18.2881 156.092 17.8598C156.52 17.4217 157.099 17.2026 157.83 17.2026C158.56 17.2026 159.139 17.4217 159.567 17.8598C159.996 18.2881 160.21 18.8236 160.21 19.4661C160.21 20.1087 159.996 20.6441 159.567 21.0725C159.139 21.5008 158.56 21.715 157.83 21.715C157.099 21.715 156.52 21.5008 156.092 21.0725C155.663 20.6441 155.449 20.1087 155.449 19.4661Z"/>
+      </g>
+    </svg>
+  </div>
+  <h1>Under <span class="em">No.</span><br>Influence</h1>
+  <p class="sub">Brand Book — the single reference for how UNI looks and sounds.
+     Every value is pulled straight from the live application design tokens.</p>
+  <div class="ver">VERSION 1.0 · 2026-06-01</div>
+</section>
+
+<!-- 1 GLANCE -->
+<h2>1 · Brand at a glance</h2>
+<p><strong>Under No Influence</strong> helps people discover bars, restaurants and cafés
+with a genuine alcohol-free offer. The brand is confident, modern and a little defiant —
+the name itself is the statement. Visually: clean high-contrast surfaces, one decisive
+violet, and a single signature gesture, the emphasised <strong>NO.</strong></p>
+<table>
+  <tr><th>Name</th><td>Under No Influence &nbsp;·&nbsp; short form <strong>UNI</strong></td></tr>
+  <tr><th>Signature mark</th><td><strong>NO.</strong> — the highlighted fragment of the wordmark</td></tr>
+  <tr><th>Primary colour</th><td><span class="dot" style="background:#7c3aed"></span>Violet <code>#7c3aed</code></td></tr>
+  <tr><th>Core typeface</th><td>Inter</td></tr>
+  <tr><th>Modes</th><td>Light &amp; dark are equal, first-class citizens</td></tr>
+</table>
+
+<!-- 2 LOGO -->
+<h2>2 · Logo</h2>
+<p>The primary logo is a two-line wordmark in custom letterforms, delivered as inline SVG
+(not a font). The fragment <strong>NO.</strong> is set in accent violet; the rest uses
+<code>currentColor</code>, so the mark inherits the surrounding text colour and works in
+both modes from a single asset.</p>
+<div class="two">
+  <div class="pane">
+    <div class="lbl">On light</div>
+    <div class="wm">UNDER <span class="em">NO.</span><br>INFLUENCE</div>
+  </div>
+  <div class="pane dark">
+    <div class="lbl">On dark</div>
+    <div class="wm">UNDER <span class="em">NO.</span><br>INFLUENCE</div>
+  </div>
+</div>
+<div class="two" style="margin-top:14px">
+  <div>
+    <h3>App mark / favicon</h3>
+    <p class="muted">In small square contexts the full wordmark sits on a rounded dark
+       tile (<code>#141720</code>): white letters with <strong>NO.</strong> in violet.</p>
+    <p><code>favicon.svg</code> · <code>favicon.ico</code> · <code>apple-touch-icon.png</code>
+       · <code>icon-192/512.png</code></p>
+  </div>
+  <div>
+    <h3 style="color:#c0392b">Don't</h3>
+    <ul class="avoid muted" style="margin:6px 0; padding-left:18px">
+      <li>Recolour <strong>NO.</strong> to anything but the accent token</li>
+      <li>Stretch, rotate, or add shadows</li>
+      <li>Rebuild the wordmark in a system font</li>
+      <li>Place on a busy photo without a solid backing</li>
+    </ul>
+  </div>
+</div>
+<div class="note">Clear space around the wordmark equals the height of the <strong>N</strong>.
+  Source of truth: inline SVG in <code>resources/views/partials/nav.blade.php</code>.</div>
+
+<!-- 3 COLOUR -->
+<h2>3 · Colour</h2>
+<p class="muted">All colours are CSS custom properties. Brand colours
+(<code>primary</code>, <code>accent</code>) do not flip between modes; neutrals do.</p>
+
+<h3>Brand</h3>
+<div class="swatches">
+  <div class="sw"><div class="chip" style="background:#7c3aed"></div><div class="meta"><div class="name">primary</div><div class="hex">#7c3aed</div><div class="use">Actions, links, brand fills</div></div></div>
+  <div class="sw"><div class="chip" style="background:#8b5cf6"></div><div class="meta"><div class="name">primary-hover</div><div class="hex">#8b5cf6</div><div class="use">Hover state</div></div></div>
+  <div class="sw"><div class="chip" style="background:#6d28d9"></div><div class="meta"><div class="name">primary-active</div><div class="hex">#6d28d9</div><div class="use">Pressed state</div></div></div>
+  <div class="sw"><div class="chip" style="background:#825fff"></div><div class="meta"><div class="name">accent</div><div class="hex">#825fff</div><div class="use">The NO. mark, CTAs</div></div></div>
+  <div class="sw"><div class="chip" style="background:#a78bfa"></div><div class="meta"><div class="name">primary-muted</div><div class="hex">#a78bfa</div><div class="use">Secondary emphasis</div></div></div>
+  <div class="sw"><div class="chip" style="background:#c4b5fd"></div><div class="meta"><div class="name">primary-light</div><div class="hex">#c4b5fd</div><div class="use">Tints, subtle bg</div></div></div>
+  <div class="sw"><div class="chip" style="background:#00b5ff"></div><div class="meta"><div class="name">ok</div><div class="hex">#00b5ff</div><div class="use">Positive / info signal</div></div></div>
+  <div class="sw"><div class="chip" style="background:linear-gradient(135deg,#0D0F14 50%,#e8e4df 50%)"></div><div class="meta"><div class="name">fg light / dark</div><div class="hex">#0D0F14 · #e8e4df</div><div class="use">Primary text both modes</div></div></div>
+</div>
+
+<h3>Drink categories — fixed semantic palette</h3>
+<div class="swatches">
+  <div class="sw"><div class="chip" style="background:#B87A5E"></div><div class="meta"><div class="name">Piwo</div><div class="hex">#B87A5E</div></div></div>
+  <div class="sw"><div class="chip" style="background:#9b6b9b"></div><div class="meta"><div class="name">Wino</div><div class="hex">#9b6b9b</div></div></div>
+  <div class="sw"><div class="chip" style="background:#7c9b5e"></div><div class="meta"><div class="name">Spirits</div><div class="hex">#7c9b5e</div></div></div>
+  <div class="sw"><div class="chip" style="background:#5e8db8"></div><div class="meta"><div class="name">Drinks</div><div class="hex">#5e8db8</div></div></div>
+  <div class="sw"><div class="chip" style="background:#b8a25e"></div><div class="meta"><div class="name">Cydr</div><div class="hex">#b8a25e</div></div></div>
+  <div class="sw"><div class="chip" style="background:#5eb8a2"></div><div class="meta"><div class="name">Musujące</div><div class="hex">#5eb8a2</div></div></div>
+</div>
+
+<div class="two">
+  <div>
+    <h3>Neutrals — light</h3>
+    <table>
+      <tr><td><span class="dot" style="background:#f7f8fb;border:1px solid var(--border)"></span>base</td><td class="muted">#f7f8fb</td></tr>
+      <tr><td><span class="dot" style="background:#fff;border:1px solid var(--border)"></span>surface</td><td class="muted">#ffffff</td></tr>
+      <tr><td><span class="dot" style="background:#eef2f7"></span>surface-hover</td><td class="muted">#eef2f7</td></tr>
+      <tr><td><span class="dot" style="background:#0D0F14"></span>fg</td><td class="muted">#0D0F14</td></tr>
+      <tr><td><span class="dot" style="background:rgba(13,15,20,.1)"></span>ui-border</td><td class="muted">rgba(13,15,20,.10)</td></tr>
+    </table>
+  </div>
+  <div>
+    <h3>Neutrals — dark</h3>
+    <table>
+      <tr><td><span class="dot" style="background:#0D0F14"></span>base</td><td class="muted">#0D0F14</td></tr>
+      <tr><td><span class="dot" style="background:#141720"></span>surface</td><td class="muted">#141720</td></tr>
+      <tr><td><span class="dot" style="background:#1e2230"></span>surface-hover</td><td class="muted">#1e2230</td></tr>
+      <tr><td><span class="dot" style="background:#e8e4df"></span>fg</td><td class="muted">#e8e4df</td></tr>
+      <tr><td><span class="dot" style="background:rgba(255,255,255,.2)"></span>ui-border</td><td class="muted">rgba(255,255,255,.08)</td></tr>
+    </table>
+  </div>
+</div>
+<div class="note">Foreground tokens are tuned to meet <strong>WCAG AA</strong> on both
+  <code>base</code> and <code>surface</code>. Re-check AA for any new text/background pair.</div>
+
+<!-- 4 TYPE -->
+<h2>4 · Typography</h2>
+<div class="specimen">
+  <div class="big">Inter — the interface workhorse</div>
+  <div class="muted">All UI &amp; body text · <code>--font-sans: 'Inter'</code></div>
+  <div class="row">
+    <span class="pill" style="font-weight:400">Regular 400</span>
+    <span class="pill" style="font-weight:500">Medium 500</span>
+    <span class="pill" style="font-weight:600">Semibold 600</span>
+    <span class="pill" style="font-weight:700">Bold 700</span>
+  </div>
+</div>
+<table>
+  <tr><th>Role</th><th>Typeface</th><th>Weights</th><th>Notes</th></tr>
+  <tr><td>UI &amp; body</td><td><strong>Inter</strong></td><td>400 / 500 / 600 / 700</td><td>Workhorse for all interface text</td></tr>
+  <tr><td>Display</td><td><strong>Brawler</strong></td><td>400 / 700</td><td>Loaded via Bunny Fonts for editorial moments</td></tr>
+  <tr><td>Mono</td><td>system mono</td><td>400</td><td>Code, slugs, technical strings</td></tr>
+</table>
+<p class="muted"><strong>Hierarchy principle:</strong> establish hierarchy with weight and
+  size, not colour. Reserve the violet for things that are actually interactive.</p>
+
+<!-- 5 DARK + 6 VOICE -->
+<div class="two">
+  <div>
+    <h2>5 · Dark mode</h2>
+    <p class="muted">Tokens flip on <code>.dark</code> applied to <code>&lt;html&gt;</code>
+      before first paint — no flash.</p>
+    <ul class="muted" style="padding-left:18px">
+      <li>Brand violet &amp; drink palette stay identical in both modes</li>
+      <li>Never hard-code <code>#fff</code>/<code>#000</code> — use tokens</li>
+      <li>Test every new component in both modes</li>
+    </ul>
+  </div>
+  <div>
+    <h2>6 · Voice &amp; tone</h2>
+    <ul class="muted" style="padding-left:18px">
+      <li><strong>Confident, not preachy</strong> — we help people choose, we don't lecture</li>
+      <li><strong>Plain &amp; specific</strong> — concrete counts beat vague marketing</li>
+      <li><strong>Polish-first</strong> — UI in Polish, Polish category names</li>
+      <li>The name does the attitude — let <strong>NO.</strong> carry the edge</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7 ASSETS -->
+<h2>7 · Asset inventory</h2>
+<table>
+  <tr><th>Asset</th><th>Path</th></tr>
+  <tr><td>Wordmark (inline SVG)</td><td><code>resources/views/partials/nav.blade.php</code></td></tr>
+  <tr><td>Favicon (SVG / ICO)</td><td><code>public/favicon.svg</code> · <code>public/favicon.ico</code></td></tr>
+  <tr><td>Apple touch icon</td><td><code>public/apple-touch-icon.png</code></td></tr>
+  <tr><td>PWA icons</td><td><code>public/icon-192.png</code> · <code>public/icon-512.png</code></td></tr>
+  <tr><td>Design tokens (source of truth)</td><td><code>resources/css/app.css</code></td></tr>
+</table>
+<div class="note">Colours and type live in <code>resources/css/app.css</code>. If a value here
+  disagrees with that file, <strong>the file wins</strong> — update this book to match.</div>
+
+</body>
+</html>

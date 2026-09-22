@@ -1,0 +1,15 @@
+// Per-device Obsidian UI state — changes on every pane drag, conflicts constantly.
+// The rest of .obsidian/ IS synced on purpose, so plugins and settings match everywhere.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace.json.bak
+
+// Obsidian's local trash
+.trash
+
+// Syncthing's own versioning store — never sync the safety net
+.stversions
+
+// Git metadata. docs/ has none today (the repo root does), but a nested repo
+// here would otherwise be replicated file-by-file and corrupted.
+.git

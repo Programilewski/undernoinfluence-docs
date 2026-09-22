@@ -1,0 +1,1 @@
+A randomly scattered circles/dots, altogether forming a shape 

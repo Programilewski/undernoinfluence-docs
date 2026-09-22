@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BRD — Under No Influence</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">BRD — Under No Influence</h1>
+</header>
+<h1 id="business-requirements-document-under-no-influence-uni">Business
+Requirements Document — Under No Influence (UNI)</h1>
+<p><strong>Version</strong>: 1.0<br />
+<strong>Date</strong>: 2026-06-19<br />
+<strong>Author</strong>: Pawel Milewski (Solo Founder)<br />
+<strong>Status</strong>: Pre-Launch (V1 Warsaw)<br />
+<strong>Review Cycle</strong>: After each major phase gate (V1 live, V2
+owner activation, V3 multi-city)</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#1-executive-summary">Executive Summary</a></li>
+<li><a href="#2-problem-statement">Problem Statement</a></li>
+<li><a href="#3-business-objectives">Business Objectives</a></li>
+<li><a href="#4-market-context">Market Context</a></li>
+<li><a href="#5-user-types--personas">User Types &amp; Personas</a></li>
+<li><a href="#6-business-assumptions--risks">Business Assumptions &amp;
+Risks</a></li>
+<li><a href="#7-scope">Scope</a>
+<ul>
+<li>7.1 <a href="#71-v1-in-scope">V1 In-Scope</a></li>
+<li>7.2 <a href="#72-v1-out-of-scope">V1 Out-of-Scope</a></li>
+</ul></li>
+<li><a href="#8-functional-requirements">Functional Requirements</a>
+<ul>
+<li>8.1 <a href="#81-discovery-browse">Discovery (Browse)</a></li>
+<li>8.2 <a href="#82-venue-profile">Venue Profile</a></li>
+<li>8.3 <a href="#83-static-content-pages">Static Content Pages</a></li>
+<li>8.4 <a href="#84-venue-data-model">Venue Data Model</a></li>
+<li>8.5 <a href="#85-scoring--credibility">Scoring &amp;
+Credibility</a></li>
+<li>8.6 <a href="#86-analytics-infrastructure">Analytics
+Infrastructure</a></li>
+<li>8.7 <a href="#87-admin-panel">Admin Panel</a></li>
+</ul></li>
+<li><a href="#9-non-functional-requirements">Non-Functional
+Requirements</a></li>
+<li><a href="#10-data-model">Data Model</a></li>
+<li><a href="#11-business-rules">Business Rules</a></li>
+<li><a href="#12-compliance--legal">Compliance &amp; Legal</a></li>
+<li><a href="#13-success-metrics">Success Metrics</a></li>
+<li><a href="#14-roadmap">Roadmap</a></li>
+<li><a href="#15-pre-launch-blockers">Pre-Launch Blockers</a></li>
+<li><a href="#16-technical-debt-register">Technical Debt
+Register</a></li>
+<li><a href="#17-appendix">Appendix</a></li>
+</ol>
+<hr />
+<h2 id="executive-summary">1. Executive Summary</h2>
+<p><strong>Under No Influence (UNI)</strong> is a no/low-alcohol (NoLo)
+venue discovery platform for the Polish HoReCa (hotel/restaurant/café)
+market. It solves a dual problem: consumers cannot reliably find
+alcohol-free-friendly venues, and venues have no credible channel to
+communicate their NoLo offering.</p>
+<p>UNI is a <strong>browse-only directory</strong> at launch (V1),
+serving anonymous users who want to find venues with verified
+alcohol-free menus in Warsaw. The platform is neutral — no advertising,
+no paid placements, no sponsor influence. Its credibility comes from
+data depth and freshness, not marketing claims.</p>
+<p><strong>The long-term play is B2B</strong>: venue owners who see
+search demand for their category become the paying customers, purchasing
+analytics and self-service tools. The public-facing directory is the
+demand aggregator that makes the B2B pitch credible.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Launch target</strong></td>
+<td>June 2026</td>
+</tr>
+<tr class="even">
+<td><strong>Launch market</strong></td>
+<td>Warsaw, Poland</td>
+</tr>
+<tr class="odd">
+<td><strong>V1 user flow</strong></td>
+<td>Browse → Filter → View venue → Outbound click (directions / website
+/ Instagram)</td>
+</tr>
+<tr class="even">
+<td><strong>Monetization</strong></td>
+<td>Not in V1. Owner analytics tiers in V2 (2027).</td>
+</tr>
+<tr class="odd">
+<td><strong>Founder</strong></td>
+<td>Solo (technical + business)</td>
+</tr>
+<tr class="even">
+<td><strong>Tech stack</strong></td>
+<td>Laravel 13, FilamentPHP, Livewire 4, Tailwind CSS 4, PostgreSQL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="problem-statement">2. Problem Statement</h2>
+<h3 id="consumer-side">Consumer Side</h3>
+<p>Consumers who actively reduce or avoid alcohol (“sober-curious” and
+“straight-edge” alike) have no reliable way to know whether a given
+venue has meaningful alcohol-free options before walking in. Existing
+tools — Google Maps, TripAdvisor, Yelp — answer “does this place serve
+food?” but not “how many 0% beers are on tap?” or “can I get a NA wine
+here?”. The result: wasted visits, social friction (being the only
+person unable to order what you came for), and a chilling effect on
+going out at all.</p>
+<p><strong>The core frustration</strong>: “I don’t know if they’ll have
+anything I can drink, so I just don’t go.”</p>
+<h3 id="venue-side">Venue Side</h3>
+<p>Venues that invest in building NoLo menus have no cost-effective way
+to communicate this to the right audience. Standard social media posts
+about NA drinks reach their existing followers — not people actively
+searching for that offering. The demand signal exists (IWSR: 15-20% of
+consumers are actively NoLo) but the venue’s investment goes mostly
+unnoticed.</p>
+<p><strong>The core frustration</strong>: “We have eight great 0% beers
+and barely anyone knows it.”</p>
+<h3 id="the-gap">The Gap</h3>
+<p>No tool in Poland today maps verified, depth-scored NoLo offerings to
+venue discovery. UNI fills this gap.</p>
+<hr />
+<h2 id="business-objectives">3. Business Objectives</h2>
+<h3 id="primary-v1">Primary (V1)</h3>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Objective</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BO-01</td>
+<td>Validate consumer demand for NoLo venue discovery</td>
+<td>&gt;1,000 unique visits in first 6 weeks</td>
+</tr>
+<tr class="even">
+<td>BO-02</td>
+<td>Build a trusted, manually-curated venue database for Warsaw</td>
+<td>50–60 verified Warsaw venues at launch</td>
+</tr>
+<tr class="odd">
+<td>BO-03</td>
+<td>Demonstrate the B2B value proposition to early venue owners</td>
+<td>&gt;5 inbound claim inquiries post-launch</td>
+</tr>
+<tr class="even">
+<td>BO-04</td>
+<td>Establish UNI as a credible data authority (no paid placements, no
+bias)</td>
+<td>Zero complaints about neutrality; no advertising dependency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="secondary-v1-v2-bridge">Secondary (V1 → V2 Bridge)</h3>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Objective</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BO-05</td>
+<td>Achieve SEO visibility for long-tail NoLo search queries</td>
+<td>≥1 keyword ranked page 1 within 3 months</td>
+</tr>
+<tr class="even">
+<td>BO-06</td>
+<td>Build social proof via Instagram content strategy</td>
+<td>≥500 Instagram followers; 3×/week carousel cadence maintained</td>
+</tr>
+<tr class="odd">
+<td>BO-07</td>
+<td>Convert organic venue discovery into owner conversations</td>
+<td>&gt;30% of venues claimed within 6 months of launch</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-gate-to-v2">Phase Gate to V2</h3>
+<p>V2 (owner self-service + monetization) unlocks when: Warsaw has ≥100
+venues, ≥30 are claimed, and there are ≥3 organic inbound requests from
+venues in a second Polish city.</p>
+<hr />
+<h2 id="market-context">4. Market Context</h2>
+<h3 id="nolo-market-in-poland">NoLo Market in Poland</h3>
+<ul>
+<li><strong>Global NoLo CAGR</strong>: ~14% (IWSR 2024–2028
+forecast)</li>
+<li><strong>Poland 2024 penetration</strong>: 12–15% of adult consumers
+actively seeking NoLo options in on-premise settings</li>
+<li><strong>Dominant categories by consumer preference</strong>: Beer
+(widest choice) → Wine (growing fastest) → Cocktails/mocktails</li>
+<li><strong>Demographic skew</strong>: Gen Z and younger Millennials
+over-represented; not exclusively “non-drinkers” — includes designated
+drivers, pregnant women, fitness-focused consumers, and social drinkers
+managing intake</li>
+<li><strong>On-premise context</strong>: Venues are the “experience”
+play; home NoLo consumption is growing but lacks social dimension UNI
+addresses</li>
+</ul>
+<h3 id="competitive-landscape">Competitive Landscape</h3>
+<p>There is no direct Polish competitor for verified NoLo venue
+discovery. Indirect competitors:</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 35%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Competitor</th>
+<th>What they do</th>
+<th>UNI’s edge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Google Maps</td>
+<td>Points of interest, reviews</td>
+<td>No NoLo filter; no menu depth; no freshness</td>
+</tr>
+<tr class="even">
+<td>TripAdvisor</td>
+<td>Hospitality reviews</td>
+<td>Menu data absent; no NoLo concept</td>
+</tr>
+<tr class="odd">
+<td>Pyszne.pl / Bolt Food</td>
+<td>Delivery from restaurants</td>
+<td>Delivery-only; no sit-down discovery</td>
+</tr>
+<tr class="even">
+<td>Vivino / Untappd</td>
+<td>Product discovery (bottles/cans)</td>
+<td>No venue map; no location-based discovery</td>
+</tr>
+<tr class="odd">
+<td>General venue directories</td>
+<td>Lists bars/restaurants</td>
+<td>No NoLo signal whatsoever</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNI’s defensible position</strong>: data depth (breadth score
+per category), freshness guarantee (decay-based trust), and owner
+verification make the dataset intrinsically hard to replicate at scale
+without the relationships UNI builds through the claim process.</p>
+<hr />
+<h2 id="user-types-personas">5. User Types &amp; Personas</h2>
+<h3 id="visitor-anonymous-v1">5.1 Visitor (Anonymous, V1)</h3>
+<p><strong>Who they are</strong>: Any adult who lands on UNI, likely via
+Google search (“bary bezalkoholowe warszawa”), Instagram, or word of
+mouth.</p>
+<p><strong>What they need</strong>: - Find venues with their preferred
+NoLo category (beer, wine, cocktails) - See whether the venue has real
+depth (not just “one token option”) - Navigate to the venue (directions,
+website, Instagram) without friction</p>
+<p><strong>V1 journey</strong>: 1. Land on homepage or city/category
+landing page 2. Arrive at interactive map/list 3. Filter by category
+(e.g., “piwo bezalkoholowe”) 4. Click venue card → profile page 5. Tap
+outbound link (directions / website / Instagram)</p>
+<p><strong>Not in V1</strong>: Account creation, saved venues,
+submitting corrections.</p>
+<hr />
+<h3 id="end-user-registered-v1.5">5.2 End User (Registered, V1.5+)</h3>
+<p><strong>Who they are</strong>: Returning visitors who want to save
+favourite venues, submit corrections, or set preferences.</p>
+<p><strong>What they need</strong>: - Saved venue collections (“going
+out this Friday” shortlist) - Ability to flag stale data - Personalised
+history (visited, want to visit)</p>
+<p><strong>Deferred rationale</strong>: V1 validates whether demand
+exists before taking on GDPR complexity of user accounts.</p>
+<hr />
+<h3 id="venue-owner-b2b-v2">5.3 Venue Owner (B2B, V2)</h3>
+<p><strong>Who they are</strong>: Owner or manager of a venue listed on
+UNI who wants control over their profile and access to demand
+analytics.</p>
+<p><strong>What they need</strong>: - Claim their venue (verified
+ownership) - Update menu accuracy themselves (instead of relying on UNI
+admin) - See how many people searched for their category in their
+district - Use UNI demand data to justify expanding their NoLo menu</p>
+<p><strong>V1 interim</strong>: Email-only onboarding for first ~20–30
+owners. No self-service panel.</p>
+<p><strong>V2 requirements</strong>: Claim form, owner login, analytics
+dashboard, menu editing, B2B pricing tiers.</p>
+<hr />
+<h3 id="admin-founder-live">5.4 Admin (Founder, Live)</h3>
+<p><strong>Who they are</strong>: Pawel, operating the admin panel.</p>
+<p><strong>What they need</strong>: - Full CRUD over venues, products,
+brands, categories - Geocoding (auto-resolve address → coordinates) -
+Analytics widgets (venue completeness, view counts, freshness status) -
+Claim adjudication (approve/reject ownership requests) - Moderation
+tools (inaccuracy reports, erasure requests)</p>
+<p><strong>Panel</strong>: FilamentPHP (<code>/admin</code>), Polish
+language, protected by auth + role check, IP-allowlisted in
+production.</p>
+<hr />
+<h2 id="business-assumptions-risks">6. Business Assumptions &amp;
+Risks</h2>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 25%" />
+<col style="width: 34%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Assumption</th>
+<th>How to validate</th>
+<th>Risk if wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A-01</td>
+<td>Consumers actively search for NoLo venues locally (not just at
+home)</td>
+<td>V1 organic traffic &amp; discovery event volume</td>
+<td>Core thesis fails; pivot to education or B2B-only</td>
+</tr>
+<tr class="even">
+<td>A-02</td>
+<td>Breadth scoring (8-dot bars) communicates offering depth better than
+text</td>
+<td>CTR on category-filtered venues vs. unfiltered</td>
+<td>UX redesign; add text “8 options” fallback</td>
+</tr>
+<tr class="odd">
+<td>A-03</td>
+<td>Owner-verified badge drives trust and increases conversion</td>
+<td>Save rate + outbound click rate on verified vs. unverified
+venues</td>
+<td>Drop badge; rely on freshness alone</td>
+</tr>
+<tr class="even">
+<td>A-04</td>
+<td>Manual curation yields better data quality than bulk import</td>
+<td>Inaccuracy report rate; post-visit feedback</td>
+<td>Add light scraping layer for menu data augmentation</td>
+</tr>
+<tr class="odd">
+<td>A-05</td>
+<td>Freshness decay (visual pill) reduces frustration</td>
+<td>Inaccuracy report volume over time</td>
+<td>Increase update cadence; automate freshness checks</td>
+</tr>
+<tr class="even">
+<td>A-06</td>
+<td>SEO captures long-tail demand better than paid ads at launch</td>
+<td>Organic search share of traffic after 3 months</td>
+<td>Run limited paid search experiment (PLN 500 test budget)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="scope">7. Scope</h2>
+<h3 id="v1-in-scope">7.1 V1 In-Scope</h3>
+<h4 id="consumer-facing">Consumer-Facing</h4>
+<ul>
+<li>Interactive map and list discovery (<code>/mapa</code>,
+<code>/mapa/{city}</code>, <code>/mapa/{city}/{district}</code>)</li>
+<li>Category, verified badge, strict-zero, and freshness filters</li>
+<li>Sort by breadth, A–Z, or nearest</li>
+<li>Venue profile pages with menu accordion, freshness pill, breadth
+dots, and outbound links</li>
+<li>City landing pages, district landing pages, category landing pages
+(programmatic SEO)</li>
+<li>Static content: homepage, how-it-works, about, terms, privacy
+policy</li>
+<li>Sitemap (XML) and robots.txt (13 AI bots blocked)</li>
+<li>Silent analytics event capture (POST
+<code>/analytics/events</code>)</li>
+</ul>
+<h4 id="data-infrastructure">Data Infrastructure</h4>
+<ul>
+<li>Full venue, product, and brand data model (see §10)</li>
+<li>6 drink categories (piwo, wino, drinki, spirits, cydr, musujące)
+with SEO slugs, colours, SVG icons</li>
+<li>Canary venue detection (two fictional venues to detect
+scraping)</li>
+<li>First-party events table + PostHog server-side mirroring</li>
+</ul>
+<h4 id="admin">Admin</h4>
+<ul>
+<li>Filament admin panel (Polish) at <code>/admin</code></li>
+<li>Venue CRUD with geocoding, is_active toggle, admin notes</li>
+<li>Product catalog with global products, brands, producers, ABV trust
+levels</li>
+<li>Category management (colours, icons, slugs)</li>
+<li>Analytics widgets: completeness dashboard, top venues, freshness
+status</li>
+<li>Audit log for all admin actions</li>
+</ul>
+<hr />
+<h3 id="v1-out-of-scope">7.2 V1 Out-of-Scope</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 36%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Why deferred</th>
+<th>Target phase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>User accounts (registration, login, password reset)</td>
+<td>Validate demand before GDPR burden</td>
+<td>V1.5</td>
+</tr>
+<tr class="even">
+<td>Saved venues (bookmarks)</td>
+<td>Depends on auth; localStorage interim considered</td>
+<td>V1.5</td>
+</tr>
+<tr class="odd">
+<td>Inaccuracy report (public UI)</td>
+<td>Backend model ready; no public form in V1</td>
+<td>V1.5</td>
+</tr>
+<tr class="even">
+<td>Venue claim form (owner self-service)</td>
+<td>Email-only for first 20–30 owners</td>
+<td>V2</td>
+</tr>
+<tr class="odd">
+<td>Owner analytics dashboard</td>
+<td>No owners yet; no data to show</td>
+<td>V2</td>
+</tr>
+<tr class="even">
+<td>Multi-city support (Kraków, Gdańsk etc.)</td>
+<td>Warsaw only; flip via env flag when ready</td>
+<td>V2+</td>
+</tr>
+<tr class="odd">
+<td>Venue photos</td>
+<td>Columns exist; Filament wiring not complete</td>
+<td>V2</td>
+</tr>
+<tr class="even">
+<td>Custom drink photos</td>
+<td>Placeholder divs live; S3 wiring not complete</td>
+<td>V2</td>
+</tr>
+<tr class="odd">
+<td>Opening hours display</td>
+<td>Data model incomplete; call venue for now</td>
+<td>V2</td>
+</tr>
+<tr class="even">
+<td>Mobile app (iOS/Android)</td>
+<td>No validated demand; responsive web first</td>
+<td>V3</td>
+</tr>
+<tr class="odd">
+<td>Internationalization</td>
+<td>Polish-only; no i18n framework added</td>
+<td>V4+</td>
+</tr>
+<tr class="even">
+<td>API access for partners</td>
+<td>Build demand signal first</td>
+<td>V3</td>
+</tr>
+<tr class="odd">
+<td>Rarity-weighted breadth scoring</td>
+<td>Requires category popularity data</td>
+<td>V3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="functional-requirements">8. Functional Requirements</h2>
+<h3 id="discovery-browse">8.1 Discovery (Browse)</h3>
+<p><strong>FR-01: Interactive Map</strong></p>
+<ul>
+<li>Leaflet.js with CARTO dark tile layer</li>
+<li>Renders all active venues as clustered map pins</li>
+<li>500-venue cap on initial render; async expansion if exceeded</li>
+<li>Syncs with the venue list (pan/zoom updates list; list hover
+highlights pin)</li>
+<li>Nominatim geocoding for address search</li>
+</ul>
+<p><strong>FR-02: Venue List</strong></p>
+<ul>
+<li>24 cards on initial load; “Load more” pagination</li>
+<li>Each card: venue name, type badge, district, category breadth dots
+(top 2 categories), freshness pill, verified badge (if applicable)</li>
+<li>Click → venue profile</li>
+</ul>
+<p><strong>FR-03: Filters</strong></p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 26%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th>Type</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Category</td>
+<td>Multi-select pill</td>
+<td>piwo / wino / drinki / spirits / cydr / musujące</td>
+</tr>
+<tr class="even">
+<td>Verified</td>
+<td>Toggle</td>
+<td>UNI-verified only</td>
+</tr>
+<tr class="odd">
+<td>Strict zero</td>
+<td>Toggle</td>
+<td>0.0% ABV products only</td>
+</tr>
+<tr class="even">
+<td>Freshness</td>
+<td>Select</td>
+<td>All / Updated this month / Updated this quarter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FR-04: Sort</strong></p>
+<table>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sort</th>
+<th>Logic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Best breadth</td>
+<td>Highest breadth score; when category filter active, score for that
+category</td>
+</tr>
+<tr class="even">
+<td>A–Z</td>
+<td>Alphabetical by venue name</td>
+</tr>
+<tr class="odd">
+<td>Nearest</td>
+<td>Distance from user geolocation (permission-gated)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FR-05: URL Persistence</strong></p>
+<ul>
+<li>Filters and sort are reflected in URL query params
+(<code>?categories[]=piwo&amp;sort=breadth</code>)</li>
+<li>Shareable filtered discovery URLs work on page load</li>
+<li>Back button restores filter state</li>
+</ul>
+<p><strong>FR-06: Empty State</strong></p>
+<ul>
+<li>When filters return zero results, show “Nie znaleźliśmy pasujących
+miejsc” message</li>
+<li>Suggest removing one filter; do not redirect</li>
+<li>Fire <code>discovery_empty_results</code> event (category + city +
+district captured)</li>
+</ul>
+<hr />
+<h3 id="venue-profile">8.2 Venue Profile</h3>
+<p><strong>FR-07: Core Info</strong></p>
+<ul>
+<li>Name, venue type badge, address with district</li>
+<li>Map pin (static mini-map centred on venue coordinates)</li>
+<li>Phone, website, Instagram links (if present) — all as outbound links
+(tracked)</li>
+<li>Freshness pill: colour-coded (green = &lt;30d, yellow = 30–90d, red
+= &gt;90d since <code>last_menu_check_at</code>)</li>
+<li>Verified badge: shown only when <code>is_verified = true</code></li>
+</ul>
+<p><strong>FR-08: Menu Accordion</strong></p>
+<ul>
+<li>Grouped by the 6 drink categories</li>
+<li>Top 3 categories auto-expanded on page load (priority: piwo → drinki
+→ other)</li>
+<li>Each product row: name, brand, ABV, house recipe badge (for
+<code>venue_drinks</code>)</li>
+<li>Products count shown in accordion header</li>
+</ul>
+<p><strong>FR-09: Breadth Visualisation</strong></p>
+<ul>
+<li>8-dot bar per category (filled dots = products stocked, up to
+8)</li>
+<li>Shown on both venue card (top 2 categories) and venue profile (all
+categories)</li>
+</ul>
+<p><strong>FR-10: Nearby Venues</strong></p>
+<ul>
+<li>Up to 10 venues within ~2 km of the current venue</li>
+<li>Sorted by distance; same card format as discovery list</li>
+<li>Empty if fewer than 2 nearby venues (no “nearby” section shown)</li>
+</ul>
+<p><strong>FR-11: Outbound Click Handling</strong></p>
+<p>All outbound links route through
+<code>/miejsce/{slug}/go/{type}</code>: - <code>type</code>:
+<code>website</code>, <code>instagram</code>, <code>directions</code>,
+<code>maps</code>, <code>phone</code> - Server-side: logs
+<code>outbound_click</code> event then 302 redirects - Ensures analytics
+capture without client-side JavaScript requirement</p>
+<hr />
+<h3 id="static-content-pages">8.3 Static Content Pages</h3>
+<p><strong>FR-12: Homepage (<code>/</code>)</strong></p>
+<ul>
+<li>Hero with value proposition and CTA to discovery</li>
+<li>Problem framing (short, first-person voice)</li>
+<li>How UNI is different (verified data, not advertising)</li>
+<li>CTA to Instagram (social proof during early phase)</li>
+<li>No venue listing on homepage (discovery is behind
+<code>/mapa</code>)</li>
+</ul>
+<p><strong>FR-13: How It Works
+(<code>/jak-to-dziala</code>)</strong></p>
+<ul>
+<li>Explains filters: what “verified” means, what the freshness pill
+means, how breadth dots work</li>
+<li>FAQ section covering top 5–7 questions anticipated from first-time
+users</li>
+<li>CTA to discovery</li>
+</ul>
+<p><strong>FR-14: About (<code>/o-nas</code>)</strong></p>
+<ul>
+<li>Platform mission, not personal builder story</li>
+<li>Contact mechanism (email; no form in V1)</li>
+<li>Link to Privacy Policy and Terms</li>
+</ul>
+<p><strong>FR-15: City / District / Category Landing Pages</strong></p>
+<ul>
+<li>Programmatic SEO pages targeting search intent like “bary
+bezalkoholowe warszawa” or “piwo bezalkoholowe mokotów”</li>
+<li>URL pattern: <code>/{city}</code>, <code>/{city}/{district}</code>,
+<code>/{city}/{seo-category-slug}</code>,
+<code>/{city}/{district}/{seo-category-slug}</code>,
+<code>/kategoria/{seo-slug}</code></li>
+<li>Each page includes: H1 with location+category, short descriptive
+text, venue count, link to interactive discovery</li>
+<li>Soft 404 (200 with zero-result messaging) for combos with no venues
+yet — do not hard 404</li>
+<li>JSON-LD: <code>LocalBusiness</code> schema on venue profile;
+<code>SearchAction</code> on homepage</li>
+</ul>
+<p><strong>FR-16: Sitemap &amp; Robots</strong></p>
+<ul>
+<li><code>/sitemap.xml</code>: venue URLs (dynamic) +
+city/district/category pages (static) + core static pages</li>
+<li><code>/robots.txt</code>: Disallow all AI training crawlers (13 bots
+listed), allow standard search bots</li>
+<li>Honeypot: <code>/export/venues.json</code> — returns 403 but logs
+the request IP for scraper detection</li>
+</ul>
+<hr />
+<h3 id="venue-data-model">8.4 Venue Data Model</h3>
+<p>See §10 for full table definitions.</p>
+<p><strong>FR-17: Venue Lifecycle</strong></p>
+<table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>is_active = false</code></td>
+<td>Hidden from public. Visible in admin only.</td>
+</tr>
+<tr class="even">
+<td><code>is_active = true</code></td>
+<td>Live on public site.</td>
+</tr>
+<tr class="odd">
+<td><code>is_canary = true</code></td>
+<td>Fictional venue; used to detect scraping. Never shown to users.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FR-18: Product Sources</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><code>added_by</code> value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>admin</code></td>
+<td>Added by UNI admin</td>
+</tr>
+<tr class="even">
+<td><code>venue_owner</code></td>
+<td>Added by verified owner (V2+)</td>
+</tr>
+<tr class="odd">
+<td><code>proposal_approved</code></td>
+<td>User-submitted, admin-approved (V2+)</td>
+</tr>
+<tr class="even">
+<td><code>seed</code></td>
+<td>Imported during initial data seeding</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="scoring-credibility">8.5 Scoring &amp; Credibility</h3>
+<p><strong>FR-19: Breadth Score (V1 Placeholder)</strong></p>
+<p>Formula: <code>min(product_count * 25, 100)</code></p>
+<p>This is a placeholder. The full scoring model (V3) will incorporate:
+- Category rarity weights (NA wine harder to find than NA beer → rarity
+bonus) - ABV trust level (verified_zero &gt; under_0.5 &gt; unknown) -
+Freshness multiplier (stale menus decay the score) - Category diversity
+bonus</p>
+<p>For V1, the formula is intentionally simple. Do not expose the raw
+score to users; only the dot visualisation is shown.</p>
+<p><strong>FR-20: Verified Badge</strong></p>
+<ul>
+<li>Binary: either UNI team has confirmed the menu (badge shown) or not
+(no badge)</li>
+<li>Owner self-claim is NOT sufficient for the verified badge in V1</li>
+<li>In V2, owner-verified is a separate badge tier (“Owner Confirmed” vs
+“UNI Verified”)</li>
+</ul>
+<p><strong>FR-21: Freshness Pill</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Colour</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Green</td>
+<td><code>last_menu_check_at</code> &lt; 30 days ago</td>
+</tr>
+<tr class="even">
+<td>Yellow</td>
+<td>30–90 days ago</td>
+</tr>
+<tr class="odd">
+<td>Red</td>
+<td>&gt; 90 days ago OR null</td>
+</tr>
+</tbody>
+</table>
+<p>The freshness pill signals to the user how recently someone from UNI
+checked the menu. It is not a guarantee — the Terms disclose this.</p>
+<hr />
+<h3 id="analytics-infrastructure">8.6 Analytics Infrastructure</h3>
+<p><strong>FR-22: First-Party Event Capture</strong></p>
+<p>Events are captured server-side (via Livewire component actions and
+controller middleware) and stored in an <code>events</code> table. This
+is the canonical analytics source.</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Trigger</th>
+<th>Key properties</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>venue_viewed</code></td>
+<td>Profile page load</td>
+<td>venue_id, city, district, source (map/list/direct)</td>
+</tr>
+<tr class="even">
+<td><code>outbound_click</code></td>
+<td><code>/go/{type}</code> redirect handler</td>
+<td>venue_id, type, category context</td>
+</tr>
+<tr class="odd">
+<td><code>discovery_search</code></td>
+<td>Filter applied or search submitted</td>
+<td>filters, city, district, sort</td>
+</tr>
+<tr class="even">
+<td><code>discovery_empty_results</code></td>
+<td>Filter returns zero venues</td>
+<td>filters, city, district</td>
+</tr>
+<tr class="odd">
+<td><code>category_filter_applied</code></td>
+<td>Category pill toggled</td>
+<td>category, previous filters</td>
+</tr>
+<tr class="even">
+<td><code>map_area_searched</code></td>
+<td>Map pan/zoom beyond initial bounds</td>
+<td>bounding_box</td>
+</tr>
+<tr class="odd">
+<td><code>city_viewed</code></td>
+<td>City landing page load</td>
+<td>city</td>
+</tr>
+<tr class="even">
+<td><code>district_viewed</code></td>
+<td>District landing page load</td>
+<td>city, district</td>
+</tr>
+<tr class="odd">
+<td><code>venue_saved</code></td>
+<td>User bookmarks venue (V1.5+)</td>
+<td>venue_id, user_id</td>
+</tr>
+<tr class="even">
+<td><code>inaccuracy_report_submitted</code></td>
+<td>User flags stale data (V1.5+)</td>
+<td>venue_id, category, note</td>
+</tr>
+<tr class="odd">
+<td><code>venue_claim_submitted</code></td>
+<td>Owner starts claim (V2+)</td>
+<td>venue_id</td>
+</tr>
+<tr class="even">
+<td><code>account_registered</code></td>
+<td>New user signs up (V1.5+)</td>
+<td>user_id, source</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FR-23: PostHog Integration</strong></p>
+<ul>
+<li>Server-side PostHog SDK enabled (no client-side JS, no cookie
+consent required)</li>
+<li>Mirrors all <code>events</code> table captures to PostHog for funnel
+analysis and session replay (post-consent)</li>
+<li>PostHog EU data residency (frankfurt.posthog.com) required for GDPR
+compliance</li>
+<li>DPA must be signed before public traffic</li>
+</ul>
+<p><strong>FR-24: Venue Stats (Daily Aggregates)</strong></p>
+<p><code>venue_stats</code> table stores daily aggregates per venue: -
+<code>views</code>: profile page loads - <code>direction_clicks</code>,
+<code>website_clicks</code>, <code>instagram_clicks</code>,
+<code>maps_clicks</code> - <code>shares</code>: (future) share button
+taps - <code>card_clicks</code>: map card or list card clicks</p>
+<p>These are the source for B2B owner dashboard in V2.</p>
+<hr />
+<h3 id="admin-panel">8.7 Admin Panel</h3>
+<p><strong>FR-25: Venue Management</strong></p>
+<ul>
+<li>Create / edit / delete venues</li>
+<li>Auto-geocode from address (Nominatim API, fallback to manual
+coordinate input)</li>
+<li><code>is_active</code> toggle (single publish gate)</li>
+<li><code>is_verified</code> toggle (manual confirmation after menu
+check)</li>
+<li>Admin notes field (internal; never shown publicly)</li>
+<li>Bulk actions: mass publish, mass archive, export CSV</li>
+</ul>
+<p><strong>FR-26: Product Catalog</strong></p>
+<ul>
+<li>Global product table (not per-venue)</li>
+<li>Products linked to venues via <code>venue_products</code> pivot</li>
+<li>Fields: name, category, brand FK, ABV, <code>abv_status</code>
+(unknown / under_0.5 / verified_zero), country, description</li>
+<li><code>is_active</code> / <code>is_approved</code> gates (only
+approved products appear on public profiles)</li>
+</ul>
+<p><strong>FR-27: Analytics Widgets</strong></p>
+<ul>
+<li>Completeness dashboard: % of venues with ≥3 products per
+category</li>
+<li>Freshness status: count of venues by freshness colour bucket</li>
+<li>Top venues by views (last 7 days)</li>
+<li>Inaccuracy reports queue (V1.5+)</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements">9. Non-Functional Requirements</h2>
+<h3 id="performance">Performance</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-01</td>
+<td>Discovery page (map + list) must load in &lt; 2s on a 4G mobile
+connection</td>
+</tr>
+<tr class="even">
+<td>NFR-02</td>
+<td>Venue profile must load in &lt; 1.5s</td>
+</tr>
+<tr class="odd">
+<td>NFR-03</td>
+<td>Map with ≤500 venues: all pins render in &lt; 500ms after Livewire
+hydration</td>
+</tr>
+<tr class="even">
+<td>NFR-04</td>
+<td>Analytics event POST must respond in &lt; 200ms (fire-and-forget;
+user is not blocked)</td>
+</tr>
+<tr class="odd">
+<td>NFR-05</td>
+<td>Inlined map data (GeoJSON) is acceptable up to ~300 venues; switch
+to async API beyond that</td>
+</tr>
+</tbody>
+</table>
+<h3 id="availability">Availability</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-06</td>
+<td>99.5% uptime target (scheduled maintenance excluded)</td>
+</tr>
+<tr class="even">
+<td>NFR-07</td>
+<td>Admin panel downtime does not affect public site read
+availability</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scalability">Scalability</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-08</td>
+<td>Architecture must support 1,000 venues without code changes</td>
+</tr>
+<tr class="even">
+<td>NFR-09</td>
+<td>Must support multi-city with a single env flag change
+(<code>UNI_MULTI_CITY=true</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="security">Security</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-10</td>
+<td>Admin panel IP-allowlisted in production (Tailscale or nginx
+allowlist)</td>
+</tr>
+<tr class="even">
+<td>NFR-11</td>
+<td>All HTML inputs sanitised; SVG uploads restricted to
+admin-controlled content</td>
+</tr>
+<tr class="odd">
+<td>NFR-12</td>
+<td>No PII stored in <code>events</code> table; PostHog identify calls
+contain no sensitive data</td>
+</tr>
+<tr class="even">
+<td>NFR-13</td>
+<td>HTTPS enforced on all routes; HSTS header set</td>
+</tr>
+<tr class="odd">
+<td>NFR-14</td>
+<td>Content Security Policy header set (no inline scripts; PostHog JS
+gated behind consent)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="accessibility">Accessibility</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-15</td>
+<td>WCAG 2.1 AA compliance on all public-facing pages</td>
+</tr>
+<tr class="even">
+<td>NFR-16</td>
+<td>Map has a text/list fallback (the venue list panel); screen-reader
+navigable</td>
+</tr>
+<tr class="odd">
+<td>NFR-17</td>
+<td>Colour is never the only conveyor of information (freshness pill has
+text label too)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="seo">SEO</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>NFR</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-18</td>
+<td>All public pages have unique <code>&lt;title&gt;</code> and
+<code>&lt;meta description&gt;</code></td>
+</tr>
+<tr class="even">
+<td>NFR-19</td>
+<td>Venue profiles have JSON-LD <code>LocalBusiness</code> markup</td>
+</tr>
+<tr class="odd">
+<td>NFR-20</td>
+<td>Sitemap updated automatically when venues are
+published/unpublished</td>
+</tr>
+<tr class="even">
+<td>NFR-21</td>
+<td>Core Web Vitals: LCP &lt; 2.5s, CLS &lt; 0.1, FID/INP &lt;
+200ms</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="data-model">10. Data Model</h2>
+<h3 id="core-tables">Core Tables</h3>
+<h4 id="venues"><code>venues</code></h4>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 28%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>ULID</td>
+<td>Primary key</td>
+</tr>
+<tr class="even">
+<td><code>slug</code></td>
+<td>string</td>
+<td>Unique; URL-safe; never changes post-publish</td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>Display name</td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>enum</td>
+<td>restauracja / pub / bar / inne</td>
+</tr>
+<tr class="odd">
+<td><code>city_id</code></td>
+<td>FK → cities</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>district_id</code></td>
+<td>FK → districts</td>
+<td>Nullable</td>
+</tr>
+<tr class="odd">
+<td><code>latitude</code>, <code>longitude</code></td>
+<td>decimal</td>
+<td>Required for map pin</td>
+</tr>
+<tr class="even">
+<td><code>address</code></td>
+<td>string</td>
+<td>Full street address</td>
+</tr>
+<tr class="odd">
+<td><code>phone</code></td>
+<td>string</td>
+<td>Nullable</td>
+</tr>
+<tr class="even">
+<td><code>website_url</code></td>
+<td>string</td>
+<td>Nullable</td>
+</tr>
+<tr class="odd">
+<td><code>instagram_url</code></td>
+<td>string</td>
+<td>Nullable</td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>text</td>
+<td>Nullable; public-facing</td>
+</tr>
+<tr class="odd">
+<td><code>is_active</code></td>
+<td>boolean</td>
+<td>Public visibility gate</td>
+</tr>
+<tr class="even">
+<td><code>is_verified</code></td>
+<td>boolean</td>
+<td>UNI team confirmed the menu</td>
+</tr>
+<tr class="odd">
+<td><code>is_canary</code></td>
+<td>boolean</td>
+<td>Scraper detection; never rendered</td>
+</tr>
+<tr class="even">
+<td><code>breadth_score</code></td>
+<td>integer</td>
+<td>0–100; computed from product count (V1 placeholder)</td>
+</tr>
+<tr class="odd">
+<td><code>last_menu_check_at</code></td>
+<td>timestamp</td>
+<td>Drives freshness pill colour</td>
+</tr>
+<tr class="even">
+<td><code>freshness_streak_started_at</code></td>
+<td>timestamp</td>
+<td>Continuous freshness tracking</td>
+</tr>
+<tr class="odd">
+<td><code>source</code></td>
+<td>enum</td>
+<td>manual / claim_submission / imported</td>
+</tr>
+<tr class="even">
+<td><code>admin_notes</code></td>
+<td>text</td>
+<td>Internal; never shown publicly</td>
+</tr>
+</tbody>
+</table>
+<h4 id="categories"><code>categories</code></h4>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>bigint</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>Polish display name</td>
+</tr>
+<tr class="odd">
+<td><code>slug</code></td>
+<td>string</td>
+<td>URL slug (e.g. <code>piwo</code>)</td>
+</tr>
+<tr class="even">
+<td><code>seo_slug</code></td>
+<td>string</td>
+<td>Long-form SEO slug (e.g. <code>piwo-bezalkoholowe</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>colour</code></td>
+<td>string</td>
+<td>Hex; used on UI pills and icons</td>
+</tr>
+<tr class="even">
+<td><code>icon_svg</code></td>
+<td>text</td>
+<td>Sanitised SVG</td>
+</tr>
+<tr class="odd">
+<td><code>sort_order</code></td>
+<td>integer</td>
+<td>Display order</td>
+</tr>
+</tbody>
+</table>
+<h4 id="products"><code>products</code></h4>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 28%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>ULID</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>Brand product name</td>
+</tr>
+<tr class="odd">
+<td><code>category_id</code></td>
+<td>FK → categories</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>brand_id</code></td>
+<td>FK → brands</td>
+<td>Nullable (house recipes have no brand)</td>
+</tr>
+<tr class="odd">
+<td><code>abv</code></td>
+<td>decimal</td>
+<td>Alcohol by volume (0.0–0.5 for NoLo)</td>
+</tr>
+<tr class="even">
+<td><code>abv_status</code></td>
+<td>enum</td>
+<td>unknown / under_0.5 / verified_zero</td>
+</tr>
+<tr class="odd">
+<td><code>country</code></td>
+<td>string</td>
+<td>Country of origin</td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>text</td>
+<td>Nullable</td>
+</tr>
+<tr class="odd">
+<td><code>is_active</code></td>
+<td>boolean</td>
+<td>Global catalog visibility</td>
+</tr>
+<tr class="even">
+<td><code>is_approved</code></td>
+<td>boolean</td>
+<td>Admin-approved before appearing on profiles</td>
+</tr>
+</tbody>
+</table>
+<h4 id="venue_products-pivot"><code>venue_products</code> (pivot)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>venue_id</code></td>
+<td>FK → venues</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>product_id</code></td>
+<td>FK → products</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>is_available</code></td>
+<td>boolean</td>
+<td>Currently stocked</td>
+</tr>
+<tr class="even">
+<td><code>added_by</code></td>
+<td>enum</td>
+<td>admin / venue_owner / proposal_approved / seed</td>
+</tr>
+<tr class="odd">
+<td><code>added_at</code></td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="venue_drinks-house-recipes"><code>venue_drinks</code> (house
+recipes)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>ULID</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>venue_id</code></td>
+<td>FK → venues</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>House recipe name</td>
+</tr>
+<tr class="even">
+<td><code>base_category</code></td>
+<td>enum</td>
+<td>Same 6 categories</td>
+</tr>
+<tr class="odd">
+<td><code>description</code></td>
+<td>text</td>
+<td>Nullable</td>
+</tr>
+<tr class="even">
+<td><code>image_path</code></td>
+<td>string</td>
+<td>Nullable; placeholder infrastructure</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-append-only-analytics"><code>events</code> (append-only
+analytics)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>ULID</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>event</code></td>
+<td>string</td>
+<td>Event name (e.g. <code>venue_viewed</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>properties</code></td>
+<td>jsonb</td>
+<td>Event-specific payload (no PII)</td>
+</tr>
+<tr class="even">
+<td><code>session_id</code></td>
+<td>string</td>
+<td>Anonymous session; no user FK in V1</td>
+</tr>
+<tr class="odd">
+<td><code>occurred_at</code></td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="venue_stats-daily-aggregates"><code>venue_stats</code> (daily
+aggregates)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>venue_id</code></td>
+<td>FK → venues</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>date</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>views</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>direction_clicks</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>website_clicks</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>instagram_clicks</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maps_clicks</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>card_clicks</code></td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="supporting-tables">Supporting Tables</h4>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cities</code></td>
+<td>25 Polish cities; <code>is_active</code> gates browsability</td>
+</tr>
+<tr class="even">
+<td><code>districts</code></td>
+<td>Warsaw dzielnice (18); expandable per city</td>
+</tr>
+<tr class="odd">
+<td><code>brands</code></td>
+<td>Product brand with FK to producer</td>
+</tr>
+<tr class="even">
+<td><code>producers</code></td>
+<td>Company behind brands (Poland/Europe focus)</td>
+</tr>
+<tr class="odd">
+<td><code>venue_claims</code></td>
+<td>Owner claim requests (status: pending/approved/rejected)</td>
+</tr>
+<tr class="even">
+<td><code>venue_inaccuracy_reports</code></td>
+<td>User-flagged stale data</td>
+</tr>
+<tr class="odd">
+<td><code>venue_erasure_requests</code></td>
+<td>GDPR Art 17 right-to-be-forgotten</td>
+</tr>
+<tr class="even">
+<td><code>venue_feature_flags</code></td>
+<td>Per-venue feature gates</td>
+</tr>
+<tr class="odd">
+<td><code>venue_offer_logs</code></td>
+<td>Audit trail for product add/remove events</td>
+</tr>
+<tr class="even">
+<td><code>audit_logs</code></td>
+<td>All admin panel actions</td>
+</tr>
+<tr class="odd">
+<td><code>users</code></td>
+<td>Roles: admin / owner / user; auth fields reserved for V1.5+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="business-rules">11. Business Rules</h2>
+<h3 id="br-01-venue-visibility">BR-01: Venue Visibility</h3>
+<p>A venue appears in public discovery if and only if
+<code>is_active = true</code> AND <code>is_canary = false</code>. No
+other conditions affect visibility in V1.</p>
+<h3 id="br-02-freshness-pill-logic">BR-02: Freshness Pill Logic</h3>
+<pre><code>if (last_menu_check_at is null OR &gt; 90 days ago) → RED
+if (last_menu_check_at 30–90 days ago)            → YELLOW
+if (last_menu_check_at &lt; 30 days ago)             → GREEN</code></pre>
+<h3 id="br-03-breadth-score-v1">BR-03: Breadth Score (V1)</h3>
+<p><code>breadth_score = min(COUNT(active venue_products for this venue) × 25, 100)</code></p>
+<p>Recalculated on every product add/remove for the venue.</p>
+<h3 id="br-04-verified-badge">BR-04: Verified Badge</h3>
+<p>Only admin can set <code>is_verified = true</code>. No
+auto-verification. In V2, a separate <code>is_owner_confirmed</code>
+field will distinguish owner-claimed from UNI-verified.</p>
+<h3 id="br-05-outbound-click-routing">BR-05: Outbound Click Routing</h3>
+<p>All outbound links (website, Instagram, directions) are routed
+through <code>/miejsce/{slug}/go/{type}</code> for tracking. The
+redirect is a 302. The server logs the click before redirecting.</p>
+<h3 id="br-06-canary-detection">BR-06: Canary Detection</h3>
+<p>Two canary venues (fictional) are seeded and never rendered. Their
+<code>venue_viewed</code> events or direct URL access is logged as a
+<code>canary_triggered</code> event. Repeated canary access from the
+same IP is flagged for review.</p>
+<h3 id="br-07-seo-slug-stability">BR-07: SEO Slug Stability</h3>
+<p><code>venues.slug</code> is set on creation and never changed after
+<code>is_active = true</code>. Slug changes require admin override +
+confirmation. If a slug must change, a 301 redirect is created from the
+old slug.</p>
+<h3 id="br-08-empty-category-page-behaviour">BR-08: Empty Category Page
+Behaviour</h3>
+<p>A city/district/category landing page that matches zero active venues
+returns HTTP 200 with a “no venues yet” message. It does NOT return 404
+(to preserve crawl budget and avoid SEO penalties for valid future-use
+URLs).</p>
+<h3 id="br-09-ai-crawler-blocking">BR-09: AI Crawler Blocking</h3>
+<p><code>robots.txt</code> disallows 13 AI training and citation
+crawlers. UNI data is proprietary; it is not available for LLM training
+or AI-generated citation. Standard search engine bots are allowed.</p>
+<h3 id="br-10-age-gate">BR-10: Age Gate</h3>
+<p>The platform does not gate by age for V1 (no alcohol is sold; it is a
+neutral directory). If a future feature requires age verification, the
+threshold is 18 (Polish Civil Code, contractual capacity), not 16.</p>
+<hr />
+<h2 id="compliance-legal">12. Compliance &amp; Legal</h2>
+<h3 id="gdpr-regulation-eu-2016679-rodo">GDPR (Regulation EU 2016/679 /
+RODO)</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 43%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Article</th>
+<th>Requirement</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Art 13</td>
+<td>Inform users of all data processing at point of collection</td>
+<td>✅ Privacy policy live; cookie notice on first visit</td>
+</tr>
+<tr class="even">
+<td>Art 15</td>
+<td>Right of access to personal data</td>
+<td>✅ Disclosed in privacy policy; email contact provided</td>
+</tr>
+<tr class="odd">
+<td>Art 17</td>
+<td>Right to erasure (“right to be forgotten”)</td>
+<td>⚠️ Backend model ready; UI unreachable in V1; email-only</td>
+</tr>
+<tr class="even">
+<td>Art 20</td>
+<td>Right to data portability</td>
+<td>✅ JSON export at <code>/profil/dane</code> (V1.5 when accounts
+exist)</td>
+</tr>
+<tr class="odd">
+<td>Art 28</td>
+<td>Data Processing Agreements with sub-processors</td>
+<td>⚠️ PostHog EU DPA must be signed before go-live</td>
+</tr>
+<tr class="even">
+<td>Art 32</td>
+<td>Appropriate technical security measures</td>
+<td>✅ HTTPS, IP-gated admin, no PII in analytics events</td>
+</tr>
+<tr class="odd">
+<td>Art 33</td>
+<td>Breach notification to supervisory authority within 72h</td>
+<td>⚠️ Runbook needed before go-live</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eprivacy-directive-200258ec">ePrivacy Directive
+(2002/58/EC)</h3>
+<table>
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Session cookies (strictly necessary) disclosed</td>
+<td>✅ Disclosed in privacy policy; no consent banner needed</td>
+</tr>
+<tr class="even">
+<td>PostHog client-side JS not loaded (no non-essential cookie)</td>
+<td>✅ Server-side only in V1</td>
+</tr>
+<tr class="odd">
+<td>Marketing emails require unsubscribe</td>
+<td>✅ Disclosed in privacy policy; soft opt-in compliant</td>
+</tr>
+</tbody>
+</table>
+<h3 id="polish-law">Polish Law</h3>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 31%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>Rule</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>CEIDG cross-reference</td>
+<td>Optional enrichment</td>
+<td>Used to validate venue ownership for B2B claims; not mandatory</td>
+</tr>
+<tr class="odd">
+<td>Consumer protection (UOKiK)</td>
+<td>Standard disclosure</td>
+<td>No deceptive commercial practices; neutrality is core brand
+promise</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-moat-protection">Data Moat Protection</h3>
+<ul>
+<li>AI training crawlers blocked via <code>robots.txt</code></li>
+<li>Scraper honeypot (<code>/export/venues.json</code>) logs access for
+detection</li>
+<li>Canary venues detect bulk data theft</li>
+<li>Manual curation (not OSM bulk import) keeps data legally clean
+post-2026-06-01</li>
+</ul>
+<hr />
+<h2 id="success-metrics">13. Success Metrics</h2>
+<h3 id="v1-launch-metrics-first-6-weeks-post-launch">V1 Launch Metrics
+(First 6 Weeks Post-Launch)</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 27%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Target</th>
+<th>Measured by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unique visitors</td>
+<td>&gt; 1,000</td>
+<td>events table / PostHog</td>
+</tr>
+<tr class="even">
+<td>Venue views per day</td>
+<td>&gt; 50</td>
+<td><code>venue_viewed</code> events</td>
+</tr>
+<tr class="odd">
+<td>Outbound click rate</td>
+<td>&gt; 15% of venue views</td>
+<td><code>outbound_click</code> events</td>
+</tr>
+<tr class="even">
+<td>Inbound owner inquiries</td>
+<td>&gt; 5</td>
+<td>Email inbox / claim form submissions</td>
+</tr>
+<tr class="odd">
+<td>Instagram followers</td>
+<td>&gt; 500</td>
+<td>Instagram Insights</td>
+</tr>
+<tr class="even">
+<td>Carousel cadence</td>
+<td>3× / week maintained</td>
+<td>Content calendar</td>
+</tr>
+<tr class="odd">
+<td>Category filter usage</td>
+<td>&gt; 40% of discovery sessions</td>
+<td><code>category_filter_applied</code> events</td>
+</tr>
+<tr class="even">
+<td>SEO rankings</td>
+<td>≥ 1 keyword on page 2 within 4 weeks</td>
+<td>Google Search Console</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retention-metrics-months-13">Retention Metrics (Months 1–3)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Return visitor rate (week-over-week)</td>
+<td>&gt; 30%</td>
+</tr>
+<tr class="even">
+<td>Claimed venue ratio</td>
+<td>&gt; 30% of total active venues</td>
+</tr>
+<tr class="odd">
+<td>Inaccuracy report rate</td>
+<td>&lt; 5% of venue views</td>
+</tr>
+<tr class="even">
+<td>Average session duration — discovery</td>
+<td>&gt; 2 minutes</td>
+</tr>
+<tr class="odd">
+<td>Average session duration — venue profile</td>
+<td>&gt; 1 minute</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-gate-to-v2-1">Phase Gate to V2</h3>
+<p>All three must be true: 1. Warsaw active venues ≥ 100 2. Claimed
+venues ≥ 30 3. ≥ 3 organic inbound requests from venues in a second
+Polish city</p>
+<hr />
+<h2 id="roadmap">14. Roadmap</h2>
+<h3 id="v1-browse-only-discovery-june-2026">V1 — Browse-Only Discovery
+(June 2026)</h3>
+<p>Warsaw-only. Anonymous users. Manual curation. Silent analytics. SEO
+foundation. No auth.</p>
+<h3 id="v1.5-light-user-features-q3-2026">V1.5 — Light User Features (Q3
+2026)</h3>
+<ul>
+<li>User registration and login</li>
+<li>Saved venues (localStorage interim → DB)</li>
+<li>Public inaccuracy report form</li>
+<li>Account deletion self-service</li>
+<li>og:image social sharing cards</li>
+</ul>
+<h3 id="v2-owner-activation-trigger-100-venues-30-claimed">V2 — Owner
+Activation (Trigger: 100 venues + 30 claimed)</h3>
+<ul>
+<li>Venue claim form + adjudication workflow</li>
+<li>Owner login and self-service menu editing</li>
+<li>Owner analytics dashboard (impressions, saves, category demand)</li>
+<li>B2B pricing tiers: Basic (free) / Pro (PLN/mo) / Premium (PLN/mo +
+API)</li>
+<li>Multi-city support (env flag flip + city seed)</li>
+</ul>
+<h3 id="v3-scale-intelligence-trigger-3-polish-cities-active">V3 — Scale
+&amp; Intelligence (Trigger: 3+ Polish cities active)</h3>
+<ul>
+<li>Rarity-weighted breadth scoring</li>
+<li>Venue photos (Filament upload + S3)</li>
+<li>Opening hours display</li>
+<li>API access for venue partners</li>
+<li>Mobile app (PWA-first)</li>
+<li>Advanced B2B analytics (cohort, forecast, demand heatmap)</li>
+</ul>
+<h3 id="v4-platform-trigger-validated-b2b-revenue-500-venues">V4 —
+Platform (Trigger: Validated B2B revenue, 500+ venues)</h3>
+<ul>
+<li>Internationalisation (Czech, Slovak, Hungarian)</li>
+<li>Consumer reviews (separate from data accuracy flags)</li>
+<li>Events feature (NA-themed venue promotions)</li>
+<li>Venue gift cards / B2C marketplace</li>
+</ul>
+<hr />
+<h2 id="pre-launch-blockers">15. Pre-Launch Blockers</h2>
+<p>The following must be resolved before any production traffic is
+accepted.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 25%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Blocker</th>
+<th>Owner</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PL-01</td>
+<td>PostHog EU DPA signed</td>
+<td>Pawel</td>
+<td>⚠️ Pending</td>
+</tr>
+<tr class="even">
+<td>PL-02</td>
+<td>Hosting provider DPA confirmed</td>
+<td>Pawel</td>
+<td>⚠️ Pending</td>
+</tr>
+<tr class="odd">
+<td>PL-03</td>
+<td>Admin panel IP-allowlisted (nginx / Tailscale)</td>
+<td>Pawel</td>
+<td>⚠️ Pending</td>
+</tr>
+<tr class="even">
+<td>PL-04</td>
+<td>GDPR breach notification runbook created</td>
+<td>Pawel</td>
+<td>⚠️ Pending</td>
+</tr>
+<tr class="odd">
+<td>PL-05</td>
+<td>All uncommitted changes committed to git</td>
+<td>Pawel</td>
+<td>⚠️ Pending (~43 files)</td>
+</tr>
+<tr class="even">
+<td>PL-06</td>
+<td><code>migrate:fresh --seed</code> verified on clean DB</td>
+<td>Pawel</td>
+<td>✅ Confirmed</td>
+</tr>
+<tr class="odd">
+<td>PL-07</td>
+<td>Full test suite passing (403 tests)</td>
+<td>Pawel</td>
+<td>✅ Passing</td>
+</tr>
+<tr class="even">
+<td>PL-08</td>
+<td><code>npm run build</code> run; production assets committed</td>
+<td>Pawel</td>
+<td>⚠️ Pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="technical-debt-register">16. Technical Debt Register</h2>
+<p>Items accepted into V1 with known limitations. Each must be resolved
+before the phase that depends on it.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 35%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Item</th>
+<th>Priority</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TD-01</td>
+<td><code>map_area_searched</code> fires twice (server + client)</td>
+<td>Low</td>
+<td>V2</td>
+</tr>
+<tr class="even">
+<td>TD-02</td>
+<td>Homepage mesh animation disabled</td>
+<td>Low</td>
+<td>V1.5 (if user feedback)</td>
+</tr>
+<tr class="odd">
+<td>TD-03</td>
+<td>“produktów” vs “napojów” label inconsistency on venue tiles</td>
+<td>Low</td>
+<td>V1.5 label pass</td>
+</tr>
+<tr class="even">
+<td>TD-04</td>
+<td>Photo upload for custom drinks incomplete</td>
+<td>Medium</td>
+<td>V2</td>
+</tr>
+<tr class="odd">
+<td>TD-05</td>
+<td>SVG sanitiser is regex-only (CSS-based XSS not covered)</td>
+<td>Low</td>
+<td>V2 (if user uploads added)</td>
+</tr>
+<tr class="even">
+<td>TD-06</td>
+<td>Polish auth notification templates missing</td>
+<td>Low</td>
+<td>V2 (when auth re-enabled)</td>
+</tr>
+<tr class="odd">
+<td>TD-07</td>
+<td>Brawler font loaded but unused</td>
+<td>Low</td>
+<td>Next performance audit</td>
+</tr>
+<tr class="even">
+<td>TD-08</td>
+<td><code>venue_type</code> taxonomy not confirmed with real owner
+data</td>
+<td>Low</td>
+<td>Pre-launch data QA</td>
+</tr>
+<tr class="odd">
+<td>TD-09</td>
+<td>Breadth score formula is placeholder (no rarity weighting)</td>
+<td>Medium</td>
+<td>V3</td>
+</tr>
+<tr class="even">
+<td>TD-10</td>
+<td>Map data inlined in HTML (fine to ~300 venues; revisit at
+scale)</td>
+<td>Low</td>
+<td>V2 if &gt;300 venues</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix">17. Appendix</h2>
+<h3 id="a-route-map">A — Route Map</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Pattern</th>
+<th>Handler</th>
+<th>Auth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GET</td>
+<td><code>/</code></td>
+<td><code>HomeController@show</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/mapa</code></td>
+<td><code>DiscoveryPage</code> (Livewire)</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/mapa/{city}</code></td>
+<td><code>DiscoveryPage</code> (Livewire)</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/mapa/{city}/{district}</code></td>
+<td><code>DiscoveryPage</code> (Livewire)</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/miejsce/{slug}</code></td>
+<td><code>VenueController@show</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/miejsce/{slug}/go/{type}</code></td>
+<td><code>VenueController@go</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/{city}</code></td>
+<td><code>CityController@show</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/{city}/{district}</code></td>
+<td><code>CityController@district</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/{city}/{seo-category-slug}</code></td>
+<td><code>CategoryController@cityCategory</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/{city}/{district}/{seo-category-slug}</code></td>
+<td><code>CategoryController@districtCategory</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/kategoria/{seo-slug}</code></td>
+<td><code>CategoryController@show</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/jak-to-dziala</code></td>
+<td><code>PageController@howItWorks</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/o-nas</code></td>
+<td><code>AboutController@show</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/regulamin</code></td>
+<td><code>PageController@terms</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/polityka-prywatnosci</code></td>
+<td><code>PageController@privacyPolicy</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td><code>/sitemap.xml</code></td>
+<td><code>SitemapController@index</code></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/robots.txt</code></td>
+<td><code>RobotsController@index</code></td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>POST</td>
+<td><code>/analytics/events</code></td>
+<td><code>AnalyticsController@store</code></td>
+<td>None (throttled)</td>
+</tr>
+<tr class="odd">
+<td>GET</td>
+<td><code>/export/venues.json</code></td>
+<td>Honeypot (logs + 403)</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>ANY</td>
+<td><code>/admin/*</code></td>
+<td>FilamentPHP</td>
+<td>Admin role</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-technology-decisions-log">B — Technology Decisions Log</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 22%" />
+<col style="width: 27%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision</th>
+<th>Chosen</th>
+<th>Rejected</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Venue data source</td>
+<td>Manual curation</td>
+<td>OSM bulk import</td>
+<td>ODbL license incompatible with proprietary DB; OSM dropped
+2026-06-01</td>
+</tr>
+<tr class="even">
+<td>Geocoding</td>
+<td>Nominatim (OSM API)</td>
+<td>Google Maps Geocoding</td>
+<td>Cost; tiles retained free under ODbL (API-only, no data copy)</td>
+</tr>
+<tr class="odd">
+<td>Map tiles</td>
+<td>CARTO Dark (OSM-based)</td>
+<td>Google Maps, Mapbox</td>
+<td>Cost; open license for display</td>
+</tr>
+<tr class="even">
+<td>Frontend framework</td>
+<td>Livewire 4 + Alpine.js</td>
+<td>React, Vue</td>
+<td>No client-side framework overhead; SSR-first; matches team
+expertise</td>
+</tr>
+<tr class="odd">
+<td>Admin panel</td>
+<td>FilamentPHP</td>
+<td>Custom-built</td>
+<td>Speed; Polish l10n; Livewire-native</td>
+</tr>
+<tr class="even">
+<td>Analytics</td>
+<td>First-party events + PostHog</td>
+<td>Google Analytics</td>
+<td>Data ownership; no third-party cookies; GDPR-cleaner</td>
+</tr>
+<tr class="odd">
+<td>URL structure</td>
+<td>Flat <code>/miejsce/{slug}</code></td>
+<td><code>/{city}/miejsce/{slug}</code></td>
+<td>Avoids 301s on multi-city expansion</td>
+</tr>
+<tr class="even">
+<td>AI crawler policy</td>
+<td>Block all</td>
+<td>Allow</td>
+<td>Data moat; UNI data not for LLM training</td>
+</tr>
+<tr class="odd">
+<td>Multi-city gate</td>
+<td>Env flag (<code>UNI_MULTI_CITY</code>)</td>
+<td>Feature branch</td>
+<td>One-line flip; no code change for expansion</td>
+</tr>
+<tr class="even">
+<td>Auth in V1</td>
+<td>Stripped (no auth)</td>
+<td>Included</td>
+<td>Validate demand before GDPR complexity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-glossary">C — Glossary</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>NoLo</strong></td>
+<td>No/Low Alcohol — beverages with 0.0–0.5% ABV</td>
+</tr>
+<tr class="even">
+<td><strong>Breadth score</strong></td>
+<td>0–100 score indicating depth of a venue’s NoLo menu</td>
+</tr>
+<tr class="odd">
+<td><strong>Freshness pill</strong></td>
+<td>Colour indicator on venue cards showing how recently UNI verified
+the menu</td>
+</tr>
+<tr class="even">
+<td><strong>Verified badge</strong></td>
+<td>Shown when UNI team has physically or digitally confirmed the
+venue’s menu</td>
+</tr>
+<tr class="odd">
+<td><strong>Canary venue</strong></td>
+<td>Fictional venue seeded to detect bulk data scraping</td>
+</tr>
+<tr class="even">
+<td><strong>HoReCa</strong></td>
+<td>Hotel / Restaurant / Café — the hospitality sector</td>
+</tr>
+<tr class="odd">
+<td><strong>SSOT</strong></td>
+<td>Single Source of Truth — the interactive feature spec at
+<code>docs/product/spec.html</code></td>
+</tr>
+<tr class="even">
+<td><strong>DPA</strong></td>
+<td>Data Processing Agreement — required under GDPR Art 28 for
+sub-processors</td>
+</tr>
+<tr class="odd">
+<td><strong>UODO</strong></td>
+<td>Polish data protection authority (Urząd Ochrony Danych
+Osobowych)</td>
+</tr>
+<tr class="even">
+<td><strong>RODO</strong></td>
+<td>Polish name for GDPR (Rozporządzenie o Ochronie Danych
+Osobowych)</td>
+</tr>
+<tr class="odd">
+<td><strong>pSEO</strong></td>
+<td>Programmatic SEO — auto-generated landing pages for
+city/district/category combinations</td>
+</tr>
+<tr class="even">
+<td><strong>sober-curious</strong></td>
+<td>Consumer trend: reducing alcohol intake without full abstinence</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

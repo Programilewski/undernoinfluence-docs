@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNI v1 — Spec vs Reality Changelog</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<style>
+  :root, [data-theme="dark"] {
+    --color-bg: #0f0e0c;
+    --color-surface: #141311;
+    --color-surface-2: #1a1917;
+    --color-surface-offset: #201f1c;
+    --color-surface-dynamic: #2a2926;
+    --color-border: #2e2c29;
+    --color-divider: #252320;
+    --color-text: #e8e6e0;
+    --color-text-muted: #8a8880;
+    --color-text-faint: #4a4845;
+    --color-primary: #4f98a3;
+    --color-primary-hover: #3d8591;
+    --color-primary-highlight: #1e3035;
+
+    --color-added: #4ADE80;
+    --color-added-bg: color-mix(in oklch, #4ADE80 8%, var(--color-surface));
+    --color-added-border: color-mix(in oklch, #4ADE80 25%, var(--color-border));
+    --color-changed: #FBBF24;
+    --color-changed-bg: color-mix(in oklch, #FBBF24 8%, var(--color-surface));
+    --color-changed-border: color-mix(in oklch, #FBBF24 25%, var(--color-border));
+    --color-removed: #F87171;
+    --color-removed-bg: color-mix(in oklch, #F87171 8%, var(--color-surface));
+    --color-removed-border: color-mix(in oklch, #F87171 25%, var(--color-border));
+    --color-correct: #8a8880;
+
+    --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+    --font-body: 'Satoshi', 'Inter', sans-serif;
+
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+    --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+    --space-12: 3rem; --space-16: 4rem;
+
+    --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+    --radius-xl: 1rem; --radius-full: 9999px;
+
+    --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  p { max-width: 72ch; }
+
+  .page-wrapper { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-6);
+  }
+  .sidebar-logo {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
+  .logo-text { font-family: var(--font-display); font-weight: 800; font-size: var(--text-sm); letter-spacing: -0.02em; }
+  .logo-text span { color: var(--color-primary); }
+  .sidebar-section-label {
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-2);
+  }
+  .sidebar-nav { display: flex; flex-direction: column; gap: var(--space-1); }
+  .sidebar-nav a {
+    font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none;
+    padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+    display: flex; align-items: center; gap: var(--space-2);
+    transition: color var(--transition), background var(--transition);
+  }
+  .sidebar-nav a:hover { color: var(--color-text); background: var(--color-surface-offset); }
+  .sidebar-nav a.active { color: var(--color-primary); background: var(--color-primary-highlight); }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+  .main { padding: var(--space-8) var(--space-10); max-width: 920px; }
+
+  .page-header { margin-bottom: var(--space-12); padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-divider); }
+  .page-badge {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--color-changed);
+    background: var(--color-changed-bg);
+    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+    margin-bottom: var(--space-4);
+  }
+  .page-title {
+    font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl);
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: var(--space-4);
+  }
+  .page-title em { font-style: normal; color: var(--color-changed); }
+  .page-subtitle { font-size: var(--text-base); color: var(--color-text-muted); max-width: 60ch; line-height: 1.7; }
+
+  /* Stats */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-8); }
+  .stat-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    text-align: center;
+  }
+  .stat-num { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; letter-spacing: -0.03em; }
+  .stat-num.changed { color: var(--color-changed); }
+  .stat-num.added { color: var(--color-added); }
+  .stat-num.removed { color: var(--color-removed); }
+  .stat-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+
+  /* Sections */
+  .spec-section { margin-bottom: var(--space-12); scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .section-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); letter-spacing: -0.02em; }
+  .section-meta { color: var(--color-text-faint); font-size: var(--text-xs); margin-top: 2px; }
+
+  /* Change cards */
+  .change-list { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .change-card {
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color var(--transition);
+  }
+  .change-card.changed {
+    background: var(--color-changed-bg);
+    border: 1px solid var(--color-changed-border);
+  }
+  .change-card.added {
+    background: var(--color-added-bg);
+    border: 1px solid var(--color-added-border);
+  }
+  .change-card.removed {
+    background: var(--color-removed-bg);
+    border: 1px solid var(--color-removed-border);
+  }
+  .change-card.correct {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .change-card-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: var(--space-4); margin-bottom: var(--space-2);
+  }
+  .change-name { font-weight: 600; font-size: var(--text-sm); color: var(--color-text); }
+  .change-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+  .change-diff { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-divider); }
+  .diff-row { display: grid; grid-template-columns: 80px 1fr; gap: var(--space-2); margin-bottom: var(--space-2); }
+  .diff-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    padding-top: 3px;
+  }
+  .diff-label.spec { color: var(--color-removed); }
+  .diff-label.actual { color: var(--color-added); }
+  .diff-value { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6; }
+  .diff-value code {
+    font-size: 11px; background: var(--color-surface-offset); padding: 1px 5px;
+    border-radius: var(--radius-sm); color: var(--color-text);
+  }
+
+  /* Badges */
+  .badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .badge-changed { background: var(--color-changed-bg); color: var(--color-changed); border: 1px solid var(--color-changed-border); }
+  .badge-added { background: var(--color-added-bg); color: var(--color-added); border: 1px solid var(--color-added-border); }
+  .badge-removed { background: var(--color-removed-bg); color: var(--color-removed); border: 1px solid var(--color-removed-border); }
+  .badge-correct { background: var(--color-surface-offset); color: var(--color-text-faint); }
+
+  /* Callout */
+  .callout {
+    background: var(--color-primary-highlight);
+    border: 1px solid color-mix(in oklch, var(--color-primary) 25%, var(--color-border));
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .callout-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-primary); margin-bottom: var(--space-2); }
+  .callout p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7; max-width: 100%; }
+
+  hr { border: none; border-top: 1px solid var(--color-divider); margin: var(--space-8) 0; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--color-surface-dynamic); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    .page-wrapper { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: var(--space-6) var(--space-4); }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-label="UNI logo">
+        <rect width="32" height="32" rx="8" fill="#1a1917"/>
+        <circle cx="16" cy="13" r="5" stroke="#4f98a3" stroke-width="1.5"/>
+        <line x1="16" y1="18" x2="16" y2="24" stroke="#4f98a3" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="12" y1="21" x2="20" y2="21" stroke="#4f98a3" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-text">Under No<br><span>Influence</span></div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">Changelog</div>
+      <nav class="sidebar-nav">
+        <a href="#summary"><span class="nav-dot" style="color:var(--color-changed)"></span>Summary</a>
+        <a href="#discovery-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Discovery Page</a>
+        <a href="#filter-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Filters & Search</a>
+        <a href="#venue-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Venue Profile</a>
+        <a href="#seo-changes"><span class="nav-dot" style="color:var(--color-added)"></span>SEO Pages</a>
+        <a href="#onboarding-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Claim Onboarding</a>
+        <a href="#product-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Product Mgmt</a>
+        <a href="#freshness-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Freshness Loop</a>
+        <a href="#admin-changes"><span class="nav-dot" style="color:var(--color-added)"></span>Admin Panel</a>
+        <a href="#scoring-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Scoring Logic</a>
+        <a href="#analytics-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Analytics</a>
+        <a href="#deferred-changes"><span class="nav-dot" style="color:var(--color-changed)"></span>Deferred (V2)</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-header">
+      <div class="page-badge">Diff Report</div>
+      <h1 class="page-title">Spec vs <em>Reality</em></h1>
+      <p class="page-subtitle">Every discrepancy between the original interactive feature spec and the actual app implementation as of 2026-05-08. Changes are color-coded: <span style="color:var(--color-changed)">changed</span>, <span style="color:var(--color-added)">added beyond spec</span>, <span style="color:var(--color-removed)">not implemented / removed</span>.</p>
+    </div>
+
+    <!-- Summary stats -->
+    <div class="stats-row" id="summary">
+      <div class="stat-card"><div class="stat-num changed">26</div><div class="stat-label">Changed from spec</div></div>
+      <div class="stat-card"><div class="stat-num added">11</div><div class="stat-label">Added beyond spec</div></div>
+      <div class="stat-card"><div class="stat-num removed">4</div><div class="stat-label">Not implemented</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--color-primary)">41</div><div class="stat-label">Total discrepancies</div></div>
+    </div>
+
+    <!-- ===================== DISCOVERY ===================== -->
+    <section class="spec-section" id="discovery-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128506;</div>
+        <div>
+          <div class="section-title">Discovery Page Changes</div>
+          <div class="section-meta">/szukaj — significant implementation differences</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Map Marker Clustering</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec explicitly said "not cluster blobs in v1" but implementation uses MarkerCluster.</div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Venue markers as colored dots (<strong>not cluster blobs in v1</strong>)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Uses <code>leaflet.markercluster</code> with <code>maxClusterRadius: 50</code> and custom cluster icon sizing (small/medium/large by count thresholds)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Marker Content</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec said simple color-coded dots per drink category. Actual markers are richer.</div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Color-coded dots per primary drink category (beer amber, wine pink, etc.)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Markers show venue name, district, address, product count, verified badge, and full category breakdown with icons and colors</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Mobile Layout</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Mobile: map takes 50% viewport, list is scrollable below (split view)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Mobile: list/map toggle — user switches between full-screen list and full-screen map. Desktop: 3/5 list + 2/5 map side-by-side</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Venue Type Labels</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">3 venue types: bar / restaurant / cafe</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">6 venue types via <code>VenueType</code> enum: Restauracja, Bar/Pub, Kawiarnia, Klub, Hotel, Inne</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Default Sort Tiebreaker</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Default sort: breadth score desc, then <strong>name alpha</strong></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Default sort: breadth score DESC, then <strong>category diversity</strong> (COUNT DISTINCT categories) DESC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Map Bounds Filter</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. Users can drag the map to search within visible geographic area. "Obszar mapy" button appears when bounds are active, with clear button to reset.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">GPS / Geolocation</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">GPS "Near Me" button — requests browser geolocation, recenters map</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Geolocation used for "Najbliziej" (nearest) sort mode via <code>setUserLocation</code> method. Haversine SQL formula calculates distance. No dedicated "Near Me" button — it's integrated into the sort dropdown</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Category Visualization Style</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Chunk visualization: colored squares showing products per category</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Category breakdown with custom SVG icons, color variables, and product counts — not colored square chunks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FILTERS ===================== -->
+    <section class="spec-section" id="filter-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128269;</div>
+        <div>
+          <div class="section-title">Filters & Search Changes</div>
+          <div class="section-meta">Filter mechanics, search implementation, URL params</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Category Names</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">The spec used "Drinki" for cocktails. In the actual app, "Drinki" was renamed to "Destylaty" (spirits), and a new "Koktajle" category was created for cocktails.</div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Piwo, Wino, Destylaty, <strong>Drinki</strong>, Cydr, Musujace</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Piwo, Wino, Destylaty, <strong>Koktajle</strong>, Cydr, Musujace (migration renamed drinki&rarr;destylaty, added koktajle+musujace)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Category CSS Variable Names</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value"><code>--color-beer</code>, <code>--color-wine</code>, <code>--color-spirits</code>, <code>--color-cocktail</code>, <code>--color-cider</code>, <code>--color-sparkling</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value"><code>--color-drink-piwo</code>, <code>--color-drink-wino</code>, <code>--color-drink-spirits</code>, <code>--color-drink-drinks</code>, <code>--color-drink-cydr</code>, <code>--color-drink-musujace</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Verified Filter Logic</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Show only venues with active Verified badge (<code>is_claimed</code> + freshness confirmed within 90d — combined condition)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Filters on <code>is_verified = true</code> only — a separate admin-set boolean. Independent from <code>is_claimed</code> and <code>offer_updated_at</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Freshness Filter</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in original spec. Button group filter lets users show only venues with <code>offer_updated_at</code> within 7, 30, 90, or 180 days. URL param: <code>aktualnosc</code>.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Search Implementation</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Full-text index in PostgreSQL. Searches <code>venues.name</code>, address, product names</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Uses <code>ILIKE</code> search (not full-text index) via <code>Venue::search()</code> scope. Searches: name, street_name, district.name, products.name. Debounce via Livewire <code>live(debounce: 300ms)</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">URL Parameter Names</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec mentioned URL query params generically. Actual uses Polish-named Livewire <code>#[Url]</code> attributes.</div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value"><code>?kategorie[]=piwo&dzielnica=3&zweryfikowane=1&aktualnosc=90&sortuj=best&szukaj=test</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Breadth Score Recalculation</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Auto-recalculated via <strong>DB trigger</strong> on product add/remove</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Recalculated by <code>VenueScoring</code> PHP service class, triggered via <code>VenueProductObserver</code> and <code>VenueDrinkObserver</code>. Also checked hourly by <code>uni:check-offer-freshness</code> artisan command</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VENUE PROFILE ===================== -->
+    <section class="spec-section" id="venue-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128205;</div>
+        <div>
+          <div class="section-title">Venue Profile Changes</div>
+          <div class="section-meta">/miejsce/{slug} — layout and content differences</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Freshness Label Format</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Binary labels: <strong>Swieze</strong> or <strong>Nieaktualne</strong></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Human-readable Polish labels: "Zaktualizowano dzis", "Zaktualizowano 5 dni temu", "Zaktualizowano 3 mies. temu" — with color coding (green=#4ADE80 for fresh, red=#F87171 for stale)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Verified Badge Source</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Verified badge: <code>venues.is_claimed = true</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Verified badge: <code>venues.is_verified = true</code> — a separate admin-set flag. <code>is_claimed</code> tracks owner claiming, <code>is_verified</code> tracks UNI team verification. Both exist independently</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Product List Layout</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Full product list grouped by category. Categories with 0 products are greyed out, not hidden</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Accordion layout: categories with products are shown as expandable sections (top 3 by count auto-expanded). Categories with 0 products are <strong>hidden entirely</strong>, not greyed out. Custom drinks merged into Koktajle section</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Directions Button</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">"Get Directions" button</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">"Nawiguj" button (Polish). Opens Google Maps Directions API via <code>https://www.google.com/maps/dir/?api=1&destination={lat},{lng}</code>. PostHog <code>venue_directions_clicked</code> event tracked</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Share / Copy URL Button</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. Uses Web Share API on supported devices, falls back to clipboard copy with "Skopiowano!" toast.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">JSON-LD & OpenGraph Markup</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not mentioned in venue profile spec (only in SEO pages). Full Schema.org LocalBusiness JSON-LD, og:type=place, complete OpenGraph tags implemented on venue profiles.</div>
+        </div>
+
+        <div class="change-card removed">
+          <div class="change-card-header">
+            <div class="change-name">Suggest a Correction</div>
+            <span class="badge badge-removed">Not Built</span>
+          </div>
+          <div class="change-desc">Spec listed this as P1. No correction form, no corrections table, no correction queue in admin. Fully deferred to V2.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Nearby Venues Count</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">3-5 nearest venues within 1km. Source: PostGIS distance query</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Up to 5 nearest venues within 1km. Source: <strong>Haversine SQL formula</strong> (not PostGIS extension) via <code>Venue::nearby()</code> scope</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEO PAGES ===================== -->
+    <section class="spec-section" id="seo-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-added-bg)">&#128196;</div>
+        <div>
+          <div class="section-title">SEO Pages Changes</div>
+          <div class="section-meta">More pages built than spec'd, different URL patterns</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">City Page Scope</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Only Warsaw: <code>/warszawa</code>. JSON-LD LocalBusiness schema on city page</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">24 Polish cities seeded with map bounds. Route: <code>/{citySlug}</code>. Shows total venues, verified count, district count, districts sorted by venue count. No JSON-LD on city page itself (only on venue profiles)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Category Page URL</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value"><code>/kategoria/piwo</code> — Warsaw-only, targets Warsaw long-tail keywords</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value"><code>/kategoria/{slug}</code> — All-city scope, shows venues from ALL active cities. Category description and venue count from DB. PostHog <code>category_browsed</code> event tracked</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">District + Category Combo Pages</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in original spec. Route: <code>/{citySlug}/{districtSlug}/{categorySlug}</code>. Three-level breadcrumb. Noindex if empty. Only shows products confirmed within freshness threshold. Enables hyper-specific long-tail SEO like "koktajle bezalkoholowe Srodmiescie Warszawa".</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Sitemap Implementation</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Auto-generated XML sitemap. Submitted to Google Search Console on launch</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Uses <code>spatie/laravel-sitemap</code> package. Dynamically generated at <code>/sitemap.xml</code> with priority tiers (home 1.0, discovery 0.9, categories 0.8, cities/districts 0.7-0.8, combos 0.6, venues 0.7). Also generates dynamic <code>/robots.txt</code></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ONBOARDING ===================== -->
+    <section class="spec-section" id="onboarding-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#127978;</div>
+        <div>
+          <div class="section-title">Claim Onboarding Changes</div>
+          <div class="section-meta">Owner discovery, registration, and claim flow</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Registration System</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Single registration at <code>/panel/register</code>. Name, email, password. Sends welcome email via SMTP (Resend/Postmark)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Two registration paths: (1) <code>/panel/register</code> via Filament panel for venue owners, (2) <code>/rejestracja</code> public user registration via Laravel auth. Users start as role='user', upgraded to 'owner' on claim approval</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Email Verification Method</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Verification: (a) email match to venue domain (<strong>instant</strong>), or (b) phone callback</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Verification method is recorded (email or phone) but <strong>all claims go through admin review</strong> — no instant domain-match verification. <code>verification_token</code> column exists but no automated matching logic</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Claim Approval Notifications</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Generic "notification email sent to owner"</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Two dedicated queued notification classes: <code>ClaimApproved</code> (directs to /panel) and <code>ClaimRejected</code> (includes admin notes). Both are <code>ShouldQueue</code>. PostHog events: <code>claim_approved</code>, <code>claim_rejected</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Post-Approval State</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">On approval: <code>venues.is_claimed = true</code>, Verified badge activates</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">On approval: <code>venues.claimed_by = user_id</code> (FK, not boolean), user role upgraded to 'owner'. <code>is_verified</code> is a separate admin-set flag — claiming does NOT automatically verify</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCT MGMT ===================== -->
+    <section class="spec-section" id="product-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#127866;</div>
+        <div>
+          <div class="section-title">Product Management Changes</div>
+          <div class="section-meta">Owner panel product operations</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Custom Drink Type Names</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Types: Mocktail / Virgin Classic / NA Spirit-Based / Other</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Enum <code>base_category</code>: <code>mocktail</code> / <code>koktajl_nolo</code> / <code>drink_spirytus_0</code> / <code>virgin_classic</code> (no "Other" — different naming, same concepts)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Offer Audit Log Priority</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Offer Audit Log marked as <strong>P1</strong></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Fully implemented as <strong>P0</strong>. <code>venue_offer_logs</code> with polymorphic design (subject_type/subject_id), action enum, metadata json. Tracks all product and drink changes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Product Catalog Fields</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Catalog: brand, product name, category, ABV, country of origin</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">All of above plus: slug (unique), description, image_path, attributes (jsonb), is_active, is_approved, sku, country_code (char 2 vs full country name)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">PostHog Event Tracking on All Actions</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. Every product management action fires a PostHog event: <code>product_added_by_owner</code>, <code>product_removed_by_owner</code>, <code>product_proposed</code>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FRESHNESS ===================== -->
+    <section class="spec-section" id="freshness-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128260;</div>
+        <div>
+          <div class="section-title">Freshness Loop Changes</div>
+          <div class="section-meta">How the 90-day cycle actually works</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Freshness Threshold Configuration</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Hard-coded 90 days</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Configurable via <code>config('uni.freshness_days')</code> with <code>UNI_FRESHNESS_DAYS</code> env variable. Default: 90</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Badge Loss Mechanism</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Verified badge is removed. Venue demoted in default sort (stale venues always below fresh). No email in v1</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Freshness is a computed property (<code>freshness_state</code> accessor), not stored. Visual indicator changes color (green&rarr;red). <code>is_verified</code> is NOT automatically removed by staleness — it's a separate admin-controlled flag. Hourly artisan command (<code>uni:check-offer-freshness</code>) detects drift and recalculates scores</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Confirmation Mechanism</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Panel banner with single "Confirm now" button for whole menu</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">FreshnessRelationManager in owner panel — <strong>per-product confirmation</strong> of availability (individual <code>confirmed_at</code> on <code>venue_products</code> pivot). VenueStatusWidget on dashboard shows overall status. PostHog <code>product_confirmed</code> event with <code>days_since_last_confirm</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Observers Auto-Update Freshness</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not detailed in spec. <code>VenueProductObserver</code> and <code>VenueDrinkObserver</code> automatically set <code>offer_updated_at = NOW()</code> on any product/drink add, remove, or edit.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ADMIN ===================== -->
+    <section class="spec-section" id="admin-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-added-bg)">&#9881;</div>
+        <div>
+          <div class="section-title">Admin Panel Changes</div>
+          <div class="section-meta">More resources than spec'd, some missing</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Category CRUD Resource</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. CategoryResource: manage categories with name, slug, description, sort_order, is_active, color, icon_svg.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">User Management Resource</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. UserResource: manage all users with role assignment (user/owner/admin).</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Dashboard Widgets</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. StatsOverview widget on admin dashboard. Owner panel has VenueStatusWidget and VenueAnalyticsWidget.</div>
+        </div>
+
+        <div class="change-card removed">
+          <div class="change-card-header">
+            <div class="change-name">User Correction Queue</div>
+            <span class="badge badge-removed">Not Built</span>
+          </div>
+          <div class="change-desc">Spec listed as P1. Not implemented — no correction form on venue profiles means no corrections to review. Depends on "Suggest a Correction" feature which is also not built.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Owner Panel (Separate Filament Panel)</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Spec described owner features generically. Actual implementation uses a separate Filament panel at <code>/panel</code> with top-nav layout, its own authentication middleware (blocks admins), dedicated relation managers (Products, Freshness, Drinks), and claim page.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCORING ===================== -->
+    <section class="spec-section" id="scoring-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128202;</div>
+        <div>
+          <div class="section-title">Scoring Logic Changes</div>
+          <div class="section-meta">Implementation details differ from spec</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Category Diversity Priority</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Category Diversity Tiebreaker marked as <strong>P1</strong></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Implemented as <strong>P0</strong>, baked into <code>VenueScoring::sort()</code> as secondary sort criterion</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Admin Verified Priority</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Admin Verified Flag marked as <strong>P1</strong>. Shown as "highest trust tier"</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Implemented as <strong>P0</strong>. <code>is_verified</code> boolean on venues, filterable on discovery page, shown as "Zweryfikowany" badge. Full admin CRUD control</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Freshness Sort Demotion</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec</div>
+              <div class="diff-value">Stale venues demoted in default sort behind ALL fresh venues regardless of breadth score</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label actual">Actual</div>
+              <div class="diff-value">Freshness is a visual indicator and a separate filter — not a hard sort demotion. Default sort is purely breadth_score DESC + diversity. Users can opt-in to freshness filtering (7/30/90/180 days) but stale venues are NOT automatically pushed below fresh ones</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ANALYTICS ===================== -->
+    <section class="spec-section" id="analytics-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128200;</div>
+        <div>
+          <div class="section-title">Analytics Changes</div>
+          <div class="section-meta">More events, different names, additional tracking layers</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Event Count & Names</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec listed 11 events. Actual has 16 PostHog events with different names.</div>
+          <div class="change-diff">
+            <div class="diff-row">
+              <div class="diff-label spec">Spec name</div>
+              <div class="diff-value"><strong>Actual name (or status)</strong></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-added);">Match</div>
+              <div class="diff-value"><code>venue_viewed</code> &rarr; <code>venue_viewed</code> (same, richer properties)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-changed);">Split</div>
+              <div class="diff-value"><code>filter_applied</code> &rarr; split into 3: <code>discovery_category_filtered</code>, <code>discovery_district_filtered</code>, <code>discovery_sort_changed</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-changed);">Renamed</div>
+              <div class="diff-value"><code>search_performed</code> &rarr; <code>discovery_searched</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-changed);">Renamed</div>
+              <div class="diff-value"><code>category_page_viewed</code> &rarr; <code>category_browsed</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-changed);">Renamed</div>
+              <div class="diff-value"><code>product_added</code> &rarr; <code>product_added_by_owner</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-changed);">Renamed</div>
+              <div class="diff-value"><code>freshness_confirmed</code> &rarr; <code>product_confirmed</code></div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-added);">Match</div>
+              <div class="diff-value"><code>claim_submitted</code> &rarr; <code>claim_submitted</code> (same)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-removed);">Missing</div>
+              <div class="diff-value"><code>directions_clicked</code> — tracked via VenueStat + inline PostHog (<code>venue_directions_clicked</code>), NOT in PostHogService</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-removed);">Missing</div>
+              <div class="diff-value"><code>district_page_viewed</code> — not tracked</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-removed);">Missing</div>
+              <div class="diff-value"><code>claim_started</code> — not tracked (only <code>claim_submitted</code>)</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-label" style="color:var(--color-removed);">Missing</div>
+              <div class="diff-value"><code>correction_submitted</code> — feature not built</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Additional PostHog Events (Not in Spec)</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">These events were added beyond the original 11: <code>user_registered</code>, <code>user_logged_in</code>, <code>claim_approved</code>, <code>claim_rejected</code>, <code>product_removed_by_owner</code>, <code>product_proposed</code>, <code>venue_profile_updated</code>.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">VenueStat Daily Aggregation Layer</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. <code>venue_stats</code> table tracks daily per-venue counters: views, direction_clicks, website_clicks, instagram_clicks, shares, card_clicks. Powers owner VenueAnalyticsWidget dashboard.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Events Table (Internal Analytics)</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. Append-only <code>events</code> table with jsonb properties, GDPR-compliant ip_hash, session tracking, referrer. Comprehensive indexes. Separate from PostHog — used for internal analytics and <code>/api/track</code> endpoint (throttled 120/min).</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Venue Visits Tracking</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. <code>venue_visits</code> table with ULID primary keys tracks individual venue visits with confirmation flow. Separate from events table — designed for future check-in features.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEFERRED ===================== -->
+    <section class="spec-section" id="deferred-changes">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-changed-bg)">&#128683;</div>
+        <div>
+          <div class="section-title">Deferred Items Changes</div>
+          <div class="section-meta">What moved in or out of V2</div>
+        </div>
+      </div>
+
+      <div class="change-list">
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Opening Hours</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec said fully deferred. Actual: <code>opening_hours</code> jsonb column exists on venues, editable in admin/owner panel, but <strong>NOT displayed on public venue profile</strong>. Data collection started ahead of V2 display.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Venue Photos</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec said fully deferred. Actual: <code>image_path</code> column exists on venues, manageable in admin panel, but not displayed in public views. Infrastructure ready.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">User Accounts</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec said "No user login in v1." Actual: public user registration (<code>/rejestracja</code>), login (<code>/zaloguj</code>), password reset, and profile management exist. Discovery is anonymous, but user accounts are built. <code>venue_visits</code> table exists for future check-in/save features.</div>
+        </div>
+
+        <div class="change-card changed">
+          <div class="change-card-header">
+            <div class="change-name">Multi-city Support</div>
+            <span class="badge badge-changed">Changed</span>
+          </div>
+          <div class="change-desc">Spec said architecture supports it but UI deferred. Actual: <strong>24 Polish cities</strong> are fully seeded with map bounds, city pages work for all cities, category pages are all-city scope. Architecture is not just "supported" — it's built and routed.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Canary Venue System</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec at all. <code>is_canary</code> flag on venues for honeypot/fraud detection. CanarySeeder creates test venues. Discovery page excludes canary venues. Honeypot endpoint at <code>/export/venues.json</code> logs and 404s bot scraping attempts.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Additional Static Pages</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec: <code>/jak-to-dziala</code> (how it works), <code>/regulamin</code> (terms), <code>/polityka-prywatnosci</code> (privacy policy), <code>/o-nas</code> (about with venue count). Legal/trust pages built proactively.</div>
+        </div>
+
+        <div class="change-card added">
+          <div class="change-card-header">
+            <div class="change-name">Tags System</div>
+            <span class="badge badge-added">Added</span>
+          </div>
+          <div class="change-desc">Not in spec. <code>tags</code> table and <code>product_tag</code> pivot table exist in the database but appear to be unused in current UI. Infrastructure for future product tagging (e.g., "gluten-free", "organic").</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const sections = document.querySelectorAll('.spec-section');
+const links = document.querySelectorAll('.sidebar-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

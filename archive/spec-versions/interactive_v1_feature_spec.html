@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNI v1 — Feature Spec</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<style>
+  :root, [data-theme="dark"] {
+    --color-bg: #0f0e0c;
+    --color-surface: #141311;
+    --color-surface-2: #1a1917;
+    --color-surface-offset: #201f1c;
+    --color-surface-dynamic: #2a2926;
+    --color-border: #2e2c29;
+    --color-divider: #252320;
+    --color-text: #e8e6e0;
+    --color-text-muted: #8a8880;
+    --color-text-faint: #4a4845;
+    --color-primary: #4f98a3;
+    --color-primary-hover: #3d8591;
+    --color-primary-highlight: #1e3035;
+
+    /* Category colors */
+    --color-beer: #e8a742;
+    --color-wine: #c05e8a;
+    --color-spirits: #7a6fbb;
+    --color-cocktail: #4fa87a;
+    --color-cider: #78b84a;
+    --color-sparkling: #5aabcc;
+
+    --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+    --font-body: 'Satoshi', 'Inter', sans-serif;
+
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+    --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+    --space-12: 3rem; --space-16: 4rem;
+
+    --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+    --radius-xl: 1rem; --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3);
+    --shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+    --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  p { max-width: 72ch; }
+
+  /* Layout */
+  .page-wrapper { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-6);
+  }
+  .sidebar-logo {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .logo-mark {
+    width: 32px; height: 32px; flex-shrink: 0;
+  }
+  .logo-text { font-family: var(--font-display); font-weight: 800; font-size: var(--text-sm); letter-spacing: -0.02em; }
+  .logo-text span { color: var(--color-primary); }
+  .sidebar-section-label {
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-2);
+  }
+  .sidebar-nav { display: flex; flex-direction: column; gap: var(--space-1); }
+  .sidebar-nav a {
+    font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none;
+    padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+    display: flex; align-items: center; gap: var(--space-2);
+    transition: color var(--transition), background var(--transition);
+  }
+  .sidebar-nav a:hover { color: var(--color-text); background: var(--color-surface-offset); }
+  .sidebar-nav a.active { color: var(--color-primary); background: var(--color-primary-highlight); }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .nav-dot.beer { color: var(--color-beer); }
+  .nav-dot.wine { color: var(--color-wine); }
+  .nav-dot.b2b { color: var(--color-primary); }
+
+  /* Main content */
+  .main { padding: var(--space-8) var(--space-10); max-width: 860px; }
+
+  /* Page header */
+  .page-header { margin-bottom: var(--space-12); padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-divider); }
+  .page-badge {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--color-primary);
+    background: var(--color-primary-highlight);
+    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+    margin-bottom: var(--space-4);
+  }
+  .page-title {
+    font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl);
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: var(--space-4);
+  }
+  .page-title em { font-style: normal; color: var(--color-primary); }
+  .page-subtitle { font-size: var(--text-base); color: var(--color-text-muted); max-width: 60ch; line-height: 1.7; }
+
+  /* Sections */
+  .spec-section { margin-bottom: var(--space-12); scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .section-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-icon.b2c { background: color-mix(in oklch, var(--color-primary) 15%, var(--color-surface)); }
+  .section-icon.b2b { background: color-mix(in oklch, var(--color-wine) 15%, var(--color-surface)); }
+  .section-icon.shared { background: color-mix(in oklch, var(--color-beer) 15%, var(--color-surface)); }
+  .section-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); letter-spacing: -0.02em; }
+  .section-meta { color: var(--color-text-faint); font-size: var(--text-xs); margin-top: 2px; }
+
+  /* Feature blocks */
+  .feature-group { margin-bottom: var(--space-8); }
+  .feature-group-title {
+    font-size: var(--text-sm); font-weight: 600; color: var(--color-text-muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: var(--space-4);
+  }
+  .feature-list { display: flex; flex-direction: column; gap: var(--space-3); }
+  .feature-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color var(--transition);
+  }
+  .feature-card:hover { border-color: color-mix(in oklch, var(--color-primary) 40%, var(--color-border)); }
+  .feature-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-2); }
+  .feature-name { font-weight: 600; font-size: var(--text-sm); color: var(--color-text); }
+  .feature-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+  .feature-detail { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-divider); }
+  .feature-detail ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-1); }
+  .feature-detail ul li {
+    font-size: var(--text-xs); color: var(--color-text-muted);
+    padding-left: var(--space-4); position: relative;
+  }
+  .feature-detail ul li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--color-text-faint); font-size: 10px; top: 2px;
+  }
+
+  /* Priority badges */
+  .badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .badge-p0 { background: color-mix(in oklch, #e84242 15%, var(--color-surface)); color: #e84242; }
+  .badge-p1 { background: color-mix(in oklch, var(--color-beer) 15%, var(--color-surface)); color: var(--color-beer); }
+  .badge-p2 { background: color-mix(in oklch, var(--color-text-muted) 12%, var(--color-surface)); color: var(--color-text-muted); }
+
+  /* Process flows */
+  .flow {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .flow-step {
+    display: grid; grid-template-columns: 48px 1fr;
+    background: var(--color-surface);
+    transition: background var(--transition);
+  }
+  .flow-step:not(:last-child) { border-bottom: 1px solid var(--color-divider); }
+  .flow-step:hover { background: var(--color-surface-offset); }
+  .flow-step-num {
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: var(--space-4);
+    font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700;
+    color: var(--color-text-faint);
+    border-right: 1px solid var(--color-divider);
+  }
+  .flow-step-body { padding: var(--space-4); }
+  .flow-step-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
+  .flow-step-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6; }
+  .flow-step-tags { display: flex; gap: var(--space-2); margin-top: var(--space-2); flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 500; color: var(--color-text-faint);
+    background: var(--color-surface-offset);
+    padding: 2px 8px; border-radius: var(--radius-full);
+  }
+
+  /* Filter grid */
+  .filter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  .filter-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+  .filter-card-label { font-size: var(--text-xs); color: var(--color-text-faint); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .filter-card-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-2); }
+  .filter-options { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+  .filter-chip {
+    font-size: 11px; padding: 3px 10px; border-radius: var(--radius-full);
+    border: 1px solid var(--color-border); color: var(--color-text-muted);
+  }
+  .filter-chip.beer { border-color: var(--color-beer); color: var(--color-beer); background: color-mix(in oklch, var(--color-beer) 10%, transparent); }
+  .filter-chip.wine { border-color: var(--color-wine); color: var(--color-wine); background: color-mix(in oklch, var(--color-wine) 10%, transparent); }
+  .filter-chip.spirits { border-color: var(--color-spirits); color: var(--color-spirits); background: color-mix(in oklch, var(--color-spirits) 10%, transparent); }
+  .filter-chip.cocktail { border-color: var(--color-cocktail); color: var(--color-cocktail); background: color-mix(in oklch, var(--color-cocktail) 10%, transparent); }
+  .filter-chip.cider { border-color: var(--color-cider); color: var(--color-cider); background: color-mix(in oklch, var(--color-cider) 10%, transparent); }
+  .filter-chip.sparkling { border-color: var(--color-sparkling); color: var(--color-sparkling); background: color-mix(in oklch, var(--color-sparkling) 10%, transparent); }
+
+  /* User persona strip */
+  .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .persona-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+  .persona-name { font-weight: 700; font-size: var(--text-sm); margin-bottom: var(--space-1); }
+  .persona-tag { font-size: var(--text-xs); color: var(--color-primary); margin-bottom: var(--space-2); }
+  .persona-intent { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6; }
+  .persona-searches { margin-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-1); }
+  .persona-query { font-size: 10px; color: var(--color-text-faint); background: var(--color-surface-offset); padding: 2px 8px; border-radius: var(--radius-full); font-family: monospace; }
+
+  /* Stats row */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-8); }
+  .stat-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    text-align: center;
+  }
+  .stat-num { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; color: var(--color-primary); letter-spacing: -0.03em; }
+  .stat-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+
+  /* Chunk viz preview */
+  .chunk-row { display: flex; gap: 3px; margin-top: var(--space-2); }
+  .chunk { width: 12px; height: 12px; border-radius: 2px; }
+
+  /* Two-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+  /* Info callout */
+  .callout {
+    background: var(--color-primary-highlight);
+    border: 1px solid color-mix(in oklch, var(--color-primary) 25%, var(--color-border));
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .callout-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-primary); margin-bottom: var(--space-2); }
+  .callout p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7; max-width: 100%; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--color-divider); margin: var(--space-8) 0; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--color-surface-dynamic); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    .page-wrapper { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: var(--space-6) var(--space-4); }
+    .filter-grid, .two-col { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .persona-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-label="UNI logo">
+        <rect width="32" height="32" rx="8" fill="#1a1917"/>
+        <circle cx="16" cy="13" r="5" stroke="#4f98a3" stroke-width="1.5"/>
+        <line x1="16" y1="18" x2="16" y2="24" stroke="#4f98a3" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="12" y1="21" x2="20" y2="21" stroke="#4f98a3" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-text">Under No<br><span>Influence</span></div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">Overview</div>
+      <nav class="sidebar-nav">
+        <a href="#overview"><span class="nav-dot"></span>V1 Scope</a>
+        <a href="#users"><span class="nav-dot"></span>User Personas</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">B2C — Consumer</div>
+      <nav class="sidebar-nav">
+        <a href="#discovery"><span class="nav-dot b2c" style="color:var(--color-primary)"></span>Discovery Page</a>
+        <a href="#filters"><span class="nav-dot b2c" style="color:var(--color-primary)"></span>Filters & Search</a>
+        <a href="#venue-profile"><span class="nav-dot b2c" style="color:var(--color-primary)"></span>Venue Profile</a>
+        <a href="#seo-pages"><span class="nav-dot b2c" style="color:var(--color-primary)"></span>SEO Pages</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">B2B — Owner Panel</div>
+      <nav class="sidebar-nav">
+        <a href="#onboarding"><span class="nav-dot b2b" style="color:var(--color-wine)"></span>Claim Onboarding</a>
+        <a href="#product-mgmt"><span class="nav-dot b2b" style="color:var(--color-wine)"></span>Product Mgmt</a>
+        <a href="#freshness"><span class="nav-dot b2b" style="color:var(--color-wine)"></span>Freshness Loop</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">System</div>
+      <nav class="sidebar-nav">
+        <a href="#admin"><span class="nav-dot" style="color:var(--color-beer)"></span>Admin Panel</a>
+        <a href="#scoring"><span class="nav-dot" style="color:var(--color-beer)"></span>Scoring Logic</a>
+        <a href="#analytics"><span class="nav-dot" style="color:var(--color-beer)"></span>Analytics</a>
+        <a href="#deferred"><span class="nav-dot" style="color:var(--color-text-faint)"></span>Deferred (V2)</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Page header -->
+    <div class="page-header" id="overview">
+      <div class="page-badge">🔒 Locked Spec</div>
+      <h1 class="page-title">UNI v1 <em>Feature Spec</em></h1>
+      <p class="page-subtitle">Complete, locked list of what users need, what processes run behind them, where data comes from, and what gets deferred. Everything in here ships. Nothing else ships.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">50–60</div><div class="stat-label">Warsaw venues at launch</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Drink categories</div></div>
+      <div class="stat-card"><div class="stat-num">18</div><div class="stat-label">Normalized dzielnice</div></div>
+      <div class="stat-card"><div class="stat-num">90d</div><div class="stat-label">Freshness threshold</div></div>
+    </div>
+
+    <!-- ===================== USERS ===================== -->
+    <section class="spec-section" id="users">
+      <div class="section-header">
+        <div class="section-icon shared">👤</div>
+        <div>
+          <div class="section-title">User Personas & Intent</div>
+          <div class="section-meta">Who they are, what they look for, and how they arrive</div>
+        </div>
+      </div>
+
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-name">After-Work Professional</div>
+          <div class="persona-tag">25–40 · Warsaw · spontaneous</div>
+          <div class="persona-intent">Wants to join colleagues at a bar tonight without alcohol. Needs a venue with actual NA craft options, not just Coke. Decision is <strong>tonight</strong>, so freshness matters most.</div>
+          <div class="persona-searches">
+            <span class="persona-query">piwo 0.0 Śródmieście</span>
+            <span class="persona-query">bar bez alkoholu Warszawa</span>
+            <span class="persona-query">mocktail Mokotów</span>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name">Designated Driver</div>
+          <div class="persona-tag">Any age · group night out · practical</div>
+          <div class="persona-intent">Already committed to the venue the group chose. Scans the NA menu before arrival to avoid the awkward "just sparkling water" moment. Verification badge is critical trust signal.</div>
+          <div class="persona-searches">
+            <span class="persona-query">drinki bezalkoholowe [venue name]</span>
+            <span class="persona-query">co zamówić bez alkoholu</span>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name">Pregnant Woman</div>
+          <div class="persona-tag">High intent · pre-plans · risk-averse</div>
+          <div class="persona-intent">Plans outings in advance. Needs specific product names to verify safety. Will scroll the full product list. High-value: shares findings with other moms in private groups.</div>
+          <div class="persona-searches">
+            <span class="persona-query">wino 0.0 restauracja Warszawa</span>
+            <span class="persona-query">napoje bezalkoholowe restauracja</span>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name">Health-Conscious / Sober-Curious</div>
+          <div class="persona-tag">Explores · returns · advocates</div>
+          <div class="persona-intent">Experimenting with NA lifestyle. Wants variety — not one product, but a full category. Breadth score is their proxy for "this place gets it." Becomes an organic advocate.</div>
+          <div class="persona-searches">
+            <span class="persona-query">gin bezalkoholowy koktajle</span>
+            <span class="persona-query">najlepsze miejsca noLo Warszawa</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-4);">
+        <div class="callout">
+          <div class="callout-label">What they all share</div>
+          <p>They've already decided not to drink tonight. UNI is not persuasion — it's infrastructure. They arrive with intent; the platform's job is to route them accurately. Stale data destroys trust instantly and permanently for this user type.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DISCOVERY ===================== -->
+    <section class="spec-section" id="discovery">
+      <div class="section-header">
+        <div class="section-icon b2c">🗺️</div>
+        <div>
+          <div class="section-title">Discovery Page <code style="font-size:11px;color:var(--color-text-faint)">/szukaj</code></div>
+          <div class="section-meta">The core product — map + filterable venue list</div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-bottom: var(--space-6);">
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-name">Interactive Map</div>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <div class="feature-desc">Leaflet.js map centered on Warsaw. Venue markers as colored dots (not cluster blobs in v1). Click a dot → opens venue card preview anchored to the sidebar list.</div>
+          <div class="feature-detail"><ul>
+            <li>Color-coded dots per primary drink category (beer amber, wine pink, etc.)</li>
+            <li>Map state syncs with active filters — filtered-out venues disappear from map</li>
+            <li>GPS "Near Me" button — requests browser geolocation, recenters map</li>
+            <li>Mobile: map takes 50% viewport, list is scrollable below</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-name">Venue List</div>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <div class="feature-desc">Sidebar list of matching venues. Each card shows: venue name, district, type (bar / restaurant / café), breadth score, category chunks, and freshness badge.</div>
+          <div class="feature-detail"><ul>
+            <li>Default sort: breadth score desc, then name alpha</li>
+            <li>User can switch to: Name A–Z, Distance (requires geolocation)</li>
+            <li>Chunk visualization: colored squares showing products per category</li>
+            <li>Verified badge shown on card; Stale venues clearly dimmed</li>
+          </ul></div>
+        </div>
+      </div>
+
+      <!-- Chunk preview -->
+      <div class="feature-card" style="margin-bottom: var(--space-4);">
+        <div class="feature-name" style="margin-bottom: var(--space-2);">Breadth Score Chunk Visualization</div>
+        <div class="feature-desc" style="margin-bottom: var(--space-3);">The visual identity of UNI. Each colored square = 1 product in that category. A venue with 4 beers, 2 wines, 1 cocktail renders as a distinctive pattern. Users learn to read these at a glance.</div>
+        <div style="display: flex; gap: var(--space-6); flex-wrap: wrap;">
+          <div>
+            <div style="font-size:10px;color:var(--color-text-faint);margin-bottom:4px;">Bar Kufle & Alkohole (breadth: 9)</div>
+            <div class="chunk-row">
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-wine)"></div>
+              <div class="chunk" style="background:var(--color-wine)"></div>
+              <div class="chunk" style="background:var(--color-cocktail)"></div>
+              <div class="chunk" style="background:var(--color-cocktail)"></div>
+              <div class="chunk" style="background:var(--color-sparkling)"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--color-text-faint);margin-bottom:4px;">Restauracja Mono (breadth: 4, 1 cat)</div>
+            <div class="chunk-row">
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+              <div class="chunk" style="background:var(--color-beer)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FILTERS ===================== -->
+    <section class="spec-section" id="filters">
+      <div class="section-header">
+        <div class="section-icon b2c">🔍</div>
+        <div>
+          <div class="section-title">Filters, Search & Sort</div>
+          <div class="section-meta">The full filter surface — every control, its source, and its behavior</div>
+        </div>
+      </div>
+
+      <div class="filter-grid" style="margin-bottom: var(--space-6);">
+        <div class="filter-card">
+          <div class="filter-card-label">Filter 1 · Category</div>
+          <div class="filter-card-title">Drink Type</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Multi-select. Selects venues that carry <strong>at least 1 product</strong> in the chosen category. Source: <code>venue_products</code> join + category FK.</div>
+          <div class="filter-options">
+            <span class="filter-chip beer">Piwo 🍺</span>
+            <span class="filter-chip wine">Wino 🍷</span>
+            <span class="filter-chip spirits">Destylaty 🥃</span>
+            <span class="filter-chip cocktail">Drinki 🍸</span>
+            <span class="filter-chip cider">Cydr 🍎</span>
+            <span class="filter-chip sparkling">Musujące 🥂</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <div class="filter-card-label">Filter 2 · Location</div>
+          <div class="filter-card-title">District (Dzielnica)</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Single-select dropdown. 18 Warsaw dzielnice normalized in the DB. Source: <code>venues.district_id</code> → <code>districts</code> table. Slug-friendly for SEO.</div>
+          <div class="filter-options">
+            <span class="filter-chip">Śródmieście</span>
+            <span class="filter-chip">Mokotów</span>
+            <span class="filter-chip">Praga Płn.</span>
+            <span class="filter-chip">Wola</span>
+            <span class="filter-chip">+14 more</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <div class="filter-card-label">Filter 3 · Trust</div>
+          <div class="filter-card-title">Data Quality</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Toggle: show only venues with active Verified badge (owner-claimed + freshness confirmed within 90d). Source: <code>venues.is_claimed + offer_updated_at</code>.</div>
+          <div class="filter-options">
+            <span class="filter-chip" style="border-color:var(--color-primary);color:var(--color-primary)">Zweryfikowane only</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <div class="filter-card-label">Sort 1</div>
+          <div class="filter-card-title">Breadth Score</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Default. Ranks by <code>breadth_score</code> column (denormalized int, auto-recalculated on product add/remove). Tiebreaker: category count diversity.</div>
+          <div class="filter-options"><span class="filter-chip">Default sort</span></div>
+        </div>
+
+        <div class="filter-card">
+          <div class="filter-card-label">Sort 2</div>
+          <div class="filter-card-title">Distance</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Requires browser geolocation consent. Falls back to breadth sort if denied. Distance from user's GPS to <code>venues.coordinates</code> (lat/lng). Computed client-side.</div>
+          <div class="filter-options"><span class="filter-chip">Requires GPS</span></div>
+        </div>
+
+        <div class="filter-card">
+          <div class="filter-card-label">Sort 3 + Search</div>
+          <div class="filter-card-title">Name / Keyword</div>
+          <div class="feature-desc" style="font-size:var(--text-xs);margin-bottom:var(--space-3);">Text input. Searches <code>venues.name</code>, address, and product names. Full-text index in PostgreSQL. Debounced 300ms. Also enables alphabetical sort (A–Z).</div>
+          <div class="filter-options"><span class="filter-chip">Full-text PG</span><span class="filter-chip">300ms debounce</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Filter Behavior Rules</div>
+        <p>All filters are AND logic (beer AND Mokotów AND verified). Filter state is preserved in URL query params for shareability and browser back button. No filter = all venues shown, sorted by breadth. Filters update the map and list simultaneously via Livewire reactive state — no page reload.</p>
+      </div>
+    </section>
+
+    <!-- ===================== VENUE PROFILE ===================== -->
+    <section class="spec-section" id="venue-profile">
+      <div class="section-header">
+        <div class="section-icon b2c">📍</div>
+        <div>
+          <div class="section-title">Venue Profile Page <code style="font-size:11px;color:var(--color-text-faint)">/miejsce/{slug}</code></div>
+          <div class="section-meta">What the end user sees when they choose a venue</div>
+        </div>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Venue Header & Identity</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Name, venue type (bar / restaurant / café / pub), district + full address, interactive mini-map showing pin, Get Directions button (opens Google Maps with coordinates). No venue photos in v1.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Freshness + Verified Badges</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Binary freshness indicator: <strong>Świeże</strong> (confirmed within 90 days) or <strong>Nieaktualne</strong> (stale). Verified badge (owner has claimed and maintains). Stale data shown transparently, not hidden.</div>
+          <div class="feature-detail"><ul>
+            <li>Source: <code>venues.offer_updated_at</code> compared to NOW() − 90 days</li>
+            <li>Stale badge shows last-confirmed date to let user judge recency</li>
+            <li>Verified badge: <code>venues.is_claimed = true</code></li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Category Breadth Chart</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Visual grid of colored chunks per category — the visual identity of UNI. Shows at a glance which categories are strong (many chunks) vs token presence (1 chunk).</div>
+          <div class="feature-detail"><ul>
+            <li>Source: COUNT of products per category from <code>venue_products</code> join</li>
+            <li>Categories with 0 products are greyed out, not hidden</li>
+            <li>Custom house drinks (mocktails) counted in relevant category</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Full Product List</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Complete named list of all NA products offered. Grouped by category. Shows brand, product name, and category badge. Custom house drinks listed separately with description.</div>
+          <div class="feature-detail"><ul>
+            <li>Source: <code>venue_products</code> → global <code>products</code> catalog</li>
+            <li>Custom drinks: <code>venue_drinks</code> table (name, description, type)</li>
+            <li>No prices — price data is stale risk, not worth the maintenance burden</li>
+            <li>No opening hours — Google Maps is SSOT; stale hours damage trust</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Nearby Venues</div><span class="badge badge-p1">P1</span></div>
+          <div class="feature-desc">3–5 nearest venues within 1km radius. Sorted by distance. Shows name + breadth score. Source: PostGIS distance query from this venue's coordinates.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Suggest a correction</div><span class="badge badge-p1">P1</span></div>
+          <div class="feature-desc">Link to a minimal form where users can flag stale or wrong data. Submissions go to admin queue — not shown publicly. Acts as a data quality signal without opening user-edit abuse.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEO PAGES ===================== -->
+    <section class="spec-section" id="seo-pages">
+      <div class="section-header">
+        <div class="section-icon b2c">📄</div>
+        <div>
+          <div class="section-title">Programmatic SEO Pages</div>
+          <div class="section-meta">Auto-generated pages from city × district × category combinations</div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">City Page <code>/warszawa</code></div>
+            <div class="flow-step-desc">Warsaw overview: total venues, active venues, breakdown by district (venue count per dzielnica rendered as a sortable grid). JSON-LD LocalBusiness schema. Meta: "Mapa napojów bezalkoholowych w Warszawie — X miejsc."</div>
+            <div class="flow-step-tags"><span class="tag">SEO anchor</span><span class="tag">JSON-LD</span><span class="tag">district grid</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">District Pages <code>/warszawa/mokotow</code></div>
+            <div class="flow-step-desc">All venues in the district, sorted by breadth score by default. Venue count, top categories present. Targets "piwo bezalkoholowe Mokotów", "koktajle 0% Śródmieście" long-tail. Auto-generated for all 18 dzielnice with at least 1 venue.</div>
+            <div class="flow-step-tags"><span class="tag">18 pages</span><span class="tag">auto-generated</span><span class="tag">long-tail SEO</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Category Pages <code>/kategoria/piwo</code></div>
+            <div class="flow-step-desc">All Warsaw venues carrying at least 1 product in this category, sorted by count in that category. Targets "gdzie piwo bezalkoholowe Warszawa" searches. Rich intro copy explaining the category (what NA beer is, top brands).</div>
+            <div class="flow-step-tags"><span class="tag">6 pages</span><span class="tag">category authority</span><span class="tag">brand mentions</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">XML Sitemap + Canonicals</div>
+            <div class="flow-step-desc">Auto-generated XML sitemap covering all venue profiles, city, district, and category pages. Proper canonical URLs. Submitted to Google Search Console on launch.</div>
+            <div class="flow-step-tags"><span class="tag">auto-generated</span><span class="tag">canonical</span><span class="tag">GSC submission</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- ===================== CLAIM ONBOARDING ===================== -->
+    <section class="spec-section" id="onboarding">
+      <div class="section-header">
+        <div class="section-icon b2b">🏪</div>
+        <div>
+          <div class="section-title">Owner Onboarding: Claim Flow</div>
+          <div class="section-meta">How a venue owner discovers, registers, and claims their listing</div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Owner Discovers UNI</div>
+            <div class="flow-step-desc">Via: <strong>(a)</strong> Cold email "your venue is listed, but unclaimed — here's demand data for your district" · <strong>(b)</strong> dla-lokali landing page from Instagram bio · <strong>(c)</strong> Organic Google search · <strong>(d)</strong> NA brand/distributor referral.</div>
+            <div class="flow-step-tags"><span class="tag">cold email</span><span class="tag">SEO</span><span class="tag">social</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Registration <code>/panel/register</code></div>
+            <div class="flow-step-desc">Name, email, password. No credit card. 30 seconds. Duplicate email check. Sends welcome email via SMTP (Resend/Postmark). Account is venue-neutral until a claim is submitted.</div>
+            <div class="flow-step-tags"><span class="tag">free</span><span class="tag">no card</span><span class="tag">email verify</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Claim Request Submission</div>
+            <div class="flow-step-desc">Owner selects their venue from the existing DB list. Chooses verification method: (a) email match to venue domain (instant), or (b) phone callback. Duplicate claim prevention — can't claim a venue already claimed by another owner. Claim goes to <code>venue_claims</code> queue with status pending.</div>
+            <div class="flow-step-tags"><span class="tag">email/phone verify</span><span class="tag">duplicate check</span><span class="tag">pending queue</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Admin Review & Approval</div>
+            <div class="flow-step-desc">Admin reviews within 1–2 business days. Approves or rejects with reason. On approval: <code>venues.is_claimed = true</code>, owner gets full panel access, Verified badge activates on their listing. Notification email sent to owner.</div>
+            <div class="flow-step-tags"><span class="tag">1–2 day SLA</span><span class="tag">email notification</span><span class="tag">badge activates</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">05</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">First Login → Panel</div>
+            <div class="flow-step-desc">Owner is presented with their venue's current state. Prompted to: review existing products, add missing items, confirm freshness. Empty state if no products: "Your venue has 0 products listed. Customers looking for NA drinks can't find you." → CTA to add first product.</div>
+            <div class="flow-step-tags"><span class="tag">empty state</span><span class="tag">guided first action</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCT MGMT ===================== -->
+    <section class="spec-section" id="product-mgmt">
+      <div class="section-header">
+        <div class="section-icon b2b">🍺</div>
+        <div>
+          <div class="section-title">Owner Panel: Product Management</div>
+          <div class="section-meta">Adding, removing, and proposing products from the catalog</div>
+        </div>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Attach from Global Catalog</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Owner searches the curated global products catalog (name, brand, category). Select → product is attached to <code>venue_products</code>. No duplication — each product exists once globally.</div>
+          <div class="feature-detail"><ul>
+            <li>Catalog: brand, product name, category, ABV, country of origin</li>
+            <li>Typeahead search on product name + brand</li>
+            <li>Filter catalog by category before searching</li>
+            <li>Attaching a product auto-triggers breadth score recalculation</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Propose New Product</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Product not in catalog? Owner submits a proposal (name, brand, category, optional notes). Goes to <code>product_proposals</code> queue. Admin reviews and adds to global catalog, then notifies owner. Product is NOT on venue listing until approved.</div>
+          <div class="feature-detail"><ul>
+            <li>Prevents catalog pollution with duplicates/variations</li>
+            <li>Owner sees "pending approval" state in their panel</li>
+            <li>Admin deduplicates against existing catalog on review</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Add Custom House Drinks</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Mocktails and house-made NA drinks that aren't branded products. Owner enters: name, description (e.g., "cucumber mint lemonade with elderflower"), type (Mocktail / Virgin Classic / NA Spirit-Based / Other).</div>
+          <div class="feature-detail"><ul>
+            <li>Stored in <code>venue_drinks</code> table, not global catalog</li>
+            <li>Counted in breadth score under relevant category</li>
+            <li>No photos in v1</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Remove Product</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">One-click detach of a product from the venue. Immutably logged to <code>venue_offer_logs</code> (what, when, by whom). Breadth score recalculated immediately. No confirmation modal — undo is "add it back."</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Offer Audit Log</div><span class="badge badge-p1">P1</span></div>
+          <div class="feature-desc">Immutable log of every add/remove action. Visible to admin only (not owner in v1). Used for trust verification and abuse detection.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FRESHNESS ===================== -->
+    <section class="spec-section" id="freshness">
+      <div class="section-header">
+        <div class="section-icon b2b">🔄</div>
+        <div>
+          <div class="section-title">Freshness Confirmation Loop</div>
+          <div class="section-meta">The engagement mechanism that keeps data current</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Design Intent</div>
+        <p>The freshness model creates a natural re-engagement cycle without UNI needing to nag owners. The Verified badge = visibility reward. Losing it = demotion signal. This makes data maintenance self-incentivizing rather than administrative burden.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-num">01</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Clock Starts on Product Change or Manual Confirm</div>
+            <div class="flow-step-desc"><code>venues.offer_updated_at</code> is set to NOW() when: any product is added or removed, any house drink is added/removed/edited, or owner clicks "Confirm current menu is up to date".</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">02</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Day 90 — Badge Drops</div>
+            <div class="flow-step-desc">If <code>offer_updated_at &lt; NOW() − 90 days</code>: Verified badge is removed from public listing. Venue is demoted in default sort (breadth score tie-breaks resolved against stale venues). No automated email in v1 — badge loss IS the signal.</div>
+            <div class="flow-step-tags"><span class="tag">auto-computed</span><span class="tag">no nag email v1</span><span class="tag">sort demotion</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">03</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Owner Logs In → Sees Badge Warning</div>
+            <div class="flow-step-desc">Panel banner: "Your menu hasn't been confirmed in 90+ days. Your Verified badge is inactive. Customers may not trust your data. [Confirm now →]"</div>
+            <div class="flow-step-tags"><span class="tag">in-panel banner</span><span class="tag">1-click action</span></div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">04</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Confirmation → Badge Restores Instantly</div>
+            <div class="flow-step-desc">Owner clicks confirm. <code>offer_updated_at = NOW()</code>. Badge reactivates on public listing immediately. Sort position restores. No admin review needed.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- ===================== ADMIN ===================== -->
+    <section class="spec-section" id="admin">
+      <div class="section-header">
+        <div class="section-icon shared">⚙️</div>
+        <div>
+          <div class="section-title">Admin Panel (Filament v5)</div>
+          <div class="section-meta">Internal operations — not visible to end users</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="feature-list">
+          <div class="feature-group-title">Venue Operations</div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Venue CRUD</div><span class="badge badge-p0">P0</span></div>
+            <div class="feature-desc">Create, edit, delete venues. Set coordinates, district, type, contact info, admin_verified flag.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Claim Queue</div><span class="badge badge-p0">P0</span></div>
+            <div class="feature-desc">Review pending claim requests. Approve (sets is_claimed, notifies owner) or reject with reason. SLA: within 1–2 business days.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Manual Data Seeding</div><span class="badge badge-p0">P0</span></div>
+            <div class="feature-desc">Bulk-add venue products without going through owner panel. Used for pre-launch seeding of 50–60 Warsaw venues with verified NA drink data.</div>
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-group-title">Catalog Operations</div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Product Proposal Queue</div><span class="badge badge-p0">P0</span></div>
+            <div class="feature-desc">Review owner-submitted product proposals. Dedup against catalog. Approve → auto-notifies owner and attaches to their venue. Reject → notify with reason.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Global Products CRUD</div><span class="badge badge-p0">P0</span></div>
+            <div class="feature-desc">Manage the curated global product catalog. Add brands, categories, ABV data, countries.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">User Correction Queue</div><span class="badge badge-p1">P1</span></div>
+            <div class="feature-desc">Review user-submitted data corrections. Actionable (fix the data) or dismiss. No automated changes from user submissions.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCORING ===================== -->
+    <section class="spec-section" id="scoring">
+      <div class="section-header">
+        <div class="section-icon shared">📊</div>
+        <div>
+          <div class="section-title">Scoring Logic</div>
+          <div class="section-meta">How venues are ranked — the algorithm behind the default sort</div>
+        </div>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Breadth Score</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Primary ranking signal. Count of total distinct products (catalog products + custom house drinks). Stored as a denormalized integer column <code>venues.breadth_score</code>. Auto-recalculated via DB trigger on product add/remove.</div>
+          <div class="feature-detail"><ul>
+            <li>5 beers + 3 wines + 2 cocktails + 1 spirit = breadth_score: 11</li>
+            <li>11 beers = breadth_score: 11, but lower category diversity (tiebreaker)</li>
+            <li>Indexed column → fast ORDER BY without live count query</li>
+          </ul></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Category Diversity Tiebreaker</div><span class="badge badge-p1">P1</span></div>
+          <div class="feature-desc">When breadth scores are equal, venues with more distinct categories rank higher. Computed from <code>COUNT(DISTINCT category_id)</code> in venue_products. NOT part of the main score formula — tiebreaker only.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Freshness Modifier</div><span class="badge badge-p0">P0</span></div>
+          <div class="feature-desc">Stale venues (offer_updated_at &gt; 90 days ago) are demoted in default sort behind all fresh venues regardless of breadth score. Fresh venues always float above stale ones.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-header"><div class="feature-name">Admin Verified Flag</div><span class="badge badge-p1">P1</span></div>
+          <div class="feature-desc">Manual admin toggle: UNI team has independently verified this venue exists and data is accurate. Separate from owner freshness (automated) and claimed status (owner action). Shown as a distinct signal to users — highest trust tier.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ANALYTICS ===================== -->
+    <section class="spec-section" id="analytics">
+      <div class="section-header">
+        <div class="section-icon shared">📈</div>
+        <div>
+          <div class="section-title">Analytics (PostHog)</div>
+          <div class="section-meta">11 tracked events — data collection for v2 features and B2B pitches</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Why track in v1</div>
+        <p>Analytics data collected in v1 becomes the product in v2. "47 users searched for NA wine in Mokotów this month" is the cold email hook. Category demand by district is the premium dashboard feature. The data flywheel starts on day 1 even though owners don't see it yet.</p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <div class="feature-name" style="margin-bottom: var(--space-2);">Tracked Events (11 total)</div>
+          <div class="feature-detail" style="border-top: none; padding-top: 0; margin-top: 0;">
+            <ul>
+              <li><strong>venue_viewed</strong> — venue_id, district, category count</li>
+              <li><strong>filter_applied</strong> — filter type (category/district/verified), value selected</li>
+              <li><strong>search_performed</strong> — query string, result count returned</li>
+              <li><strong>directions_clicked</strong> — venue_id, source (map/profile)</li>
+              <li><strong>category_page_viewed</strong> — category slug</li>
+              <li><strong>district_page_viewed</strong> — district slug</li>
+              <li><strong>claim_started</strong> — venue_id</li>
+              <li><strong>claim_submitted</strong> — venue_id, verification method</li>
+              <li><strong>product_added</strong> — product_id, category, venue_id (owner panel)</li>
+              <li><strong>freshness_confirmed</strong> — venue_id, days_since_last_confirm</li>
+              <li><strong>correction_submitted</strong> — venue_id, type</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEFERRED ===================== -->
+    <section class="spec-section" id="deferred">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--color-surface-offset)">🚫</div>
+        <div>
+          <div class="section-title">Explicitly Deferred to V2</div>
+          <div class="section-meta">These do not ship. Not deferred because they're unimportant — deferred because they're premature.</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="feature-list">
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">B2B Analytics Dashboard</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">Owner-facing views, directions clicks, category demand by district. Data is collected now; surface revealed only after traffic justifies the premium tier pitch.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Promoted / Paid Placement</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">Pay-for-visibility within category/district pages. No point monetizing before user traffic validates the platform.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Opening Hours</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">Stale hours actively damage trust. Google Maps is SSOT. Not owned until there's a verified, owner-maintained data pipeline for it.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Venue Photos</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">Moderation burden without demand signal. Chunk visualization is the visual identity in v1.</div>
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Mobile App</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">PWA via browser is sufficient for v1. App store presence requires traffic proof first.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">User Accounts / Saves</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">No user login in v1. Discovery is anonymous. Saves, favorites, check-ins — none of it until core value is proven.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">Multi-city Support</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">Warsaw first. City 2 (Gdańsk or Kraków) only after 100 Warsaw venues and 30 claimed. Architecture supports it; UI deferred.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><div class="feature-name">API Access / Third-Party</div><span class="badge badge-p2">V2</span></div>
+            <div class="feature-desc">NA drink brand distribution intelligence, delivery app integrations. Requires significant data volume first — speculative until then.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// Sidebar active state on scroll
+const sections = document.querySelectorAll('.spec-section');
+const links = document.querySelectorAll('.sidebar-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

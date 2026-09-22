@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive learning guide for the UNI discovery map">
+<title>UNI Dev Guide — Discovery Map</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class' }</script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; margin: 0; }
+  #root { min-height: 100vh; }
+
+  /* ── Prose styles for rendered markdown ───────────────── */
+  .prose { line-height: 1.75; font-size: 1rem; }
+  .prose h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 1rem; line-height: 1.2; }
+  .prose h2 { font-size: 1.2rem; font-weight: 700; margin: 2rem 0 0.75rem; padding-top: 0.5rem; }
+  .prose h3 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+  .prose p { margin: 0 0 1rem; }
+  .prose ul, .prose ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+  .prose li { margin: 0.25rem 0; }
+  .prose li > p { margin: 0; }
+  .prose strong { font-weight: 700; }
+  .prose em { font-style: italic; }
+  .prose hr { border: none; border-top: 1px solid; margin: 1.5rem 0; opacity: 0.15; }
+  .prose blockquote { border-left: 3px solid; padding-left: 1rem; margin: 1rem 0; opacity: 0.8; font-style: italic; }
+  .prose a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Inline code */
+  .prose :not(pre) > code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    font-size: 0.82em;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* Code blocks */
+  .prose pre {
+    margin: 1rem 0;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .prose pre code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    padding: 1rem 1.25rem;
+    display: block;
+    min-width: max-content;
+  }
+
+  /* Tables */
+  .prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9em; }
+  .prose th { font-weight: 700; padding: 0.5rem 0.75rem; text-align: left; }
+  .prose td { padding: 0.5rem 0.75rem; }
+
+  /* Light mode prose */
+  .light-prose .prose h1, .light-prose .prose h2, .light-prose .prose h3 { color: #111827; }
+  .light-prose .prose p, .light-prose .prose li { color: #374151; }
+  .light-prose .prose hr { border-color: #374151; }
+  .light-prose .prose blockquote { border-color: #6366f1; color: #374151; }
+  .light-prose .prose a { color: #4f46e5; }
+  .light-prose .prose :not(pre) > code { background: #f1f5f9; color: #be185d; }
+  .light-prose .prose th { background: #f8fafc; color: #111827; border-bottom: 2px solid #e2e8f0; }
+  .light-prose .prose td { border-bottom: 1px solid #e2e8f0; color: #374151; }
+  .light-prose .prose strong { color: #111827; }
+
+  /* Dark mode prose */
+  .dark-prose .prose h1, .dark-prose .prose h2, .dark-prose .prose h3 { color: #f1f5f9; }
+  .dark-prose .prose p, .dark-prose .prose li { color: #cbd5e1; }
+  .dark-prose .prose hr { border-color: #cbd5e1; }
+  .dark-prose .prose blockquote { border-color: #818cf8; color: #94a3b8; }
+  .dark-prose .prose a { color: #818cf8; }
+  .dark-prose .prose :not(pre) > code { background: #1e293b; color: #f472b6; }
+  .dark-prose .prose th { background: #1e293b; color: #f1f5f9; border-bottom: 2px solid #334155; }
+  .dark-prose .prose td { border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+  .dark-prose .prose strong { color: #f1f5f9; }
+
+  /* Scroll progress bar */
+  .scroll-progress { transition: width 0.1s linear; }
+
+  /* Card hover effect */
+  .chapter-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .chapter-card:hover { transform: translateY(-2px); }
+  .chapter-card:active { transform: translateY(0); }
+
+  /* Fade in */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.2s ease forwards; }
+
+  /* Search highlight */
+  mark { background: rgba(250, 204, 21, 0.4); border-radius: 2px; padding: 0 1px; }
+  .dark mark { background: rgba(250, 204, 21, 0.25); color: inherit; }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.4); border-radius: 3px; }
+
+  /* Fix hljs background in pre */
+  .hljs { background: #282c34 !important; }
+</style>
+</head>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER CONTENT (markdown embedded as inert script tags)
+     ═══════════════════════════════════════════════════════════ -->
+
+<script type="text/markdown" id="ch1">
+# The Big Picture
+
+The discovery map (`/mapa`) is the core feature of UNI. It lets users browse no/low-alcohol venues on a split layout: a scrollable list on the left, an interactive map on the right.
+
+---
+
+## The Technology Stack
+
+Three layers collaborate on this page:
+
+| Layer | Technology | What it owns |
+|---|---|---|
+| Server | PHP / Livewire | Filters, DB queries, HTML list |
+| Client state | Alpine.js | Map lifecycle, hover, pin select |
+| Map rendering | Leaflet.js | Tiles, markers, clusters, popups |
+
+**Key mental model:** Livewire owns the *list*. Alpine owns the *map*. They talk to each other through events.
+
+---
+
+## The Files
+
+```
+app/
+  Livewire/DiscoveryPage.php      ← Livewire component (filters, query, render)
+  Services/
+    DiscoveryFilters.php          ← Value object holding all active filters
+    DiscoveryVenueQuery.php       ← Builds + runs the Eloquent query
+    DiscoveryMapData.php          ← Shapes venue data for the map (JS-friendly)
+
+resources/
+  views/
+    livewire/discovery-page.blade.php   ← The main template
+    components/venue-tile.blade.php     ← One venue card in the list
+
+  js/
+    app.js           ← Registers Alpine components
+    discovery.js     ← The Alpine discovery() component (the map brain)
+    map-config.js    ← Tile URLs, zoom limits, Poland bounds
+    analytics.js     ← PostHog event capture wrapper
+```
+
+---
+
+## The Two Worlds
+
+The page has **two parallel representations of the venues**:
+
+1. **The list** (`$venues`) — full Eloquent models, rendered server-side as Blade HTML cards
+2. **The map** (`$venuesForMap`) — slim PHP arrays, serialised to JavaScript as `window.__discoveryInitialVenues`
+
+Both come from the same query result but are shaped differently. The list needs rich HTML. The map only needs `id`, `lat`, `lng`, `name`, and a few other scalars.
+
+---
+
+## What Happens on a Filter Change
+
+When a user clicks a filter (e.g. "Zweryfikowane"):
+
+```
+1. wire:model.live fires → Livewire sends the new value to the server
+2. DiscoveryPage::render() runs again on the server
+3. A fresh DB query runs through DiscoveryVenueQuery
+4. Blade re-renders the venue list HTML → Livewire patches the DOM
+5. DiscoveryPage::dispatch('venues-updated', ...) fires
+6. Alpine catches 'venues-updated' → calls updateMarkers() → redraws pins
+```
+
+The list and map always stay in sync because they both update from the same render cycle.
+</script>
+
+<script type="text/markdown" id="ch2">
+# Data Flow: DB → Map
+
+This traces the full journey of a venue — from the database row to a pin on the Leaflet map.
+
+---
+
+## Step 1: The Query (DiscoveryVenueQuery)
+
+`app/Services/DiscoveryVenueQuery.php`
+
+This is a plain PHP class whose only job is to take a `DiscoveryFilters` object and return a collection of `Venue` models.
+
+```php
+$venues = app(DiscoveryVenueQuery::class)->get($filters);
+```
+
+Key things it always loads with the query:
+
+```php
+Venue::active()
+    ->with(['city', 'districtRelation', 'products.category:id,name,slug', 'drinks'])
+    ->withCount(['products', 'drinks'])
+```
+
+- `->active()` — only published venues (a scope on the Venue model)
+- `->with([...])` — loads relationships in one extra query (avoids N+1 problems)
+- `->withCount([...])` — adds `products_count` and `drinks_count` integer columns
+
+---
+
+## Step 2: Shaping Data for the Map (DiscoveryMapData)
+
+`app/Services/DiscoveryMapData.php`
+
+The Eloquent collection is too heavy for JavaScript — you don't want to serialise entire PHP objects with all their relationships. `DiscoveryMapData::forVenues()` transforms each `Venue` into a slim plain array:
+
+```php
+[
+    'id'              => 42,
+    'name'            => 'Bar Przykładowy',
+    'slug'            => 'bar-przykladowy',
+    'lat'             => 52.2297,
+    'lng'             => 21.0122,
+    'product_count'   => 14,
+    'is_verified'     => true,
+    'address'         => 'ul. Nowa 1, Warszawa',
+    'venue_type'      => 'Bar',
+    'categories'      => [
+        ['slug' => 'piwo', 'count' => 8],
+        ['slug' => 'drinki', 'count' => 6],
+    ],
+    'freshness_label' => '3 dni temu',
+    'freshness_state' => 'fresh',
+]
+```
+
+**The 500-venue cap:** `$venues->take(500)` — only the first 500 venues are prepared for the map. This is a performance guard.
+
+**Category count logic:** For each category, it counts matching products. The `drinki` category is special — it also adds custom drinks (the `venue_drinks` table) to its count.
+
+---
+
+## Step 3: Passing Data to JavaScript
+
+At the bottom of `discovery-page.blade.php` there is an inline `<script>` block:
+
+```html
+window.__discoveryInitialVenues = @js($venuesForMap);
+window.__discoveryActiveCategories = @js($categories);
+window.__discoveryCategories = @js($allCategories->mapWithKeys(...));
+window.__discoveryDefaultCity = @js($defaultCity);
+```
+
+`@js(...)` is a Blade helper that JSON-encodes a PHP value and escapes it safely for JavaScript. This data lands on `window` globals so Alpine can read it without an extra HTTP request.
+
+---
+
+## Step 4: Alpine Picks Up the Data
+
+In `discovery.js`, when the Alpine component initialises, it reads from those globals:
+
+```js
+latestVenues: window.__discoveryInitialVenues || [],
+categoryMeta: window.__discoveryCategories || {},
+```
+
+Then `updateMarkers()` is called with those venues. This builds the Leaflet pins.
+
+---
+
+## Step 5: After Filter Changes (Livewire Event)
+
+After the initial page load, venues are updated via a Livewire event:
+
+```js
+Livewire.on('venues-updated', (data) => {
+    this.latestVenues = data.venues || [];
+    this.latestActiveCategories = data.activeCategories || [];
+
+    if (this.mapReady) {
+        this.updateMarkers(this.latestVenues, this.latestActiveCategories, {
+            fitBounds: this.shouldAutoFitMarkers(),
+        });
+    }
+});
+```
+
+On every `render()` in the Livewire component, this event is dispatched:
+
+```php
+$this->dispatch('venues-updated', venues: $venuesForMap, activeCategories: $this->categories);
+```
+
+---
+
+## The Two Data Sets Side by Side
+
+```
+render() runs
+     │
+     ├── $venues (Eloquent Collection)
+     │       └── → Blade → <div class="venue-item"> cards
+     │
+     └── $venuesForMap (plain PHP array)
+             └── → venues-updated event → Alpine → Leaflet pins
+```
+
+The list and map are fed by the same source but shaped differently for their consumers.
+</script>
+
+<script type="text/markdown" id="ch3">
+# Filters & Livewire
+
+How each filter stores its state, reacts to user input, and translates into a database query.
+
+---
+
+## What Livewire Is (in One Paragraph)
+
+Livewire lets you write PHP classes that behave like reactive UI components. Each public property on the class is a piece of state. When a property changes, Livewire automatically sends it to the server, re-runs `render()`, and patches the DOM with the new HTML. You don't write any fetch/AJAX code — Livewire handles all of it behind the scenes.
+
+---
+
+## The State Properties in DiscoveryPage
+
+```php
+// These sync to the URL automatically (via #[Url])
+public array $categories = [];      // ?kategorie[]=piwo
+public bool $verified = false;      // ?zweryfikowane=1
+public string $freshness = '';      // ?aktualnosc=7
+public string $sort = 'best';       // ?sortuj=name
+public string $search = '';         // ?szukaj=kraftowy
+
+// These do NOT sync automatically — managed manually via Alpine replaceState
+public array $selectedCities = [];
+public array $selectedDistricts = [];
+
+// These are ephemeral — never in the URL
+public ?float $userLat = null;
+public ?float $boundsNorth = null;
+// ... etc
+```
+
+---
+
+## The #[Url] Attribute
+
+Properties marked `#[Url]` are automatically read from and written to the browser URL query string:
+
+```php
+#[Url(as: 'aktualnosc', except: '')]
+public string $freshness = '';
+```
+
+- `as: 'aktualnosc'` — the URL parameter name (Polish, user-facing)
+- `except: ''` — don't add to URL when the value is this (avoids clutter)
+
+When the page loads, Livewire reads `?aktualnosc=30` from the URL and populates `$freshness = '30'` automatically.
+
+---
+
+## wire:model.live
+
+In the Blade template, filters are bound to Livewire properties:
+
+```html
+<input wire:model.live.debounce.300ms="search" ... />
+
+<input type="checkbox" wire:model.live="verified" ... />
+<input type="checkbox" wire:model.live="categories" value="piwo" ... />
+```
+
+- `wire:model` — two-way binding (HTML element ↔ Livewire property)
+- `.live` — sends the value to the server immediately on change
+- `.debounce.300ms` — waits 300ms after the user stops typing
+
+---
+
+## The Updated Hooks
+
+These PHP methods run automatically whenever a specific property changes:
+
+```php
+public function updatedSearch(string $value): void
+{
+    if (strlen($value) > 100) {
+        $this->search = substr($value, 0, 100);
+        return;
+    }
+    if ($value !== '') {
+        $this->searchChanged = true; // for analytics
+    }
+}
+
+public function updatedSelectedCities(): void
+{
+    if ($this->selectedCities === []) {
+        $this->selectedDistricts = []; // clear districts when city cleared
+    }
+    $this->syncUrl(); // push cities to browser URL manually
+}
+```
+
+Naming convention: `updated` + StudlyCasedPropertyName.
+
+---
+
+## The DiscoveryFilters Value Object
+
+All filter state is packed into a single read-only object before the query runs:
+
+```php
+private function filters(): DiscoveryFilters
+{
+    return new DiscoveryFilters(
+        categories: $this->categories,
+        selectedCities: $this->selectedCities,
+        verified: $this->verified,
+        freshness: $this->freshness,
+        sort: $this->sort,
+        search: $this->search,
+        userLat: $this->userLat,
+        // ... etc
+    );
+}
+```
+
+This "value object" pattern means `DiscoveryVenueQuery` doesn't need to know about the Livewire component — it just receives a plain PHP object. Makes it easy to test in isolation.
+
+---
+
+## How Each Filter Hits the Database
+
+Inside `DiscoveryVenueQuery::get()`:
+
+```php
+// City filter
+if ($filters->selectedCities !== []) {
+    $cityIds = City::active()->whereIn('slug', $filters->selectedCities)->pluck('id');
+    $query->whereIn('city_id', $cityIds);
+}
+
+// Category filter (uses a scope on the Venue model)
+if ($filters->categories !== []) {
+    $query->withCategories($filters->categories);
+}
+
+// Verified toggle
+if ($filters->verified) {
+    $query->where('is_verified', true);
+}
+
+// Freshness filter (converts string key to days)
+$freshnessDays = $filters->freshnessDays(); // e.g. '30' → 30
+if ($freshnessDays !== null) {
+    $query->whereNotNull('offer_updated_at')
+        ->where('offer_updated_at', '>=', now()->subDays($freshnessDays));
+}
+
+// Text search (uses a scope on the Venue model)
+if ($filters->search !== '') {
+    $query->search($filters->search);
+}
+
+// Bounds (from "search in this area" on the map)
+if ($filters->hasBounds()) {
+    $query->whereBetween('latitude', [$filters->boundsSouth, $filters->boundsNorth])
+        ->whereBetween('longitude', [$filters->boundsWest, $filters->boundsEast]);
+}
+```
+
+---
+
+## Sort Options
+
+**`best` (default)** — custom ranking:
+1. `breadth_score` (precomputed column — more drink types = higher score)
+2. Number of distinct product categories
+3. Whether the venue has any custom drinks in "drinki"
+4. Alphabetical name as tiebreaker
+
+**`name`** — simple `ORDER BY name ASC`
+
+**`nearest`** — uses the Haversine formula (great-circle distance). The user's GPS location is obtained via `navigator.geolocation` and sent to the server via `$wire.setUserLocation(lat, lng)`.
+
+---
+
+## Clearing Filters
+
+```php
+public function clearFilters(): void
+{
+    $this->reset(['search', 'categories', 'selectedCities',
+                  'selectedDistricts', 'verified', 'freshness']);
+    $this->syncUrl();
+}
+```
+
+`$this->reset([...])` is a Livewire helper that resets named properties back to their class defaults.
+</script>
+
+<script type="text/markdown" id="ch4">
+# Map Markers & Clustering
+
+How the Leaflet map is initialised, how pins are created with category-aware icons, and how clustering works.
+
+---
+
+## Leaflet in One Paragraph
+
+Leaflet is a JavaScript mapping library. It draws an interactive map by loading tile images (small squares from a tile server) and letting you place markers on top. Every marker has an *icon* — by default a blue balloon, but we use custom HTML icons called `divIcon`.
+
+---
+
+## Map Initialisation
+
+The map is created in `initMap()` inside `discovery.js`. This only happens once:
+
+```js
+this.leafletMap = L.map(this.$refs.mapEl, {
+    minZoom: 6,
+    maxBounds: L.latLngBounds([[49.0, 14.1], [54.9, 24.2]]), // Poland
+    preferCanvas: true,
+    // ... performance/feel options
+});
+```
+
+`this.$refs.mapEl` refers to the `<div id="map" x-ref="mapEl">` in the Blade template. Alpine's `x-ref` is a way to get a reference to a DOM element without `document.getElementById`.
+
+**When does the map init?**
+- Desktop: immediately on `init()` (map is always visible)
+- Mobile: deferred until the user taps the "Mapa" toggle button (saves resources)
+
+---
+
+## Tile Layers (The Map Background)
+
+Two tile providers are used depending on dark/light mode:
+
+- **Dark mode:** CARTO dark tiles
+- **Light mode:** OpenStreetMap tiles
+
+They're swapped on the `uni:theme-changed` custom browser event:
+
+```js
+window.addEventListener('uni:theme-changed', (e) => {
+    this.swapTiles(e.detail.dark);
+});
+```
+
+---
+
+## Marker Clustering
+
+Before any markers are added, a cluster group is created:
+
+```js
+this.markerCluster = L.markerClusterGroup({
+    maxClusterRadius: 50,      // px — markers within this range merge
+    chunkedLoading: true,      // adds markers in batches (avoids UI freeze)
+    spiderfyOnMaxZoom: true,   // click cluster at max zoom → pins spread out
+    showCoverageOnHover: false,
+    iconCreateFunction: (cluster) => {
+        const count = cluster.getChildCount();
+        const size = count < 10 ? 'small' : count < 30 ? 'medium' : 'large';
+        return L.divIcon({
+            html: '<div>' + count + '</div>',
+            className: 'marker-cluster marker-cluster-' + size,
+            iconSize: L.point(40, 40),
+        });
+    },
+});
+```
+
+All markers are added to `this.markerCluster`, not directly to `this.leafletMap`. Leaflet Markercluster handles the grouping automatically.
+
+---
+
+## Creating One Marker
+
+For each venue with a valid lat/lng, three decisions are made:
+
+### Step 1: Which category shows on the pin?
+
+```js
+const filterSet = activeCategories.length > 0
+    ? new Set(activeCategories)
+    : null;
+
+// If a category filter is active, only consider those categories.
+const candidates = filterSet
+    ? venue.categories.filter((c) => filterSet.has(c.slug))
+    : venue.categories;
+
+// Pick the category with the highest product count
+const topCat = candidates.length
+    ? [...candidates].sort((a, b) => b.count - a.count)[0]
+    : null;
+```
+
+**Why this matters:** If you filter by "piwo", pins show the beer count in the beer colour — not the total. If no filter is active, the dominant category wins.
+
+### Step 2: Build the pin HTML
+
+```js
+const topMeta = topCat ? this.categoryMeta[topCat.slug] : null;
+
+const pinInner = topCat
+    ? `<span class="venue-pin__cat" style="color:${topMeta?.color}">
+          <span class="venue-pin__cat-icon">${topMeta?.icon}</span>
+          ${topCat.count}
+       </span>`
+    : `<span class="venue-pin__cat">${venue.product_count}</span>`;
+```
+
+### Step 3: Create the Leaflet icon
+
+```js
+const icon = L.divIcon({
+    className: '',
+    html: `<div class="venue-pin venue-pin--rich${verifiedClass}">${pinInner}</div>`,
+    iconSize: [null, null],
+    iconAnchor: [20, 30],    // pixel offset of the "tip" of the pin
+    popupAnchor: [0, -30],   // where the popup appears
+});
+```
+
+`L.divIcon` lets you use arbitrary HTML as a marker icon instead of an image file.
+
+### Step 4: Add to the cluster lookup
+
+```js
+const marker = L.marker([venue.lat, venue.lng], { icon });
+marker._venueData = venue;
+
+this.markerCluster.addLayer(marker);
+this.markerMap[venue.id] = marker; // key lookup: venue ID → Leaflet marker
+```
+
+`this.markerMap` is a plain JS object used as a dictionary. This is how Alpine finds any marker instantly by venue ID without looping through all markers.
+
+---
+
+## Tooltips vs Popups
+
+**Tooltip** (desktop only, shows on hover):
+```js
+marker.bindTooltip(venue.name, {
+    direction: 'top', offset: [0, -42],
+    className: 'leaflet-tooltip-venue',
+});
+```
+
+**Popup** (all devices, shows on click):
+```js
+marker.bindPopup(`
+    <div class="popup-venue-name">${venue.name}</div>
+    <div class="popup-venue-address">${venue.address}</div>
+    ...categories...
+    <a href="/miejsce/${venue.slug}">Zobacz lokal →</a>
+`, { maxWidth: 280 });
+```
+
+---
+
+## Auto-fitting Map Bounds
+
+After markers are redrawn, the map zooms to fit all visible pins:
+
+```js
+if (fitBounds && bounds.length > 0) {
+    this.leafletMap.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
+}
+```
+
+`maxZoom: 15` prevents zooming in too far when there's only one result.
+
+`fitBounds` is **skipped** when the user is on mobile and currently looking at the map — you don't want the map to jump around while they're browsing it.
+</script>
+
+<script type="text/markdown" id="ch5">
+# Interactivity — Hover, Click, and Popups
+
+What happens when you interact with venue cards in the list or pins on the map.
+
+---
+
+## The venue-tile Component
+
+Each venue card in the list is `resources/views/components/venue-tile.blade.php`. The outer `<div>` has several Alpine event handlers:
+
+```html
+<div class="venue-item ..."
+    data-id="{{ $venue->id }}"
+    data-lat="{{ $venue->latitude }}"
+    data-lng="{{ $venue->longitude }}"
+    @mouseenter="highlightPin({{ $venue->id }})"
+    @mouseleave="unhighlightPin({{ $venue->id }})"
+    @click="!$event.target.closest('button, a')
+            && (window.location.href = '{{ route('venues.show', $venue->slug) }}')">
+```
+
+These `@` attributes are Alpine event listeners that call methods on the parent `discovery()` component.
+
+---
+
+## Hover Highlight
+
+When you hover a venue card, the corresponding map pin brightens.
+
+```js
+highlightPin(venueId) {
+    if (!this.mapReady) return;
+    const pinEl = this.markerMap[venueId]?.getElement();
+    if (pinEl)
+        pinEl.style.filter = 'brightness(1.6) drop-shadow(0 0 5px rgba(255,255,255,0.6))';
+},
+
+unhighlightPin(venueId) {
+    if (!this.mapReady) return;
+    const pinEl = this.markerMap[venueId]?.getElement();
+    if (pinEl) pinEl.style.filter = '';
+},
+```
+
+`this.markerMap[venueId]` does an instant lookup. `.getElement()` returns the actual DOM element of the Leaflet marker. Then a CSS `filter` is applied/removed directly — no re-render needed.
+
+The `?.` syntax is "optional chaining" — if `markerMap[venueId]` is undefined (venue has no coordinates), the whole expression short-circuits to `undefined` instead of throwing an error.
+
+---
+
+## Card Click → Map Focus
+
+When you click "Na mapie" (the map pin button) in a venue card:
+
+```html
+<button @click.stop="onCardClick($event, {{ $venue->id }},
+    {{ $venue->latitude ?? 'null' }},
+    {{ $venue->longitude ?? 'null' }})">
+```
+
+`.stop` prevents the click from bubbling up to the parent `<div>` (which would navigate to the venue detail page).
+
+**On Desktop:**
+```js
+this.selectPin(venueId);
+this.leafletMap.flyTo(marker.getLatLng(), 16, { duration: 0.5 });
+marker.openPopup();
+```
+
+`flyTo()` animates the map camera to the pin's location at zoom 16, taking 0.5 seconds.
+
+**On Mobile:**
+```js
+this.listScrollTop = document.getElementById('view-list')?.scrollTop ?? 0;
+this.currentView = 'map'; // switches to map view
+// ... init map if needed ...
+this.leafletMap.panTo(marker.getLatLng());
+marker.openPopup();
+```
+
+On mobile there's no split layout — only one view is visible. Clicking "Na mapie" switches to the map view. `listScrollTop` saves the scroll position so switching back to list restores it.
+
+---
+
+## Pin Selection (the "selected" state)
+
+Pin selection is distinct from hover highlight. A pin becomes "selected" when you click a map pin directly or click "Na mapie" in a card.
+
+```js
+selectPin(venueId) {
+    this.deselectPins(); // clear any previous selection
+    this.selectedPinId = venueId;
+    const pin = this.markerMap[venueId]
+        ?.getElement()?.querySelector('.venue-pin');
+    if (pin) pin.classList.add('venue-pin--selected');
+},
+
+deselectPins() {
+    if (this.selectedPinId !== null) {
+        const pin = this.markerMap[this.selectedPinId]
+            ?.getElement()?.querySelector('.venue-pin');
+        if (pin) pin.classList.remove('venue-pin--selected');
+    }
+    this.selectedPinId = null;
+},
+```
+
+Selection adds/removes a CSS class `venue-pin--selected`. When the popup is closed, `deselectPins()` runs:
+
+```js
+marker.on('popupclose', () => { this.deselectPins(); });
+```
+
+---
+
+## The Cluster Animation Edge Case
+
+When a pin is inside a cluster, Leaflet animates the cluster "exploding" to reveal individual pins. During this animation, the pin DOM element doesn't yet exist, so `querySelector('.venue-pin')` would return null.
+
+The fix: re-apply the selected class after the cluster animation finishes:
+
+```js
+this.markerCluster.on('animationend', () => {
+    if (this.selectedPinId !== null) {
+        const pin = this.markerMap[this.selectedPinId]
+            ?.getElement()?.querySelector('.venue-pin');
+        if (pin) pin.classList.add('venue-pin--selected');
+    }
+});
+```
+
+---
+
+## Clicking the Whole Card (Not a Button)
+
+The outer card div navigates to the venue page, but only if the click didn't land on a `<button>` or `<a>`:
+
+```js
+@click="!$event.target.closest('button, a')
+        && (window.location.href = '{{ route('venues.show', $venue->slug) }}')"
+```
+
+`$event.target.closest('button, a')` walks up the DOM tree from the clicked element and returns the nearest matching ancestor. If found, `!truthy` is `false` and navigation doesn't happen.
+
+---
+
+## Card Impression Tracking
+
+Alpine tracks which cards a user actually *sees* (not just loads) using the browser's `IntersectionObserver` API:
+
+```js
+this._impressionObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+        const id = parseInt(entry.target.dataset.id);
+
+        if (entry.isIntersecting) {
+            // Start a 500ms timer — only fire if card stays visible
+            this._impressionTimers.set(id, setTimeout(() => {
+                this._impressedIds.add(id);
+                capture('venue_card_impressed', { venue_id: id, position: ... });
+            }, 500));
+        } else {
+            // Cancel timer if card scrolled away before 500ms
+            clearTimeout(this._impressionTimers.get(id));
+        }
+    }
+}, { threshold: 0.5 }); // 50% of the card must be visible
+```
+
+Each card is only counted once (`_impressedIds` Set tracks this). Rapid scrolling doesn't count as "seeing" a card. When Livewire re-renders the list, a `MutationObserver` automatically registers new cards with the IntersectionObserver.
+</script>
+
+<script type="text/markdown" id="ch6">
+# URL Management
+
+The discovery page keeps the browser URL in sync with active filters so users can share or bookmark results. There are two separate mechanisms — understanding why they're split is the key insight.
+
+---
+
+## Two Mechanisms, Two Reasons
+
+| Filter | Mechanism | URL example |
+|---|---|---|
+| Categories | Livewire `#[Url]` | `?kategorie[]=piwo` |
+| Verified | Livewire `#[Url]` | `?zweryfikowane=1` |
+| Freshness | Livewire `#[Url]` | `?aktualnosc=30` |
+| Sort | Livewire `#[Url]` | `?sortuj=name` |
+| Search | Livewire `#[Url]` | `?szukaj=kraftowy` |
+| **City (single)** | Alpine `replaceState` | `/mapa/warszawa` |
+| **City (multiple)** | Alpine `replaceState` | `/mapa?miasta[0]=warszawa` |
+| **Districts** | Alpine `replaceState` | `?dzielnice[0]=5` |
+
+---
+
+## Livewire #[Url] — the Simple Cases
+
+For most filters, Livewire handles URL sync automatically:
+
+```php
+#[Url(as: 'aktualnosc', except: '')]
+public string $freshness = '';
+```
+
+When `$freshness` changes, Livewire adds `?aktualnosc=30` to the URL. When the page loads with `?aktualnosc=30`, Livewire sets `$freshness = '30'`.
+
+- `as: 'aktualnosc'` — the URL key (Polish for users, English in PHP)
+- `except: ''` — skip adding to URL when the value is the default
+
+---
+
+## Why Cities Need Special Treatment
+
+If you filter by one city, the ideal URL is `/mapa/warszawa` — a clean path segment that's good for SEO and sharing. Query strings like `?miasta[]=warszawa` are ugly and not the desired canonical URL.
+
+The problem: Livewire's `#[Url]` can only handle **query string parameters**. It cannot change the **path** of the URL.
+
+---
+
+## The replaceState Flow
+
+When the city selection changes, `DiscoveryPage` dispatches a Livewire event to the browser:
+
+```php
+private function syncUrl(): void
+{
+    $this->dispatch('sync-discovery-url',
+        cities: $this->selectedCities,
+        districts: $this->selectedDistricts,
+    );
+}
+```
+
+Alpine listens for it:
+
+```js
+Livewire.on('sync-discovery-url', (data) => {
+    this.syncDiscoveryUrl(data.cities, data.districts);
+});
+```
+
+Then `syncDiscoveryUrl()` rewrites the URL:
+
+```js
+syncDiscoveryUrl(cities, districts) {
+    const url = new URL(window.location);
+
+    // Remove existing city/district params
+    for (const key of [...url.searchParams.keys()]) {
+        if (key.startsWith('miasta') || key.startsWith('dzielnice')) {
+            url.searchParams.delete(key);
+        }
+    }
+
+    // One city → clean path; multiple → query params
+    if (cities.length === 1) {
+        url.pathname = '/mapa/' + encodeURIComponent(cities[0]);
+    } else {
+        url.pathname = '/mapa';
+        cities.forEach((c, i) =>
+            url.searchParams.set('miasta[' + i + ']', c)
+        );
+    }
+
+    districts.forEach((d, i) =>
+        url.searchParams.set('dzielnice[' + i + ']', d)
+    );
+
+    history.replaceState(null, '', url.toString());
+}
+```
+
+**`history.replaceState`** changes the URL in the address bar *without* triggering a page reload or adding a new history entry. The user sees `/mapa/warszawa` but the page never actually navigated there.
+
+---
+
+## Reading Cities/Districts on Page Load
+
+Since cities aren't in `#[Url]`, Livewire doesn't auto-populate them. `mount()` reads the URL manually:
+
+```php
+public function mount(?string $city = null): void
+{
+    // City from the route parameter /mapa/{city}
+    if ($city) {
+        City::active()->where('slug', $city)->firstOrFail();
+        $this->selectedCities = [$city];
+    } else {
+        // Or from ?miasta[]=... for multiple cities
+        $raw = array_slice((array) request()->input('miasta', []), 0, 10);
+        $this->selectedCities = array_values(array_filter(
+            array_map('strval', $raw),
+            fn (string $s): bool => (bool) preg_match('/^[a-z][a-z0-9-]{0,60}$/', $s),
+        ));
+    }
+    // ... districts similarly
+}
+```
+
+`mount()` runs only once, on the initial HTTP request. Notice the input validation: city slugs must match a regex, district IDs must be numeric. This prevents garbage from landing in filters.
+
+---
+
+## Canonical URLs for SEO
+
+The Blade template sets a canonical `<link>` so search engines know the preferred URL:
+
+```php
+$canonicalUrl = count($this->selectedCities) === 1
+    ? route('discovery', ['city' => $this->selectedCities[0]])
+    : route('discovery');
+```
+
+One city selected → canonical is `/mapa/warszawa`. Otherwise → canonical is `/mapa`.
+
+---
+
+## Bounds Are Never in the URL
+
+The "search in map area" bounds are stored in Livewire properties but intentionally never persisted in the URL — a bookmarked map area would be confusing when visited later from a different context.
+</script>
+
+<script type="text/markdown" id="ch7">
+# The Alpine Component
+
+Alpine.js is the client-side glue between the Livewire-rendered list and the Leaflet map.
+
+---
+
+## What Alpine Is
+
+Alpine.js is a lightweight JavaScript framework that lets you add reactive behaviour directly in HTML attributes. Think of it as: "reactive state + event handling, directly in HTML." It doesn't have a virtual DOM or a build step.
+
+In this project, Alpine handles:
+- Managing which view is visible (list vs map) on mobile
+- Initialising and updating the Leaflet map
+- Hover, click, and selection state for map pins
+- Syncing the URL when cities change
+
+---
+
+## How `discovery()` Is Registered
+
+`resources/js/app.js`:
+
+```js
+import discovery from './discovery.js';
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data('discovery', discovery);
+});
+```
+
+`Alpine.data('discovery', discovery)` registers a factory function under the name `'discovery'`. Alpine calls it when it encounters `x-data="discovery()"` in the HTML.
+
+---
+
+## Where Alpine Takes Over in the Blade
+
+```html
+<div x-data="discovery()" class="flex-1 flex flex-col ...">
+```
+
+This is the root element. Alpine calls `discovery()` to get the component's state object, then makes all properties and methods available inside this `<div>` and all its children.
+
+---
+
+## The State Object Structure
+
+`discovery()` returns a plain JavaScript object. Everything in it is available in Alpine's HTML attributes:
+
+```js
+{
+    // Properties (state)
+    currentView: 'list',      // 'list' or 'map'
+    isDesktop: false,
+    mapReady: false,
+    leafletMap: null,         // the Leaflet L.Map instance
+    markerCluster: null,      // the Leaflet MarkerCluster instance
+    markerMap: {},            // { venueId: LeafletMarker }
+    selectedPinId: null,
+    latestVenues: [],
+
+    // Methods (called from @click, @mouseenter, etc.)
+    init() { ... },           // Alpine calls this automatically on startup
+    toggleView() { ... },
+    highlightPin(id) { ... },
+    onCardClick(...) { ... },
+}
+```
+
+---
+
+## Alpine Directives Used in This Project
+
+| Directive | What it does |
+|---|---|
+| `x-data="discovery()"` | Mounts the Alpine component |
+| `x-show="..."` | Toggles `display:none` based on expression |
+| `x-cloak` | Hides element until Alpine initialises (prevents flash) |
+| `x-ref="mapEl"` | Names a DOM element for access via `this.$refs.mapEl` |
+| `x-text="..."` | Sets the element's text content |
+| `x-transition` | Adds animation when `x-show` toggles |
+| `@click="..."` | Shorthand for `x-on:click` |
+| `@mouseenter="..."` | Shorthand for `x-on:mouseenter` |
+| `x-data="{ open: false }"` | Inline component for small local state |
+| `@click.away="..."` | Fires when clicking outside the element |
+| `x-model="q"` | Two-way bind to a local Alpine variable |
+
+---
+
+## `init()` — the Startup Method
+
+Alpine calls `init()` automatically when the component is mounted:
+
+```js
+init() {
+    // 1. Respond to window resize → update isDesktop, init map if needed
+    window.addEventListener('resize', this.onResize.bind(this));
+
+    // 2. Respond to dark/light mode toggle → swap tile layer
+    window.addEventListener('uni:theme-changed', (e) => {
+        this.swapTiles(e.detail.dark);
+    });
+
+    // 3. Listen for Livewire filter changes → redraw map pins
+    Livewire.on('venues-updated', (data) => { ... });
+
+    // 4. Listen for Livewire city changes → update the URL
+    Livewire.on('sync-discovery-url', (data) => { ... });
+
+    // 5. Init the map immediately if on desktop
+    if (this.isDesktop) {
+        this.$nextTick(() => this.initMap(this.latestVenues));
+    }
+
+    // 6. Set up scroll-based impression tracking
+    this.setupImpressionTracking();
+}
+```
+
+`this.$nextTick(() => ...)` is Alpine's equivalent of "run this after the DOM has finished updating." Needed because the map container `<div>` must be visible before Leaflet can measure its dimensions.
+
+---
+
+## Talking from Alpine to Livewire
+
+Alpine can call Livewire methods via `this.$wire`:
+
+```js
+// Call a Livewire method
+this.$wire.searchInArea(north, south, east, west);
+
+// Set a Livewire property
+this.$wire.set('sort', 'best');
+
+// Call a Livewire method with arguments
+this.$wire.setUserLocation(lat, lng);
+```
+
+`$wire` is injected by Livewire into all Alpine components inside a Livewire component's HTML. It's a proxy that sends the call to the server as an AJAX request.
+
+---
+
+## Talking from Livewire to Alpine
+
+PHP dispatches events:
+
+```php
+$this->dispatch('venues-updated', venues: $venuesForMap, activeCategories: $this->categories);
+```
+
+Alpine listens:
+
+```js
+Livewire.on('venues-updated', (data) => {
+    this.latestVenues = data.venues;
+    // ...
+});
+```
+
+---
+
+## The Mobile View Toggle
+
+```js
+toggleView() {
+    if (this.currentView === 'list') {
+        this.listScrollTop = document.getElementById('view-list')?.scrollTop ?? 0;
+        this.currentView = 'map';
+        if (!this.mapReady) {
+            this.$nextTick(() => this.initMap(this.latestVenues));
+        } else {
+            this.$nextTick(() => this.leafletMap?.invalidateSize());
+        }
+    } else {
+        this.currentView = 'list';
+        this.$nextTick(() => {
+            const list = document.getElementById('view-list');
+            if (list) list.scrollTop = this.listScrollTop;
+        });
+    }
+}
+```
+
+`leafletMap.invalidateSize()` tells Leaflet its container changed size (went from `display:none` to visible). Without this, map tiles don't fill the container correctly.
+
+---
+
+## Inline Alpine Components (Dropdowns)
+
+The city dropdown uses a separate inline `x-data` — NOT part of the main `discovery()` component:
+
+```html
+<div x-data="{ open: false, q: '' }" @click.away="open = false; q = ''">
+    <button @click="open = !open">Miasta</button>
+    <div x-show="open">
+        <input x-model="q" placeholder="Szukaj miasta…" />
+        <!-- x-show does live filtering by city name -->
+        <label x-show="!q || 'warszawa'.includes(q.toLowerCase())">
+            Warsaw
+        </label>
+    </div>
+</div>
+```
+
+`x-data="{ open: false, q: '' }"` creates a small local scope. `open` and `q` only exist inside this `<div>`. This is the idiomatic Alpine pattern for small, isolated interactive elements.
+
+`@click.away` closes the dropdown when clicking outside.
+
+`x-model="q"` binds the search input. The `x-show` on each city label does live filtering against the typed query — no server call needed.
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     ROOT + LOADING INDICATOR
+     ═══════════════════════════════════════════════════ -->
+<div id="root">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a;color:#94a3b8;font-family:system-ui,sans-serif;font-size:14px;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite">
+      <path d="M21 12a9 9 0 11-6.219-8.56"/>
+    </svg>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+    Loading guide…
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     REACT APPLICATION
+     ═══════════════════════════════════════════════════ -->
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+/* ── Configure marked ─────────────────────────────── */
+marked.setOptions({
+  highlight(code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(code, { language: lang }).value;
+    }
+    return hljs.highlightAuto(code).value;
+  },
+  gfm: true,
+  breaks: false,
+  langPrefix: 'hljs language-',
+});
+
+/* ── Chapter metadata ─────────────────────────────── */
+const CHAPTER_META = [
+  { id: 1, emoji: '🗺️', title: 'The Big Picture',         color: '#6366f1', desc: 'Files, technologies, and who owns what on /mapa' },
+  { id: 2, emoji: '🔄', title: 'Data Flow: DB → Map',     color: '#10b981', desc: 'How venues travel from the database to Leaflet pins' },
+  { id: 3, emoji: '🔍', title: 'Filters & Livewire',       color: '#3b82f6', desc: 'Livewire state, wire:model.live, and DB query logic' },
+  { id: 4, emoji: '📍', title: 'Map Markers & Clustering', color: '#f97316', desc: 'divIcon, category priority logic, and cluster groups' },
+  { id: 5, emoji: '👆', title: 'Interactivity',            color: '#ec4899', desc: 'Hover highlight, card→map click, pin selection' },
+  { id: 6, emoji: '🔗', title: 'URL Management',           color: '#a855f7', desc: 'Why cities use replaceState instead of #[Url]' },
+  { id: 7, emoji: '⚡', title: 'The Alpine Component',     color: '#eab308', desc: 'Alpine directives, $wire, init(), and $nextTick' },
+];
+
+const CHAPTERS = CHAPTER_META.map(ch => ({
+  ...ch,
+  content: document.getElementById(`ch${ch.id}`)?.textContent?.trim() || '',
+}));
+
+/* ── Helpers ──────────────────────────────────────── */
+function getRead() {
+  try { return new Set(JSON.parse(localStorage.getItem('uni-read') || '[]')); }
+  catch { return new Set(); }
+}
+function saveRead(set) {
+  localStorage.setItem('uni-read', JSON.stringify([...set]));
+}
+function getDark() {
+  const saved = localStorage.getItem('uni-dark');
+  if (saved !== null) return saved === '1';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function extractHeadings(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return [...div.querySelectorAll('h2')].map(h => ({
+    id: h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    text: h.textContent.trim(),
+  }));
+}
+
+function parseContent(markdown) {
+  return marked.parse(markdown);
+}
+
+/* ── Main App ─────────────────────────────────────── */
+function App() {
+  const [view, setView] = useState('home');      // 'home' | 'chapter' | 'search'
+  const [chapterId, setChapterId] = useState(1);
+  const [read, setRead] = useState(getRead);
+  const [dark, setDark] = useState(getDark);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    document.body.style.background = dark ? '#0f172a' : '#f8fafc';
+    document.body.style.color = dark ? '#e2e8f0' : '#1e293b';
+    localStorage.setItem('uni-dark', dark ? '1' : '0');
+  }, [dark]);
+
+  const markRead = useCallback((id) => {
+    setRead(prev => {
+      const next = new Set(prev);
+      next.add(id);
+      saveRead(next);
+      return next;
+    });
+  }, []);
+
+  const openChapter = useCallback((id) => {
+    setChapterId(id);
+    setView('chapter');
+    window.scrollTo(0, 0);
+  }, []);
+
+  const chapter = CHAPTERS.find(c => c.id === chapterId);
+  const prevChapter = CHAPTERS.find(c => c.id === chapterId - 1) || null;
+  const nextChapter = CHAPTERS.find(c => c.id === chapterId + 1) || null;
+
+  return (
+    <div className={`min-h-screen transition-colors duration-200 ${dark ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+      <TopBar
+        dark={dark}
+        onToggleDark={() => setDark(d => !d)}
+        onHome={() => { setView('home'); setSearchQuery(''); }}
+        onSearch={() => setView('search')}
+        view={view}
+        read={read}
+      />
+
+      {view === 'home' && (
+        <HomeView
+          chapters={CHAPTERS}
+          read={read}
+          dark={dark}
+          onOpen={openChapter}
+        />
+      )}
+      {view === 'chapter' && chapter && (
+        <ChapterView
+          chapter={chapter}
+          read={read}
+          dark={dark}
+          onBack={() => setView('home')}
+          onMarkRead={() => markRead(chapterId)}
+          onPrev={prevChapter ? () => openChapter(prevChapter.id) : null}
+          onNext={nextChapter ? () => openChapter(nextChapter.id) : null}
+          prevChapter={prevChapter}
+          nextChapter={nextChapter}
+        />
+      )}
+      {view === 'search' && (
+        <SearchView
+          chapters={CHAPTERS}
+          dark={dark}
+          query={searchQuery}
+          onQueryChange={setSearchQuery}
+          onSelect={(id) => { openChapter(id); setSearchQuery(''); }}
+          onBack={() => setView('home')}
+        />
+      )}
+    </div>
+  );
+}
+
+/* ── TopBar ───────────────────────────────────────── */
+function TopBar({ dark, onToggleDark, onHome, onSearch, view, read }) {
+  const pct = Math.round((read.size / CHAPTERS.length) * 100);
+
+  return (
+    <header className={`sticky top-0 z-50 ${dark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} border-b`}>
+      <div className="max-w-4xl mx-auto px-4 h-14 flex items-center gap-3">
+        <button onClick={onHome} className="flex items-center gap-2 flex-1 min-w-0">
+          <span className="text-lg">🧃</span>
+          <span className={`font-bold text-sm truncate ${dark ? 'text-slate-100' : 'text-slate-900'}`}>
+            UNI Dev Guide
+          </span>
+          <span className={`text-xs font-mono px-2 py-0.5 rounded-full shrink-0 ${dark ? 'bg-slate-800 text-slate-400' : 'bg-slate-100 text-slate-500'}`}>
+            {read.size}/{CHAPTERS.length}
+          </span>
+        </button>
+
+        <button
+          onClick={onSearch}
+          className={`p-2 rounded-lg transition-colors ${dark ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}
+          aria-label="Search"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </button>
+
+        <button
+          onClick={onToggleDark}
+          className={`p-2 rounded-lg transition-colors ${dark ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}
+          aria-label="Toggle dark mode"
+        >
+          {dark
+            ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          }
+        </button>
+      </div>
+
+      {/* Progress bar */}
+      <div className={`h-0.5 ${dark ? 'bg-slate-800' : 'bg-slate-100'}`}>
+        <div
+          className="h-full transition-all duration-500"
+          style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #6366f1, #10b981)' }}
+        />
+      </div>
+    </header>
+  );
+}
+
+/* ── HomeView ─────────────────────────────────────── */
+function HomeView({ chapters, read, dark, onOpen }) {
+  const allRead = read.size === chapters.length;
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-6 fade-in">
+      {/* Hero */}
+      <div className="mb-8 text-center">
+        <p className={`text-sm font-medium mb-1 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
+          Discovery Map · /mapa
+        </p>
+        <h1 className={`text-2xl font-black mb-2 ${dark ? 'text-white' : 'text-slate-900'}`}>
+          How it all works
+        </h1>
+        <p className={`text-sm max-w-sm mx-auto ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
+          7 short docs covering the full stack — from the DB query to map pin hover.
+        </p>
+
+        {allRead && (
+          <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
+            style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981' }}>
+            ✓ All chapters read
+          </div>
+        )}
+        {!allRead && read.size > 0 && (
+          <p className="mt-3 text-xs" style={{ color: '#6366f1' }}>
+            {chapters.length - read.size} chapter{chapters.length - read.size !== 1 ? 's' : ''} left
+          </p>
+        )}
+      </div>
+
+      {/* Chapter grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {chapters.map((ch, i) => (
+          <ChapterCard
+            key={ch.id}
+            chapter={ch}
+            index={i}
+            isRead={read.has(ch.id)}
+            dark={dark}
+            onOpen={() => onOpen(ch.id)}
+          />
+        ))}
+      </div>
+
+      <p className={`text-center text-xs mt-8 ${dark ? 'text-slate-600' : 'text-slate-300'}`}>
+        Progress is saved in your browser
+      </p>
+    </div>
+  );
+}
+
+/* ── ChapterCard ──────────────────────────────────── */
+function ChapterCard({ chapter, index, isRead, dark, onOpen }) {
+  const { color, emoji, title, desc, id } = chapter;
+
+  return (
+    <button
+      onClick={onOpen}
+      className={`chapter-card text-left w-full rounded-2xl p-4 border-2 transition-colors ${
+        dark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-white hover:bg-slate-50'
+      }`}
+      style={{
+        borderColor: isRead ? `${color}60` : (dark ? 'rgba(51,65,85,1)' : 'rgba(226,232,240,1)'),
+        animationDelay: `${index * 40}ms`,
+      }}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="text-2xl shrink-0">{emoji}</span>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span
+                className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                style={{ background: `${color}18`, color }}
+              >
+                {String(id).padStart(2, '0')}
+              </span>
+              {isRead && (
+                <span className="text-[10px] font-bold" style={{ color: '#10b981' }}>✓ read</span>
+              )}
+            </div>
+            <h2 className={`font-bold text-sm mt-0.5 ${dark ? 'text-slate-100' : 'text-slate-900'}`}>
+              {title}
+            </h2>
+          </div>
+        </div>
+        <svg
+          className={`shrink-0 mt-1 ${dark ? 'text-slate-600' : 'text-slate-300'}`}
+          width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+        >
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p className={`text-xs mt-2 ml-11 ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
+        {desc}
+      </p>
+    </button>
+  );
+}
+
+/* ── ChapterView ──────────────────────────────────── */
+function ChapterView({ chapter, read, dark, onBack, onMarkRead, onPrev, onNext, prevChapter, nextChapter }) {
+  const isRead = read.has(chapter.id);
+  const [scrollPct, setScrollPct] = useState(0);
+  const [showToc, setShowToc] = useState(false);
+  const contentRef = useRef(null);
+
+  const html = useMemo(() => parseContent(chapter.content), [chapter.id]);
+  const headings = useMemo(() => extractHeadings(html), [html]);
+
+  // Inject IDs into h2 elements after render for ToC anchors
+  useEffect(() => {
+    if (!contentRef.current) return;
+    contentRef.current.querySelectorAll('h2').forEach(h => {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    });
+  }, [html]);
+
+  // Scroll progress
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.documentElement;
+      const scrolled = el.scrollTop || document.body.scrollTop;
+      const total = el.scrollHeight - el.clientHeight;
+      setScrollPct(total > 0 ? Math.round((scrolled / total) * 100) : 0);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Auto-mark as read when reaching the end
+  useEffect(() => {
+    if (!isRead && scrollPct >= 85) onMarkRead();
+  }, [scrollPct, isRead]);
+
+  const scrollToHeading = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setShowToc(false);
+  };
+
+  return (
+    <div className="fade-in">
+      {/* Reading progress bar */}
+      <div className={`fixed top-[57px] left-0 right-0 h-0.5 z-40 ${dark ? 'bg-slate-800' : 'bg-slate-100'}`}>
+        <div
+          className="h-full scroll-progress"
+          style={{ width: `${scrollPct}%`, background: chapter.color }}
+        />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        {/* Header row */}
+        <div className="flex items-center justify-between gap-3 mb-6">
+          <button
+            onClick={onBack}
+            className={`flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg transition-colors ${
+              dark ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-100 text-slate-500'
+            }`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            All chapters
+          </button>
+
+          <div className="flex items-center gap-2">
+            {/* ToC toggle (mobile) */}
+            {headings.length > 0 && (
+              <button
+                onClick={() => setShowToc(s => !s)}
+                className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors lg:hidden ${
+                  dark ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                Contents
+              </button>
+            )}
+
+            {/* Mark as read */}
+            {!isRead ? (
+              <button
+                onClick={onMarkRead}
+                className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-colors"
+                style={{ background: `${chapter.color}20`, color: chapter.color }}
+              >
+                Mark read
+              </button>
+            ) : (
+              <span className="text-xs font-semibold" style={{ color: '#10b981' }}>✓ Read</span>
+            )}
+          </div>
+        </div>
+
+        {/* Chapter title */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-3xl">{chapter.emoji}</span>
+          <div>
+            <div className="text-xs font-bold mb-1" style={{ color: chapter.color }}>
+              Chapter {chapter.id} of {CHAPTERS.length}
+            </div>
+            <h1 className={`text-xl font-black ${dark ? 'text-white' : 'text-slate-900'}`}>
+              {chapter.title}
+            </h1>
+          </div>
+        </div>
+
+        {/* ToC dropdown (mobile) */}
+        {showToc && headings.length > 0 && (
+          <div
+            className={`mb-6 rounded-xl border p-4 ${dark ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
+          >
+            <p className={`text-xs font-bold uppercase tracking-wider mb-3 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
+              In this chapter
+            </p>
+            <ul className="space-y-2">
+              {headings.map(h => (
+                <li key={h.id}>
+                  <button
+                    onClick={() => scrollToHeading(h.id)}
+                    className="text-sm font-medium text-left w-full"
+                    style={{ color: chapter.color }}
+                  >
+                    {h.text}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Main content with optional sidebar ToC on desktop */}
+        <div className="lg:flex lg:gap-8">
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div
+              ref={contentRef}
+              className={`prose ${dark ? 'dark-prose' : 'light-prose'}`}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </div>
+
+          {/* Sidebar ToC (desktop only) */}
+          {headings.length > 0 && (
+            <aside className="hidden lg:block w-56 shrink-0">
+              <div className={`sticky top-20 rounded-xl border p-4 ${dark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <p className={`text-xs font-bold uppercase tracking-wider mb-3 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
+                  In this chapter
+                </p>
+                <ul className="space-y-2">
+                  {headings.map(h => (
+                    <li key={h.id}>
+                      <button
+                        onClick={() => scrollToHeading(h.id)}
+                        className="text-xs font-medium text-left w-full leading-tight hover:opacity-80 transition-opacity"
+                        style={{ color: chapter.color }}
+                      >
+                        {h.text}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          )}
+        </div>
+
+        {/* Prev / Next navigation */}
+        <div className="mt-12 mb-4 grid grid-cols-2 gap-3">
+          {onPrev ? (
+            <button
+              onClick={onPrev}
+              className={`text-left p-4 rounded-xl border transition-colors ${
+                dark ? 'border-slate-800 hover:bg-slate-900' : 'border-slate-200 hover:bg-slate-50'
+              }`}
+            >
+              <div className={`text-xs mb-1 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>← Previous</div>
+              <div className={`text-sm font-semibold ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+                {prevChapter.emoji} {prevChapter.title}
+              </div>
+            </button>
+          ) : <div />}
+
+          {onNext ? (
+            <button
+              onClick={onNext}
+              className={`text-right p-4 rounded-xl border transition-colors ${
+                dark ? 'border-slate-800 hover:bg-slate-900' : 'border-slate-200 hover:bg-slate-50'
+              }`}
+            >
+              <div className={`text-xs mb-1 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>Next →</div>
+              <div className={`text-sm font-semibold ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+                {nextChapter.emoji} {nextChapter.title}
+              </div>
+            </button>
+          ) : (
+            <button
+              onClick={onBack}
+              className="text-right p-4 rounded-xl border transition-colors"
+              style={{ borderColor: `${chapter.color}40`, background: `${chapter.color}08` }}
+            >
+              <div className="text-xs mb-1" style={{ color: chapter.color }}>Done!</div>
+              <div className="text-sm font-semibold" style={{ color: chapter.color }}>Back to home</div>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── SearchView ───────────────────────────────────── */
+function SearchView({ chapters, dark, query, onQueryChange, onSelect, onBack }) {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const results = useMemo(() => {
+    if (!query.trim()) return chapters;
+    const q = query.toLowerCase();
+    return chapters
+      .map(ch => {
+        const titleMatch = ch.title.toLowerCase().includes(q);
+        const descMatch = ch.desc.toLowerCase().includes(q);
+        const contentMatch = ch.content.toLowerCase().includes(q);
+        if (!titleMatch && !descMatch && !contentMatch) return null;
+
+        // Find a matching excerpt from content
+        let excerpt = '';
+        if (contentMatch) {
+          const idx = ch.content.toLowerCase().indexOf(q);
+          const start = Math.max(0, idx - 60);
+          const end = Math.min(ch.content.length, idx + q.length + 80);
+          excerpt = (start > 0 ? '…' : '') + ch.content.slice(start, end).replace(/#+\s/g, '').replace(/```[\s\S]*?```/g, '').replace(/`/g, '') + (end < ch.content.length ? '…' : '');
+        }
+
+        return { ...ch, excerpt, score: titleMatch ? 3 : descMatch ? 2 : 1 };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score);
+  }, [query, chapters]);
+
+  const highlight = (text, q) => {
+    if (!q.trim()) return text;
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <mark>{text.slice(idx, idx + q.length)}</mark>
+        {text.slice(idx + q.length)}
+      </>
+    );
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-4 fade-in">
+      {/* Search input */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className={`flex-1 flex items-center gap-3 px-4 h-12 rounded-xl border ${
+          dark ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'
+        }`}>
+          <svg className={dark ? 'text-slate-500' : 'text-slate-400'} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={e => onQueryChange(e.target.value)}
+            placeholder="Search across all chapters…"
+            className={`flex-1 bg-transparent outline-none text-sm ${dark ? 'text-slate-100 placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'}`}
+          />
+          {query && (
+            <button onClick={() => onQueryChange('')} className={dark ? 'text-slate-500' : 'text-slate-400'}>
+              ×
+            </button>
+          )}
+        </div>
+        <button
+          onClick={onBack}
+          className={`text-sm font-medium ${dark ? 'text-slate-400' : 'text-slate-500'}`}
+        >
+          Cancel
+        </button>
+      </div>
+
+      {/* Results */}
+      <div className="space-y-2">
+        {results.length === 0 && (
+          <div className={`text-center py-12 text-sm ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
+            No results for "{query}"
+          </div>
+        )}
+        {results.map(ch => (
+          <button
+            key={ch.id}
+            onClick={() => onSelect(ch.id)}
+            className={`w-full text-left p-4 rounded-xl border transition-colors ${
+              dark ? 'bg-slate-900 border-slate-800 hover:bg-slate-800' : 'bg-white border-slate-200 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <span>{ch.emoji}</span>
+              <span
+                className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                style={{ background: `${ch.color}18`, color: ch.color }}
+              >
+                Ch {ch.id}
+              </span>
+              <span className={`text-sm font-bold ${dark ? 'text-slate-100' : 'text-slate-900'}`}>
+                {highlight(ch.title, query)}
+              </span>
+            </div>
+            {ch.excerpt && (
+              <p className={`text-xs mt-1 leading-relaxed ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
+                {highlight(ch.excerpt, query)}
+              </p>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Mount ────────────────────────────────────────── */
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Under No Influence - Visualized App</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101215;
+      --panel: #181c20;
+      --panel-2: #20262b;
+      --text: #edf2f4;
+      --muted: #aab5bd;
+      --line: rgba(237, 242, 244, .34);
+      --end: #20a39e;
+      --admin: #d88c3a;
+      --owner: #8d7cf6;
+      --data: #c5d86d;
+      --danger: #ef476f;
+      --ok: #4cc777;
+      --shadow: 0 18px 52px rgba(0, 0, 0, .28);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 10%, rgba(32, 163, 158, .16), transparent 32%),
+        radial-gradient(circle at 83% 8%, rgba(216, 140, 58, .15), transparent 30%),
+        linear-gradient(145deg, #0c0f12 0%, #111418 42%, #151a1e 100%);
+      color: var(--text);
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .08);
+      border-radius: 6px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, .14);
+    }
+
+    .toolbar {
+      position: fixed;
+      z-index: 20;
+      inset: 16px 16px auto 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .toolbar > * {
+      pointer-events: auto;
+    }
+
+    .brand,
+    .controls,
+    .legend {
+      background: rgba(19, 23, 27, .88);
+      border: 1px solid rgba(255, 255, 255, .12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      border-radius: 8px;
+    }
+
+    .brand {
+      padding: 12px 14px;
+      min-width: 280px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: .02em;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 7px;
+      padding: 8px;
+    }
+
+    .legend {
+      position: fixed;
+      z-index: 20;
+      right: 16px;
+      bottom: 16px;
+      width: 310px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .legend-row {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 8px;
+      align-items: center;
+      margin: 6px 0;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .stage.dragging {
+      cursor: grabbing;
+    }
+
+    .world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4400px;
+      height: 3000px;
+      transform-origin: 0 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+      background-size: 80px 80px;
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .connectors {
+      position: absolute;
+      inset: 0;
+      width: 4400px;
+      height: 3000px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .connectors path {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .connectors path.strong {
+      stroke-width: 6;
+      stroke-opacity: .82;
+    }
+
+    .connectors path.end { stroke: rgba(32, 163, 158, .72); }
+    .connectors path.admin { stroke: rgba(216, 140, 58, .76); }
+    .connectors path.owner { stroke: rgba(141, 124, 246, .76); }
+    .connectors path.data { stroke: rgba(197, 216, 109, .72); }
+    .connectors path.danger { stroke: rgba(239, 71, 111, .72); }
+
+    .domain {
+      position: absolute;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, .16);
+      background: rgba(255, 255, 255, .035);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+    }
+
+    .domain-title {
+      position: absolute;
+      top: 22px;
+      left: 26px;
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+
+    .domain-subtitle {
+      position: absolute;
+      top: 82px;
+      left: 28px;
+      max-width: 940px;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .end-domain { left: 120px; top: 210px; width: 1260px; height: 1720px; border-color: rgba(32, 163, 158, .38); }
+    .admin-domain { left: 1540px; top: 210px; width: 1300px; height: 1720px; border-color: rgba(216, 140, 58, .42); }
+    .owner-domain { left: 3000px; top: 210px; width: 1260px; height: 1720px; border-color: rgba(141, 124, 246, .42); }
+    .data-domain { left: 120px; top: 2080px; width: 4140px; height: 720px; border-color: rgba(197, 216, 109, .42); }
+
+    .node {
+      position: absolute;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, .14);
+      background: linear-gradient(180deg, rgba(34, 41, 47, .96), rgba(22, 27, 31, .97));
+      box-shadow: var(--shadow);
+      padding: 18px 20px;
+      overflow: hidden;
+    }
+
+    .node.end { border-color: rgba(32, 163, 158, .58); }
+    .node.admin { border-color: rgba(216, 140, 58, .64); }
+    .node.owner { border-color: rgba(141, 124, 246, .64); }
+    .node.data { border-color: rgba(197, 216, 109, .58); }
+    .node.risk { border-color: rgba(239, 71, 111, .68); }
+    .node.status { border-style: dashed; }
+
+    .node h2 {
+      margin: 0;
+      font-size: 29px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .node h3 {
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .node p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.32;
+    }
+
+    .node ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: #d7dee3;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .node li + li {
+      margin-top: 5px;
+    }
+
+    .code {
+      margin-top: 12px;
+      padding: 9px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .07);
+      color: #d9e8ec;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      padding: 4px 7px;
+      color: #d9e8ec;
+      background: rgba(255, 255, 255, .07);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .detail-mid,
+    .detail-near,
+    .code-near {
+      transition: opacity .16s ease;
+    }
+
+    .zoom-far .detail-mid,
+    .zoom-far .detail-near,
+    .zoom-far .code-near {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .zoom-mid .detail-near,
+    .zoom-mid .code-near {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .zoom-near .detail-mid,
+    .zoom-near .detail-near,
+    .zoom-near .code-near {
+      opacity: 1;
+    }
+
+    .hub-title {
+      position: absolute;
+      left: 150px;
+      top: 60px;
+      font-size: 72px;
+      line-height: .96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hub-subtitle {
+      position: absolute;
+      left: 154px;
+      top: 142px;
+      width: 1660px;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.35;
+    }
+
+    .status-strip {
+      position: absolute;
+      left: 1860px;
+      top: 54px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .17);
+      background: rgba(255, 255, 255, .08);
+      padding: 10px 14px;
+      color: #dfe7ea;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .small-note {
+      position: absolute;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.35;
+      background: rgba(16, 18, 21, .78);
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 8px;
+      padding: 13px 15px;
+    }
+
+    .meter {
+      position: fixed;
+      z-index: 21;
+      left: 16px;
+      bottom: 16px;
+      background: rgba(19, 23, 27, .88);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand,
+      .controls {
+        width: calc(100vw - 32px);
+      }
+
+      .controls {
+        overflow-x: auto;
+      }
+
+      .legend {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div class="brand">
+      <strong>Under No Influence - Visualized App</strong>
+      <span>Drag to pan. Wheel or buttons to zoom. More detail appears as you zoom in.</span>
+    </div>
+    <div class="controls" aria-label="Diagram controls">
+      <button type="button" data-action="fit">Fit</button>
+      <button type="button" data-action="zoom-in">Zoom in</button>
+      <button type="button" data-action="zoom-out">Zoom out</button>
+      <button type="button" data-focus="end">End user</button>
+      <button type="button" data-focus="admin">Admin</button>
+      <button type="button" data-focus="owner">B2B owner</button>
+      <button type="button" data-focus="data">Data spine</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong style="color: var(--text);">Reading key</strong>
+    <div class="legend-row"><span class="swatch" style="background: var(--end);"></span><span>End user discovery and public profile experience</span></div>
+    <div class="legend-row"><span class="swatch" style="background: var(--admin);"></span><span>Admin supply, QA, moderation, publishing, and compliance work</span></div>
+    <div class="legend-row"><span class="swatch" style="background: var(--owner);"></span><span>B2B owner claim, profile, offer, analytics, and erasure flows</span></div>
+    <div class="legend-row"><span class="swatch" style="background: var(--data);"></span><span>Shared data, analytics, scoring, external services, and policy gates</span></div>
+  </div>
+
+  <div class="meter" id="meter">zoom 100%</div>
+
+  <main class="stage" id="stage" aria-label="Zoomable app architecture diagram">
+    <section class="world zoom-far" id="world">
+      <svg class="connectors" viewBox="0 0 4400 3000" aria-hidden="true">
+        <defs>
+          <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,8 L10,4 z" fill="rgba(237,242,244,.62)"></path>
+          </marker>
+          <marker id="arrowEnd" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,8 L10,4 z" fill="rgba(32,163,158,.85)"></path>
+          </marker>
+          <marker id="arrowAdmin" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,8 L10,4 z" fill="rgba(216,140,58,.9)"></path>
+          </marker>
+          <marker id="arrowOwner" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,8 L10,4 z" fill="rgba(141,124,246,.9)"></path>
+          </marker>
+          <marker id="arrowData" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,8 L10,4 z" fill="rgba(197,216,109,.9)"></path>
+          </marker>
+        </defs>
+
+        <path class="end strong" marker-end="url(#arrowEnd)" d="M450 570 C570 590, 610 690, 610 800"></path>
+        <path class="end strong" marker-end="url(#arrowEnd)" d="M610 1000 C610 1090, 720 1110, 820 1110"></path>
+        <path class="end strong" marker-end="url(#arrowEnd)" d="M1025 1215 C1040 1310, 1060 1380, 1020 1480"></path>
+        <path class="end" marker-end="url(#arrowEnd)" d="M840 1630 C720 1705, 600 1710, 470 1620"></path>
+        <path class="end" marker-end="url(#arrowEnd)" d="M900 1650 C1020 1770, 1170 1870, 1570 2170"></path>
+
+        <path class="admin strong" marker-end="url(#arrowAdmin)" d="M1880 565 C2020 600, 2040 700, 2040 805"></path>
+        <path class="admin strong" marker-end="url(#arrowAdmin)" d="M2040 995 C2040 1080, 2160 1120, 2310 1130"></path>
+        <path class="admin strong" marker-end="url(#arrowAdmin)" d="M2300 1320 C2180 1410, 2180 1530, 2310 1640"></path>
+        <path class="admin strong" marker-end="url(#arrowAdmin)" d="M2340 1760 C2220 1845, 2040 1860, 1970 1750"></path>
+        <path class="admin strong" marker-end="url(#arrowAdmin)" d="M2430 1760 C2520 1880, 2640 1990, 2780 2175"></path>
+        <path class="admin" marker-end="url(#arrowAdmin)" d="M2560 1330 C2730 1380, 3040 1420, 3150 1550"></path>
+        <path class="admin" marker-end="url(#arrowAdmin)" d="M2130 660 C2400 760, 2730 850, 3100 940"></path>
+
+        <path class="owner strong" marker-end="url(#arrowOwner)" d="M3310 565 C3390 650, 3420 730, 3420 810"></path>
+        <path class="owner strong" marker-end="url(#arrowOwner)" d="M3420 1010 C3420 1125, 3530 1160, 3650 1160"></path>
+        <path class="owner strong" marker-end="url(#arrowOwner)" d="M3650 1330 C3520 1415, 3490 1530, 3590 1620"></path>
+        <path class="owner" marker-end="url(#arrowOwner)" d="M3670 1760 C3610 1880, 3470 1980, 3270 2170"></path>
+        <path class="owner" marker-end="url(#arrowOwner)" d="M3830 1760 C3835 1900, 3860 2010, 3920 2165"></path>
+
+        <path class="data strong" marker-end="url(#arrowData)" d="M1020 1485 C1220 1780, 1490 2040, 1800 2240"></path>
+        <path class="data strong" marker-end="url(#arrowData)" d="M2340 1760 C2280 1920, 2230 2050, 2170 2230"></path>
+        <path class="data strong" marker-end="url(#arrowData)" d="M3600 1615 C3400 1880, 3150 2050, 2940 2240"></path>
+        <path class="data" marker-end="url(#arrowData)" d="M1730 2365 C1410 2340, 1190 2240, 1010 2030"></path>
+        <path class="data" marker-end="url(#arrowData)" d="M2430 2365 C2750 2360, 3030 2290, 3260 2035"></path>
+        <path class="danger" marker-end="url(#arrow)" d="M1160 1700 C1440 1660, 1650 1620, 1900 1580"></path>
+        <path class="owner" marker-end="url(#arrowOwner)" d="M970 1660 C1470 1280, 2480 880, 3260 890"></path>
+      </svg>
+
+      <div class="hub-title">One marketplace, three operating domains</div>
+      <div class="hub-subtitle">Public discovery creates demand signals. Admin supply operations turn messy venue data into public inventory. B2B owners claim, maintain, and monetize their profiles through freshness and analytics.</div>
+      <div class="status-strip">
+        <span class="pill">Public gate: is_active=true</span>
+        <span class="pill">Hidden gate: is_canary=false</span>
+        <span class="pill">Supply state: draft -> ready -> published</span>
+        <span class="pill">Owner state: claim pending -> approved -> owner panel</span>
+      </div>
+
+      <div class="domain end-domain">
+        <div class="domain-title" style="color: var(--end);">End user</div>
+        <div class="domain-subtitle">Visitors discover no/low alcohol venues, inspect profiles, take outbound actions, save places, and report bad data.</div>
+      </div>
+
+      <div class="domain admin-domain">
+        <div class="domain-title" style="color: var(--admin);">Admin</div>
+        <div class="domain-subtitle">Internal operators import supply, clean locations, moderate claims/products, publish venues, and handle compliance.</div>
+      </div>
+
+      <div class="domain owner-domain">
+        <div class="domain-title" style="color: var(--owner);">B2B venue owner</div>
+        <div class="domain-subtitle">Owners claim a venue, manage profile and offer data, keep freshness current, and read analytics gated by plan/features.</div>
+      </div>
+
+      <div class="domain data-domain">
+        <div class="domain-title" style="color: var(--data);">Shared data and policy spine</div>
+        <div class="domain-subtitle">The same Venue, Product, User, Claim, Analytics, Audit, and external geocoding data powers all three domains.</div>
+      </div>
+
+      <article class="node end" style="left: 220px; top: 390px; width: 460px; height: 230px;">
+        <h3>Entry points</h3>
+        <h2>Public pages and SEO</h2>
+        <p>Home, city, category, district-category, sitemap, and static trust pages funnel visitors into discovery or profiles.</p>
+        <div class="detail-mid tag-row">
+          <span class="tag">/</span><span class="tag">/{citySlug}</span><span class="tag">/kategoria/{seo_slug}</span><span class="tag">/mapa</span>
+        </div>
+        <div class="code code-near">HomeController, CityController, CategoryController, SitemapController, PageController</div>
+      </article>
+
+      <article class="node end" style="left: 360px; top: 790px; width: 520px; height: 310px;">
+        <h3>Discovery</h3>
+        <h2>Map, filters, ranking</h2>
+        <p>Visitors search by city, district, category, verified status, strict zero ABV, freshness, bounds, and nearest/best sorting.</p>
+        <ul class="detail-mid">
+          <li>Active venues only: active and not canary.</li>
+          <li>Map output is capped and normalized for markers.</li>
+          <li>Default sort favors breadth and category diversity.</li>
+        </ul>
+        <div class="code code-near">Livewire\DiscoveryPage -> Discovery\Filters -> VenueQuery -> MapData</div>
+      </article>
+
+      <article class="node end" style="left: 830px; top: 1085px; width: 470px; height: 305px;">
+        <h3>Venue decision</h3>
+        <h2>Profile inspection</h2>
+        <p>Users inspect venue address, district, categories, products, drinks, freshness, nearby venues, and public contact links.</p>
+        <ul class="detail-mid">
+          <li>Profiles 404 unless active and not canary.</li>
+          <li>Nearby venues use haversine distance.</li>
+          <li>Freshness label hides on empty offer.</li>
+        </ul>
+        <div class="code code-near">VenueController@show, Venue::formatted_address, Venue::freshness_label</div>
+      </article>
+
+      <article class="node end" style="left: 810px; top: 1480px; width: 500px; height: 310px;">
+        <h3>Conversion signals</h3>
+        <h2>Outbound actions and saves</h2>
+        <p>Directions, website, Instagram, menu/category view events, and saved venues become demand and engagement signals.</p>
+        <ul class="detail-mid">
+          <li>Redirects are throttled per IP, venue, and type.</li>
+          <li>Saved venues require auth and active public venue.</li>
+          <li>Analytics writes are isolated behind gateway/reporters.</li>
+        </ul>
+        <div class="code code-near">VenueRedirectController, SaveVenueButton, AnalyticsEventController</div>
+      </article>
+
+      <article class="node risk" style="left: 245px; top: 1495px; width: 420px; height: 260px;">
+        <h3>Trust repair</h3>
+        <h2>Report inaccuracy</h2>
+        <p>Users can report wrong venue data. Owners cannot report their own venue because the owner panel is the source of correction.</p>
+        <ul class="detail-mid">
+          <li>One pending report per venue/user flow.</li>
+          <li>Admin resolves through moderation resource.</li>
+        </ul>
+        <div class="code code-near">VenueInaccuracyReportController, StoreVenueInaccuracyReportRequest</div>
+      </article>
+
+      <article class="node owner status" style="left: 250px; top: 1775px; width: 465px; height: 120px;">
+        <h2>Claim CTA crosses into owner domain</h2>
+        <p class="detail-mid">Existing public venue or new venue submission begins the B2B verification path.</p>
+      </article>
+
+      <article class="node admin" style="left: 1640px; top: 390px; width: 520px; height: 305px;">
+        <h3>Supply acquisition</h3>
+        <h2>Import venues into queue</h2>
+        <p>OSM/research CSV imports create draft supply with source, coordinates, notes, ambiguity flags, city/district, OSM ID, and seeding status.</p>
+        <ul class="detail-mid">
+          <li>Duplicates are skipped by OSM ID where available.</li>
+          <li>Rows can enter draft, ready, or skip depending quality.</li>
+        </ul>
+        <div class="code code-near">venues:import-osm, venues:import-research-csv, ImportResearchCsv</div>
+      </article>
+
+      <article class="node admin" style="left: 1810px; top: 800px; width: 560px; height: 360px;">
+        <h3>Admin queue</h3>
+        <h2>Seeding queue QA workbench</h2>
+        <p>Admins review draft/ready/skip venues, inspect mini-map and completeness, edit fields, and decide mark ready, skip, publish, or delete.</p>
+        <ul class="detail-mid">
+          <li>Bulk forward geocoding: GUS or Nominatim.</li>
+          <li>Bulk reverse geocoding: GUS or Nominatim.</li>
+          <li>Single-record tools support Google search and public preview.</li>
+        </ul>
+        <div class="code code-near">SeedingQueueResource, EditSeedingQueue, SeedingQueueTable, VenueMiniMapWidget</div>
+      </article>
+
+      <article class="node admin" style="left: 2240px; top: 1170px; width: 540px; height: 320px;">
+        <h3>Location enrichment</h3>
+        <h2>Geocoding and reverse geocoding</h2>
+        <p>Street data can become coordinates, or coordinates can become address fields. GUS is batch-first; Nominatim is cached and rate-limited.</p>
+        <ul class="detail-mid">
+          <li>GUS forward: /api/fts/gc/pkt batch request.</li>
+          <li>GUS reverse: bbox-only /api/fts/ref/qq then closest point.</li>
+          <li>Nominatim: User-Agent, 30-day cache, 1.1s between uncached calls.</li>
+        </ul>
+        <div class="code code-near">GusGeocodingService, NominatimGeocodingService, Geocode*/ReverseGeocode* actions</div>
+      </article>
+
+      <article class="node admin" style="left: 2245px; top: 1595px; width: 520px; height: 300px;">
+        <h3>Publish gate</h3>
+        <h2>Ready -> Published -> Public</h2>
+        <p>Publishing sets seeding status to published and is_active to true. Public controllers still block canary or inactive records.</p>
+        <ul class="detail-mid">
+          <li>Draft: still being cleaned.</li>
+          <li>Ready: human says it is publishable.</li>
+          <li>Skip: parked or intentionally excluded.</li>
+        </ul>
+        <div class="code code-near">SeedingStatus enum, Venue::scopeActive(), VenueController@show</div>
+      </article>
+
+      <article class="node admin" style="left: 1620px; top: 1475px; width: 455px; height: 310px;">
+        <h3>Catalog moderation</h3>
+        <h2>Products, brands, categories</h2>
+        <p>Admins own the canonical catalog, ABV trust state, brand links, category taxonomy, and product proposal decisions.</p>
+        <ul class="detail-mid">
+          <li>Approved proposals create products and attach them to the venue.</li>
+          <li>Approval refreshes offer and may activate a venue.</li>
+        </ul>
+        <div class="code code-near">ProductResource, BrandResource, CategoryResource, ApproveProductProposalAction</div>
+      </article>
+
+      <article class="node admin" style="left: 2435px; top: 690px; width: 360px; height: 220px;">
+        <h3>Claims</h3>
+        <h2>Owner verification</h2>
+        <p>Admins approve/reject claim requests, record reviewer data, notify users, and promote approved users to owner role.</p>
+        <div class="detail-mid tag-row">
+          <span class="tag">pending</span><span class="tag">approved</span><span class="tag">rejected</span>
+        </div>
+        <div class="code code-near">VenueClaimResource, ApproveVenueClaimAction, RejectVenueClaimAction</div>
+      </article>
+
+      <article class="node admin" style="left: 1605px; top: 1165px; width: 445px; height: 255px;">
+        <h3>Data quality</h3>
+        <h2>Reports and erasure</h2>
+        <p>Admins process inaccuracy reports and GDPR-style venue erasure requests from email or owner self-service.</p>
+        <ul class="detail-mid">
+          <li>Erasure deletes venue, files, raw analytics, and redacts audit logs.</li>
+          <li>Owner role can be demoted if no claimed venues remain.</li>
+        </ul>
+        <div class="code code-near">VenueInaccuracyReportResource, VenueErasureRequestResource, EraseVenueAction</div>
+      </article>
+
+      <article class="node owner" style="left: 3160px; top: 390px; width: 460px; height: 275px;">
+        <h3>Acquisition</h3>
+        <h2>Register and claim</h2>
+        <p>A venue owner registers, verifies email, and submits a claim for an existing public venue or creates a new venue submission.</p>
+        <ul class="detail-mid">
+          <li>Existing claim requires active venue and unclaimed status.</li>
+          <li>New claim creates inactive draft venue from submitted details.</li>
+        </ul>
+        <div class="code code-near">RegisterController, VenueClaimController, StoreVenueClaimRequest</div>
+      </article>
+
+      <article class="node owner status" style="left: 3230px; top: 805px; width: 410px; height: 230px;">
+        <h3>Handoff</h3>
+        <h2>Approved claim</h2>
+        <p>Approval marks venue claimed, assigns claimed_by, promotes user to owner, and sends the owner into the panel.</p>
+        <ul class="detail-mid">
+          <li>Approval currently sets venue inactive for review.</li>
+          <li>Owner can manage only venues scoped by claimed_by.</li>
+        </ul>
+      </article>
+
+      <article class="node owner" style="left: 3570px; top: 1125px; width: 540px; height: 330px;">
+        <h3>Owner panel</h3>
+        <h2>Profile and offer management</h2>
+        <p>Owners update description/contact, attach catalog products, remove products, create custom drinks, and propose missing products.</p>
+        <ul class="detail-mid">
+          <li>Attach/detach updates freshness and scoring.</li>
+          <li>Proposal approval later creates canonical catalog product.</li>
+          <li>Profile updates are captured in PostHog.</li>
+        </ul>
+        <div class="code code-near">Owner\VenueResource, ProductsRelationManager, DrinksRelationManager</div>
+      </article>
+
+      <article class="node owner" style="left: 3505px; top: 1605px; width: 525px; height: 320px;">
+        <h3>Retention</h3>
+        <h2>Freshness and analytics</h2>
+        <p>Owner widgets show profile status, analytics, freshness state, category coverage, saves, and paid insight modules by plan or override.</p>
+        <ul class="detail-mid">
+          <li>Free/Basic/Pro/Premium shape analytics visibility.</li>
+          <li>VenueFeatureFlag can override plan entitlements.</li>
+          <li>Freshness affects public trust and owner guidance.</li>
+        </ul>
+        <div class="code code-near">VenueStatusWidget, VenueAnalyticsWidget, Venue::hasFeature(), VenueAnalyticsReportService</div>
+      </article>
+
+      <article class="node risk" style="left: 3070px; top: 1565px; width: 360px; height: 245px;">
+        <h3>Exit</h3>
+        <h2>Erase venue and data</h2>
+        <p>Owners can self-service delete a claimed venue and optionally delete their account.</p>
+        <ul class="detail-mid">
+          <li>Creates verified erasure request.</li>
+          <li>Completes immediately in owner flow.</li>
+        </ul>
+      </article>
+
+      <article class="node data" style="left: 210px; top: 2225px; width: 560px; height: 340px;">
+        <h3>Identity and access</h3>
+        <h2>Users, roles, auth gates</h2>
+        <p>User role decides admin panel, owner panel, or public-only access. Email verification gates claim submission.</p>
+        <ul class="detail-mid">
+          <li>Roles: user, owner, admin.</li>
+          <li>Owner resources are scoped by claimed_by.</li>
+          <li>Admin has broad panel access and moderation powers.</li>
+        </ul>
+        <div class="code code-near">UserRole, PanelAuthenticate, User::isAdmin(), User::isOwner()</div>
+      </article>
+
+      <article class="node data" style="left: 910px; top: 2225px; width: 620px; height: 340px;">
+        <h3>Core supply object</h3>
+        <h2>Venue lifecycle state</h2>
+        <p>Venue is the shared record that moves through import, QA, claim, owner maintenance, public discovery, analytics, and deletion.</p>
+        <div class="detail-mid tag-row">
+          <span class="tag">seeding_status</span><span class="tag">is_active</span><span class="tag">is_canary</span><span class="tag">claimed_by</span><span class="tag">plan</span><span class="tag">breadth_score</span>
+        </div>
+        <ul class="detail-near">
+          <li>Public requires active and not canary.</li>
+          <li>activateIfReady() flips inactive venues once products exist.</li>
+          <li>markOfferFresh() maintains freshness streak state.</li>
+        </ul>
+        <div class="code code-near">Venue model, VenueType, SeedingStatus, VenuePlan, VenueFeature</div>
+      </article>
+
+      <article class="node data" style="left: 1665px; top: 2225px; width: 610px; height: 340px;">
+        <h3>Offer graph</h3>
+        <h2>Products, drinks, categories, scoring</h2>
+        <p>Products and custom drinks create the user-facing offer, admin catalog workload, owner freshness workflow, and ranking/scoring signals.</p>
+        <ul class="detail-mid">
+          <li>venue_products pivot tracks availability, added_by, confirmed_at.</li>
+          <li>VenueProductObserver refreshes offer and recalculates score.</li>
+          <li>VenueScoring powers breadth ranking and analytics completeness.</li>
+        </ul>
+        <div class="code code-near">Product, Brand, Category, VenueDrink, VenueScoring, VenueProductObserver</div>
+      </article>
+
+      <article class="node data" style="left: 2420px; top: 2225px; width: 600px; height: 340px;">
+        <h3>Telemetry</h3>
+        <h2>Analytics and reporting</h2>
+        <p>Raw events and daily stats power admin dashboards, owner analytics, demand modules, freshness warnings, and privacy-sensitive reports.</p>
+        <ul class="detail-mid">
+          <li>VenueStat aggregates views, clicks, saves, shares.</li>
+          <li>AnalyticsEvent stores raw identifiable events with pruning.</li>
+          <li>Small bucket privacy avoids exposing weak signals.</li>
+        </ul>
+        <div class="code code-near">DatabaseAnalyticsGateway, VenueAnalytics, DiscoveryAnalytics, PruneAnalyticsEvents</div>
+      </article>
+
+      <article class="node data" style="left: 3165px; top: 2225px; width: 570px; height: 340px;">
+        <h3>External services</h3>
+        <h2>Geocoding, PostHog, notifications</h2>
+        <p>External systems enrich locations, record product analytics, and notify owners/users while app actions keep durable DB state authoritative.</p>
+        <ul class="detail-mid">
+          <li>GUS: official Polish address/reference data.</li>
+          <li>Nominatim: OSM search/reverse with cache and User-Agent.</li>
+          <li>Notifications: claim and erasure email outcomes.</li>
+        </ul>
+        <div class="code code-near">GusGeocodingService, NominatimGeocodingService, PostHogService, Notifications</div>
+      </article>
+
+      <article class="node data risk" style="left: 3830px; top: 2225px; width: 360px; height: 340px;">
+        <h3>Audit and compliance</h3>
+        <h2>AuditLog + erasure</h2>
+        <p>Moderation and destructive flows leave audit records; erasure redacts linked audit context and deletes files/raw events.</p>
+        <ul class="detail-mid">
+          <li>claim_submitted, claim_approved, product_proposal_* events.</li>
+          <li>Erasure request statuses: pending, verified, completed, rejected.</li>
+        </ul>
+        <div class="code code-near">AuditLogger, AuditLog, VenueErasureRequest, EraseVenueAction</div>
+      </article>
+
+      <div class="small-note" style="left: 1495px; top: 1980px; width: 1370px;">
+        Main public inventory path: import or claim creates/updates Venue -> admin QA enriches data -> ready/publish sets active -> public discovery/profile consumes only active non-canary venues -> user actions create analytics -> owner/admin use analytics to improve supply.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const stage = document.getElementById('stage');
+    const world = document.getElementById('world');
+    const meter = document.getElementById('meter');
+    const WORLD_W = 4400;
+    const WORLD_H = 3000;
+
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function applyTransform() {
+      world.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      meter.textContent = `zoom ${Math.round(scale * 100)}%`;
+      world.classList.toggle('zoom-far', scale < 0.72);
+      world.classList.toggle('zoom-mid', scale >= 0.72 && scale < 1.22);
+      world.classList.toggle('zoom-near', scale >= 1.22);
+    }
+
+    function fit() {
+      const padding = 80;
+      scale = Math.min(
+        (window.innerWidth - padding) / WORLD_W,
+        (window.innerHeight - padding) / WORLD_H
+      );
+      scale = clamp(scale, 0.16, 1);
+      tx = (window.innerWidth - WORLD_W * scale) / 2;
+      ty = (window.innerHeight - WORLD_H * scale) / 2;
+      applyTransform();
+    }
+
+    function zoomAt(clientX, clientY, factor) {
+      const previous = scale;
+      const next = clamp(scale * factor, 0.16, 2.4);
+      const worldX = (clientX - tx) / previous;
+      const worldY = (clientY - ty) / previous;
+      scale = next;
+      tx = clientX - worldX * scale;
+      ty = clientY - worldY * scale;
+      applyTransform();
+    }
+
+    function focusRect(x, y, w, h, maxScale = 1.15) {
+      const padding = 90;
+      scale = Math.min(
+        (window.innerWidth - padding) / w,
+        (window.innerHeight - padding) / h,
+        maxScale
+      );
+      scale = clamp(scale, 0.18, 2.4);
+      tx = (window.innerWidth - w * scale) / 2 - x * scale;
+      ty = (window.innerHeight - h * scale) / 2 - y * scale;
+      applyTransform();
+    }
+
+    stage.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      zoomAt(event.clientX, event.clientY, event.deltaY < 0 ? 1.12 : 0.88);
+    }, { passive: false });
+
+    stage.addEventListener('pointerdown', (event) => {
+      dragging = true;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      stage.classList.add('dragging');
+      stage.setPointerCapture(event.pointerId);
+    });
+
+    stage.addEventListener('pointermove', (event) => {
+      if (!dragging) {
+        return;
+      }
+      tx += event.clientX - lastX;
+      ty += event.clientY - lastY;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      applyTransform();
+    });
+
+    stage.addEventListener('pointerup', (event) => {
+      dragging = false;
+      stage.classList.remove('dragging');
+      stage.releasePointerCapture(event.pointerId);
+    });
+
+    document.querySelector('[data-action="fit"]').addEventListener('click', fit);
+    document.querySelector('[data-action="zoom-in"]').addEventListener('click', () => zoomAt(window.innerWidth / 2, window.innerHeight / 2, 1.18));
+    document.querySelector('[data-action="zoom-out"]').addEventListener('click', () => zoomAt(window.innerWidth / 2, window.innerHeight / 2, 0.84));
+
+    document.querySelector('[data-focus="end"]').addEventListener('click', () => focusRect(120, 210, 1260, 1720, 0.82));
+    document.querySelector('[data-focus="admin"]').addEventListener('click', () => focusRect(1540, 210, 1300, 1720, 0.82));
+    document.querySelector('[data-focus="owner"]').addEventListener('click', () => focusRect(3000, 210, 1260, 1720, 0.82));
+    document.querySelector('[data-focus="data"]').addEventListener('click', () => focusRect(120, 2080, 4140, 720, 0.56));
+
+    window.addEventListener('resize', fit);
+    fit();
+  </script>
+</body>
+</html>

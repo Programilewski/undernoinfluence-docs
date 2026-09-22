@@ -1,0 +1,22 @@
+# The workspace repository tracks the thinking, not the machinery around it.
+
+# Your notes inbox — kept deliberately, never committed (D11, 21.09).
+additions.txt
+
+# A saved vendor page kept in the vault for reference, never part of the project.
+# P30 decided it leaves docs/; until it is moved by hand it must not be committable.
+Pricing*
+
+# Syncthing's own metadata and safety net. Per-device, never shared.
+.stfolder/
+.stfolder.removed-*
+.stversions/
+
+# Obsidian's per-device UI state — changes on every pane drag and conflicts constantly.
+# The rest of .obsidian/ IS tracked on purpose, so plugins and settings match everywhere.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace.json.bak
+
+# Obsidian's local trash.
+.trash/

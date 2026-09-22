@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>User Stories — Under No Influence</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">User Stories — Under No Influence</h1>
+</header>
+<h1 id="user-stories-under-no-influence-uni">User Stories — Under No
+Influence (UNI)</h1>
+<p><strong>Format</strong>:
+<code>As a [persona], I want to [action], so that [benefit].</code><br />
+<strong>Personas</strong>: Visitor (anonymous), User (registered,
+V1.5+), Owner (venue, V2+), Admin (founder)<br />
+<strong>Status tags</strong>: <code>[V1]</code> live at launch ·
+<code>[V1.5]</code> light user features · <code>[V2]</code> owner
+activation · <code>[V3]</code> scale</p>
+<p>Acceptance criteria use <strong>Given / When / Then</strong> where
+helpful.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#1-discovery--search">Discovery &amp; Search</a></li>
+<li><a href="#2-venue-profile">Venue Profile</a></li>
+<li><a href="#3-filters--sorting">Filters &amp; Sorting</a></li>
+<li><a href="#4-navigation--outbound-links">Navigation &amp; Outbound
+Links</a></li>
+<li><a href="#5-static--seo-pages">Static &amp; SEO Pages</a></li>
+<li><a href="#6-user-accounts--saved-venues">User Accounts &amp; Saved
+Venues</a></li>
+<li><a href="#7-data-quality--reporting">Data Quality &amp;
+Reporting</a></li>
+<li><a href="#8-venue-owner--claim--profile">Venue Owner — Claim &amp;
+Profile</a></li>
+<li><a href="#9-venue-owner--analytics">Venue Owner — Analytics</a></li>
+<li><a href="#10-admin--venue-management">Admin — Venue
+Management</a></li>
+<li><a href="#11-admin--product-catalog">Admin — Product
+Catalog</a></li>
+<li><a href="#12-admin--analytics--moderation">Admin — Analytics &amp;
+Moderation</a></li>
+<li><a href="#13-compliance--privacy">Compliance &amp; Privacy</a></li>
+</ol>
+<hr />
+<h2 id="discovery-search">1. Discovery &amp; Search</h2>
+<h3 id="us-d01-v1">US-D01 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see all verified
+NoLo-friendly venues on an interactive map, so that I can quickly get a
+geographic sense of what’s available near me.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Given I load <code>/mapa</code>, all
+active non-canary venues render as pins on a CARTO dark map</label></li>
+<li><label><input type="checkbox" />Map is centred on Warsaw by
+default</label></li>
+<li><label><input type="checkbox" />All pins load in &lt; 500ms after
+the page hydrates</label></li>
+<li><label><input type="checkbox" />Clicking a pin opens a venue card
+with name, type, category dots, and a “See profile” link</label></li>
+<li><label><input type="checkbox" />Canary venues
+(<code>is_canary = true</code>) are never rendered as pins regardless of
+<code>is_active</code> state</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-d02-v1">US-D02 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see a scrollable list
+alongside the map, so that I can browse venues without relying solely on
+the map.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />24 venue cards are shown on initial
+load</label></li>
+<li><label><input type="checkbox" />A “Load more” button appends the
+next 24 cards without a full page reload</label></li>
+<li><label><input type="checkbox" />On mobile the list and map are in
+separate tabs; on desktop they are side-by-side</label></li>
+<li><label><input type="checkbox" />Hovering a list card highlights the
+corresponding map pin</label></li>
+<li><label><input type="checkbox" />The total venue count is shown in
+the results header (e.g. “Znaleźliśmy 47 miejsc”)</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-d03-v1">US-D03 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want the discovery URL to reflect my
+active filters and sort, so that I can share a specific filtered view
+with a friend.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Applying any filter or sort updates
+the URL query params
+(e.g. <code>?categories[]=piwo&amp;sort=breadth</code>)</label></li>
+<li><label><input type="checkbox" />Loading a URL with query params
+restores the same filter and sort state without any user
+interaction</label></li>
+<li><label><input type="checkbox" />The browser back button returns to
+the previous filter state without a full page reload</label></li>
+<li><label><input type="checkbox" />A URL with an unrecognised filter
+param degrades gracefully (ignores unknown params, does not throw an
+error)</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-d04-v1">US-D04 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see a helpful message when
+my filters return no results, so that I know the search worked but the
+supply gap is real — not a bug.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Given filters are active and zero
+venues match, show “Nie znaleźliśmy pasujących miejsc”</label></li>
+<li><label><input type="checkbox" />The empty state message suggests
+removing one specific filter (the most restrictive one)</label></li>
+<li><label><input type="checkbox" />The page returns HTTP 200 — not a
+404 or redirect</label></li>
+<li><label><input type="checkbox" />A
+<code>discovery_empty_results</code> analytics event is fired with the
+full active filter state (categories, city, district, freshness,
+sort)</label></li>
+<li><label><input type="checkbox" />The map is still visible with no
+pins rather than being hidden or replaced</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-d05-v1">US-D05 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to search for venues in a
+specific district, so that I can find places near where I’m going
+tonight.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>/mapa/warszawa/mokotow</code>
+scopes the map and list to Mokotów venues only</label></li>
+<li><label><input type="checkbox" />The district name is displayed as an
+active filter chip in the filter bar</label></li>
+<li><label><input type="checkbox" />Removing the district chip returns
+to the city-wide view (<code>/mapa/warszawa</code>)</label></li>
+<li><label><input type="checkbox" />An unrecognised district slug
+returns HTTP 404</label></li>
+<li><label><input type="checkbox" />A district with zero venues shows
+the empty state from US-D04 (not a 404)</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="venue-profile">2. Venue Profile</h2>
+<h3 id="us-v01-v1">US-V01 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see a venue’s core details
+on its profile page, so that I can decide whether it’s worth visiting
+before I travel there.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Profile shows: name, venue type
+badge, full street address, and district name</label></li>
+<li><label><input type="checkbox" />A static mini-map pin is centred on
+the venue’s lat/lng coordinates</label></li>
+<li><label><input type="checkbox" />Phone, website, and Instagram links
+are shown only when the corresponding field is non-null</label></li>
+<li><label><input type="checkbox" />Page load time is &lt; 1.5s on a
+simulated 4G mobile connection (Chrome DevTools throttling)</label></li>
+<li><label><input type="checkbox" />A <code>venue_viewed</code>
+analytics event is fired on page load with venue_id, city, and
+district</label></li>
+<li><label><input type="checkbox" />An inactive venue
+(<code>is_active = false</code>) returns HTTP 404 for anonymous
+users</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-v02-v1">US-V02 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see the full NoLo menu
+broken into drink categories, so that I can find something specific
+(e.g. “do they have a 0% wine?”).</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Menu is grouped into the 6 fixed
+categories: piwo, wino, drinki, spirits, cydr, musujące</label></li>
+<li><label><input type="checkbox" />The top 3 categories that have at
+least one product auto-expand on load; piwo is always first if
+present</label></li>
+<li><label><input type="checkbox" />Each product row shows: product
+name, brand name, ABV value, and a “przepis własny” badge for house
+recipes</label></li>
+<li><label><input type="checkbox" />Categories with zero products are
+shown collapsed with a “(0)” count — they are not hidden
+entirely</label></li>
+<li><label><input type="checkbox" />Expanding and collapsing an
+accordion section does not trigger a Livewire re-render or page
+reload</label></li>
+<li><label><input type="checkbox" />House-recipe drinks
+(<code>venue_drinks</code>) appear in their <code>base_category</code>
+accordion section</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-v03-v1">US-V03 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see a freshness indicator on
+every venue, so that I know how recently the menu was verified and can
+judge how much to trust it.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Green pill:
+<code>last_menu_check_at</code> is within the last 30 days</label></li>
+<li><label><input type="checkbox" />Yellow pill:
+<code>last_menu_check_at</code> is between 30 and 90 days
+ago</label></li>
+<li><label><input type="checkbox" />Red pill:
+<code>last_menu_check_at</code> is more than 90 days ago or is
+null</label></li>
+<li><label><input type="checkbox" />The pill displays a text label
+alongside the colour: e.g. “Sprawdzono 12 dni temu” or “Brak
+danych”</label></li>
+<li><label><input type="checkbox" />Colour alone is never the only
+conveyor of freshness state (WCAG 1.4.1 compliance)</label></li>
+<li><label><input type="checkbox" />The freshness pill appears on both
+venue cards in the discovery list and on the full venue
+profile</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-v04-v1">US-V04 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see a “UNI Verified” badge
+on venues where the team confirmed the menu personally, so that I can
+trust the data before I make the trip.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The badge is visible only when
+<code>is_verified = true</code> on the venue record</label></li>
+<li><label><input type="checkbox" />Hovering or tapping the badge shows
+a tooltip: “Menu potwierdzone przez zespół UNI”</label></li>
+<li><label><input type="checkbox" />The badge is absent (not hidden via
+CSS) when <code>is_verified = false</code> — no empty placeholder
+space</label></li>
+<li><label><input type="checkbox" />Verified venues are filterable in
+discovery via the “Tylko zweryfikowane” toggle (see US-F02)</label></li>
+<li><label><input type="checkbox" />The badge appears on both the venue
+card in discovery and on the full profile page</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-v05-v1">US-V05 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see how broad a venue’s NoLo
+selection is, so that I can tell at a glance whether it has “a few token
+options” or a real menu.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />An 8-dot bar is shown per category:
+filled dots represent products stocked, capped at 8 dots
+maximum</label></li>
+<li><label><input type="checkbox" />A venue with 3 products in a
+category shows 3 filled dots and 5 empty dots</label></li>
+<li><label><input type="checkbox" />A venue with 8 or more products in a
+category shows all 8 dots filled</label></li>
+<li><label><input type="checkbox" />On the venue card in discovery, only
+the top 2 categories (by product count) are shown</label></li>
+<li><label><input type="checkbox" />On the full venue profile, all 6
+categories show their dot bar</label></li>
+<li><label><input type="checkbox" />Dot count is derived live from
+active <code>venue_products</code> records; there is no manually
+overridable field</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-v06-v1">US-V06 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to see nearby venues on a
+venue’s profile, so that I can plan alternatives in the same area
+without going back to the map.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Up to 10 active, non-canary venues
+within ~2 km of the current venue are shown</label></li>
+<li><label><input type="checkbox" />Results are sorted by distance
+ascending (closest first)</label></li>
+<li><label><input type="checkbox" />Each nearby venue uses the same card
+format as the discovery list (name, type, breadth dots, freshness
+pill)</label></li>
+<li><label><input type="checkbox" />The “Nearby” section is not rendered
+at all if fewer than 2 qualifying venues exist</label></li>
+<li><label><input type="checkbox" />The current venue itself is excluded
+from the nearby list</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="filters-sorting">3. Filters &amp; Sorting</h2>
+<h3 id="us-f01-v1">US-F01 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to filter venues by drink
+category, so that I only see places that serve the specific type of NoLo
+drink I’m looking for.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Six category pills are shown: piwo,
+wino, drinki, spirits, cydr, musujące</label></li>
+<li><label><input type="checkbox" />Multiple categories can be selected
+simultaneously; the logic is OR (venues matching any selected category
+appear)</label></li>
+<li><label><input type="checkbox" />Deselecting all category pills
+returns to the unfiltered full list</label></li>
+<li><label><input type="checkbox" />Selecting a category fires a
+<code>category_filter_applied</code> analytics event with the category
+name and previous filter state</label></li>
+<li><label><input type="checkbox" />The venue count in the results
+header updates reactively without a full page reload</label></li>
+<li><label><input type="checkbox" />Category pills display the category
+colour from the <code>categories</code> table</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-f02-v1">US-F02 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to filter to only UNI-verified
+venues, so that I can limit results to places where the data has been
+personally confirmed.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A toggle labelled “Tylko
+zweryfikowane” is present in the filter bar</label></li>
+<li><label><input type="checkbox" />When active, only venues with
+<code>is_verified = true</code> are shown in both the map and the
+list</label></li>
+<li><label><input type="checkbox" />Deactivating the toggle restores all
+venues matching other active filters</label></li>
+<li><label><input type="checkbox" />The toggle state is reflected in the
+URL query params (e.g. <code>?verified=1</code>)</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-f03-v1">US-F03 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to filter to venues with
+strictly 0.0% products, so that I can be confident nothing on the menu
+contains any alcohol whatsoever.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A toggle labelled “Stricte 0.0%” is
+present in the filter bar</label></li>
+<li><label><input type="checkbox" />When active, only venues with at
+least one product where <code>abv_status = verified_zero</code> are
+shown</label></li>
+<li><label><input type="checkbox" />A tooltip (or info icon) explains
+the difference between “verified_zero” and “under 0.5%”</label></li>
+<li><label><input type="checkbox" />The toggle state is reflected in the
+URL query params (e.g. <code>?strict_zero=1</code>)</label></li>
+<li><label><input type="checkbox" />Venues where all products are
+<code>under_0.5</code> or <code>unknown</code> are excluded when the
+toggle is active</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-f04-v1">US-F04 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to filter by data freshness, so
+that I only see venues whose menus have been recently verified.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A select control offers three
+options: “Wszystkie” (default) / “Aktualizowane w tym miesiącu” /
+“Aktualizowane w tym kwartale”</label></li>
+<li><label><input type="checkbox" />“W tym miesiącu” filters to venues
+where <code>last_menu_check_at</code> &lt; 30 days ago</label></li>
+<li><label><input type="checkbox" />“W tym kwartale” filters to venues
+where <code>last_menu_check_at</code> &lt; 90 days ago</label></li>
+<li><label><input type="checkbox" />The thresholds match exactly those
+used to calculate the freshness pill colour (single source of
+truth)</label></li>
+<li><label><input type="checkbox" />Selecting a freshness option fires a
+<code>discovery_search</code> analytics event with the chosen
+value</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-f05-v1">US-F05 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to sort venues by menu breadth,
+so that the places with the most extensive NoLo selection appear
+first.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Default sort is “Najlepsze menu” —
+descending by <code>breadth_score</code></label></li>
+<li><label><input type="checkbox" />When a single category filter is
+active, sort uses the product count for that specific category (not the
+overall breadth score)</label></li>
+<li><label><input type="checkbox" />“A–Z” sort orders alphabetically by
+<code>venues.name</code> ascending</label></li>
+<li><label><input type="checkbox" />“Najbliżej” sort prompts the browser
+for geolocation permission and orders by distance ascending</label></li>
+<li><label><input type="checkbox" />If geolocation permission is denied
+or unavailable, the sort falls back to “Najlepsze menu” and shows a
+toast: “Nie można ustalić lokalizacji”</label></li>
+<li><label><input type="checkbox" />The active sort is reflected in the
+URL (e.g. <code>?sort=az</code>) and restored on page load</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="navigation-outbound-links">4. Navigation &amp; Outbound
+Links</h2>
+<h3 id="us-n01-v1">US-N01 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want all outbound links (website,
+Instagram, directions) to open in a new tab, so that I don’t lose my
+place on UNI.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />All external links have
+<code>target="_blank"</code> and
+<code>rel="noopener noreferrer"</code></label></li>
+<li><label><input type="checkbox" />Each click is routed through
+<code>/miejsce/{slug}/go/{type}</code> before the 302 redirect to the
+destination</label></li>
+<li><label><input type="checkbox" />The server logs an
+<code>outbound_click</code> event with venue_id, link type, and
+timestamp before redirecting</label></li>
+<li><label><input type="checkbox" />If the destination URL is null or
+empty, the link is not rendered (no dead links)</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-n02-v1">US-N02 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want tapping “Nawiguj” to open
+directions in my phone’s native maps app, so that I don’t have to copy
+and paste the address.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />On mobile (iOS/Android): tap opens
+the native OS maps intent using a <code>geo:</code> URI or
+<code>maps://</code> deep link</label></li>
+<li><label><input type="checkbox" />On desktop: “Nawiguj” opens Google
+Maps in a new tab with the venue’s coordinates pre-filled</label></li>
+<li><label><input type="checkbox" />An <code>outbound_click</code> event
+is logged with <code>type = directions</code> and the venue’s
+lat/lng</label></li>
+<li><label><input type="checkbox" />The button is only shown when the
+venue has valid lat/lng coordinates</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-n03-v1">US-N03 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want the nav to show my current
+section (discovery, about, how-it-works), so that I can orient myself
+within the site.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The active nav item has a visually
+distinct state (e.g. underline, colour change) compared to inactive
+items</label></li>
+<li><label><input type="checkbox" />The active state is determined by
+the current route, not client-side JavaScript</label></li>
+<li><label><input type="checkbox" />The nav is visible on all public
+pages</label></li>
+<li><label><input type="checkbox" />On mobile (&lt; 768px), the nav
+collapses to a hamburger icon; tapping it reveals the full
+nav</label></li>
+<li><label><input type="checkbox" />The hamburger menu closes when
+tapping outside it or navigating to a new page</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="static-seo-pages">5. Static &amp; SEO Pages</h2>
+<h3 id="us-s01-v1">US-S01 <code>[V1]</code></h3>
+<p><strong>As a Visitor arriving from Google</strong>, I want a city
+landing page (e.g. <code>/warszawa</code>) to explain what UNI offers in
+that city, so that I can quickly decide to explore the map.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The page has an H1 that includes the
+city name and a value proposition (e.g. “Bezalkoholowe bary i
+restauracje w Warszawie”)</label></li>
+<li><label><input type="checkbox" />The page displays the count of
+currently active venues in that city</label></li>
+<li><label><input type="checkbox" />A prominent CTA button links to the
+city-scoped discovery map (<code>/mapa/warszawa</code>)</label></li>
+<li><label><input type="checkbox" />The page returns HTTP 200 even if
+the venue count is zero — showing a “coming soon” message</label></li>
+<li><label><input type="checkbox" />The page has a unique
+<code>&lt;title&gt;</code> tag and
+<code>&lt;meta name="description"&gt;</code> distinct from other city
+pages</label></li>
+<li><label><input type="checkbox" />An unrecognised city slug returns
+HTTP 404</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-s02-v1">US-S02 <code>[V1]</code></h3>
+<p><strong>As a Visitor searching for “piwo bezalkoholowe
+warszawa”</strong>, I want a dedicated city×category landing page, so
+that I land on a relevant page and not a generic homepage.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />URL pattern
+<code>/warszawa/piwo-bezalkoholowe</code> resolves to a city×category
+page</label></li>
+<li><label><input type="checkbox" />The H1 explicitly names both the
+city and the category (e.g. “Piwo bezalkoholowe w
+Warszawie”)</label></li>
+<li><label><input type="checkbox" />The page lists venues in that city
+that have at least one product in that category</label></li>
+<li><label><input type="checkbox" />JSON-LD <code>ItemList</code> schema
+is included for Google rich results eligibility</label></li>
+<li><label><input type="checkbox" />The page links to the discovery map
+pre-filtered on that city + category</label></li>
+<li><label><input type="checkbox" />A combination with zero venues
+returns HTTP 200 with an empty-state message (not a 404)</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-s03-v1">US-S03 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want a “How It Works” page that
+explains the verified badge and freshness pill, so that I trust the data
+before relying on it.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The page explains what “UNI
+Verified” means and the process by which it is awarded</label></li>
+<li><label><input type="checkbox" />The page explains what each
+freshness pill colour (green / yellow / red) means in plain
+Polish</label></li>
+<li><label><input type="checkbox" />The page explains how the 8-dot
+breadth bars are calculated (product count per category)</label></li>
+<li><label><input type="checkbox" />A FAQ section covers at minimum:
+“Czy mogę dodać swój lokal?”, “Co jeśli menu jest nieaktualne?”, “Jak
+UNI zarabia?”, “Skąd pochodzi ta baza danych?”</label></li>
+<li><label><input type="checkbox" />Each FAQ item is implemented as an
+accessible accordion (keyboard-navigable, ARIA attributes
+correct)</label></li>
+<li><label><input type="checkbox" />The page has a CTA linking to the
+discovery map</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-s04-v1">US-S04 <code>[V1]</code></h3>
+<p><strong>As a search engine crawler</strong>, I want a complete XML
+sitemap, so that all public venue, city, district, and category URLs are
+indexed.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>/sitemap.xml</code> returns
+<code>Content-Type: application/xml</code></label></li>
+<li><label><input type="checkbox" />All active, non-canary venue URLs
+are included (<code>/miejsce/{slug}</code>)</label></li>
+<li><label><input type="checkbox" />City, district, and category landing
+page URLs are included</label></li>
+<li><label><input type="checkbox" />Admin routes
+(<code>/admin/*</code>), API routes (<code>/analytics/*</code>), and the
+honeypot (<code>/export/venues.json</code>) are excluded</label></li>
+<li><label><input type="checkbox" />The sitemap updates automatically
+when a venue’s <code>is_active</code> status changes — no manual
+regeneration needed</label></li>
+<li><label><input type="checkbox" />Each URL entry includes a
+<code>&lt;lastmod&gt;</code> timestamp derived from
+<code>updated_at</code></label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-s05-v1">US-S05 <code>[V1]</code></h3>
+<p><strong>As an AI training crawler</strong>, I want to be explicitly
+blocked by robots.txt, so that UNI’s proprietary venue data is not used
+for LLM training without consent.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>robots.txt</code> disallows 13
+named AI crawlers including: ChatGPT-User, PerplexityBot,
+GoogleExtended, ClaudeBot, Applebot-Extended, CCBot</label></li>
+<li><label><input type="checkbox" />Standard search engine bots
+(Googlebot, Bingbot, Applebot) are explicitly allowed</label></li>
+<li><label><input type="checkbox" /><code>robots.txt</code> is served as
+<code>Content-Type: text/plain</code></label></li>
+<li><label><input type="checkbox" />The honeypot at
+<code>/export/venues.json</code> returns HTTP 403 and logs the accessing
+IP for scraper detection</label></li>
+<li><label><input type="checkbox" />Canary venues
+(<code>is_canary = true</code>) are never rendered in any public HTML
+response, API response, or sitemap entry</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="user-accounts-saved-venues">6. User Accounts &amp; Saved
+Venues</h2>
+<h3 id="us-u01-v1.5">US-U01 <code>[V1.5]</code></h3>
+<p><strong>As a returning Visitor</strong>, I want to create an account
+with my email and password, so that I can save venues across devices and
+sessions.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Registration form requires: email
+address (format-validated), password (minimum 12 characters), and
+password confirmation</label></li>
+<li><label><input type="checkbox" />Passwords shorter than 12 characters
+show a specific error: “Hasło musi mieć co najmniej 12
+znaków”</label></li>
+<li><label><input type="checkbox" />Email verification is required
+before the account is active; unverified users cannot save
+venues</label></li>
+<li><label><input type="checkbox" />Verification email is sent within 60
+seconds of registration</label></li>
+<li><label><input type="checkbox" />Attempting to register with an
+already-registered email shows: “Ten adres e-mail jest już
+używany”</label></li>
+<li><label><input type="checkbox" />Registration fires an
+<code>account_registered</code> analytics event with the traffic source
+(e.g. venue profile, discovery)</label></li>
+<li><label><input type="checkbox" />All form error messages are in
+Polish</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-u02-v1.5">US-U02 <code>[V1.5]</code></h3>
+<p><strong>As a User</strong>, I want to save a venue to my list, so
+that I can find it again without re-searching.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Zapisz” button (heart icon) is
+shown on every venue profile page</label></li>
+<li><label><input type="checkbox" />Authenticated users see the heart in
+a filled state if already saved, empty state if not</label></li>
+<li><label><input type="checkbox" />Tapping the button toggles the saved
+state immediately (optimistic UI) and persists to the
+<code>venue_saves</code> table</label></li>
+<li><label><input type="checkbox" />A <code>venue_saved</code> analytics
+event is fired with venue_id and user_id</label></li>
+<li><label><input type="checkbox" />Saved venues are accessible at
+<code>/profil/zapisane</code> in a list sorted by date saved (newest
+first)</label></li>
+<li><label><input type="checkbox" />Unauthenticated users who tap
+“Zapisz” are redirected to the login page with a redirect-back param so
+they land on the same venue after login</label></li>
+<li><label><input type="checkbox" />A user can unsave a venue from
+either the venue profile or the <code>/profil/zapisane</code>
+list</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-u03-v1.5">US-U03 <code>[V1.5]</code></h3>
+<p><strong>As a User</strong>, I want to delete my account and all
+associated data, so that I can exercise my GDPR right to erasure.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Account deletion is available at
+<code>/profil/ustawienia</code> under a “Usuń konto”
+section</label></li>
+<li><label><input type="checkbox" />A confirmation step requires the
+user to re-enter their current password before deletion
+proceeds</label></li>
+<li><label><input type="checkbox" />On confirmation: the user row is
+deleted, <code>venue_saves</code> records are anonymised (user_id
+nulled), and inaccuracy reports are anonymised</label></li>
+<li><label><input type="checkbox" />An <code>account_deleted</code>
+analytics event is fired before the user record is removed</label></li>
+<li><label><input type="checkbox" />A link to the data export (US-C02)
+is shown on the deletion confirmation screen with the copy: “Zanim
+usuniesz konto, możesz pobrać swoje dane”</label></li>
+<li><label><input type="checkbox" />The user is logged out and
+redirected to the homepage with a confirmation message after
+deletion</label></li>
+<li><label><input type="checkbox" />Deletion is irreversible; no grace
+period or soft-delete in V1</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="data-quality-reporting">7. Data Quality &amp; Reporting</h2>
+<h3 id="us-q01-v1.5">US-Q01 <code>[V1.5]</code></h3>
+<p><strong>As a Visitor</strong>, I want to report an inaccuracy on a
+venue profile, so that UNI can correct stale menu data.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Zgłoś nieaktualność” button is
+visible on every active venue profile</label></li>
+<li><label><input type="checkbox" />The report form captures: affected
+category (select from 6 categories), description of the issue (optional,
+max 500 chars), and reporter contact email (optional)</label></li>
+<li><label><input type="checkbox" />On submit, a
+<code>venue_inaccuracy_report</code> record is created with status
+<code>pending</code></label></li>
+<li><label><input type="checkbox" />An
+<code>inaccuracy_report_submitted</code> analytics event is fired with
+venue_id, category, and whether a description was provided</label></li>
+<li><label><input type="checkbox" />A confirmation message is shown:
+“Dziękujemy! Sprawdzimy to przy następnej aktualizacji.”</label></li>
+<li><label><input type="checkbox" />Duplicate detection: if an open
+(non-resolved) report for the same venue already exists from the same
+session or email, show: “Twoje zgłoszenie już czeka na
+review”</label></li>
+<li><label><input type="checkbox" />The form is accessible without a
+user account in V1.5</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-q02-v1.5">US-Q02 <code>[V1.5]</code></h3>
+<p><strong>As a Visitor</strong>, I want to suggest a venue that’s
+missing from UNI, so that the directory stays comprehensive.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Zaproponuj lokal” link is visible
+in the site footer on all public pages</label></li>
+<li><label><input type="checkbox" />The suggestion form captures: venue
+name (required), city (required, select from active cities), approximate
+address (optional), submitter contact email (optional), and a free-text
+reason field</label></li>
+<li><label><input type="checkbox" />On submit, an internal suggestion
+record is created and the admin is notified (email or Filament
+notification)</label></li>
+<li><label><input type="checkbox" />A confirmation message is shown:
+“Dziękujemy! Rozejrzymy się za tym miejscem.”</label></li>
+<li><label><input type="checkbox" />This is not a public claim form —
+the submission does not create a <code>venue_claim</code>
+record</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="venue-owner-claim-profile">8. Venue Owner — Claim &amp;
+Profile</h2>
+<h3 id="us-o01-v2">US-O01 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to claim my venue’s
+listing, so that I can manage its accuracy myself instead of waiting for
+UNI to update it.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Przejm kontrolę nad profilem” CTA
+is visible on the venue profile page when <code>venue_claims</code> has
+no approved claim for that venue</label></li>
+<li><label><input type="checkbox" />The claim form captures: full name
+(required), role at venue (required), business email (required), NIP
+(optional), and a free-text message</label></li>
+<li><label><input type="checkbox" />On submit, a
+<code>venue_claim</code> record is created with
+<code>status = pending</code> and <code>submitted_at</code>
+timestamped</label></li>
+<li><label><input type="checkbox" />The admin panel shows a notification
+of the new pending claim</label></li>
+<li><label><input type="checkbox" />The owner receives an automated
+confirmation email: “Otrzymaliśmy Twoją prośbę o przejęcie profilu
+[Venue Name]. Odezwiemy się w ciągu 3 dni roboczych.”</label></li>
+<li><label><input type="checkbox" />Submitting a second claim for the
+same venue while a pending one exists shows: “Twoja prośba już czeka na
+rozpatrzenie”</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-o02-v2">US-O02 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to receive a notification
+when my claim is approved or rejected, so that I know when I can start
+managing my profile.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />On claim approval: the owner
+receives an email with a login link, their panel URL, and a brief
+onboarding summary</label></li>
+<li><label><input type="checkbox" />On claim rejection: the owner
+receives an email explaining the reason for rejection and the steps to
+re-submit</label></li>
+<li><label><input type="checkbox" />The <code>venue_claims</code> status
+is updated to <code>approved</code> or <code>rejected</code> with an
+<code>admin_notes</code> field capturing the reason</label></li>
+<li><label><input type="checkbox" />An approved claim sets
+<code>venue.claimed_by_user_id</code> and creates the owner user account
+if one does not already exist</label></li>
+<li><label><input type="checkbox" />Approval and rejection actions are
+logged in <code>audit_logs</code> with the admin’s user ID</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-o03-v2">US-O03 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to edit my venue’s menu in
+the owner panel, so that the information on UNI is always current.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The owner panel allows adding
+products from the global catalog to their venue’s
+<code>venue_products</code> pivot</label></li>
+<li><label><input type="checkbox" />The owner panel allows removing
+products from their venue (sets <code>is_available = false</code> on the
+pivot, does not delete the product from the global catalog)</label></li>
+<li><label><input type="checkbox" />The owner can add house-recipe
+drinks: name (required), base category (required), description
+(optional)</label></li>
+<li><label><input type="checkbox" />All changes are logged in
+<code>venue_offer_logs</code> with <code>added_by = venue_owner</code>
+and a timestamp</label></li>
+<li><label><input type="checkbox" />Changes are reflected on the public
+venue profile on the next page request — no admin approval
+gate</label></li>
+<li><label><input type="checkbox" />Saving any menu change resets
+<code>last_menu_check_at</code> to the current timestamp, turning the
+freshness pill green</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-o04-v2">US-O04 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to update my venue’s
+contact details (phone, website, Instagram), so that customers reach the
+right place.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The owner panel has an editable form
+for: phone number, website URL, and Instagram handle</label></li>
+<li><label><input type="checkbox" />URL format is validated on save; an
+invalid URL shows: “Podaj prawidłowy adres URL (np.
+https://…)”</label></li>
+<li><label><input type="checkbox" />Changes do not require admin
+approval — the owner’s verified ownership is sufficient</label></li>
+<li><label><input type="checkbox" />Changes take effect on the public
+profile on the next page request</label></li>
+<li><label><input type="checkbox" />All field changes are logged in
+<code>audit_logs</code> with the owner’s user ID and the old and new
+values</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-o05-v2">US-O05 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want the “Owner Confirmed” badge
+to appear on my profile once I’ve verified the menu, so that visitors
+know the data is accurate.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />An “Owner Confirmed” badge is
+distinct from the “UNI Verified” badge — different icon, different
+tooltip</label></li>
+<li><label><input type="checkbox" />The badge is not awarded
+automatically upon claim approval; the owner must actively edit or
+confirm at least one product after claiming</label></li>
+<li><label><input type="checkbox" />Hovering or tapping the badge shows:
+“Menu potwierdzone przez właściciela lokalu”</label></li>
+<li><label><input type="checkbox" />The badge appears on both the venue
+card in discovery and on the full profile page</label></li>
+<li><label><input type="checkbox" />If a venue has both “Owner
+Confirmed” and “UNI Verified” statuses, both badges are
+shown</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="venue-owner-analytics">9. Venue Owner — Analytics</h2>
+<h3 id="us-a01-v2">US-A01 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to see how many people
+viewed my venue profile this month, so that I know whether UNI is
+driving interest in my business.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The owner dashboard shows total
+profile views for the last 30 days, sourced from
+<code>venue_stats.views</code></label></li>
+<li><label><input type="checkbox" />A 7-day trend sparkline is shown
+alongside the total (bar chart or line chart)</label></li>
+<li><label><input type="checkbox" />A comparison to the previous 30-day
+period is shown: e.g. “+12% vs ostatnie 30 dni”</label></li>
+<li><label><input type="checkbox" />Data is refreshed at most once per
+hour (no stale daily batch)</label></li>
+<li><label><input type="checkbox" />The dashboard is only accessible to
+the owner of the claimed venue — other owners cannot see it</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-a02-v2">US-A02 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to see which outbound links
+people click most (directions, website, Instagram), so that I know what
+action my visitors take after viewing my profile.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The dashboard shows a breakdown of
+click counts per link type: directions, website, instagram, maps,
+phone</label></li>
+<li><label><input type="checkbox" />Results are sorted by count
+descending</label></li>
+<li><label><input type="checkbox" />The default date range is the last
+30 days; a toggle switches to the last 90 days</label></li>
+<li><label><input type="checkbox" />Link types with zero clicks are
+still shown with a “0” count — not hidden</label></li>
+<li><label><input type="checkbox" />Data is sourced from the first-party
+<code>events</code> table filtered by venue_id and event type
+<code>outbound_click</code></label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-a03-v2">US-A03 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner</strong>, I want to see demand data for my
+drink category in my district, so that I can justify expanding my NoLo
+menu to my supplier.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Popyt w Twojej dzielnicy” widget
+shows how many discovery sessions in the owner’s district included the
+venue’s primary category as an active filter</label></li>
+<li><label><input type="checkbox" />Data is sourced from the
+<code>events</code> table: <code>category_filter_applied</code> events
+scoped to the venue’s district and primary category</label></li>
+<li><label><input type="checkbox" />The framing is aggregate and
+non-individual: “X osób szukało piwa bezalkoholowego na Mokotowie w tym
+miesiącu”</label></li>
+<li><label><input type="checkbox" />No individual-level data is exposed
+— the widget shows only aggregated counts</label></li>
+<li><label><input type="checkbox" />If the venue’s district has fewer
+than 5 data points for the period, show “Za mało danych — sprawdź
+ponownie za kilka tygodni”</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-a04-v2">US-A04 <code>[V2]</code></h3>
+<p><strong>As a Venue Owner on the Pro tier</strong>, I want to download
+a monthly PDF report, so that I can share the demand data with my
+business partner or supplier.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Pobierz raport (PDF)” button is
+visible on the analytics dashboard for Pro and Premium tier
+owners</label></li>
+<li><label><input type="checkbox" />The button is visible but disabled
+(with a tooltip: “Dostępne w planie Pro”) for Basic tier
+owners</label></li>
+<li><label><input type="checkbox" />The PDF includes: venue name, report
+period, total profile views, outbound click breakdown, category demand
+count in district</label></li>
+<li><label><input type="checkbox" />The PDF footer states: “Dane
+szacunkowe, pierwszopartyjne. UNI nie gwarantuje ich
+dokładności.”</label></li>
+<li><label><input type="checkbox" />The PDF carries UNI branding (logo,
+colour palette) consistent with the brand book</label></li>
+<li><label><input type="checkbox" />PDF generation completes within 10
+seconds; a loading spinner is shown during generation</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="admin-venue-management">10. Admin — Venue Management</h2>
+<h3 id="us-ad01-v1">US-AD01 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to create a new venue with
+automatic geocoding, so that I don’t have to look up coordinates
+manually.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />Entering a street address and city
+in the Filament venue form and clicking a “Geokoduj” button triggers a
+Nominatim API lookup</label></li>
+<li><label><input type="checkbox" />On success, latitude and longitude
+fields are populated automatically and confirmed with a success
+toast</label></li>
+<li><label><input type="checkbox" />On geocoding failure (API timeout,
+no results), an error toast is shown and manual coordinate fields remain
+editable</label></li>
+<li><label><input type="checkbox" />New venues are created with
+<code>is_active = false</code> by default — they must be explicitly
+published</label></li>
+<li><label><input type="checkbox" />The venue creation form requires:
+name, type, address, and city; all other fields are
+optional</label></li>
+<li><label><input type="checkbox" />Creating a venue fires an
+<code>audit_log</code> entry with the admin’s user ID and the venue
+ID</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad02-v1">US-AD02 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to publish or unpublish a venue
+with a single toggle, so that I can control public visibility without
+deleting data.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />An <code>is_active</code> toggle is
+present on the venue edit form in Filament</label></li>
+<li><label><input type="checkbox" />The toggle change takes effect
+immediately with no intermediate confirmation dialog</label></li>
+<li><label><input type="checkbox" />The toggle change is logged in
+<code>audit_logs</code> with: admin user ID, venue ID, previous value,
+new value, and timestamp</label></li>
+<li><label><input type="checkbox" />Unpublishing a venue causes it to
+disappear from public discovery, the sitemap, and the nearby venues
+section on other profiles — all within one request cycle</label></li>
+<li><label><input type="checkbox" />An unpublished venue at its direct
+URL (<code>/miejsce/{slug}</code>) returns HTTP 404 for anonymous
+users</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad03-v1">US-AD03 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to add internal notes to a
+venue, so that I can record context (e.g. “owner said menu refreshed in
+March”) that isn’t shown publicly.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />An <code>admin_notes</code> textarea
+field is present in the Filament venue edit form</label></li>
+<li><label><input type="checkbox" />The field content is never rendered
+in any public-facing HTML response, Blade template, or API
+response</label></li>
+<li><label><input type="checkbox" />The field is visible only to users
+with the <code>admin</code> role in the Filament panel</label></li>
+<li><label><input type="checkbox" />Notes are saved as plain text; no
+markdown rendering is applied</label></li>
+<li><label><input type="checkbox" />The <code>admin_notes</code> field
+has no character limit but is intended for short operational notes, not
+documentation</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad04-v1">US-AD04 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to set the
+<code>last_menu_check_at</code> date when I verify a venue’s menu, so
+that the freshness pill shows the correct colour to visitors.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A date picker field for
+<code>last_menu_check_at</code> is present in the Filament venue edit
+form</label></li>
+<li><label><input type="checkbox" />Saving the form with a new date
+updates <code>last_menu_check_at</code> immediately</label></li>
+<li><label><input type="checkbox" />The freshness pill colour on the
+public venue profile reflects the new date on the next page
+request</label></li>
+<li><label><input type="checkbox" />A <code>venue_offer_log</code> entry
+is created on save with action <code>menu_confirmed</code>, the admin
+user ID, and the new timestamp</label></li>
+<li><label><input type="checkbox" />The date picker defaults to today
+when the field is empty and the admin clicks it</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad05-v1">US-AD05 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to bulk-archive inactive venues,
+so that I can clean up the list without editing venues one by one.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The Filament venues table supports
+checkbox multi-select on each row</label></li>
+<li><label><input type="checkbox" />A bulk action “Archiwizuj
+zaznaczone” is available in the bulk actions dropdown</label></li>
+<li><label><input type="checkbox" />Executing the action sets
+<code>is_active = false</code> for all selected venues</label></li>
+<li><label><input type="checkbox" />Each affected venue generates a
+separate <code>audit_log</code> entry — one per venue, not one aggregate
+log</label></li>
+<li><label><input type="checkbox" />A success toast confirms:
+“Zarchiwizowano X lokali”</label></li>
+<li><label><input type="checkbox" />The action does not delete venues —
+they remain in the database and are recoverable via the
+<code>is_active</code> toggle</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="admin-product-catalog">11. Admin — Product Catalog</h2>
+<h3 id="us-ad06-v1">US-AD06 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to add a new product to the
+global catalog, so that it can be linked to any venue that stocks
+it.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The product creation form in
+Filament requires: name, category (select from 6), ABV (decimal), and
+<code>abv_status</code></label></li>
+<li><label><input type="checkbox" />Brand is selectable from existing
+brands or creatable inline with a modal</label></li>
+<li><label><input type="checkbox" />New products are created with
+<code>is_approved = false</code> by default</label></li>
+<li><label><input type="checkbox" />A product with
+<code>is_approved = false</code> cannot be linked to venues and does not
+appear on any public profile</label></li>
+<li><label><input type="checkbox" />Approving a product (setting
+<code>is_approved = true</code>) makes it immediately linkable to
+venues</label></li>
+<li><label><input type="checkbox" />Product creation is logged in
+<code>audit_logs</code></label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad07-v1">US-AD07 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to set a product’s ABV trust
+status (unknown / under_0.5 / verified_zero), so that visitors know how
+reliable the 0% claim is.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>abv_status</code> is a
+required select field on the product form with options: unknown,
+under_0.5, verified_zero</label></li>
+<li><label><input type="checkbox" /><code>verified_zero</code> can only
+be set by an admin role — venue owners cannot set it in V2 without admin
+review</label></li>
+<li><label><input type="checkbox" />The ABV value and
+<code>abv_status</code> label are both displayed on the venue profile
+product row</label></li>
+<li><label><input type="checkbox" />Changing <code>abv_status</code> on
+an existing product propagates immediately to all venue profiles that
+stock that product</label></li>
+<li><label><input type="checkbox" />The “Stricte 0.0%” discovery filter
+(US-F03) respects this field as its single source of truth</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad08-v1">US-AD08 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to link an existing product to a
+venue, so that I don’t duplicate product records across the catalog.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The venue edit form has a “Dodaj
+produkt” relationship manager (Filament repeater or table
+action)</label></li>
+<li><label><input type="checkbox" />The product selector offers a
+searchable autocomplete over all <code>is_approved = true</code>
+products in the global catalog</label></li>
+<li><label><input type="checkbox" />Selecting a product creates a
+<code>venue_products</code> pivot record with
+<code>added_by = admin</code> and
+<code>is_available = true</code></label></li>
+<li><label><input type="checkbox" />Linking a product that is already
+linked to the venue shows a validation error: “Ten produkt jest już
+przypisany do tego lokalu”</label></li>
+<li><label><input type="checkbox" />Removing the link sets
+<code>is_available = false</code> on the pivot — it does not delete the
+product from the global catalog</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="admin-analytics-moderation">12. Admin — Analytics &amp;
+Moderation</h2>
+<h3 id="us-ad09-v1">US-AD09 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want a dashboard widget showing which
+venues haven’t been menu-checked in over 90 days, so that I can
+prioritise my next verification calls.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The Filament dashboard includes a
+“Wymagają aktualizacji” widget</label></li>
+<li><label><input type="checkbox" />The widget lists venues where
+<code>last_menu_check_at</code> is null or more than 90 days in the
+past</label></li>
+<li><label><input type="checkbox" />Results are sorted by overdue
+duration descending (longest overdue first)</label></li>
+<li><label><input type="checkbox" />Each row shows: venue name,
+district, and the number of days since last check (or “Nigdy” if
+null)</label></li>
+<li><label><input type="checkbox" />Clicking a venue row opens that
+venue’s edit form directly</label></li>
+<li><label><input type="checkbox" />The widget count is shown as a badge
+on the Filament admin nav item for Venues</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad10-v1">US-AD10 <code>[V1]</code></h3>
+<p><strong>As an Admin</strong>, I want to see how many times each venue
+profile was viewed this week, so that I can focus my enrichment effort
+on high-traffic venues.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The Filament venues table has a
+“Wyświetlenia (7d)” column showing the sum of
+<code>venue_stats.views</code> for the last 7 calendar days</label></li>
+<li><label><input type="checkbox" />The column is sortable — clicking it
+sorts the table by view count descending</label></li>
+<li><label><input type="checkbox" />The count updates on each page load
+from the database; no stale cache is served</label></li>
+<li><label><input type="checkbox" />Venues with zero views in the period
+show “0”, not a blank or dash</label></li>
+<li><label><input type="checkbox" />The column is visible by default and
+is not hidden behind a column toggle</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad11-v1.5">US-AD11 <code>[V1.5]</code></h3>
+<p><strong>As an Admin</strong>, I want to review inaccuracy reports
+submitted by users, so that I can decide whether to update the venue’s
+menu or dismiss the report.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A Filament resource for
+<code>venue_inaccuracy_reports</code> is accessible at
+<code>/admin/inaccuracy-reports</code></label></li>
+<li><label><input type="checkbox" />The table shows: venue name (linked
+to venue edit), affected category, user description, submitter email (if
+provided), and <code>submitted_at</code></label></li>
+<li><label><input type="checkbox" />Reports are filterable by status:
+pending / resolved / dismissed</label></li>
+<li><label><input type="checkbox" />A “Rozwiąż” (Resolve) action marks
+the report as resolved and updates <code>last_menu_check_at</code> on
+the venue to today</label></li>
+<li><label><input type="checkbox" />A “Odrzuć” (Dismiss) action marks
+the report as dismissed without updating the venue</label></li>
+<li><label><input type="checkbox" />Both actions log to
+<code>audit_logs</code> and update the report’s <code>resolved_at</code>
+timestamp</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-ad12-v2">US-AD12 <code>[V2]</code></h3>
+<p><strong>As an Admin</strong>, I want to review venue claim requests
+and approve or reject them, so that only legitimate owners gain access
+to the owner panel.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A Filament resource for
+<code>venue_claims</code> is accessible at
+<code>/admin/venue-claims</code></label></li>
+<li><label><input type="checkbox" />The table has a status filter:
+pending / approved / rejected; default view shows pending
+only</label></li>
+<li><label><input type="checkbox" />Each row shows: venue name, claimant
+full name, role, business email, NIP, submitted_at</label></li>
+<li><label><input type="checkbox" />An “Approve” action: sets
+<code>status = approved</code>, creates or links an owner user account,
+sets <code>venue.claimed_by_user_id</code>, and sends the approval
+email</label></li>
+<li><label><input type="checkbox" />A “Reject” action: opens a modal
+prompting for a rejection reason, sets <code>status = rejected</code>,
+and sends the rejection email with the reason</label></li>
+<li><label><input type="checkbox" />Both actions are logged in
+<code>audit_logs</code> with the admin’s user ID, the claim ID, and the
+action taken</label></li>
+</ul>
+</details>
+<hr />
+<h2 id="compliance-privacy">13. Compliance &amp; Privacy</h2>
+<h3 id="us-c01-v1">US-C01 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want to read a clear privacy policy
+explaining what data UNI collects and why, so that I can make an
+informed decision about using the site.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>/polityka-prywatnosci</code>
+is linked in the footer of every public page</label></li>
+<li><label><input type="checkbox" />The policy covers all processing
+activities: session cookies, first-party analytics events, PostHog
+(EU-hosted), and email contact</label></li>
+<li><label><input type="checkbox" />For each processing purpose the
+policy states: data collected, legal basis (Art 6 GDPR), retention
+period, and whether a DPA with a sub-processor applies</label></li>
+<li><label><input type="checkbox" />The policy discloses that PostHog is
+used and that it is hosted in the EU (Frankfurt)</label></li>
+<li><label><input type="checkbox" />GDPR Art 13 compliance: controller
+identity, DPO contact (or “no DPO appointed”), and right to lodge a
+complaint with UODO are all present</label></li>
+<li><label><input type="checkbox" />The document is written in plain
+Polish — no legal jargon without explanation</label></li>
+<li><label><input type="checkbox" />The <code>&lt;title&gt;</code> and
+<code>&lt;meta description&gt;</code> on the page are unique and
+descriptive</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-c02-v1.5">US-C02 <code>[V1.5]</code></h3>
+<p><strong>As a User</strong>, I want to download a copy of all personal
+data UNI holds about me, so that I can exercise my GDPR right to data
+portability.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />A “Pobierz moje dane” button is
+available at <code>/profil/dane</code> for authenticated
+users</label></li>
+<li><label><input type="checkbox" />The generated JSON file contains:
+account fields (name, email, created_at), saved venues (venue_id, name,
+saved_at), and submitted inaccuracy reports (venue_id, category,
+submitted_at)</label></li>
+<li><label><input type="checkbox" />Raw analytics event data is excluded
+— those events are anonymised and not attributable to the
+user</label></li>
+<li><label><input type="checkbox" />The download is triggered
+immediately on button click; no email is sent and no delay is
+imposed</label></li>
+<li><label><input type="checkbox" />The action is logged with the user’s
+ID and timestamp</label></li>
+<li><label><input type="checkbox" />The JSON file is named
+<code>uni-moje-dane-YYYY-MM-DD.json</code></label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-c03-v1">US-C03 <code>[V1]</code></h3>
+<p><strong>As the site operator</strong>, I want all session cookies to
+be classified as strictly necessary and disclosed in the privacy policy,
+so that UNI does not require a cookie consent banner.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The only cookies set in V1 are:
+<code>laravel_session</code> (session management) and the CSRF token
+cookie</label></li>
+<li><label><input type="checkbox" />PostHog client-side JavaScript is
+not loaded in any page response — no PostHog cookie is set</label></li>
+<li><label><input type="checkbox" />The privacy policy explicitly names
+both cookies, their purpose, and their expiry</label></li>
+<li><label><input type="checkbox" />No third-party marketing or tracking
+cookies are set from any page on the public site</label></li>
+<li><label><input type="checkbox" />No consent management platform (CMP)
+or cookie banner is shown to users in V1</label></li>
+<li><label><input type="checkbox" />If PostHog client-side JS is ever
+added in future, a consent gate must be implemented before that change
+goes live</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-c04-v1">US-C04 <code>[V1]</code></h3>
+<p><strong>As a Visitor</strong>, I want a way to request erasure of
+venue data about my business, so that I can exercise the right to be
+forgotten if my venue is listed without my consent.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" />The privacy policy discloses a
+contact email address for erasure requests (Art 17 GDPR)</label></li>
+<li><label><input type="checkbox" />The backend
+<code>venue_erasure_requests</code> table exists and is ready to store
+requests</label></li>
+<li><label><input type="checkbox" />In V1, the public UI is email-only —
+there is no self-service erasure form on the public site</label></li>
+<li><label><input type="checkbox" />Erasure requests received by email
+are processed within 30 days per GDPR Art 17</label></li>
+<li><label><input type="checkbox" />A self-service erasure request form
+at <code>/lokal/usun</code> is a V1.5 deliverable</label></li>
+<li><label><input type="checkbox" />The privacy policy notes the 30-day
+processing window and the right to escalate to UODO if the deadline is
+missed</label></li>
+</ul>
+</details>
+<hr />
+<h3 id="us-c05-v1">US-C05 <code>[V1]</code></h3>
+<p><strong>As the site operator</strong>, I want AI training and
+citation crawlers explicitly blocked in <code>robots.txt</code>, so that
+UNI’s proprietary venue data cannot be used without authorisation.</p>
+<details>
+<summary>
+Acceptance Criteria
+</summary>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>robots.txt</code> contains
+<code>Disallow: /</code> blocks for at minimum these 13 user-agents:
+ChatGPT-User, PerplexityBot, GoogleExtended, ClaudeBot,
+Applebot-Extended, CCBot, GPTBot, anthropic-ai, Bytespider, omgili,
+Diffbot, Timpibot, YouBot</label></li>
+<li><label><input type="checkbox" />Standard search bots are explicitly
+allowed: Googlebot, Bingbot, Applebot (non-extended),
+DuckDuckBot</label></li>
+<li><label><input type="checkbox" /><code>robots.txt</code> is served
+with <code>Content-Type: text/plain</code> and HTTP 200</label></li>
+<li><label><input type="checkbox" />The honeypot endpoint
+<code>/export/venues.json</code> returns HTTP 403 for all requests and
+logs the requesting IP and User-Agent to a dedicated
+<code>scraper_detections</code> log</label></li>
+<li><label><input type="checkbox" />Canary venues
+(<code>is_canary = true</code>) are never included in any public HTML,
+JSON response, or sitemap entry — even when directly requested by
+slug</label></li>
+</ul>
+</details>
+</body>
+</html>
