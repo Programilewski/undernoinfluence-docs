@@ -33,6 +33,16 @@ It calls `ProducerSeeder`, `ProductSeeder` and `FakeVenueSeeder` — six produce
 
 `VenueTableSeeder` is deliberately not called: it creates twenty venues of its own with no districts and no coordinates, which duplicates `FakeVenueSeeder` and produces venues the activation gate would keep offline anyway.
 
+## The dev-dependency wall, found the same day
+
+`FakeVenueSeeder` builds venues through `Venue::factory()`, factories call `fake()`, and `fake()` only exists when `fakerphp/faker` is loaded — **a dev dependency.** So on any `composer install --no-dev`, which is what a production-shaped install is, the seeder dies with `Call to undefined function Database\Factories\fake()`, thrown from a factory, saying nothing about the install that caused it.
+
+On the home server this is a non-problem: that box exists for *using* the application, so `composer install` without `--no-dev` is fine and costs nothing.
+
+**It is a real problem for staging**, which is production-shaped *and* [[decisions/product/staging-is-seeded-never-copied]] — seeded by definition. Two ways out when that day comes, and neither is urgent now: make the demo seeder deterministic and faker-free, which also makes the data reproducible so the venue you looked at yesterday is still there today; or accept dev dependencies on staging and lose part of the parity that is staging's only purpose. **The first is almost certainly right**, and it is a rewrite of one seeder rather than a design change.
+
+For now `DemoDataSeeder` checks for faker and says exactly what is missing and what to run.
+
 ## Rules
 
 - Invented data may exist in local, on the home server, and on staging. It may never exist in production, and the guard is `isProduction()` rather than a list of environment names — a list is a thing somebody forgets to add to.
