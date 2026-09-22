@@ -272,7 +272,19 @@ chmod +x ~/uni-docs.git/hooks/pre-commit
 
 **`core.hooksPath` is per-clone, not part of the repository**, so the one command has to be run again on the server and on any future clone. That is why it is also a line in the deploy checklist rather than only here.
 
-**B5. Prove the application repository from scratch.** Clone it into a temporary directory, `composer install && npm install && php artisan test`. Until that passes, the old repository is still the source of truth and nothing about it changes.
+**B5. Prove the application repository from scratch. ✅ 22.09** Clone it into a temporary directory and run the whole sequence, in this order:
+
+```bash
+composer install            # post-autoload-dump republishes the Filament assets
+cp .env.example .env && php artisan key:generate
+# set DB_PASSWORD in .env — .env.example ships it empty, by design
+npm install && npm run build
+php artisan test            # 1040 pass
+```
+
+**`npm run build` is not optional, and leaving it out is how this step earned its place.** Views call `@vite`, so without `public/build/manifest.json` every rendering test fails with `ViteManifestNotFoundException` — 261 of them. It is invisible on a development machine that has ever run `npm run dev`, because the leftover `public/hot` file makes Laravel point at the dev server and skip the manifest entirely. `composer run test` gets this right; a bare `php artisan test` does not. Deploy-checklist C2 and C3 are the production half of the same fact.
+
+**What this step found, which is the reason it exists:** `.env.example` shipped `BACKUP_NOTIFICATION_EMAIL=` empty against a config default, so `env()` returned `''`, spatie/laravel-backup rejected the address and **every artisan command threw before it could run**. A production box built from `.env.example` — which is this project's documented procedure — could not have run `migrate` or `schedule:run`. Fixed and pinned by two tests on 22.09.
 
 **B6. Archive the old repository — renamed to `uni-archive` on 22.09.2026, at `Programilewski/uni-archive`.** GitHub's Archive setting, kept private, its URL written into the workspace `README.md`. **Archive last, not first:** the setting makes a repository read-only, and until B5 has proved the new repository builds from a clean clone the old one is still the fallback you may need to push to. Archived rather than deleted: the history is the only record of early decisions that never reached a journal. Decide about deletion separately, once the new repositories have been the working ones long enough to trust.
 
