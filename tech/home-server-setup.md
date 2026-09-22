@@ -14,7 +14,7 @@ status: runbook — written before the first run. Every step has a check; if a c
 
 | Requirement | Why, and what was checked |
 |---|---|
-| **PHP ≥ 8.3** | `composer.json` requires `^8.3`, not 8.5. Ubuntu 24.04's stock PHP 8.3 is enough — no third-party repository needed. Plus the extensions Laravel always needs: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `pdo_pgsql`, `gd` |
+| **PHP ≥ 8.4.1 — and Ubuntu 24.04's stock 8.3 is not enough** | **Read the lock file, not `composer.json`.** `composer.json` declared `^8.3` on 22.09 while `composer.lock` demanded `>=8.4.1` through symfony 8.1 and spatie/crawler, and `composer install` refused with twenty-two conflicts on a box that had already been provisioned. `composer.json` now says `^8.4.1` and a test keeps the two honest. Install 8.5 from `ppa:ondrej/php` to match the laptop exactly. Extensions: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `gd` |
 | **PostgreSQL** | Any recent version. **No PostGIS**: the migrations use `decimal(9,6)` for coordinates and the only extension in the live database is `plpgsql`. An earlier note assumed PostGIS parity was needed; it is not |
 | **No Redis** | The queue driver is `database`. Sessions and cache can stay on the database or file driver here |
 | **Node** | **Not on the server.** Assets are built off the box (checklist C2) and shipped. A Vite build competing with Postgres for memory is how a deploy kills a database |
@@ -93,16 +93,19 @@ Now install the stack. Inside the container:
 
 ```bash
 # ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
-apt update && apt install -y \
-  php8.3-fpm php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip \
-  php8.3-bcmath php8.3-intl php8.3-pgsql php8.3-gd \
+apt update && apt install -y software-properties-common
+add-apt-repository -y ppa:ondrej/php && apt update
+apt install -y \
+  php8.5-fpm php8.5-cli php8.5-mbstring php8.5-xml php8.5-curl php8.5-zip \
+  php8.5-bcmath php8.5-intl php8.5-pgsql php8.5-gd \
   postgresql nginx supervisor git unzip curl
+update-alternatives --set php /usr/bin/php8.5
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-Everything there is stock Ubuntu 24.04 — **no third-party PHP repository is needed**, because the application requires `^8.3` and 8.3 is what 24.04 ships.
+**A third-party PHP repository is needed, and an earlier version of this runbook said otherwise.** Ubuntu 24.04 ships PHP 8.3; the locked dependencies demand 8.4.1 or newer. 8.5 is chosen over 8.4 to match the laptop exactly, so "it works here" means something. If ondrej has no 8.5 for noble, 8.4 satisfies the lock — and then every `php8.5-fpm.sock` below becomes `php8.4-fpm.sock`.
 
-**Check:** `php -v` prints 8.3.x, `php -m | grep pdo_pgsql` prints a line, and `composer -V` works. If `pdo_pgsql` is missing nothing later will work, and the failure will present as a database problem rather than a missing extension.
+**Check:** `php -v` prints 8.5.x, `php -m | grep pdo_pgsql` prints a line, and `composer -V` works. If `pdo_pgsql` is missing nothing later will work, and the failure will present as a database problem rather than a missing extension.
 
 **One difference from the laptop, deliberately accepted:** Ubuntu 24.04 ships PostgreSQL 16 and the laptop runs 18.6. For this environment that is fine — the schema uses nothing version-specific, no PostGIS, no extensions beyond `plpgsql`. Staging is where version parity has to be real, and staging will match whatever production runs.
 
@@ -220,7 +223,7 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.5-fpm.sock;
     }
 
     # Nothing outside public/ is ever served.
