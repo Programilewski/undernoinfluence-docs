@@ -195,9 +195,26 @@ Copy `.env.example` and change only what the environment demands: `APP_ENV`, `AP
 
 ```bash
 # ==== ON THE LAPTOP ====
-# on the laptop, on the tag
 npm ci && npm run build
-incus file push -r public/build uni/var/www/undernoinfluence/public/     # or rsync via the host
+tar -czf ~/uni-assets.tgz -C public build vendor map-styles
+scp ~/uni-assets.tgz you@homeserver:/tmp/
+```
+
+**Three directories, not one.** `public/build` is the Vite output. `public/vendor/maplibre-gl/<version>/` is the map library itself, copied out of `node_modules` by vite.config.js's `vendorMapLibre` plugin at build time and **gitignored**, so no clone has it. `public/map-styles` is tracked and will already be present, but including it costs nothing and removes a thing to remember.
+
+**Shipping only `build/` was done on 22.09, and produced a site where every page rendered correctly and every map was blank.** `map-loader.js` fetches `/vendor/maplibre-gl/<version>/maplibre-gl.mjs`; it got a 404, which appears in the browser console and **nowhere on the server**.
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+incus file push /tmp/uni-assets.tgz uni/tmp/
+```
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+tar -xzf /tmp/uni-assets.tgz -C /var/www/undernoinfluence/public
+chown -R uni:www-data /var/www/undernoinfluence/public
+ls public/build/manifest.json
+ls public/vendor/maplibre-gl/*/maplibre-gl.mjs
 ```
 
 **Confirm `public/hot` does not exist on the server.** If it does, Laravel emits asset URLs pointing at a Vite dev server that is not there, and every page renders unstyled **with nothing in the log** (checklist C3). This is the same fact that made the test suite lie on 22.09.
@@ -215,7 +232,9 @@ That publishes the container on your tailnet over **real HTTPS with a valid cert
 
 Set `APP_URL` in `.env` to that HTTPS name, and `SESSION_SECURE_COOKIE=true` with it.
 
-**Check:** the site opens on your phone, over mobile data, at an `https://` address, and the consent decision survives a reload.
+**Check:** the site opens on your phone, over mobile data, at an `https://` address, the consent decision survives a reload, **and a map draws**. The first three can all pass while the map is dead, which is why it is named separately.
+
+The basemap tiles come from OpenFreeMap over the public internet, so a blank map with the library present means the phone has Tailscale but no working internet — a different problem from a 404 on the library, and the browser console tells them apart.
 
 ### 5a. nginx in front of PHP-FPM
 
