@@ -31,7 +31,7 @@ The canonical list: decision records whose `Executed:` line is not a date. Twelv
 | `research-files-out-of-the-repo` | **executed 22.09** | Done in session A, step A3. Both spreadsheets and all four `reference/` subdirectories are at `~/uni-reference/`, out of git and out of Syncthing; ten conflict copies deleted. [[tech/reference-material]] records what went where |
 | `transactional-email-provider` | **no** | Scaleway TEM decided 29.06, never configured. Deploy checklist B2, B3 |
 | `backup-storage-provider` | **partly** | Job, encryption guard, 7 + 4 rotation, schedule and monitor built 18.09; restore rehearsed on the laptop. Left: object lock + its default retention + lifecycle rules on the bucket, the `BACKUP_*` values in Ploi, the first upload from the server, a restore from a real archive. Deploy checklist A6 |
-| `staging-is-seeded-never-copied` | **no** | Staging does not exist. Written before it does, deliberately |
+| `staging-is-seeded-never-copied` | **no** | Staging does not exist, and 22.09 gave it a trigger rather than a date: the first migration that could damage real data, i.e. once production has venues worth protecting. Until then the home server catches the same class of problem for nothing. [[decisions/product/three-environments-and-what-each-is-for]] |
 | `admin-access-is-three-layers` | **partly** | Panel closed; nginx allowlist, TOTP and the failure counter are deploy and pre-launch steps |
 | `search-presence-and-impression-are-different-numbers` | **partly** | Match and presence recorded; impression still PostHog-only |
 | `venue-lists-are-never-sold-as-leads` | **partly** | Nothing sells lists; the public commitment is not on the privacy policy |
