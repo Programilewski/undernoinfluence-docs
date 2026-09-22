@@ -126,30 +126,51 @@ Two names, environment first — `preprod_uni` and `preprod_uni_app` — for the
 
 **Check:** `psql -U preprod_uni_app -h 127.0.0.1 -d preprod_uni -c 'select 1;'` returns a row.
 
-### 3. The code
+### 3. A deploy user, then the code
 
-The repository is private, so the container needs its own read-only key rather than your personal one:
+**Not as root.** Composer says so itself and it is right: `composer install` runs `post-autoload-dump`, which writes into `bootstrap/cache`, and as root those files end up root-owned. php-fpm runs as `www-data` and then cannot write them — which surfaces much later as a permissions error that looks like nothing to do with this step. Production under Ploi uses a dedicated deploy user too, so this is parity for free.
 
 ```bash
 # ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+adduser --disabled-password --gecos "" uni
+usermod -aG www-data uni
+mkdir -p /var/www && chown uni:www-data /var/www
+```
+
+The repository is private, so the box needs its own read-only key rather than your personal one:
+
+```bash
+# ==== INSIDE THE CONTAINER, as the uni user ====
+su - uni
 ssh-keygen -t ed25519 -C "uni-homeserver" -f ~/.ssh/id_ed25519 -N ""
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Add that public key to **the `undernoinfluence` repository → Settings → Deploy keys**, read-only, *not* to your account. A deploy key reaches one repository; an account key reaches everything you own, and this box is the one that may be broken freely.
+Add that public key to **the `undernoinfluence` repository → Settings → Deploy keys**, read-only, *not* to your account. A deploy key reaches one repository; an account key reaches everything you own, and this is the box that may be broken freely.
 
 ```bash
-# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
-mkdir -p /var/www && cd /var/www
+# ==== INSIDE THE CONTAINER, as the uni user ====
+cd /var/www
 git clone git@github.com:Programilewski/undernoinfluence.git undernoinfluence
 cd undernoinfluence
-git checkout v0.1.0          # a tag, never a branch
+git checkout v0.1.0
 composer install --no-dev --optimize-autoloader
 ```
 
-**The tag, not the branch** ([[decisions/product/a-release-is-a-tag-deployed-from-git]]). If no tag exists yet, make one on the laptop first — that is what this environment is deploying, and "whatever `main` was at the time" is not a thing you can redeploy later.
+**The tag, not the branch** ([[decisions/product/a-release-is-a-tag-deployed-from-git]]). `v0.1.0` was cut on 22.09 and is the first release tag the project has had.
 
-**Check:** `git describe --tags` names the tag you meant.
+**Check:** `git describe --tags` prints `v0.1.0`, and `composer install` completes without the root warning.
+
+**Then the writable directories**, back as root — php-fpm is `www-data` and needs to write these two and only these two:
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+chown -R uni:www-data /var/www/undernoinfluence
+find /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache -type d -exec chmod 2775 {} \;
+find /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache -type f -exec chmod 664 {} \;
+```
+
+`2775` sets the setgid bit, so files created later keep the `www-data` group instead of reverting to `uni` and breaking again on the next deploy.
 
 ### 4. `.env`
 
@@ -209,9 +230,10 @@ server {
 
 ```bash
 # ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
-chown -R www-data:www-data /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache
 nginx -t && systemctl reload nginx
 ```
+
+Ownership was set in step 3; nothing here needs `chown`.
 
 **`root` points at `public/`, not at the project directory.** Pointed one level up, `.env` is downloadable over HTTP — the single most common way a Laravel application leaks its database credentials.
 
