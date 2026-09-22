@@ -49,7 +49,32 @@ incus exec uni -- bash                  # you are now inside the container
 
 **Check:** `incus list` shows `uni` RUNNING with an IPv4 address. Note that address — the host reaches the container on it, and step 5 needs it.
 
-Inside the container:
+**Before anything inside the container: Docker has broken its network, and it does this every time.**
+
+Docker sets the iptables `FORWARD` chain policy to `DROP`. The container gets an address and DNS resolves — that is the bridge's own dnsmasq, which is not forwarded — so names turn into IP addresses and then **every connection times out**. It looks like a broken mirror or a DNS problem and is neither.
+
+On the host:
+
+```bash
+sudo iptables -S FORWARD | head -1          # expect: -P FORWARD DROP
+incus network list                          # confirm the bridge is incusbr0
+sudo iptables -I DOCKER-USER -i incusbr0 -j ACCEPT
+sudo iptables -I DOCKER-USER -o incusbr0 -j ACCEPT
+sudo apt install -y iptables-persistent     # accept the prompt to save
+sudo netfilter-persistent save
+```
+
+`DOCKER-USER` is the chain Docker guarantees it will never overwrite — that is what it exists for — so this does not fight Docker and does not touch the running apps. **Without `iptables-persistent` the rules vanish at the next reboot** and the container silently loses the internet again.
+
+The container also has no IPv6 route, so apt tries nine v6 addresses before each v4 one. Inside the container:
+
+```bash
+echo 'Acquire::ForceIPv4 "true";' > /etc/apt/apt.conf.d/99force-ipv4
+```
+
+**Check, inside the container:** `ping -c1 1.1.1.1` answers and `curl -sSI https://archive.ubuntu.com | head -1` returns a status line. If ping works and curl does not, it is DNS rather than forwarding — look at `/etc/resolv.conf` next.
+
+Now install the stack. Inside the container:
 
 ```bash
 apt update && apt install -y \
