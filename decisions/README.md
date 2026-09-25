@@ -57,6 +57,8 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/every-process-that-writes-the-log-shares-a-umask]] | Every process writing into `storage/` runs with umask 0002, set at each writer; setgid decides the group, the umask decides whether that group may write | Decided, executed 25.09 |
+| [[decisions/product/a-queued-job-waits-it-is-not-lost]] | Queued work waits in a table and is delivered when a worker runs; the recovery from a dead worker is to start it, never to re-send by hand | Decided, executed 25.09 |
 | [[decisions/product/menu-spellings-are-confirmed-not-guessed]] | Menus import as written; a row attaches only on a confirmed spelling or a unique exact name; strength claims ("0,0", "free") are never stripped | Decided, executed 14.09 |
 | [[decisions/product/sessions-hold-no-ip-address]] | Production sessions in files, so no visitor IP address or browser string is stored; the policy describes the configured driver | Decided, executed 14.09 |
 | [[decisions/product/actions-own-their-side-effects]] | An action does everything its operation owes — the change, the audit record and the e-mail after commit; the button that calls it only reports the result | Decided, executed 13.09 |
