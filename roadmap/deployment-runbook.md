@@ -126,9 +126,10 @@ Host uni-prod-bootstrap
 
 `gh` is used only by the tag guard (4.4), to ask GitHub whether the tagged commit's CI run passed:
 
+**Installed 29.09** to `~/.local/bin/gh` (2.101.0, from GitHub's release, checksum verified — no `sudo` needed). What is left is the login, which needs you in a browser:
+
 ```bash
 # ==== PC ====
-sudo dnf install -y gh
 gh auth login                                  # GitHub.com → SSH → the existing key → browser login
 gh auth status
 ```
