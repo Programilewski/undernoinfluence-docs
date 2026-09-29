@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-28
 **Status:** Decided
-**Executed:** no — the plan is in Phases 0–8 of the next session's deployment plan
+**Executed:** partly — the playbook, `deploy.php` and the CI workflow exist in the application and were proved against an Ubuntu 26.04 stand-in on 29.09 (deployment runbook, Phases 1, 2, 4, 6); no real server has been provisioned or deployed to yet
 **Supersedes:** the Ploi half of the 14.09 hosting choice (OVH VPS-1 stays)
 **Area:** Infrastructure | Process
 
