@@ -18,10 +18,12 @@ Two things, and only two.
 **The cron line** — one entry, which runs Laravel's scheduler every minute and lets it decide what is due:
 
 ```
-* * * * * cd /var/www/undernoinfluence && php artisan schedule:run >> /dev/null 2>&1
+* * * * * www-data umask 0002; cd /var/www/undernoinfluence/current && php artisan schedule:run >> /dev/null 2>&1
 ```
 
-**The queue worker** — `supervisor/uni-worker.conf`, two processes of `queue:work database`, autostarted and autorestarting. `QUEUE_CONNECTION=database`, so the queue is a table and needs no Redis. **Set `user=` to the web user this host actually has before loading the file:** the conf says `www-data`, which exists on Debian and Ubuntu and not on Fedora or RHEL, and a wrong value fails silently until a queued job never runs (deploy checklist A3).
+*Updated 29.09:* this is the `/etc/cron.d/uni` form the Ansible playbook writes (`roles/worker`), so it carries a user field — `www-data`, the same user as PHP-FPM and the worker — and the inline `umask 0002` from the every-process-that-writes-the-log-shares-a-umask record. It runs from `current/`, the symlink Deployer switches. Nobody installs it by hand any more.
+
+**The queue worker** — two processes of `queue:work database`, autostarted and autorestarting, under supervisor as `www-data` with `umask=0002`. `QUEUE_CONNECTION=database`, so the queue is a table and needs no Redis. *Updated 29.09:* the config is no longer `supervisor/uni-worker.conf` in the repository but the playbook's template `ansible/roles/worker/templates/uni-worker.conf.j2`, which runs `current/artisan` and logs to `shared/storage/logs/worker.log` — the old file hard-coded the pre-Deployer layout and would have failed silently on a fresh box.
 
 ## The schedule, as it stands today
 

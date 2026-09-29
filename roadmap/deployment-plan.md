@@ -16,6 +16,8 @@ status: plan — nothing here is executed yet. It executes the servers-are-built
 
 ## Findings raised while writing this
 
+> **29.09 — the commands are in `deployment-runbook.md`**, step numbers matching this document. Where the two disagree the runbook is newer: its Findings 1–6 supersede this document's Finding 4 (no GitHub key on any server — Deployer uploads the tag from the PC) and step 2.3 (Ansible connects as a separate `admin` user; `deploy` keeps its one sudo line), and add the `/admin` allowlist this plan left out.
+
 These were found by reading the application against the plan, not asked about. Ranked by consequence.
 
 1. **`supervisor/uni-worker.conf` hard-codes the old layout.** Its `command` runs `/var/www/undernoinfluence/artisan` and its log goes to `/var/www/undernoinfluence/storage/logs/worker.log`. Under Deployer the code lives in `current/`, so the worker would fail to start on a fresh box — silently, which is what the file's own comments warn about. The playbook templates this file from inventory variables (Phase 2), and the copy in the repository is either deleted or reduced to a pointer to the template, so there is one source of truth rather than two that drift.

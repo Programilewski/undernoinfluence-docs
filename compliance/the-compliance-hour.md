@@ -15,15 +15,15 @@ Two of its items close gaps that exist *right now* on a page that is already pub
 
 | # | Item | What it actually involves | Min | Done |
 |---|---|---|---|---|
-| 1 | **Ploi DPA** | E-mail `info@ploi.io` requesting one — they confirmed on their Discord that they offer it. File the request and the reply in `vendors/`. They hold root on a box that will hold claim contact details, so this is Art. 28, not diligence theatre | 10 | ☐ |
+| 1 | **OVH DPA** | *Was the Ploi DPA until 29.09 — Ploi was dropped on 28.09 (servers-are-built-and-deployed-from-the-pc-without-a-panel), so no panel operator holds access any more.* OVH hosts the box that will hold claim contact details: its data-processing agreement is part of its contract terms, so the job is to download it from the OVH customer area and file it in `vendors/`, not request it | 10 | ☐ |
 | 2 | **PostHog DPA** | Generate it in the PostHog dashboard — a self-serve form — and file it. **PostHog is already named in the published privacy policy**, so this is a live gap | 10 | ☐ |
 | 3 | **Scaleway DPA** | Already a processor: Transactional E-Mail handles recipient addresses today, and will hold backups later. Their DPA is published in their terms — the job is to record it, not request it | 5 | ☐ |
 | 4 | **`ropa.md` retention column** | Every processing activity currently reads `Retention: TODO` while the code enforces real windows. Fill from the table below | 15 | ☐ |
-| 5 | **The three registers** | `vendors/`, `dpa/`, `incidents/` are templates. `vendors/README.md` is worse than empty — it carries placeholder rows reading "Hosting provider / TODO / TBD". Real entries: OVH, Ploi, Scaleway (mail + storage), PostHog, OpenFreeMap, Healthchecks.io | 15 | ☐ |
+| 5 | **The three registers** | `vendors/`, `dpa/`, `incidents/` are templates. `vendors/README.md` is worse than empty — it carries placeholder rows reading "Hosting provider / TODO / TBD". Real entries: OVH, Scaleway (mail + storage), PostHog, OpenFreeMap, Healthchecks.io | 15 | ☐ |
 | 6 | **DPIA: decide and write one line** | My read is **no DPIA required** — no large-scale special-category data, no systematic monitoring of a public space, no profiling with legal effect. "We considered it and concluded no, for these reasons" is defensible; "we never considered it" is not | 5 | ☐ |
 | 7 | **GDPR audit's dead citations** | `audits/gdpr.md` cites five files that were deleted. It is the document you would hand to somebody who asked | 5 | ☐ |
 | 8 | **`cis.md` and `nis2.md` Tailscale claims** | Both describe Tailscale protecting the admin panel **in the present tense**, on a production server that does not exist. Change to a planned control | 5 | ☐ |
-| 9 | **Privacy policy: name the recipients** | It names no host, no panel operator and no storage provider. Add **OVH**, **Ploi** and **Scaleway**. An undisclosed recipient is a live gap on a published page and a standard audit finding | 5 | ☐ |
+| 9 | **Privacy policy: name the recipients** | It names no host and no storage provider. Add **OVH** and **Scaleway** (mail and storage). No panel operator exists since 28.09, so none is named. An undisclosed recipient is a live gap on a published page and a standard audit finding | 5 | ☐ |
 
 ## Retention, for item 4
 

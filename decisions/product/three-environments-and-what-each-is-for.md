@@ -30,7 +30,7 @@ Two environments, as INFRA-01 decided — local and production, with migrations 
 
 **4. Production.** The only one with real venues and real visitors.
 
-**The home server keeps its existing roles.** n8n and restic are working and are not disturbed: the application goes in an Incus **system container**, deliberately not Docker, which is what INFRA-01 itself prescribed for the day it was revisited — production is bare Ubuntu under Ploi, and parity is the point.
+**The home server keeps its existing roles.** n8n and restic are working and are not disturbed: the application goes in an Incus **system container**, deliberately not Docker, which is what INFRA-01 itself prescribed for the day it was revisited — production is bare Ubuntu 26.04 provisioned by the same Ansible playbook as the container, and parity is the point (updated 29.09: Ploi was dropped on 28.09, see servers-are-built-and-deployed-from-the-pc-without-a-panel).
 
 **Staging is not built yet, and does not need to be for the home server to happen.** Its trigger is the first migration that could damage real data — which is to say, once production has venues worth protecting. Before that, the home server catches the same class of problem for nothing, since it already exists and runs continuously.
 
