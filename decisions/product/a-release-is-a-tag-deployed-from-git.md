@@ -38,8 +38,8 @@ Copy the verified tree from staging to production. Deploy each environment from 
 
 ## Rules
 
-- Production deploys a tag. Never a branch, never a copied directory, never an rsync from another environment.
-- **Built assets are produced off the box** (deploy checklist C2) from the tagged commit, and the same artifact is shipped to each environment — not staging's copy of it. A Vite build on a 4 GB VPS can OOM-kill Postgres mid-deploy, which is why it never happens there.
+- Production deploys a tag. Never a branch, never a copied directory, never an rsync from another environment. **Ploi's documented deploy script does `git pull origin main`** — a branch — so that line is rewritten before the first deploy (checklist C9).
+- **Built assets are produced off the box** (deploy checklist C2) from the tagged commit, and the same artifact is shipped to each environment — not staging's copy of it. *Corrected 28.09:* this rule originally rested on a Vite build OOM-killing Postgres on a 4 GB VPS. Measured, the build peaks at ~370 MB and `npm ci` at ~530 MB against roughly 2.5 GB free, so memory is not the reason — the reasons that remain are one artifact for every environment and no Node runtime on production. Whether to keep this rule is open in deploy-checklist C2.
 - `.env` is per environment, is never copied between them, and its secrets are generated on the box that uses them (checklist A7).
 - **A rollback is deploying the previous tag**, not restoring a directory. If a rollback cannot be expressed as a tag, the deploy was not a release.
 - Nothing is hand-edited on a server. A fix is a commit, a tag, and a deploy, even when that feels slower at the time — especially then.

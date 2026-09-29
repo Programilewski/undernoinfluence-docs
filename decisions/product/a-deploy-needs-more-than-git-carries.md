@@ -21,7 +21,7 @@ Track the built artifacts in git. Build on the server so they are regenerated. E
 
 ## Decision
 
-**What git carries and what a deploy needs are two different sets, and the difference is enumerated in the runbook rather than remembered.** For UNI that difference is three directories — `public/build`, `public/vendor/maplibre-gl/` and `public/map-styles` — shipped together as one bundle.
+**What git carries and what a deploy needs are two different sets, and the difference is enumerated in the runbook rather than remembered.** For UNI that difference is three directories — `public/build`, `public/vendor/maplibre-gl/` and `public/map-styles` — shipped together as one bundle. *Checked 28.09:* three more gitignored paths exist — `public/css/filament`, `public/js/filament` and `public/fonts/filament` — but they do **not** need shipping: `composer install` runs `filament:upgrade` from `post-autoload-dump`, which republishes them on the box.
 
 **And a 200 is not proof that an asset works.** The check curls the `Content-Type`, because a file served with the wrong type succeeds at every layer except the one that matters.
 
@@ -35,7 +35,7 @@ Prevents a catalogue whose maps are blank while every health check passes — th
 
 ## Revisit when
 
-Assets are built on the server as part of the deploy, which regenerates the vendored library and makes the enumeration unnecessary — a live tension, since checklist C2 forbids building on a 4 GB box and that is the shape of the hosting decision this waits on.
+Assets are built on the server as part of the deploy, which regenerates the vendored library and makes the enumeration unnecessary. *28.09:* this was held back by checklist C2's claim that a build would OOM-kill Postgres on a 4 GB box; measured, the build peaks at ~370 MB and fits with about 2.5 GB to spare, so C2 is now an open choice rather than a prohibition.
 
 ---
 

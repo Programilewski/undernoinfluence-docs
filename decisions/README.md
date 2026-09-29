@@ -57,6 +57,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/servers-are-built-and-deployed-from-the-pc-without-a-panel]] | No panel: Ansible from the PC provisions the home server and the VPS alike, Deployer 8 deploys tags to both; supersedes the Ploi half of the 14.09 hosting choice | Decided 28.09 |
 | [[decisions/product/every-process-that-writes-the-log-shares-a-umask]] | Every process writing into `storage/` runs with umask 0002, set at each writer; setgid decides the group, the umask decides whether that group may write | Decided, executed 25.09 |
 | [[decisions/product/a-queued-job-waits-it-is-not-lost]] | Queued work waits in a table and is delivered when a worker runs; the recovery from a dead worker is to start it, never to re-send by hand | Decided, executed 25.09 |
 | [[decisions/product/menu-spellings-are-confirmed-not-guessed]] | Menus import as written; a row attaches only on a confirmed spelling or a unique exact name; strength claims ("0,0", "free") are never stripped | Decided, executed 14.09 |

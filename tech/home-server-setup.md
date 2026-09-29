@@ -1,6 +1,6 @@
 ---
 owner: Paweł Milewski
-updated: 2026-09-22
+updated: 2026-09-28
 status: runbook — written before the first run. Every step has a check; if a check fails, stop there rather than continuing
 ---
 
@@ -17,7 +17,7 @@ status: runbook — written before the first run. Every step has a check; if a c
 | **PHP ≥ 8.4.1 — and Ubuntu 24.04's stock 8.3 is not enough** | **Read the lock file, not `composer.json`.** `composer.json` declared `^8.3` on 22.09 while `composer.lock` demanded `>=8.4.1` through symfony 8.1 and spatie/crawler, and `composer install` refused with twenty-two conflicts on a box that had already been provisioned. `composer.json` now says `^8.4.1` and a test keeps the two honest. Install **8.4** from `ppa:ondrej/php` — that PPA has no 8.5 for noble as of 22.09.2026, checked rather than assumed the second time. Extensions: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `gd` |
 | **PostgreSQL** | Any recent version. **No PostGIS**: the migrations use `decimal(9,6)` for coordinates and the only extension in the live database is `plpgsql`. An earlier note assumed PostGIS parity was needed; it is not |
 | **No Redis** | The queue driver is `database`. Sessions and cache can stay on the database or file driver here |
-| **Node** | **Not on the server.** Assets are built off the box (checklist C2) and shipped. A Vite build competing with Postgres for memory is how a deploy kills a database |
+| **Node** | **Not on the server.** Assets are built off the box (checklist C2) and shipped. *28.09:* the reason given here was a Vite build competing with Postgres for memory; measured, the build peaks at ~370 MB, so memory is not the reason — one shipped artifact and no Node runtime to maintain are. C2 is open |
 | **A web server** | nginx + PHP-FPM, both stock. TLS is not nginx's job here — Tailscale terminates it (step 5) |
 | **Incus system container** | The application goes in a container so n8n and restic keep working untouched. Deliberately a system container, not Docker — production is bare Ubuntu under Ploi and parity is the point (INFRA-01's own instruction for the day it was revisited) |
 
@@ -337,6 +337,52 @@ This is the point of the environment, and it is the step most likely to be skipp
 - Open the site **on your phone, on mobile data** rather than wifi, and use the map and the filters with a thumb.
 - Check the venue page and the discovery list at phone width, in the dark palette, outdoors if you can.
 - Hand it to somebody who has never seen it and watch where they stop.
+
+## Updating to a new release
+
+Everything above is the first install. Every later deploy is this, and nothing else — checked line by line on 28.09 against the code, the vendored packages and Ploi's documentation.
+
+```bash
+# ==== ON THE PC ====
+composer run test                      # stop `npm run dev` first: a live public/hot makes the tests pass without a build (C3)
+git tag -a v0.1.N -m "v0.1.N — <what it is>"
+git push origin main v0.1.N
+git checkout v0.1.N && npm ci && npm run build \
+  && tar -czf ~/uni-assets-v0.1.N.tgz -C public build vendor map-styles && git checkout main
+scp ~/uni-assets-v0.1.N.tgz <you>@<homeserver>:/tmp/
+```
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+incus file push /tmp/uni-assets-v0.1.N.tgz uni/tmp/
+```
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) — assets first, so the new code never points at files not there yet ====
+tar -xzf /tmp/uni-assets-v0.1.N.tgz -C /var/www/undernoinfluence/public
+chown -R uni:www-data /var/www/undernoinfluence/public
+test ! -e /var/www/undernoinfluence/public/hot && echo "no hot file"
+```
+
+```bash
+# ==== INSIDE THE CONTAINER, as the uni user ====
+umask 0002                             # the 25.09 log lock-out, from the deploy shell's side
+cd /var/www/undernoinfluence
+git fetch --tags origin && git checkout v0.1.N && git describe --tags
+composer install --no-dev --optimize-autoloader --no-interaction
+php artisan migrate --force
+php artisan optimize                   # after composer: filament:upgrade clears the caches (C4)
+php artisan queue:restart              # otherwise the worker runs old code for up to an hour (C1)
+curl -s -o /dev/null -w '%{content_type}\n' http://127.0.0.1/vendor/maplibre-gl/6.9.0/maplibre-gl.mjs   # text/javascript
+```
+
+**`umask 0002` in the deploy shell** covers the one writer the 25.09 fix did not name: every `artisan` command in a deploy runs as `uni`, and if one of them logs the first line of the day it creates that day's log. *Checked on the box 28.09:* `su - uni -c umask` already prints `0002` — Ubuntu's `pam_umask` gives a user whose private group matches its name a group-writable umask on login — so through `su - uni` the line changes nothing. It stays for the other ways in: `sudo -u uni` applies sudo's own `umask` default of `0022`, combined with the user's, so a deploy run that way creates `rw-r--r--` files regardless of what the login shell would do.
+
+**Checked on the box 28.09, before the first update:** it was on `v0.1.2`, not `v0.1.3`, and it still had the dev packages (`vendor/laravel/boost` present) — the `--no-dev` above removes them on the first run, and a clean clone installed with `--no-dev` was booted and cached on the PC the same day to confirm nothing needs them. `.env.bak-20260925` sits untracked in the project root: not reachable over HTTP, since nginx's `root` is `public/`, but it is a second copy of the box's secrets inside the application tree, and it belongs outside it or deleted. The loaded worker config is `/etc/supervisor/conf.d/uni-worker.conf`, and php-fpm runs with `opcache.validate_timestamps` on, which is why the reload below is optional here.
+
+**If `supervisor/uni-worker.conf` changed in the release**, `diff` it against the loaded copy under `/etc/supervisor/conf.d/`, copy it over, and `supervisorctl reread && supervisorctl update`. **Reloading php-fpm is optional here**: PHP's default OPcache re-checks changed files every two seconds. On Ploi it is not optional (C8).
+
+**A rollback is the same sequence with the previous tag and an asset bundle built from that tag.**
 
 ## What this environment must never have
 
