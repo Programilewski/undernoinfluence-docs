@@ -48,6 +48,11 @@ Each renamed file carries a `renamed:` line in its frontmatter saying what it us
 | `commute-2026-09-16_7.md` | v9.0 | 16.09, 21:36 | `commute-2026-09-22.md`, then `_3` | 22.09 |
 | `commute-2026-09-20.md` | v10.0 | 20.09 | `commute-2026-09-20_2.md` | 21.09 |
 | `commute-2026-09-21.md` | v11.0 | 21.09 | — | 22.09 |
+| `commute-2026-09-25.md` | v12.0 | 25.09 | — | 26.09 |
+| `commute-2026-09-25_2.md` | v1.0 (own track) | 25.09 | — | any — a standing description of what UNI is, not part of the commute sequence |
+| `commute-2026-09-30.md` | v13.0 | 30.09 | — | 30.09 |
+| `commute-2026-09-30_2.md` | v1.0 (own track) | 30.09 | — | any — Ansible explained, every file in `ansible/` line by line |
+| `commute-2026-09-30_3.md` | v1.0 (own track) | 30.09 | — | any — Deployer and CI explained, `deploy.php` line by line |
 
 **Seven of the thirteen were written on 16.09** — one per session of that day, each answering the one before it. That is why the `_2` … `_7` run exists and why the old names spread across six different days in the filename.
 

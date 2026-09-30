@@ -320,7 +320,7 @@ One line. It runs ten scheduled commands:
 
 ### 8. The queue worker
 
-`supervisor/uni-worker.conf`, with `user=` set to whatever the web server actually runs as in this container. Notifications implement `ShouldQueue`: without a worker, a claim e-mail is **lost, not delayed**.
+`supervisor/uni-worker.conf`, with `user=` set to whatever the web server actually runs as in this container. Notifications implement `ShouldQueue`: without a worker, a claim e-mail **waits in the `jobs` table** and goes out when a worker starts — start the worker, never re-send by hand (the a-queued-job-waits-it-is-not-lost record).
 
 **Check:** `supervisorctl status uni-worker` shows RUNNING, and a test notification arrives.
 
