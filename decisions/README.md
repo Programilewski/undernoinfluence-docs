@@ -57,6 +57,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-server-fact-is-declared-once-and-checked-everywhere-else]] | The playbook's variables are the source of truth for server facts; every other copy (deploy recipe, CI) is tested against them, starting with the PHP version | Decided, executed 30.09 |
 | [[decisions/product/servers-are-built-and-deployed-from-the-pc-without-a-panel]] | No panel: Ansible from the PC provisions the home server and the VPS alike, Deployer 8 deploys tags to both; supersedes the Ploi half of the 14.09 hosting choice | Decided 28.09, partly executed 29.09 |
 | [[decisions/product/no-server-holds-a-github-credential]] | The PC archives the tag and uploads it (`local_archive`); no server holds a key GitHub accepts, and the old home-server deploy key is deleted with its container | Decided, executed 29.09 |
 | [[decisions/product/building-a-server-and-deploying-to-it-are-two-users]] | `admin` runs Ansible with full sudo behind a password; `deploy` runs Deployer with one right, reloading PHP-FPM | Decided, executed 29.09 |
