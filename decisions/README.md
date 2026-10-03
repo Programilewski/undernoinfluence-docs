@@ -57,6 +57,9 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/uni-grows-through-a-community-whose-contributions-are-reviewed]] | UNI becomes community-driven: anyone can propose venues and drinks or flag a change without an account, and nothing is published until the founder reviews it; V1 scope, timing and sign-in wait for the community-reciprocity research | Decided (direction) 02.10; scope open |
+| [[decisions/product/brand-outreach-waits-for-traction]] | Partnerships, the window sticker, the data report and the newsletter wait until the app and Instagram/TikTok have traction; the ideas are kept ready, each with a trigger | Decided 02.10 |
+| [[decisions/product/a-model-is-chosen-by-a-blind-test-not-by-asking-it]] | LLMs are compared on real UNI tasks with planted traps, graded blind against a key that never travels with the tasks; the per-aspect routing table waits for a clean run (the 03.10 run leaked the key) | Decided (method) 03.10; routing open |
 | [[decisions/product/a-server-fact-is-declared-once-and-checked-everywhere-else]] | The playbook's variables are the source of truth for server facts; every other copy (deploy recipe, CI) is tested against them, starting with the PHP version | Decided, executed 30.09 |
 | [[decisions/product/servers-are-built-and-deployed-from-the-pc-without-a-panel]] | No panel: Ansible from the PC provisions the home server and the VPS alike, Deployer 8 deploys tags to both; supersedes the Ploi half of the 14.09 hosting choice | Decided 28.09, partly executed 29.09 |
 | [[decisions/product/no-server-holds-a-github-credential]] | The PC archives the tag and uploads it (`local_archive`); no server holds a key GitHub accepts, and the old home-server deploy key is deleted with its container | Decided, executed 29.09 |
