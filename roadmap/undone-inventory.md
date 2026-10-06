@@ -1,7 +1,7 @@
 ---
 version: 1.0
 owner: Paweł Milewski
-updated: 2026-09-19
+updated: 2026-10-06
 status: living — the single list of what has not been done
 ---
 
@@ -55,6 +55,11 @@ Not repeated here; [`deploy-checklist.md`](deploy-checklist.md) is the list and 
 
 [`../compliance/the-compliance-hour.md`](../compliance/the-compliance-hour.md) — nine items, about 75 minutes, **deferred five times and still without a date.** Two of them close gaps that are live on a published page: PostHog is named in the privacy policy with no DPA, and no host, panel operator or storage provider is disclosed.
 
+**Inputs for the privacy policy, decided 06.10** — the policy is a draft and gets written from the app's state, never the other way round:
+
+- **nginx access and error logs: kept and disclosed, briefly.** Ubuntu's default stays (the Ansible nginx role sets no `access_log`): full IP, time, page, referrer and user agent per request, rotated daily, about 14 days. Disclosed in one or two sentences, only as much as the law requires: server logs including the IP address, for security and diagnosing faults, legitimate interest, about 14 days. No detailed description.
+- **Rate limiting: IP processed for minutes.** Rate-limiter keys are an MD5 of the IP (or IPv6 /64) in the `cache` table; expired rows are pruned every five minutes since 06.10. Disclosed the same way: abuse prevention, legitimate interest, minutes.
+
 Also open, and not in that file: `ropa.md` carries **43 `TODO`s** while the code enforces four real retention windows, and the three registers (`vendors/`, `dpa/`, `incidents/`) are still literal placeholder rows reading "Hosting provider / TODO / TBD".
 
 ## D. Repository — **closed 22.09.2026**
@@ -75,8 +80,11 @@ The four things this section tracked are all resolved: the credential is rotated
 | **Owner-side follow-ups, each with its own trigger** (19.09) | Disputes over a managed venue are handled by hand; Instagram codes are matched by eye; chains are recorded one venue at a time; owners cannot add managers. Each record names when to build it |
 | **No history of a venue's own record** | `VenueObserver` records four disputable changes since 16.09; the rest of the record is still timestamps only |
 | **Freshness pill and "Sprawdzona karta" measure different windows** (90 vs 180 days) | Settled as *explain, do not converge*; the explaining sentence is written into the FAQ but not yet on the venue page |
+| **Panel flow faults found 06.10** (`tech/change-flows.md`, findings 2–10; finding 1 is being worked on) | Each one is described there with a likely fix, taken one at a time. **2** demoting an owner in the user form leaves their venue claimed, and there is no way to take a venue from an owner short of deleting the account · **3** a retired product (`is_active` off) still shows on venue pages, counts in the score and keeps a venue live, and can still be attached · **4** deleting a product writes no offer history for the venues that carried it · **5** owner self-erasure deletes the venue listing outright instead of releasing it (Q1) · **6** approving a proposal always creates a new product, never links an existing one · **7** the owner is never told the outcome of a proposal · **8** "Oznacz jako sprawdzone" renews the badge in one unrecorded click · **9** admin attach marks a venue fresh "today" even for a menu read months ago · **10** owner contact edits, report decisions, feature flags, role changes, slug edits and claim edits are unrecorded |
 
 ## F. Small and cheap
+
+- **Verify the Nominatim geocoding in the admin panel** (added 06.10). It is still offered in the venue resource as a fallback provider, and every Nominatim response carries "Data © OpenStreetMap contributors, ODbL 1.0". Check what it writes and where against the osm-dropped and geocoding-comes-from-the-state-register records before deciding whether it stays. Not discussed yet.
 
 - **`.env` runs `SESSION_DRIVER=database`** while the decision record and `.env.example` both say `file`. Local drift only — production built from the example is correct — but it means 27 rows of `ip_address` are sitting in the local database against a record saying nothing stores one.
 - **No code-level debt markers at all** — zero TODO/FIXME/HACK across `app/`, `resources/`, `config/`, `routes/`, `database/`, `tests/`. The debt in this project lives in documents, not in the code.
