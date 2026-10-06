@@ -27,9 +27,11 @@ A contribution never changes a public page by itself: it lands in the founder's 
 
 It prevents the data going stale once the venue count outgrows one person, without handing the map to whoever submits the most — including a competitor or a brand. It also avoids the opposite mistake of building accounts and their GDPR obligations before there is a community to justify them.
 
+> **Amended 2026-10-06 — review is not a V1-only gate.** The founder: *"the founder review stays v1 and further for now. If we allow for community reports, I need to moderate them and review, we cannot simply accept it. Maybe we can automate it in the future using AI."* This is the one human step that outlives V1. Elsewhere the final system computes its badges from recorded evidence (badges-are-rules-over-recorded-evidence), and a reviewed contribution is one kind of that evidence.
+
 ## Revisit when
 
-The three research runs are assessed. That is when the V1 scope, the measured trigger for switching accounts on, and the sign-in method are decided, in their own records. Earlier only if proposals arrive faster than they can be reviewed within a published target.
+The three research runs are assessed. That is when the V1 scope, the measured trigger for switching accounts on, and the sign-in method are decided, in their own records. Earlier only if proposals arrive faster than they can be reviewed within a published target, or if AI-assisted moderation becomes good enough to take over the review.
 
 ---
 
