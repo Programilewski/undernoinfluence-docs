@@ -218,6 +218,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [prompts/nav-versus-footer.md](research/prompts/nav-versus-footer.md) | Prompt: what belongs in the nav and what in the footer. | ≤ 2026-09-22 |
 | [prompts/owner-verification.md](research/prompts/owner-verification.md) | Prompt: verifying venue owners without a phone call. | ≤ 2026-09-22 |
 | [results/analytics-self-exclusion.md](research/results/analytics-self-exclusion.md) | Result: exclude owners' own visits from billed views. | ≤ 2026-09-22 |
+| [results/classics-versus-house-drinks.md](research/results/classics-versus-house-drinks.md) | Result (Polish): classics as a curated layer over venue menu items, linked as exact or variant; the threshold, a starting list for Poland, owner gaming, owner-panel wording. | — |
 | [results/community-reciprocity-2-partial.md](research/results/community-reciprocity-2-partial.md) | Result: partial answer to the second community prompt, 02.10. | 2026-10-03 |
 | [results/community-reciprocity-run-1.md](research/results/community-reciprocity-run-1.md) | Result of run 1: how eight platforms treated their contributors. | 2026-10-03 |
 | [results/community-reciprocity-run-2.md](research/results/community-reciprocity-run-2.md) | Result of run 2: open licensing, the Polish landscape, why people contribute. | 2026-10-03 |
