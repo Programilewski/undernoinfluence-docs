@@ -69,7 +69,7 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 | Date read | yes | The day you read that menu |
 | House drink type | only for house drinks | `mocktail`, `koktajl_nolo`, `drink_spirytus_0` or `virgin_classic`. Leave empty for catalogue products |
 
-**Why the source and date are required:** they're what lets UNI say "checked, and here's where" if a visitor or an owner disputes a drink, and what tells you which menus are due for a re-check. The import refuses a drink row without them.
+**A web address is always required**, decided 07.10: a drink seen in the venue but not published anywhere online waits until it is. **Why the source and date are required:** they're what lets UNI say "checked, and here's where" if a visitor or an owner disputes a drink, and what tells you which menus are due for a re-check. The import refuses a drink row without them.
 
 ### Per product (only when a drink isn't in the catalogue yet)
 
@@ -117,6 +117,6 @@ Three CSV files, imported in this order from the admin. Each import has a button
 
 ## 8. Open
 
-- **Brand spelling.** The products import creates a brand for any spelling it doesn't know. Whether it should refuse unknown brands instead is an open question (07.10).
-- **A drink seen in person, without a published menu.** Today every drink needs a web address. Whether a dated visit can stand as a source is an open question (07.10).
+- **Brand spelling.** Decided 07.10: brands are created by hand in the admin, and the products import will refuse a brand it doesn't know (matching ignores capitals). Until that's built, the import still creates any brand as spelled, so check spelling against the brand list first.
+- **Classic drinks** (Virgin Mojito and the like): whether they become catalogue products without a brand, rather than free-text house drinks, is open (07.10). It changes how they're recorded in step 4.
 - **The menu's date isn't used yet.** Until fault 9 is fixed, every import and every "Dodaj produkt" marks the venue "Zaktualizowano dziś", whatever the date read. It must be fixed before the launch load (the backlog, Launch).
