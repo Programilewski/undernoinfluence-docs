@@ -98,6 +98,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [features/Venue Claiming.md](product/features/Venue%20Claiming.md) | How an owner claims a venue. Matches the code as of 19.09. | ≤ 2026-09-22 |
 | [features/Venue Profile.md](product/features/Venue%20Profile.md) | The venue page. Built. | ≤ 2026-09-22 |
 | [features/Verified Checkmark.md](product/features/Verified%20Checkmark.md) | The two trust badges as built, versus the original single checkmark. | ≤ 2026-09-22 |
+| [rules/Classics and House Drinks.md](product/rules/Classics%20and%20House%20Drinks.md) | Classic drinks versus a venue's own creations: what each gives an owner, and what is still open. Not yet decided. | 2026-10-07 |
 | [rules/Custom Drinks Rules.md](product/rules/Custom%20Drinks%20Rules.md) | Rules for house drinks. Built without photos. | ≤ 2026-09-22 |
 | [rules/Venue Rules.md](product/rules/Venue%20Rules.md) | What counts as a venue for UNI. | ≤ 2026-09-22 |
 | [scoring.md](product/scoring.md) | Scoring specification. Largely superseded; see ADR-008. | 2026-08-18 |
@@ -206,6 +207,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Document | What it is for | Updated |
 |---|---|---|
 | [prompts/analytics-self-exclusion.md](research/prompts/analytics-self-exclusion.md) | Prompt: who is excluded from analytics an owner pays for. | ≤ 2026-09-22 |
+| [prompts/classics-versus-house-drinks.md](research/prompts/classics-versus-house-drinks.md) | Prompt: where a classic drink ends and a venue's own creation begins, and how to list both without inviting gaming. | 2026-10-07 |
 | [prompts/community-reciprocity-2.md](research/prompts/community-reciprocity-2.md) | Prompt: a community that is served, not harvested (second version). Superseded by runs 1–3. | 2026-10-03 |
 | [prompts/community-reciprocity-run-1.md](research/prompts/community-reciprocity-run-1.md) | Prompt, run 1 of 3: platform precedents. | 2026-10-03 |
 | [prompts/community-reciprocity-run-2.md](research/prompts/community-reciprocity-run-2.md) | Prompt, run 2 of 3: open data, Poland, motivation. | 2026-10-03 |

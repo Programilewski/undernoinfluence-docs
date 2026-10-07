@@ -60,9 +60,20 @@ Everything in the Owner column is the owner's word, but a visitor can't tell it 
 
 On 06.10 it was decided that badges become rules over recorded evidence (the badges-are-rules-over-recorded-evidence record).
 
+## Set by the founder, 07.10.2026
+
+These reframe fault 1, and they are the starting point when it is picked up again.
+
+- **No permanent manual check.** A badge is a rule over recorded facts; an admin going through a menu is V1 scaffolding, not the model.
+- **The target meaning of "Sprawdzona karta": a venue its owner manages counts as checked.** UNI trusts the owner. **This reverses a written claim:** the what-the-badges-claim record (16.09) says the badge means "a person checked this menu within the last six months", and the 15.08 split made it independent of "Zarządza właściciel". Both are to be revised in the V2 badge step, not before.
+- **No source labels on public pages** ("according to the menu", "according to the venue"). Visitors see dates, not provenance.
+- **Owners are not asked for a menu link or any justification** when they add, edit or confirm. Every owner action is already recorded as theirs (`added_by`, the offer log), and that is UNI's answer in a dispute: the venue changed it.
+- **The FAQ and the other public copy are drafts, written from the code**, never the other way round.
+
+**What is left of fault 1 after this: the ranking lever.** "Potwierdzone N dni temu" is a per-drink date label, not a fixed badge: today it reads "Potwierdzone dziś", in two days "Potwierdzone 2 dni temu", past 90 days "N mies. temu". The drink page orders venues by that date, newest first, and an owner can press "Nadal w ofercie" once a day. A daily click therefore keeps a venue at the top of every drink page it serves, with nothing on the menu having changed. That is effort only an owner can spend, buying position on a shared page. **(Small, separate: the label counts yesterday as "dziś", because it treats 0 and 1 days alike; the venue's "Zaktualizowano" label does the same.)**
+
 ## Open, for when this is picked up again
 
-- **E1–E3**, the shape of the evidence model, in the 06.10 journal, Session 2. Recommendations: A (an append-only table plus the latest of each kind on the row); the four kinds plus `unknown` for backfilled rows; an owner's menu link stays `owner_statement`.
-- **Proposed order for that session: badges first.** Go through the badges one at a time: what each one promises a visitor, and which evidence earns it. Then settle E1–E3, since those answers can change which kinds of evidence are needed.
-
-*See also: `change-flows.md` (every panel action and its follow-ups) · `freshness-and-verification.md` (the two signals in depth, 31.08) · the what-the-badges-claim and badges-are-rules-over-recorded-evidence records.*
+- **The ranking lever:** what orders venues on a drink page, so that a daily click doesn't buy first place.
+- **"Sprawdzona karta" redefined** around owner management, with the two records above revised.
+- **E1–E3**, the evidence model's shape, in the 06.10 journal, Session 2. They need re-reading against the points above: with no source labels and no owner links, fewer kinds of evidence may be needed.
