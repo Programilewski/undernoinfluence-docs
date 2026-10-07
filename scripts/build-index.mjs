@@ -42,7 +42,7 @@ const FOLDERS = [
 
 const EXCLUDED = /^(decisions|journals|scripts)\/|^\.|^README\.md$|^CLAUDE\.md$/;
 
-const files = git('ls-files').split('\n').filter((f) => f && !EXCLUDED.test(f));
+const files = git('ls-files', '--cached', '--others', '--exclude-standard').split('\n').filter((f) => f && !EXCLUDED.test(f));
 const nonMarkdown = JSON.parse(readFileSync(join(root, 'scripts/non-markdown.json'), 'utf8'));
 
 function frontmatter(file) {
