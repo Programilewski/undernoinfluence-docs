@@ -244,5 +244,5 @@ The backlog that used to live here — and then in `roadmap/decisions-waiting-on
 
 **When something does need deciding again**, it becomes a record here directly. The rolling question document was a queue, and a queue with nothing in it should not be maintained — it was right while twenty questions were open and is overhead now. Cataloguing and the first deploy will both produce new questions; that is when the format earns its place again, not before.
 
-*Previously this section pointed at `roadmap/decisions-waiting-on-you.md` "rewritten to v3 on 30.08" and described a `venue_offer_logs` prune armed at six months. That prune no longer exists — retention is anonymisation now, at 24 months, and nothing is deleted to satisfy it ([[decisions/product/personal-data-expires-rows-do-not]]). Corrected 2026-09-16.*
+*Previously this section pointed at `briefings/decisions-waiting-on-you.md` "rewritten to v3 on 30.08" and described a `venue_offer_logs` prune armed at six months. That prune no longer exists — retention is anonymisation now, at 24 months, and nothing is deleted to satisfy it ([[decisions/product/personal-data-expires-rows-do-not]]). Corrected 2026-09-16.*
 

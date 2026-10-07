@@ -1,3 +1,7 @@
+---
+description: "The discovery page. Built."
+---
+
 # Discovery Page
 
 **Status:** **Built and working.** **Verified against code 2026-08-18.** The previous description ("category pills render but are non-functional, no `venue_type` column, sorting not started") was months out of date. Today: `app/Livewire/DiscoveryPage.php` plus `app/Services/Discovery/`. Filters: categories (multi-select), "Sprawdzona karta", "Zarządza właściciel", "Tylko 0.0%", recency (7/30/90/180 days), city, district, map bounds. Sorting: best offer / nearest / name. Search covers venue name, district, catalog products and the venue's own custom drinks. Filter state lives in the URL (`kategorie`, `sprawdzone`, `wlasciciel`, `zero`, `aktualnosc`, `sortuj`, `szukaj`) — those names freeze on launch day, see [[roadmap/pre-launch-checklist]]. Card↔pin hover sync has worked since 17.08.

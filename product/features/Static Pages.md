@@ -1,3 +1,7 @@
+---
+description: "Static pages. Built, except /dla-lokali, deliberately deleted."
+---
+
 # Static Pages
 
 **Status:** **Built, except `/dla-lokali`, which was deliberately deleted.** **Verified against code 2026-08-18.** Live: `/` (homepage), `/o-nas`, `/jak-to-dziala`, `/regulamin`, `/polityka-prywatnosci`. `/dla-lokali` has returned 404 since 18.06 and **must not be restored** — it promised an owner panel and analytics that V1 does not expose ([[decisions/product/hide-for-venues-v1]]). Every owner-facing link now points at the contact email. **To fix before launch:** `/jak-to-dziala` promises a "Zgłoś nieaktualne dane" button that does not exist — see point 5 in [[roadmap/pre-launch-checklist]].

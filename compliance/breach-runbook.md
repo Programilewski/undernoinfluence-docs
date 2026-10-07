@@ -1,4 +1,5 @@
 ---
+description: "Data breach notification runbook: what counts, the 72-hour steps to UODO."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-06-28

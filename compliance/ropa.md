@@ -1,4 +1,5 @@
 ---
+description: "Record of processing activities (Art. 30). Stub with many TODOs."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-05-13

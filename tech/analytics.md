@@ -1,4 +1,5 @@
 ---
+description: "Analytics: event capture, entitlements, the GDPR approach."
 version: 1.1
 owner: Paweł Milewski
 updated: 2026-08-18

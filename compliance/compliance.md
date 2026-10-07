@@ -1,3 +1,7 @@
+---
+description: "Law-compliance issues in the app ranked by risk, 10.06."
+---
+
 # Compliance Audit — 2026-06-10
 
 Law-compliance issues identified in the app, ranked by risk.

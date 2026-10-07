@@ -1,3 +1,7 @@
+---
+description: "Full project context written for a Perplexity space. Outdated."
+---
+
 # Under No Influence (UNI) — Full Project Context
 
 ## What UNI Is

@@ -43,4 +43,4 @@ Never. When CI exists it automates this rather than replacing it, and the clone 
 
 ---
 
-*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/three-environments-and-what-each-is-for]] · [[tech/home-server-setup]] · [[roadmap/deploy-checklist]]*
+*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/three-environments-and-what-each-is-for]] · [[ops/home-server-setup]] · [[ops/deploy-checklist]]*

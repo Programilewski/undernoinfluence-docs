@@ -1,4 +1,5 @@
 ---
+description: "Data protection impact assessments. Placeholder."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-05-13

@@ -1,3 +1,7 @@
+---
+description: "What counts as a venue for UNI."
+---
+
 # Venue Rules
 
 ## What Gets Listed

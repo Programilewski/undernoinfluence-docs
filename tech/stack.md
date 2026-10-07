@@ -1,4 +1,5 @@
 ---
+description: "The technology stack."
 version: 1.3
 owner: Paweł Milewski
 updated: 2026-08-27
@@ -117,11 +118,11 @@ All interfaces share the same backend, database, and domain models.
 
 ## Open questions
 
-These are tracked with their consequences in [`going-to-production.md`](going-to-production.md).
+These are tracked with their consequences in [`going-to-production.md`](../ops/going-to-production.md).
 
 - Production hosting target and region — EU residency required, pay-as-you-go preferred for V1
 - Object storage provider
 - Transactional email provider
 - Payment provider integration timing (Przelewy24, gated on B2B launch)
 
-Related: [`architecture.md`](architecture.md) · [`analytics.md`](analytics.md) · [`security.md`](security.md) · [`going-to-production.md`](going-to-production.md)
+Related: [`architecture.md`](architecture.md) · [`analytics.md`](analytics.md) · [`security.md`](security.md) · [`going-to-production.md`](../ops/going-to-production.md)

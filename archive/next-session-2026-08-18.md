@@ -1,3 +1,7 @@
+---
+description: "The 18.08 next-session snapshot; retired 17.09 because it aged into a misleading one."
+---
+
 > **Retired 2026-09-17 and moved to `archive/`.** This was a snapshot of the 18.08 state and it aged into a misleading one: it describes the world before the map migration (01.09), the owner panel closing (16.09), the retention rebuild (16.09) and the pages built on 17.09. Its "wipe the generated venues" item is moot — production seeds cities, categories, districts and the two canaries only, so the fixtures are local. **What is not done now lives in [`../roadmap/undone-inventory.md`](../roadmap/undone-inventory.md).** Kept because its reasoning about ordering — backups before wiping, hosting before mail — is still sound and was never written down anywhere else.
 
 ---
@@ -9,7 +13,7 @@ status: approved
 
 # Next Session — state as of 2026-08-18
 
-> **Blocked on you, not on work:** [`decisions-waiting-on-you.md`](../roadmap/decisions-waiting-on-you.md) —
+> **Blocked on you, not on work:** [`decisions-waiting-on-you.md`](../briefings/decisions-waiting-on-you.md) —
 > refreshed to v3 on 30.08 against running code. Section A is the last place where waiting still
 > destroys data; section B is what blocks the first sales conversation.
 
@@ -21,7 +25,7 @@ Every item below was checked against running code and the database on 18.08, not
 another document.
 
 > **Unread as of 2026-08-20 — read this first next session.**
-> [`audit-2026-08-20.md`](../roadmap/audit-2026-08-20.md) adds nine findings from a code audit run on 20.08,
+> [`audit-2026-08-20.md`](../briefings/audit-2026-08-20.md) adds nine findings from a code audit run on 20.08,
 > with its own priority list, plus a session-2 addendum adding nine more (venue deletion and
 > what the admin panel actually shows). Nothing in it blocks the four data and infrastructure items below,
 > but **its top three concern data that cannot be recreated and should land before real venues go
@@ -40,7 +44,7 @@ another document.
 > stamped **"API KEY REQUIRED"**, and the same-day decision was to migrate to **MapLibre GL JS on
 > OpenFreeMap vector tiles**
 > ([`../decisions/product/vector-basemap-on-openfreemap.md`](../decisions/product/vector-basemap-on-openfreemap.md)).
-> Full working: [`audit-2026-08-27.md`](../roadmap/audit-2026-08-27.md).
+> Full working: [`audit-2026-08-27.md`](../briefings/audit-2026-08-27.md).
 >
 > **Done 2026-09-01** — self-hosted style at `public/map-styles/uni-dark.json` pointing at
 > OpenFreeMap, MapLibre 5.24, no API key anywhere. **No code task blocks launch**, and the heading

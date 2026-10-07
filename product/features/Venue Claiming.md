@@ -1,3 +1,7 @@
+---
+description: "How an owner claims a venue. Matches the code as of 19.09."
+---
+
 # Venue Claiming
 
 **Status:** **Rewritten 2026-09-19 to match the code.** Owners ask at `/zglos-lokal` (behind `UNI_OWNER_ACCESS`), or an admin records a claim in `/admin`. How a request is checked and approved is in [[product/features/Owner Verification]]. The decisions: [[decisions/product/one-request-form-for-owners]], [[decisions/product/owner-requests-are-checked-through-the-venues-own-channels]], [[decisions/product/new-venue-requests-create-no-venue]], [[decisions/product/an-owner-can-have-several-claims-waiting]].

@@ -1,4 +1,5 @@
 ---
+description: "Opening docs/ as an Obsidian vault and syncing it with Syncthing."
 version: 1.1
 owner: Paweł Milewski
 updated: 2026-08-10

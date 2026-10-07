@@ -1,4 +1,5 @@
 ---
+description: "The business model: B2B analytics subscription, no ads, no pay-to-rank."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-07-24

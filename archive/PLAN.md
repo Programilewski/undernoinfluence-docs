@@ -1,3 +1,7 @@
+---
+description: "The original V1 implementation plan, by stages. Superseded by roadmap/v1.md."
+---
+
 # UNI — Implementation Plan
 
 **Single source of truth for V1 build.**

@@ -1,3 +1,7 @@
+---
+description: "Report from the PostHog setup wizard. History only."
+---
+
 # PostHog post-wizard report
 
 The wizard has completed a deep integration of PostHog into Under No Influence across multiple sessions. The `posthog/posthog-php` SDK, `PostHogService`, client-side snippet, and server-side event infrastructure were already in place. This session (session 3) expanded top-of-funnel coverage — adding tracking for the home page, about page, how-it-works page, and the discovery map entry point — and filled two CityController gaps (category-filtered city/district views). It also promoted `map_area_searched` from EventLogger-only to full PostHog capture, and created a new analytics dashboard.

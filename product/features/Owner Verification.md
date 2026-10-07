@@ -1,6 +1,10 @@
+---
+description: "How a request to manage a venue is checked. Built 19.09, behind the switch."
+---
+
 # Owner Verification — how a request to manage a venue is checked
 
-**Status:** Built 2026-09-19, behind `UNI_OWNER_ACCESS`. Owner access is switched on only once this exists and the checklist at the end is done ([[decisions/product/owner-access-opens-only-once-owners-can-be-checked]]). The decision behind it: [[decisions/product/owner-requests-are-checked-through-the-venues-own-channels]]. The research it rests on: `roadmap/research-results/owner-verification.md` and `owner-verification-other-llm.md`, assessed in the 19.09 journal.
+**Status:** Built 2026-09-19, behind `UNI_OWNER_ACCESS`. Owner access is switched on only once this exists and the checklist at the end is done ([[decisions/product/owner-access-opens-only-once-owners-can-be-checked]]). The decision behind it: [[decisions/product/owner-requests-are-checked-through-the-venues-own-channels]]. The research it rests on: `research/results/owner-verification.md` and `owner-verification-other-llm.md`, assessed in the 19.09 journal.
 
 ---
 

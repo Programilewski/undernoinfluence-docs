@@ -1,4 +1,5 @@
 ---
+description: "Architecture. Empty template stub."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-08-18

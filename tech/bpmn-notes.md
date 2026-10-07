@@ -1,3 +1,7 @@
+---
+description: "Where BPMN is useful in UNI: notes for modelling multi-actor flows."
+---
+
 # BPMN in UNI — Usage Notes
 
 BPMN fits UNI as a **documentation and planning tool** for multi-actor workflows, not as a runtime engine. No BPMN engine needed — Laravel controllers and Filament actions handle orchestration.

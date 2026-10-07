@@ -1,3 +1,7 @@
+---
+description: "Growth channels that run without ongoing effort. Contradicts some superseded records."
+---
+
 # Growth Strategy
 
 > Core philosophy: every growth channel is a system that runs without ongoing human effort. No personal branding, no content calendars, no channels that die when you stop feeding them.

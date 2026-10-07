@@ -1,4 +1,5 @@
 ---
+description: "GDPR compliance audit, June."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-07-24

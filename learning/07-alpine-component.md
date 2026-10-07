@@ -1,3 +1,7 @@
+---
+description: "How the Alpine component connects Livewire and the map."
+---
+
 # Doc 7: The Alpine Component — How It All Connects
 
 Alpine.js is the client-side glue between the Livewire-rendered list and the Leaflet map. This document explains how Alpine works in this project and how `discovery()` is structured.

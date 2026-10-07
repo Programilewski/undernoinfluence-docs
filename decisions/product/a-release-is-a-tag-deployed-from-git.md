@@ -55,4 +55,4 @@ There is a build step that cannot be reproduced from a tag alone, or a second pe
 
 ---
 
-*See also: [[decisions/product/three-environments-and-what-each-is-for]] · [[decisions/product/staging-is-seeded-never-copied]] · [[decisions/product/pull-never-push-when-migrating]] · [[roadmap/deploy-checklist]]*
+*See also: [[decisions/product/three-environments-and-what-each-is-for]] · [[decisions/product/staging-is-seeded-never-copied]] · [[decisions/product/pull-never-push-when-migrating]] · [[ops/deploy-checklist]]*

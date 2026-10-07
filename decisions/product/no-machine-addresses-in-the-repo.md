@@ -41,4 +41,4 @@ A deployment target requires a fixed address that genuinely cannot be supplied b
 
 - [[decisions/product/pull-never-push-when-migrating]]
 - [[tech/migration-lessons]] — lesson 4
-- [[tech/going-to-production]] — the production form of the same failure
+- [[ops/going-to-production]] — the production form of the same failure

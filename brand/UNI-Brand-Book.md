@@ -1,3 +1,7 @@
+---
+description: "Brand book v1.0, 01.06: voice, visual identity. Known to have drifted from the app."
+---
+
 # Under No Influence — Brand Book
 
 **Version 1.0 · 2026-06-01**

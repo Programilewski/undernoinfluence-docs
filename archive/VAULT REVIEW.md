@@ -1,3 +1,7 @@
+---
+description: "An early review of the whole vault: strategy strong, tactics outdated. History only."
+---
+
 # UNI Vault Review
 **Date:** 2026-04-17
 **Reviewer:** Claude (on behalf of Pawel Milewski)

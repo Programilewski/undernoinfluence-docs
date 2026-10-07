@@ -1,3 +1,7 @@
+---
+description: "The original V1 specification. Superseded by product/spec.html."
+---
+
 # UNI — V1 Specification (Final)
 
 **Under No Influence** — B2B SaaS directory platform for NoLo (no/low alcohol) beverages targeting HoReCa venues.

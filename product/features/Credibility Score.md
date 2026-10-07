@@ -1,3 +1,7 @@
+---
+description: "Credibility score. Superseded; will not be built."
+---
+
 # Credibility Score
 
 **Status:** **Superseded — will not be built in V1.** **Verified against code 2026-08-18.** There is no `credibility_score` column and there will not be one: ADR-004 and D-01 replaced the blended confidence score with three independent things — `breadth_score` (a flat product count, ADR-008), the "Sprawdzona karta" badge (`is_verified` plus expiry) and the "Zarządza właściciel" badge (`is_claimed`). Read this document as a V2+ target, not as V1 backlog. It is **not** a blocker for [[product/features/Verified Checkmark]] — that feature shipped without it.

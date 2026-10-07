@@ -1,4 +1,5 @@
 ---
+description: "Data processing agreements. Placeholder register."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-05-13

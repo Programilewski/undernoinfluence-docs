@@ -35,4 +35,4 @@ The destination cannot be booted before the transfer, or the source is a system 
 
 - [[decisions/product/no-machine-addresses-in-the-repo]]
 - [[tech/migration-lessons]] — the full set of rules this belongs to
-- [[tech/migrating-to-a-new-machine]] — the runbook that executed it
+- [[ops/migrating-to-a-new-machine]] — the runbook that executed it

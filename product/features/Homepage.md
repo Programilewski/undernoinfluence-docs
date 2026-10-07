@@ -1,3 +1,7 @@
+---
+description: "The homepage. Built."
+---
+
 # Homepage
 
 **Status:** **Built.** **Verified against code 2026-08-18.** The previous description ("`/` redirects to `/venues`") is false — `/` is handled by `HomeController` and renders a full homepage: hero, a showcase section with a real map and venue list, a drinks-card preview, and entry points into the SEO cluster. The showcase is one layout since 18.09: the full-bleed strip with a still render of the real basemap and a cycling list floating over it (`components/home-showcase.blade.php`). The boxed-panel variant and `UNI_HOME_SHOWCASE` were deleted once the choice was made. The page is deliberately city-agnostic ([[decisions/product/city-agnostic-homepage]]).

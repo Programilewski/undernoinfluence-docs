@@ -1,4 +1,5 @@
 ---
+description: "Index of the feature records, and how to read their status lines."
 version: 1.1
 owner: Paweł Milewski
 updated: 2026-08-18

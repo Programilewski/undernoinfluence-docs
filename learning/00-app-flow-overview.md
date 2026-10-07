@@ -1,3 +1,7 @@
+---
+description: "Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow."
+---
+
 # Doc 0: App-Wide Flow Overview
 
 How the whole app fits together, before zooming into the discovery map specifically (docs 01-07 cover `/mapa` in depth — this doc is the wider context around it).

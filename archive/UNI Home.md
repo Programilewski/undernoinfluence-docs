@@ -1,3 +1,7 @@
+---
+description: "The early vault home page describing UNI. Superseded by product/what-uni-is.md."
+---
+
 # Under No Influence (UNI)
 
 A web platform that aggregates physical venues serving non-alcoholic drinks in Poland. Users find places and evaluate their NoLo offering. Businesses get analytics on local demand.

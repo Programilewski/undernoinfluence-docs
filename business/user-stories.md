@@ -1,3 +1,7 @@
+---
+description: "User stories. Retired as a status document 17.09; the checkboxes are not maintained."
+---
+
 # User Stories — Under No Influence (UNI)
 
 > **Retired as a status document, 2026-09-17.** The checkboxes in this file are **not** maintained and never were: 301 of them are unticked, including acceptance criteria for work that shipped months ago — US-D01's map criteria are all built and all unticked. Read this file as a **specification of intent**, which is what it is good at, and never as a record of what exists.

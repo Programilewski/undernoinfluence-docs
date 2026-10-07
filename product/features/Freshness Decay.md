@@ -1,3 +1,7 @@
+---
+description: "Freshness: built in binary form; per-product decay is V2."
+---
+
 # Freshness Decay
 
 **Status:** **Built in binary form; the per-product decay described below is V2.** **Verified against code 2026-08-18.** The `venue_products.confirmed_at` column **does exist**, contrary to the previous note. What does not exist, deliberately: `decay_rate`, a four-state per-product `status`, and shrinking bars next to individual items. D-14 collapsed all of that into one venue-level rule — `offer_updated_at` newer than `uni.freshness_days` (90) means fresh. The tile and profile show a relative date ("Zaktualizowano 12 dni temu"), and `uni:check-offer-freshness` guards against drift daily (hourly until 24.08). The user-facing recency filter has four ranges (7/30/90/180 days) — those are search ranges, not decay states.

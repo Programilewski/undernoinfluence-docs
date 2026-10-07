@@ -1,4 +1,5 @@
 ---
+description: "What every admin and owner panel action writes and sets off, with ten faults."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-10-06

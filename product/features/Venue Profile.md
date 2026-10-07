@@ -1,3 +1,7 @@
+---
+description: "The venue page. Built."
+---
+
 # Venue Profile
 
 **Status:** **Built.** **Verified against code 2026-08-18.** The URL is `/miejsce/{slug}`, not `/venues/{slug}` (D-02). The page has: categories in collapsible sections with a defined open-priority, the venue's custom drinks, both trust badges, the offer update date, a map, navigation and contact buttons with event tracking, and JSON-LD structured data. **No other venue appears on it** — the nearby list and neighbouring map pins were removed 19.09 ([[decisions/product/venue-page-shows-only-its-venue]]). Since 19.09 the menu also marks what is new — a "Nowe" tag and a strip naming the three newest ([[decisions/product/new-in-the-menu-is-dated-by-the-offer-log]]). **What it lacks:** the "Zgłoś nieaktualne dane" button promised on `/jak-to-dziala`, and a "Prowadzisz ten lokal?" link (note O-3 in [[roadmap/next-session]]).

@@ -1,3 +1,7 @@
+---
+description: "Plan for the URL architecture and category taxonomy, 11.05. Executed; history only."
+---
+
 # Implementation Plan — URL Architecture & Category Taxonomy
 
 **Date:** 2026-05-11

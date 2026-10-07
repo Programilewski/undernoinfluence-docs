@@ -1,4 +1,5 @@
 ---
+description: "Business metrics. Empty template; the event catalogue in the journals is what exists."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-08-18

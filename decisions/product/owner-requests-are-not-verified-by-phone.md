@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-19
 **Status:** Decided — the phone call is dropped; its replacement was decided and built the same day ([[decisions/product/owner-requests-are-checked-through-the-venues-own-channels]])
-**Executed:** 2026-09-19 — no public copy promises a call; requests are saved with `verification_method = email`; the phone field was made optional, then **removed from the form** later the same day (the column stays); the replacement is built. Research: two reports in `roadmap/research-results/`, assessed in the 19.09 journal
+**Executed:** 2026-09-19 — no public copy promises a call; requests are saved with `verification_method = email`; the phone field was made optional, then **removed from the form** later the same day (the column stays); the replacement is built. Research: two reports in `research/results/`, assessed in the 19.09 journal
 **Area:** Venues | Strategy
 
 ---
@@ -25,7 +25,7 @@ Every owner record written up to 19.09 rested on one step: before approving a re
 
 ## Decision
 
-**Nobody is phoned to verify an owner request.** The replacement is researched first. The prompt is [[roadmap/research-prompts/owner-verification]]; it asks for a tiered design for ten or more requests a day at under two minutes each, and whether owner-panel access should need a stronger check than the badge.
+**Nobody is phoned to verify an owner request.** The replacement is researched first. The prompt is [[research/prompts/owner-verification]]; it asks for a tiered design for ten or more requests a day at under two minutes each, and whether owner-panel access should need a stronger check than the badge.
 
 **Owner access is not switched on until the replacement exists** — decided later the same day ([[decisions/product/owner-access-opens-only-once-owners-can-be-checked]]). Paweł: *"switch on is turned after having a way to check owners."*
 

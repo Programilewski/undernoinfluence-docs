@@ -1,3 +1,7 @@
+---
+description: "How discovery filters keep state and become queries."
+---
+
 # Doc 3: Filters and How Livewire Works
 
 This explains how each filter on the discovery page stores its state, reacts to user input, and translates into a database query.

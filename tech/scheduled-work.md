@@ -1,4 +1,5 @@
 ---
+description: "Every scheduled command and the queue worker, and what each one does."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-09-21
@@ -7,9 +8,9 @@ status: active — read from `routes/console.php` and `supervisor/uni-worker.con
 
 # Scheduled and queued work
 
-**What this is.** Everything this application expects a machine to run for it without being asked: ten scheduled commands and one queue worker. Asked for on 21.09 because the answer was in three places and nowhere as one page — the schedule itself in `routes/console.php`, the requirement in [`../roadmap/deploy-checklist.md`](../roadmap/deploy-checklist.md) rows A1 and A2, and the consequences scattered across the journals.
+**What this is.** Everything this application expects a machine to run for it without being asked: ten scheduled commands and one queue worker. Asked for on 21.09 because the answer was in three places and nowhere as one page — the schedule itself in `routes/console.php`, the requirement in [`../ops/deploy-checklist.md`](../ops/deploy-checklist.md) rows A1 and A2, and the consequences scattered across the journals.
 
-**The one fact that matters most.** `crontab -l` returns *no crontab for bub*, and returned the same on the previous machine. **Nothing in the table below has ever run.** The application serves every page perfectly while none of it happens, which is the whole reason this page exists — see [`going-to-production.md`](going-to-production.md) and debt item **T-25b**.
+**The one fact that matters most.** `crontab -l` returns *no crontab for bub*, and returned the same on the previous machine. **Nothing in the table below has ever run.** The application serves every page perfectly while none of it happens, which is the whole reason this page exists — see [`going-to-production.md`](../ops/going-to-production.md) and debt item **T-25b**.
 
 ## What the server needs
 
@@ -64,4 +65,4 @@ A new `Schedule::` line in `routes/console.php` adds a row here in the same comm
 
 ---
 
-*See also: [`../roadmap/deploy-checklist.md`](../roadmap/deploy-checklist.md) A1–A3 and A6 · [`going-to-production.md`](going-to-production.md) · [`../compliance/ropa.md`](../compliance/ropa.md) · the schema map, now at `database/schema.md` in the application repository*
+*See also: [`../ops/deploy-checklist.md`](../ops/deploy-checklist.md) A1–A3 and A6 · [`going-to-production.md`](../ops/going-to-production.md) · [`../compliance/ropa.md`](../compliance/ropa.md) · the schema map, now at `database/schema.md` in the application repository*

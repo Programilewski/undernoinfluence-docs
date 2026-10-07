@@ -1,4 +1,5 @@
 ---
+description: "Things whose cost of change spikes on launch day."
 version: 2.1
 owner: Paweł Milewski
 updated: 2026-08-20
@@ -14,7 +15,7 @@ list of things whose cost of change spikes on launch day.
 Status: `TO CONFIRM` — needs a decision · `RESOLVED` — settled, with the date · `OK` — confirmed, stays
 
 *Translated from Polish to English on 2026-08-18; content unchanged apart from the two new items 5 and 6.
-Items 7-10 added 2026-08-20 from [`audit-2026-08-20.md`](audit-2026-08-20.md).*
+Items 7-10 added 2026-08-20 from [`audit-2026-08-20.md`](../briefings/audit-2026-08-20.md).*
 
 ---
 
@@ -218,7 +219,7 @@ Keep the 90-day prune on raw rows — `decisions/product/eventlogger-identifier-
 whole GDPR posture depend on not hoarding them. Add a daily job that rolls events up before the
 pruner runs: venue × day × category × counter. Small table, no personal data, indefinite retention.
 
-Detail: [`audit-2026-08-20.md`](audit-2026-08-20.md) §9. **The pruner has no dry-run mode — do not
+Detail: [`audit-2026-08-20.md`](../briefings/audit-2026-08-20.md) §9. **The pruner has no dry-run mode — do not
 run it manually with a lower `--days` until the rollup exists.**
 
 ---
@@ -314,7 +315,7 @@ work that gets deleted within days buys nothing. The one condition that reverses
 outside seeing the app first, such as a venue owner shown the product during an enrichment call.
 
 The implementation is two to four days and touches three public map surfaces plus the admin
-mini-map. Detail and the verified provider comparison: [`audit-2026-08-27.md`](audit-2026-08-27.md).
+mini-map. Detail and the verified provider comparison: [`audit-2026-08-27.md`](../briefings/audit-2026-08-27.md).
 
 ---
 

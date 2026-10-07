@@ -1,4 +1,5 @@
 ---
+description: "Security. Template stub; points to where controls are actually documented."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-08-18

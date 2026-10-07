@@ -1,3 +1,7 @@
+---
+description: "Rules for house drinks. Built without photos."
+---
+
 # Custom Drinks Rules
 
 **Status:** **Built without photos — and that is an unresolved contradiction.** **Verified against code 2026-08-18.** Custom drinks work (105 in the database, CRUD in the owner panel through `DrinksRelationManager`, counted into `breadth_score`). But [[decisions/product/custom-drink-photo-gate]] required a photo on every drink **as a barrier against inventing entries**, and D-04 removed photos from V1 entirely — nobody ever reconciled the two. Today there is no barrier at all. It does not hurt in V1, because one person enters the data; it starts hurting the day owners edit their own cards.

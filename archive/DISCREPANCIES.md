@@ -1,3 +1,7 @@
+---
+description: "Docs-versus-code discrepancy report, 30.04. Superseded by later audits."
+---
+
 # Discrepancy Report: Docs vs Implementation
 
 > Generated 2026-04-30. Tracks gaps between vault specs / decision records and the actual codebase.

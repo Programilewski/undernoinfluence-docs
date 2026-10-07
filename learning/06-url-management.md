@@ -1,3 +1,7 @@
+---
+description: "Why discovery URLs are managed two different ways."
+---
+
 # Doc 6: URL Management
 
 The discovery page keeps the browser URL in sync with the active filters so users can share or bookmark their results. There are two separate mechanisms for this — and understanding why they're split is the key insight.

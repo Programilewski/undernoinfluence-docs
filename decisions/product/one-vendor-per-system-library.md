@@ -21,7 +21,7 @@ PostgreSQL — server, client library, and the PHP extensions that link against 
 
 ## Rules
 
-For any component with a system-wide library, one supplier is chosen and recorded, and repositories are never mixed for that component. The choice is written into `docs/tech/going-to-production.md` for every environment that is stood up, so the next machine inherits the decision rather than rediscovering it. A package manager reporting success is not evidence that a package changed; verify with `rpm -qa` or the equivalent that the vendor's packages are actually gone.
+For any component with a system-wide library, one supplier is chosen and recorded, and repositories are never mixed for that component. The choice is written into `docs/ops/going-to-production.md` for every environment that is stood up, so the next machine inherits the decision rather than rediscovering it. A package manager reporting success is not evidence that a package changed; verify with `rpm -qa` or the equivalent that the vendor's packages are actually gone.
 
 ## What this prevents
 
@@ -34,4 +34,4 @@ The distribution's version of a component is too old for something the applicati
 ## See also
 
 - [[tech/migration-lessons]] — lesson 5, with the full diagnosis path
-- [[tech/going-to-production]] — where the choice is recorded per environment
+- [[ops/going-to-production]] — where the choice is recorded per environment

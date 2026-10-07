@@ -51,4 +51,4 @@ A second person deploys, or production has paying venues. Both change what a bad
 
 ---
 
-*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/staging-is-seeded-never-copied]] · [[decisions/product/admin-access-is-three-layers]] · [[tech/going-to-production]]*
+*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/staging-is-seeded-never-copied]] · [[decisions/product/admin-access-is-three-layers]] · [[ops/going-to-production]]*

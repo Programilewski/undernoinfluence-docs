@@ -1,4 +1,5 @@
 ---
+description: "Every menu operation by admin and owner, every badge and ordering, and what moves them."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-10-07

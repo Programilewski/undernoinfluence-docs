@@ -1,3 +1,7 @@
+---
+description: "The owner panel at /panel. Built, behind the switch."
+---
+
 # Owner Dashboard
 
 **Status:** **Built and working** at `/panel`. **Verified against code 2026-08-18.** `VenueStatusWidget` and `VenueAnalyticsWidget`, product management (`ProductsRelationManager`), custom drinks (`DrinksRelationManager`), freshness reconfirmation (`FreshnessRelationManager`), authorization through `VenuePolicy`. **Owner accounts are created by an admin** — there is no public registration and no public claim form ([[decisions/product/admin-recorded-claims-v1]]). Nothing on the public site links to the panel; see note O-2 in [[roadmap/next-session]].

@@ -21,7 +21,7 @@ Paweł: *"switch on is turned after having a way to check owners."* The switch s
 
 ## Rules
 
-The replacement check is chosen from the two research reports in `roadmap/research-results/` and gets its own record. The switch is not flipped while that record's `**Executed:**` line says anything other than done. The "On the day V2 opens" list in [[decisions/product/owner-panel-ships-behind-one-switch]] carries this as its first step. Owner access stays switchable locally, as before, so the flow can be built and tried against it.
+The replacement check is chosen from the two research reports in `research/results/` and gets its own record. The switch is not flipped while that record's `**Executed:**` line says anything other than done. The "On the day V2 opens" list in [[decisions/product/owner-panel-ships-behind-one-switch]] carries this as its first step. Owner access stays switchable locally, as before, so the flow can be built and tried against it.
 
 ## What this prevents
 
@@ -33,4 +33,4 @@ The check is built. This record then closes, and the switch goes back to dependi
 
 ---
 
-*See also: [[decisions/product/owner-requests-are-not-verified-by-phone]] · [[decisions/product/owner-panel-ships-behind-one-switch]] · [[roadmap/research-prompts/owner-verification]]*
+*See also: [[decisions/product/owner-requests-are-not-verified-by-phone]] · [[decisions/product/owner-panel-ships-behind-one-switch]] · [[research/prompts/owner-verification]]*

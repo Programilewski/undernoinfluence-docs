@@ -1,4 +1,5 @@
 ---
+description: "The move to two fresh repositories. Executed 22.09."
 version: 6.0
 owner: Paweł Milewski
 updated: 2026-09-22
@@ -64,7 +65,7 @@ The code is ready. The repository is not.
 | `roadmap/` | 1.13 MB | No |
 | `product/` | 0.60 MB | Yes |
 | `decisions/` | 0.56 MB | Yes — 170 records |
-| `business/ brand/ learning/ Phone notes/` | 0.71 MB | No |
+| `business/ brand/ learning/ inbox/` | 0.71 MB | No |
 | `tech/ compliance/` | 0.19 MB | Yes — `schema.md` and `ropa.md` are cited from the application |
 
 ## The two repositories
@@ -96,7 +97,7 @@ One working directory, two repositories. **Nothing about where you edit a file c
     ├── roadmap/    1.13 MB              tracked by repo 2
     ├── product/    0.60 MB              tracked by repo 2
     ├── tech/ compliance/  0.19 MB       tracked by repo 2  (minus schema.md)
-    ├── business/ brand/ learning/ Phone notes/   0.71 MB
+    ├── business/ brand/ learning/ inbox/   0.71 MB
     ├── archive/    1.96 MB
     │
     └── reference/                       ◀── LEAVES the vault entirely  (Q2)

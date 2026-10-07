@@ -1,3 +1,7 @@
+---
+description: "The learning series: reading order and when to read which."
+---
+
 # UNI Learning Docs
 
 A series of documents explaining how the app works, from the whole-app request flow down to the `/mapa` discovery page specifically.

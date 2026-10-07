@@ -1,4 +1,5 @@
 ---
+description: "The freshness and verification badges exactly as implemented, 31.08."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-08-31

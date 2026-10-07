@@ -1,4 +1,5 @@
 ---
+description: "Nine compliance items, about 75 minutes. Not yet run."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-09-16
@@ -51,4 +52,4 @@ A new processor is added to `vendors/` **before** it processes anything, and to 
 
 ---
 
-*See also: [`ropa.md`](ropa.md) · [`../decisions/product/personal-data-expires-rows-do-not.md`](../decisions/product/personal-data-expires-rows-do-not.md) · [`../roadmap/deploy-checklist.md`](../roadmap/deploy-checklist.md)*
+*See also: [`ropa.md`](ropa.md) · [`../decisions/product/personal-data-expires-rows-do-not.md`](../decisions/product/personal-data-expires-rows-do-not.md) · [`../ops/deploy-checklist.md`](../ops/deploy-checklist.md)*

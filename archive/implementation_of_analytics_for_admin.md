@@ -1,3 +1,7 @@
+---
+description: "Plan for the admin per-venue analytics page with all 16 reports. History only."
+---
+
 # Admin Per-Venue Analytics Page — All 16 SSOT Reports
 
 ## Context

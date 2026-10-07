@@ -1,4 +1,5 @@
 ---
+description: "The rules the Fedora migration taught. Read before any environment move."
 version: 1.0
 owner: Paweł Milewski
 updated: 2026-08-26
@@ -15,9 +16,9 @@ Three documents now cover this ground, and they do different jobs:
 
 | Document | Job |
 |---|---|
-| [`migrating-to-a-new-machine.md`](migrating-to-a-new-machine.md) | The runbook that was executed. Step by step, with the corrections folded in. The only document in this repository proven by use. |
+| [`migrating-to-a-new-machine.md`](../ops/migrating-to-a-new-machine.md) | The runbook that was executed. Step by step, with the corrections folded in. The only document in this repository proven by use. |
 | **This one** | The rules the execution produced. Machine-agnostic. |
-| [`going-to-production.md`](going-to-production.md) | What those rules mean for the move that actually matters — to a preprod and a production server. |
+| [`going-to-production.md`](../ops/going-to-production.md) | What those rules mean for the move that actually matters — to a preprod and a production server. |
 
 ---
 
@@ -158,4 +159,4 @@ Six of six on structure. Six of six misses on detail. That ratio is the useful t
 
 Rules 2, 4, and 5 are recorded as decisions: [`pull-never-push-when-migrating`](../decisions/product/pull-never-push-when-migrating.md), [`no-machine-addresses-in-the-repo`](../decisions/product/no-machine-addresses-in-the-repo.md), [`one-vendor-per-system-library`](../decisions/product/one-vendor-per-system-library.md).
 
-Applied to the production move: [`going-to-production.md`](going-to-production.md).
+Applied to the production move: [`going-to-production.md`](../ops/going-to-production.md).

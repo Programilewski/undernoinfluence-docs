@@ -1,3 +1,7 @@
+---
+description: "Inaccuracy reports from visitors: what exists and what does not."
+---
+
 # User Flagging
 
 **Status:** **Backend exists, no public interface — and that is an inconsistency to resolve.** **Verified against code 2026-08-18.** What exists: the `VenueInaccuracyReport` table and model, an admin panel resource, and `StoreVenueInaccuracyReportRequest`. What does not: a public route, a controller, and a button on the venue page. There are 0 reports in the database. D-11 says do not build community reporting in V1 — but `/jak-to-dziala` **already promises** users that button. Pick one: build the button, or cut the sentence. The flag-weighting and trust-threshold system described below is still V2 — it depends on user accounts, which V1 does not have.

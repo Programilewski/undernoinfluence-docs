@@ -1,4 +1,5 @@
 ---
+description: "CIS Controls v8 (IG1) security audit, 22.06."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-07-24

@@ -1,4 +1,5 @@
 ---
+description: "Dependency inventory and risk notes. Draft."
 version: 0.3
 owner: Paweł Milewski
 updated: 2026-08-18

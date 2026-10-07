@@ -39,4 +39,4 @@ Assets are built on the server as part of the deploy, which regenerates the vend
 
 ---
 
-*See also: [[decisions/product/a-deploy-is-proved-by-a-clean-clone]] · [[decisions/product/the-map-library-stays-patched]] · [[decisions/product/vector-basemap-on-openfreemap]] · [[roadmap/deploy-checklist]]*
+*See also: [[decisions/product/a-deploy-is-proved-by-a-clean-clone]] · [[decisions/product/the-map-library-stays-patched]] · [[decisions/product/vector-basemap-on-openfreemap]] · [[ops/deploy-checklist]]*

@@ -1,4 +1,5 @@
 ---
+description: "Privacy notice. Stub; the policy gets written from the app."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-05-13

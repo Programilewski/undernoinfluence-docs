@@ -1,4 +1,5 @@
 ---
+description: "The backlog: every open item, sorted into Launch, After launch, V2 and V3."
 version: 1.1
 owner: Paweł Milewski
 updated: 2026-10-07
@@ -35,9 +36,9 @@ Everything here is checkable. The last section says how to regenerate the list, 
 | **The launch-load record, rehearsed on the home server.** Products CSV → venues CSV → menus CSV through the admin importers; after that, the production admin is the only source of truth | A wrong order fails silently into `failed_import_rows` on launch day | `journals/2026-10-04.md`: Decision Register 1; Technical Debt Log, "No written plan for how real data reaches production" |
 | ⏳ **Imports and admin adds stamp "today", not the menu's check date** (fault 9). `RecordMenuItemAction` and the admin "Dodaj produkt" / "Potwierdź" set `confirmed_at` and the venue's freshness date to now, whatever `checked_at` says | Load menus read in August and every venue reads "Zaktualizowano dziś", every drink "Potwierdzone dziś", and the 90-day clock starts at the import. Small before the load; after, it means rewriting dates on live rows | `tech/change-flows.md`: What looks faulty, row 9; checked in the code 07.10 |
 | ⏳ **Nominatim geocoding check.** The admin still offers Nominatim as a fallback geocoder, and its data is ODbL-licensed, which UNI dropped | If the load geocodes through it, ODbL data is in production from day one. Cheaper to settle than to re-geocode | Section F below; the osm-dropped and geocoding-comes-from-the-state-register records |
-| ⏳ **Search Console verified before the import** | The pre-launch baseline can't be recorded afterwards | `roadmap/deploy-checklist.md`, row A9 |
+| ⏳ **Search Console verified before the import** | The pre-launch baseline can't be recorded afterwards | `ops/deploy-checklist.md`, row A9 |
 | ⏳ **Sign off the seven discovery filter parameter names** (`kategorie`, `sprawdzone`, `wlasciciel`, `zero`, `aktualnosc`, `sortuj`, `szukaj`) | Not indexed, but every shared link carries them. Free to rename now, never after | `roadmap/pre-launch-checklist.md`, item 1 |
-| **Infrastructure.** The VPS (firewall, certificates, Tailscale, first-login script), cron, queue worker, secrets, backups with a rehearsed restore, healthcheck URL, mail (the disk-space and waiting-claim alarms reach the admin by e-mail), `/admin` on the `admin.` subdomain with allowlist and TOTP | The site has to run, be backed up and raise its alarms | `roadmap/deploy-checklist.md`, every `TODO` row; section B below; `journals/2026-09-30.md` for the 30.09 answers |
+| **Infrastructure.** The VPS (firewall, certificates, Tailscale, first-login script), cron, queue worker, secrets, backups with a rehearsed restore, healthcheck URL, mail (the disk-space and waiting-claim alarms reach the admin by e-mail), `/admin` on the `admin.` subdomain with allowlist and TOTP | The site has to run, be backed up and raise its alarms | `ops/deploy-checklist.md`, every `TODO` row; section B below; `journals/2026-09-30.md` for the 30.09 answers |
 | **Phase 0, yours, about an hour.** Push both repositories, `gh auth login`, read the first CI run, tag a release, add the backup public key, `~/.ssh/config` and `ssh-add`, the backup password in the password manager | Deploys start from a green, tagged, pushed release | `journals/2026-10-06.md`: Next Session Backlog (Session 1), item 4 |
 | **Privacy policy written from the app, plus the DPAs.** Includes two wording questions: does the inaccuracy report's `note` get cleared along with the e-mail, so that "anonymisation" is true? And does "no session identifier" mean none stored in analytics (recommended), or no session at all? | A published page making legal statements; PostHog is named without a DPA today | Section C below; `compliance/the-compliance-hour.md`; `journals/2026-10-03.md`: Open Questions 9 and 14 |
 
@@ -59,8 +60,8 @@ Everything here is checkable. The last section says how to regenerate the list, 
 | **An owner's word looks the same as a UNI check** (fault 1), and its fix: the evidence model (three questions on its shape, E1–E3), then rules for the badges and orderings, and whether to show each drink's check date on the page | Can't occur while the switch is off | `tech/badges-and-menu.md`; `journals/2026-10-06.md` Session 2 (E1–E3); `journals/2026-10-03.md`: Open Questions 15 |
 | **Owner-side faults.** Demoting an owner leaves the venue claimed (2); owner self-erasure deletes the venue instead of releasing it (5, and Q1); approving a proposal always creates a new product (6); the owner never hears the outcome of a proposal (7); owner contact edits unrecorded (10) | Every one needs an owner in the panel | `tech/change-flows.md`: What looks faulty, Open Questions Q1 |
 | **The owner-access checklist** (UNI's Instagram account, `UNI_INSTAGRAM_HANDLE`, one request on each path), a soft-delete window on self-erasure, owner-side follow-ups | Before the switch | Section E below; `product/features/Owner Verification.md` |
-| **Which V2 features are built now, behind a switch** | A planning decision | The ⭐ section below; `roadmap/next-session-2026-09-20.md` §1 |
-| **Community contributions.** The 01.10 idea of a community-driven UNI, and seven questions from 03.10: what people can do first, when it goes live (incl. the guest proposal form, sorted here rather than Launch: it adds moderation to the launch weeks), sign-in, proposal evidence, brand framing, silent-flag-weighting, direct owner edits with a marker, accountless contribution | Decided 06.10: contributions stay founder-reviewed | `roadmap/Some idea from 01.10.2026.md`; `journals/2026-10-03.md`: Open Questions 1–5, 7, 8, 12; `journals/2026-10-06.md` Session 2, Decision Register 2 |
+| **Which V2 features are built now, behind a switch** | A planning decision | The ⭐ section below; `briefings/next-session-2026-09-20.md` §1 |
+| **Community contributions.** The 01.10 idea of a community-driven UNI, and seven questions from 03.10: what people can do first, when it goes live (incl. the guest proposal form, sorted here rather than Launch: it adds moderation to the launch weeks), sign-in, proposal evidence, brand framing, silent-flag-weighting, direct owner edits with a marker, accountless contribution | Decided 06.10: contributions stay founder-reviewed | `inbox/Some idea from 01.10.2026.md`; `journals/2026-10-03.md`: Open Questions 1–5, 7, 8, 12; `journals/2026-10-06.md` Session 2, Decision Register 2 |
 | **The community-reporting record has drifted** from what was decided since | Before accounts | `journals/2026-10-04.md`: Technical Debt Log |
 | **"Hard-coded `instagram_clicks`"** | Checked 07.10: it is recorded, through the venue page's Instagram redirect (`VenueAnalytics`). Feeds owner reports only; nothing needed unless a V2 check finds otherwise | `journals/2026-10-06.md`: Technical Debt Log |
 
@@ -83,7 +84,7 @@ Everything here is checkable. The last section says how to regenerate the list, 
 
 The source list is [`v2.md`](v2.md) — V2-F1 post-visit confirmation, F2 saves and collections, F3 owner analytics dashboard, F4 community data reporting, F5 tiered badges, F6 owner-managed opening hours, F7 moderated venue images — plus anything the decision records defer to V2 (email verification with self-registration, the soft-delete window on self-service erasure). Check each against the records before recommending: several were narrowed or overtaken since `v2.md` was written (no photos in V1, opening hours, analytics tiers). Until he answers, `v2-work-is-not-built-early` stands for everything but the owner panel.
 
-**Prepared 19.09:** the table, checked against the records, with a recommendation per feature, is §1 of [`next-session-2026-09-20.md`](next-session-2026-09-20.md).
+**Prepared 19.09:** the table, checked against the records, with a recommendation per feature, is §1 of [`next-session-2026-09-20.md`](../briefings/next-session-2026-09-20.md).
 
 ## A. Decided and not built
 
@@ -108,7 +109,7 @@ The canonical list: decision records whose `Executed:` line is not a date. Twelv
 
 ## B. The machine — deploy checklist
 
-Not repeated here; [`deploy-checklist.md`](deploy-checklist.md) is the list and it is run line by line. What matters for planning:
+Not repeated here; [`deploy-checklist.md`](../ops/deploy-checklist.md) is the list and it is run line by line. What matters for planning:
 
 - **Eight rows still read `BLOCKED` on a hosting decision made on 14.09.** They are `TODO`. A note at the top of that file says so; the row-by-row rewrite is still owed.
 - **A1 — no `schedule:run` cron on any machine this project has lived on.** `crontab -l` returns *no crontab for bub*. Nothing scheduled has ever run.
@@ -171,7 +172,7 @@ grep -rn '^\*\*Executed:\*\*' docs/decisions --include=*.md \
   | grep -viE 'yes|standing rule|standing assessment|superseded|not applicable|\*\* *202[0-9]-'
 
 # B — the machine.
-grep -nE 'TODO|BLOCKED' docs/roadmap/deploy-checklist.md
+grep -nE 'TODO|BLOCKED' docs/ops/deploy-checklist.md
 
 # C — compliance.
 grep -c 'TODO' docs/compliance/ropa.md
@@ -191,4 +192,4 @@ php artisan route:list --except-vendor --method=GET
 
 ---
 
-*See also: [`deploy-checklist.md`](deploy-checklist.md) · [`../compliance/the-compliance-hour.md`](../compliance/the-compliance-hour.md) · [`../decisions/README.md`](../decisions/README.md)*
+*See also: [`deploy-checklist.md`](../ops/deploy-checklist.md) · [`../compliance/the-compliance-hour.md`](../compliance/the-compliance-hour.md) · [`../decisions/README.md`](../decisions/README.md)*

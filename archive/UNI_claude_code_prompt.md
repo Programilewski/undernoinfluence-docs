@@ -1,3 +1,7 @@
+---
+description: "A May prompt for implementing the scoring system. History only."
+---
+
 # UNI — Scoring System Implementation (Update, NOT Greenfield)
 
 This is a modification of an existing Laravel project (TALL stack: Laravel + FilamentPHP B2B + Livewire 3 B2C + Tailwind). The project already has some structure — review what exists before writing anything. Do NOT scaffold new projects or reinstall dependencies.

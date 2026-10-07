@@ -1,3 +1,7 @@
+---
+description: "How a venue travels from the database to a map pin."
+---
+
 # Doc 2: How Venues Get from Database to Map
 
 This traces the full journey of a venue — from the database row to a pin on the Leaflet map.

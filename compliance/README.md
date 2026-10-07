@@ -1,4 +1,5 @@
 ---
+description: "Compliance folder: what each file covers, and which ones are stubs."
 version: 0.3
 owner: Paweł Milewski
 updated: 2026-08-18

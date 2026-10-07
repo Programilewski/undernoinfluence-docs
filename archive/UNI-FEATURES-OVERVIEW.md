@@ -1,3 +1,7 @@
+---
+description: "Feature overview sheet for offline reading, 03.05. Superseded."
+---
+
 # UNI — Feature Overview & Analysis Sheet
 
 *For offline reading. Last updated 3 May 2026.*

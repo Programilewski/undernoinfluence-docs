@@ -1,3 +1,7 @@
+---
+description: "The two trust badges as built, versus the original single checkmark."
+---
+
 # Verified Checkmark
 
 **Status:** **Built — but differently from what this document describes.** **Verified against code 2026-08-18.** Instead of one threshold on a credibility score, V1 has **two independent binary signals**, split apart on 15.08: "Sprawdzona karta" = `venues.is_verified`, set manually by an admin **and** expiring once `last_menu_check_at` passes `uni.verification_valid_days` (180 days); "Zarządza właściciel" = `venues.is_claimed`, set by `ApproveVenueClaimAction`. Neither depends on the other, neither factors in freshness or user reports, and neither needs [[product/features/Credibility Score]]. Blending freshness and confidence into a single threshold, as described below, is a V2+ target.

@@ -34,4 +34,4 @@ Someone other than the founder has to operate the server, a second server is add
 
 ---
 
-*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/three-environments-and-what-each-is-for]] · [[decisions/product/a-deploy-needs-more-than-git-carries]] · [[decisions/product/every-process-that-writes-the-log-shares-a-umask]] · [[roadmap/research-results/deployment_research_assessment]] · [[roadmap/deploy-checklist]]*
+*See also: [[decisions/product/a-release-is-a-tag-deployed-from-git]] · [[decisions/product/three-environments-and-what-each-is-for]] · [[decisions/product/a-deploy-needs-more-than-git-carries]] · [[decisions/product/every-process-that-writes-the-log-shares-a-umask]] · [[research/results/deployment_research_assessment]] · [[ops/deploy-checklist]]*

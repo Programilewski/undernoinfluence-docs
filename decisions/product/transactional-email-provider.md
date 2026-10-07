@@ -74,7 +74,7 @@ It is a Polish company — Vercom S.A., **to be verified as current before any s
 
 An afternoon, no cost. **If Scaleway lands clean, it stays** — the record is written, the privacy policy already names Scaleway SAS as an Article 28 sub-processor, and switching costs a record rewrite, a policy edit and redoing the SPF, DKIM and DMARC work. **If Scaleway lands in spam at a Polish provider and EmailLabs does not, that single fact outweighs every argument above and we switch**, accepting the log-retention limitation and solving it with our own event storage.
 
-The test belongs with the SMTP work, not before it — it needs the sending domain, which needs the hosting decision. Tracked as **B2** in [`../../roadmap/deploy-checklist.md`](../../roadmap/deploy-checklist.md).
+The test belongs with the SMTP work, not before it — it needs the sending domain, which needs the hosting decision. Tracked as **B2** in [`../../ops/deploy-checklist.md`](../../ops/deploy-checklist.md).
 
 ### What did not change
 

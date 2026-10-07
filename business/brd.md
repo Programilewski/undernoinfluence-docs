@@ -1,3 +1,7 @@
+---
+description: "Business requirements document v1.0, 19.06."
+---
+
 # Business Requirements Document — Under No Influence (UNI)
 
 **Version**: 1.0  

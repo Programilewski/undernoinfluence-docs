@@ -1,4 +1,5 @@
 ---
+description: "Business documentation folder: what each file covers."
 version: 0.1
 owner: Paweł Milewski
 updated: 2026-05-13

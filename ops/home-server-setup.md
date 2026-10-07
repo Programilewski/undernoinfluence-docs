@@ -1,0 +1,394 @@
+---
+description: "Putting UNI on the home server, step by step with checks."
+owner: Paweł Milewski
+updated: 2026-09-28
+status: runbook — written before the first run. Every step has a check; if a check fails, stop there rather than continuing
+---
+
+# Putting UNI on the home server
+
+**What this environment is for.** Using the application on real devices over Tailscale — a phone, a tablet, someone else's laptop — rather than proving a deploy works. Nothing here is depended on and nothing here is protected, which is what makes it the environment where things may be broken freely. See [[decisions/product/three-environments-and-what-each-is-for]].
+
+**It is also the first time anything scheduled has run on any machine this project has lived on.** That is the part worth doing carefully, because every failure it has is silent.
+
+## What it needs, checked rather than assumed
+
+| Requirement | Why, and what was checked |
+|---|---|
+| **PHP ≥ 8.4.1 — and Ubuntu 24.04's stock 8.3 is not enough** | **Read the lock file, not `composer.json`.** `composer.json` declared `^8.3` on 22.09 while `composer.lock` demanded `>=8.4.1` through symfony 8.1 and spatie/crawler, and `composer install` refused with twenty-two conflicts on a box that had already been provisioned. `composer.json` now says `^8.4.1` and a test keeps the two honest. Install **8.4** from `ppa:ondrej/php` — that PPA has no 8.5 for noble as of 22.09.2026, checked rather than assumed the second time. Extensions: `mbstring`, `xml`, `curl`, `zip`, `bcmath`, `intl`, `pgsql`, `gd` |
+| **PostgreSQL** | Any recent version. **No PostGIS**: the migrations use `decimal(9,6)` for coordinates and the only extension in the live database is `plpgsql`. An earlier note assumed PostGIS parity was needed; it is not |
+| **No Redis** | The queue driver is `database`. Sessions and cache can stay on the database or file driver here |
+| **Node** | **Not on the server.** Assets are built off the box (checklist C2) and shipped. *28.09:* the reason given here was a Vite build competing with Postgres for memory; measured, the build peaks at ~370 MB, so memory is not the reason — one shipped artifact and no Node runtime to maintain are. C2 is open |
+| **A web server** | nginx + PHP-FPM, both stock. TLS is not nginx's job here — Tailscale terminates it (step 5) |
+| **Incus system container** | The application goes in a container so n8n and restic keep working untouched. Deliberately a system container, not Docker — production is bare Ubuntu under Ploi and parity is the point (INFRA-01's own instruction for the day it was revisited) |
+
+## Before you start
+
+**The host is Ubuntu 24.04.5 LTS and already runs Docker apps**, which stay where they are and are not touched.
+
+**`supervisor/uni-worker.conf` is correct as shipped.** It sets `user=www-data`, which exists on Debian and Ubuntu; the file warns that it does not exist on Fedora or RHEL and fails silently there. The container is Ubuntu, so nothing needs changing — this is the first deploy where that line has ever mattered.
+
+**The Tailscale address goes nowhere near a file** ([[decisions/product/no-machine-addresses-in-the-repo]]). It lives in `.env` on the box and in your head.
+
+## Three shells, and knowing which one you are in
+
+Every command block below is tagged with where it runs. Getting this wrong is the easiest mistake in the whole runbook, and the commands often *appear* to succeed in the wrong place.
+
+| Shell | Prompt looks like | What belongs there |
+|---|---|---|
+| **The home server (host)** | your user and the server's hostname | Incus itself, all firewall work, Tailscale |
+| **The container** | `root@uni:~#` | everything the application needs — PHP, Postgres, nginx, the code |
+| **The laptop** | this project's directory | building assets, tagging a release |
+
+**A quick tell:** you are root inside the container, so a command that needs `sudo` is almost certainly a host command. All firewall work is host-side, because Docker's rules and the packet forwarding both live there — nothing inside the container can see or change them.
+
+## The steps
+
+### 1. Incus, and a container to put it in
+
+**The box is Ubuntu 24.04.5 LTS and already runs Docker apps.** The application does not join them: it goes in an Incus **system container**, which behaves like a small Ubuntu server — systemd, cron, supervisor, several processes — where a Docker container is one process with no init and would make every later step look nothing like production. That is INFRA-01's own reasoning, and it is why this is worth five extra minutes.
+
+**It also buys the thing you asked for.** `incus delete uni --force` and you are back to a clean box in seconds, so this environment can be broken on purpose. Your n8n and restic never see any of it.
+
+On the host:
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+sudo apt update && sudo apt install -y incus
+sudo adduser "$USER" incus-admin        # log out and back in, or: newgrp incus-admin
+incus admin init --minimal
+incus launch images:ubuntu/24.04 uni
+incus exec uni -- bash                  # you are now inside the container
+```
+
+**Check:** `incus list` shows `uni` RUNNING with an IPv4 address. Note that address — the host reaches the container on it, and step 5 needs it.
+
+**Before anything inside the container: Docker has broken its network, and it does this every time.**
+
+Docker sets the iptables `FORWARD` chain policy to `DROP`. The container gets an address and DNS resolves — that is the bridge's own dnsmasq, which is not forwarded — so names turn into IP addresses and then **every connection times out**. It looks like a broken mirror or a DNS problem and is neither.
+
+On the host:
+
+```bash
+# ==== ON THE HOME SERVER (the host) — all firewall work is host-side ====
+sudo iptables -S FORWARD | head -1          # expect: -P FORWARD DROP
+incus network list                          # confirm the bridge is incusbr0
+sudo iptables -I DOCKER-USER -i incusbr0 -j ACCEPT
+sudo iptables -I DOCKER-USER -o incusbr0 -j ACCEPT
+sudo apt install -y iptables-persistent     # accept the prompt to save
+sudo netfilter-persistent save
+```
+
+`DOCKER-USER` is the chain Docker guarantees it will never overwrite — that is what it exists for — so this does not fight Docker and does not touch the running apps. **Without `iptables-persistent` the rules vanish at the next reboot** and the container silently loses the internet again.
+
+The container also has no IPv6 route, so apt tries nine v6 addresses before each v4 one. Inside the container:
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+echo 'Acquire::ForceIPv4 "true";' > /etc/apt/apt.conf.d/99force-ipv4
+```
+
+**Check, inside the container:** `ping -c1 1.1.1.1` answers and `curl -sSI https://archive.ubuntu.com | head -1` returns a status line. If ping works and curl does not, it is DNS rather than forwarding — look at `/etc/resolv.conf` next.
+
+Now install the stack. Inside the container:
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+apt update && apt install -y software-properties-common
+add-apt-repository -y ppa:ondrej/php && apt update
+apt-cache search --names-only '^php8\.[0-9]-cli$'     # see what the PPA actually offers
+apt install -y \
+  php8.4-fpm php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip \
+  php8.4-bcmath php8.4-intl php8.4-pgsql php8.4-gd \
+  postgresql nginx supervisor git unzip curl
+update-alternatives --set php /usr/bin/php8.4
+apt purge -y 'php8.3-*'
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+**A third-party PHP repository is needed, and an earlier version of this runbook said otherwise.** Ubuntu 24.04 ships PHP 8.3; the locked dependencies demand 8.4.1 or newer.
+
+**8.4, because as of 22.09.2026 ondrej's PPA has no 8.5 for noble** — asked for, and the answer was ten `Unable to locate package` lines. Hence the `apt-cache search` above: check what exists rather than assume a version, which is the mistake this line records for the second time. 8.4 satisfies the lock's `>=8.4.1` floor and `composer.json`'s `^8.4.1`.
+
+**It is not a byte-identical match with the laptop, which runs 8.5.10**, and that is accepted here — this is the environment where things may differ and be found out. It does mean the suite has only ever run on 8.5, so if something behaves oddly on this box the PHP version is a legitimate suspect rather than something to rule out. **Staging is where the version has to match production**, and which version production standardises on is still open.
+
+**Check:** `php -v` prints 8.5.x, `php -m | grep pdo_pgsql` prints a line, and `composer -V` works. If `pdo_pgsql` is missing nothing later will work, and the failure will present as a database problem rather than a missing extension.
+
+**One difference from the laptop, deliberately accepted:** Ubuntu 24.04 ships PostgreSQL 16 and the laptop runs 18.6. For this environment that is fine — the schema uses nothing version-specific, no PostGIS, no extensions beyond `plpgsql`. Staging is where version parity has to be real, and staging will match whatever production runs.
+
+### 2. The database and its role
+
+Inside the container:
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+sudo -u postgres psql
+```
+```sql
+CREATE ROLE preprod_uni_app LOGIN PASSWORD 'generate-one-here';
+CREATE DATABASE preprod_uni OWNER preprod_uni_app;
+\q
+```
+
+Two names, environment first — `preprod_uni` and `preprod_uni_app` — for the reason checklist A11 gives: `uni_production` and `uni_staging` differ by a suffix that is skimmed past in a terminal at night, while a connection string starting `preprod_` cannot be misread as production.
+
+**Generate the password on the box and do not reuse the laptop's** (checklist A7). It lives only in this container's `.env`.
+
+**Check:** `psql -U preprod_uni_app -h 127.0.0.1 -d preprod_uni -c 'select 1;'` returns a row.
+
+### 3. A deploy user, then the code
+
+**Not as root.** Composer says so itself and it is right: `composer install` runs `post-autoload-dump`, which writes into `bootstrap/cache`, and as root those files end up root-owned. php-fpm runs as `www-data` and then cannot write them — which surfaces much later as a permissions error that looks like nothing to do with this step. Production under Ploi uses a dedicated deploy user too, so this is parity for free.
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+adduser --disabled-password --gecos "" uni
+usermod -aG www-data uni
+mkdir -p /var/www && chown uni:www-data /var/www
+```
+
+The repository is private, so the box needs its own read-only key rather than your personal one:
+
+```bash
+# ==== INSIDE THE CONTAINER, as the uni user ====
+su - uni
+ssh-keygen -t ed25519 -C "uni-homeserver" -f ~/.ssh/id_ed25519 -N ""
+cat ~/.ssh/id_ed25519.pub
+```
+
+Add that public key to **the `undernoinfluence` repository → Settings → Deploy keys**, read-only, *not* to your account. A deploy key reaches one repository; an account key reaches everything you own, and this is the box that may be broken freely.
+
+```bash
+# ==== INSIDE THE CONTAINER, as the uni user ====
+cd /var/www
+git clone git@github.com:Programilewski/undernoinfluence.git undernoinfluence
+cd undernoinfluence
+git checkout v0.1.0
+composer install --no-dev --optimize-autoloader
+```
+
+**The tag, not the branch** ([[decisions/product/a-release-is-a-tag-deployed-from-git]]). `v0.1.0` was cut on 22.09 and is the first release tag the project has had.
+
+**Check:** `git describe --tags` prints `v0.1.0`, and `composer install` completes without the root warning.
+
+**Then the writable directories**, back as root — php-fpm is `www-data` and needs to write these two and only these two:
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+chown -R uni:www-data /var/www/undernoinfluence
+find /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache -type d -exec chmod 2775 {} \;
+find /var/www/undernoinfluence/storage /var/www/undernoinfluence/bootstrap/cache -type f -exec chmod 664 {} \;
+```
+
+`2775` sets the setgid bit, so files created later keep the `www-data` group instead of reverting to `uni` and breaking again on the next deploy.
+
+### 4. `.env`
+
+Copy `.env.example` and change only what the environment demands: `APP_ENV`, `APP_DEBUG`, `APP_URL` (the Tailscale name), the database values, and `APP_KEY` via `php artisan key:generate`.
+
+**`UNI_OWNER_ACCESS` stays `false`** unless you are deliberately testing the owner side — `.env.example` is production and it ships off ([[decisions/product/owner-panel-ships-behind-one-switch]]).
+
+**Check:** `php artisan --version` prints a version. **If it throws instead, read the error** — on 22.09 this exact step failed because `.env.example` shipped an empty value where a config default was expected, and every artisan command threw before doing anything. That is fixed and pinned by a test, but this is where that class of failure appears.
+
+### 5. Assets, and reaching it from a phone
+
+**Build on the laptop, from the same tag**, then copy across — never on the server (checklist C2):
+
+```bash
+# ==== ON THE LAPTOP ====
+npm ci && npm run build
+tar -czf ~/uni-assets.tgz -C public build vendor map-styles
+scp ~/uni-assets.tgz you@homeserver:/tmp/
+```
+
+**Three directories, not one.** `public/build` is the Vite output. `public/vendor/maplibre-gl/<version>/` is the map library itself, copied out of `node_modules` by vite.config.js's `vendorMapLibre` plugin at build time and **gitignored**, so no clone has it. `public/map-styles` is tracked and will already be present, but including it costs nothing and removes a thing to remember.
+
+**Shipping only `build/` was done on 22.09, and produced a site where every page rendered correctly and every map was blank.** `map-loader.js` fetches `/vendor/maplibre-gl/<version>/maplibre-gl.mjs`; it got a 404, which appears in the browser console and **nowhere on the server**.
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+incus file push /tmp/uni-assets.tgz uni/tmp/
+```
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+tar -xzf /tmp/uni-assets.tgz -C /var/www/undernoinfluence/public
+chown -R uni:www-data /var/www/undernoinfluence/public
+ls public/build/manifest.json
+ls public/vendor/maplibre-gl/*/maplibre-gl.mjs
+curl -sI http://127.0.0.1/vendor/maplibre-gl/6.9.0/maplibre-gl.mjs | grep -i content-type
+```
+
+**That last line must say `text/javascript`, not `application/octet-stream`** — see the `.mjs` block in step 5a. A 200 with the wrong type looks like success everywhere except in the browser.
+
+**Confirm `public/hot` does not exist on the server.** If it does, Laravel emits asset URLs pointing at a Vite dev server that is not there, and every page renders unstyled **with nothing in the log** (checklist C3). This is the same fact that made the test suite lie on 22.09.
+
+**Tailscale, on the host, not in the container:**
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+# on the host, where Tailscale already runs
+tailscale serve --bg --https=443 http://<container-ip>:80
+tailscale serve status
+```
+
+That publishes the container on your tailnet over **real HTTPS with a valid certificate**, which is not cosmetic here: the consent cookie is `Secure`, and a browser silently discards a `Secure` cookie over plain HTTP — the exact defect fixed on 02.09, where every consent decision was lost and the banner returned on the next page load. Testing over `http://` would reproduce a bug that no longer exists and hide the behaviour you actually want to check.
+
+Set `APP_URL` in `.env` to that HTTPS name, and `SESSION_SECURE_COOKIE=true` with it.
+
+**Check:** the site opens on your phone, over mobile data, at an `https://` address, the consent decision survives a reload, **and a map draws**. The first three can all pass while the map is dead, which is why it is named separately.
+
+The basemap tiles come from OpenFreeMap over the public internet, so a blank map with the library present means the phone has Tailscale but no working internet — a different problem from a 404 on the library, and the browser console tells them apart.
+
+### 5a. nginx in front of PHP-FPM
+
+```nginx
+server {
+    listen 80 default_server;
+    root /var/www/undernoinfluence/public;
+    index index.php;
+
+    location / { try_files $uri $uri/ /index.php?$query_string; }
+
+    # MapLibre ships as ES modules. nginx's mime.types on Ubuntu 24.04 has no entry
+    # for .mjs, so it falls back to application/octet-stream — and a dynamic import()
+    # refuses a module that is not served with a JavaScript type. The file downloads
+    # with a 200 and the browser then declines to execute it, so curl says everything
+    # is fine and every map is blank. Found on the home server, 22.09.
+    #
+    # default_type in a location that only matches .mjs, rather than a types { } block:
+    # a types block inside server REPLACES the inherited map instead of adding to it,
+    # which would silently drop every other MIME type on the site.
+    location ~ \.mjs$ {
+        default_type text/javascript;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+    }
+
+    # Nothing outside public/ is ever served.
+    location ~ /\. { deny all; }
+}
+```
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+nginx -t && systemctl reload nginx
+```
+
+Ownership was set in step 3; nothing here needs `chown`.
+
+**`root` points at `public/`, not at the project directory.** Pointed one level up, `.env` is downloadable over HTTP — the single most common way a Laravel application leaks its database credentials.
+
+**Check:** `curl -I http://127.0.0.1/` from inside the container returns 200, and `curl http://127.0.0.1/.env` returns 403 or 404 rather than a file.
+
+### 6. Migrate, and make the first admin
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) ====
+php artisan migrate --force
+php artisan uni:create-admin
+```
+
+The command prompts for the password rather than taking it as an argument, so it stays out of shell history. Filament's own `make:filament-user` creates role `user`, which `/admin` refuses — use ours (checklist A10).
+
+**Check:** you can log in at `/admin` from your phone over Tailscale.
+
+### 7. Cron — the thing that has never run
+
+```cron
+* * * * * cd /var/www/undernoinfluence && php artisan schedule:run >> /dev/null 2>&1
+```
+
+One line. It runs ten scheduled commands:
+
+| Schedule | Command | What is untrue while it does not run |
+|---|---|---|
+| every 5 min | `uni:heartbeat` | The admin dashboard cannot tell you the scheduler stopped |
+| every 5 min | `PingExternalHealthcheck` | The outside alarm hears nothing — dormant until `UNI_HEALTHCHECK_PING_URL` is set |
+| hourly | `uni:check-offer-freshness` | **"Sprawdzona karta" keeps claiming a menu is fresh when it is not** |
+| 03:10 | `analytics:roll-up` | Owner analytics stop advancing |
+| 00:00 | `uni:anonymise-expired-data` | **The privacy policy's retention windows stop being kept** |
+| 08:00 | `uni:remind-waiting-claims` | An owner request past 14 days is never flagged |
+| 00:00 | `queue:prune-failed` | Failed jobs accumulate |
+| 01:00 | `backup:clean` | Rotation stops |
+| 01:30 | `backup:run` | **No backups** |
+| 07:00 | `backup:monitor` | Nobody is told the backups stopped |
+
+**Check:** wait six minutes, then open `/admin`. The dashboard reports how long ago the scheduler last ran and turns red after fifteen minutes. Green is the proof — this is the first time in the project's life it can be green.
+
+### 8. The queue worker
+
+`supervisor/uni-worker.conf`, with `user=` set to whatever the web server actually runs as in this container. Notifications implement `ShouldQueue`: without a worker, a claim e-mail **waits in the `jobs` table** and goes out when a worker starts — start the worker, never re-send by hand (the a-queued-job-waits-it-is-not-lost record).
+
+**Check:** `supervisorctl status uni-worker` shows RUNNING, and a test notification arrives.
+
+### 9. Mail
+
+Scaleway TEM is decided and signed but was never configured. Until it is, `MAIL_MAILER=log` writes mail to the log — fine for this environment, and it means "did it send?" is answerable by reading a file.
+
+**Check:** trigger one owner e-mail and find it in `storage/logs/laravel.log`.
+
+### 10. What to actually do once it is up
+
+This is the point of the environment, and it is the step most likely to be skipped:
+
+- Open the site **on your phone, on mobile data** rather than wifi, and use the map and the filters with a thumb.
+- Check the venue page and the discovery list at phone width, in the dark palette, outdoors if you can.
+- Hand it to somebody who has never seen it and watch where they stop.
+
+## Updating to a new release
+
+Everything above is the first install. Every later deploy is this, and nothing else — checked line by line on 28.09 against the code, the vendored packages and Ploi's documentation.
+
+```bash
+# ==== ON THE PC ====
+composer run test                      # stop `npm run dev` first: a live public/hot makes the tests pass without a build (C3)
+git tag -a v0.1.N -m "v0.1.N — <what it is>"
+git push origin main v0.1.N
+git checkout v0.1.N && npm ci && npm run build \
+  && tar -czf ~/uni-assets-v0.1.N.tgz -C public build vendor map-styles && git checkout main
+scp ~/uni-assets-v0.1.N.tgz <you>@<homeserver>:/tmp/
+```
+
+```bash
+# ==== ON THE HOME SERVER (the host) ====
+incus file push /tmp/uni-assets-v0.1.N.tgz uni/tmp/
+```
+
+```bash
+# ==== INSIDE THE CONTAINER  (prompt: root@uni) — assets first, so the new code never points at files not there yet ====
+tar -xzf /tmp/uni-assets-v0.1.N.tgz -C /var/www/undernoinfluence/public
+chown -R uni:www-data /var/www/undernoinfluence/public
+test ! -e /var/www/undernoinfluence/public/hot && echo "no hot file"
+```
+
+```bash
+# ==== INSIDE THE CONTAINER, as the uni user ====
+umask 0002                             # the 25.09 log lock-out, from the deploy shell's side
+cd /var/www/undernoinfluence
+git fetch --tags origin && git checkout v0.1.N && git describe --tags
+composer install --no-dev --optimize-autoloader --no-interaction
+php artisan migrate --force
+php artisan optimize                   # after composer: filament:upgrade clears the caches (C4)
+php artisan queue:restart              # otherwise the worker runs old code for up to an hour (C1)
+curl -s -o /dev/null -w '%{content_type}\n' http://127.0.0.1/vendor/maplibre-gl/6.9.0/maplibre-gl.mjs   # text/javascript
+```
+
+**`umask 0002` in the deploy shell** covers the one writer the 25.09 fix did not name: every `artisan` command in a deploy runs as `uni`, and if one of them logs the first line of the day it creates that day's log. *Checked on the box 28.09:* `su - uni -c umask` already prints `0002` — Ubuntu's `pam_umask` gives a user whose private group matches its name a group-writable umask on login — so through `su - uni` the line changes nothing. It stays for the other ways in: `sudo -u uni` applies sudo's own `umask` default of `0022`, combined with the user's, so a deploy run that way creates `rw-r--r--` files regardless of what the login shell would do.
+
+**Checked on the box 28.09, before the first update:** it was on `v0.1.2`, not `v0.1.3`, and it still had the dev packages (`vendor/laravel/boost` present) — the `--no-dev` above removes them on the first run, and a clean clone installed with `--no-dev` was booted and cached on the PC the same day to confirm nothing needs them. `.env.bak-20260925` sits untracked in the project root: not reachable over HTTP, since nginx's `root` is `public/`, but it is a second copy of the box's secrets inside the application tree, and it belongs outside it or deleted. The loaded worker config is `/etc/supervisor/conf.d/uni-worker.conf`, and php-fpm runs with `opcache.validate_timestamps` on, which is why the reload below is optional here.
+
+**If `supervisor/uni-worker.conf` changed in the release**, `diff` it against the loaded copy under `/etc/supervisor/conf.d/`, copy it over, and `supervisorctl reread && supervisorctl update`. **Reloading php-fpm is optional here**: PHP's default OPcache re-checks changed files every two seconds. On Ploi it is not optional (C8).
+
+**A rollback is the same sequence with the previous tag and an asset bundle built from that tag.**
+
+## What this environment must never have
+
+Real personal data, anything production depends on, a backup that matters, or the outside monitor ([[decisions/product/the-alarm-rings-from-outside-the-building]] — an alarm in the same building cannot report the building being down).
+
+---
+
+*See also: [[tech/scheduled-work]] · [[ops/deploy-checklist]] · [[decisions/product/three-environments-and-what-each-is-for]] · [[decisions/product/a-release-is-a-tag-deployed-from-git]]*

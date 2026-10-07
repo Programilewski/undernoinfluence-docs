@@ -1,3 +1,7 @@
+---
+description: "Map initialisation, pins, category icons, clustering. Written for Leaflet, before the MapLibre move."
+---
+
 # Doc 4: Map Markers, Categories, and Clustering
 
 This explains how the Leaflet map is initialised, how pins are created (including their category-aware icons), and how clustering works.

@@ -1,3 +1,7 @@
+---
+description: "The discovery map: files, technologies, who owns what."
+---
+
 # Doc 1: The Big Picture
 
 The discovery map (`/mapa`) is the core feature of UNI. It lets users browse no/low-alcohol venues on a split layout: a scrollable list on the left, an interactive map on the right.

@@ -1,3 +1,7 @@
+---
+description: "The map view. Built (status line predates the MapLibre move)."
+---
+
 # Map View
 
 **Status:** **Built.** **Verified against code 2026-08-18.** Leaflet with CartoDB tiles, marker clustering (`leaflet.markercluster`), "search this area" via a bounding-box query, and bi-directional pin↔card sync (the selected-pin glow never worked at all until it was fixed on 17.08). The `breadth_score` column **does exist** and is indexed; `credibility_score` does not exist and will not (ADR-004). Distance queries run through a haversine expression in SQL (`Venue::HAVERSINE_SQL`) — **PostGIS is not installed**, despite what `tech/stack.md` claimed for months.

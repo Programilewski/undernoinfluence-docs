@@ -1,3 +1,7 @@
+---
+description: "Hover, click and popups between the list and the map."
+---
+
 # Doc 5: Interactivity — Hover, Click, and Popups
 
 This explains what happens when you interact with venue cards in the list or pins on the map.

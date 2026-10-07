@@ -1,3 +1,7 @@
+---
+description: "The product catalogue: schema and panels exist; tags do not."
+---
+
 # Product Reference Database
 
 **Status:** **Schema and panels exist, the catalog is nearly empty, tags do not exist at all.** **Verified against code 2026-08-18.** In the database: 12 products, 12 brands, 6 categories, 105 venue-authored custom drinks. **The `tags` table and `product_tag` pivot do not exist** — contrary to what [[product/features/Features Index]] claimed — and there is no `Venue::scopeWithTags()` either. The whole tag system is specification, not code. Product search and assignment work in both panels. What remains: the target ~50-100 catalog products, to be collected alongside the venues.

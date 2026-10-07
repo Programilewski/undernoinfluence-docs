@@ -1,4 +1,5 @@
 ---
+description: "Scoring specification. Largely superseded; see ADR-008."
 version: 1.1
 owner: Paweł Milewski
 updated: 2026-08-18

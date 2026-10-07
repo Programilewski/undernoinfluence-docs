@@ -1,3 +1,7 @@
+---
+description: "V1 readiness review, 29.04: functionally complete, not launch-ready. History only."
+---
+
 # V1 Readiness Review — Under No Influence
 
 **Date:** 2026-04-29
