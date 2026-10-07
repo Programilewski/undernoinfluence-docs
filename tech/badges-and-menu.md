@@ -66,6 +66,7 @@ These reframe fault 1, and they are the starting point when it is picked up agai
 
 - **No permanent manual check.** A badge is a rule over recorded facts; an admin going through a menu is V1 scaffolding, not the model.
 - **The target meaning of "Sprawdzona karta": a venue its owner manages counts as checked.** UNI trusts the owner. **This reverses a written claim:** the what-the-badges-claim record (16.09) says the badge means "a person checked this menu within the last six months", and the 15.08 split made it independent of "Zarządza właściciel". Both are to be revised in the V2 badge step, not before.
+- **"Zarządza właściciel" means a claim was approved** for that venue. Revisit with the badge in V2.
 - **No source labels on public pages** ("according to the menu", "according to the venue"). Visitors see dates, not provenance.
 - **Owners are not asked for a menu link or any justification** when they add, edit or confirm. Every owner action is already recorded as theirs (`added_by`, the offer log), and that is UNI's answer in a dispute: the venue changed it.
 - **The FAQ and the other public copy are drafts, written from the code**, never the other way round.
@@ -74,6 +75,6 @@ These reframe fault 1, and they are the starting point when it is picked up agai
 
 ## Open, for when this is picked up again
 
-- **The ranking lever:** what orders venues on a drink page, so that a daily click doesn't buy first place.
+- **The ranking lever:** closed by the one-ordering-for-every-venue-list record (07.10): one default ordering everywhere, confirmation rewarded as a state, never as recency. The formula is open.
 - **"Sprawdzona karta" redefined** around owner management, with the two records above revised.
 - **E1–E3**, the evidence model's shape, in the 06.10 journal, Session 2. They need re-reading against the points above: with no source labels and no owner links, fewer kinds of evidence may be needed.

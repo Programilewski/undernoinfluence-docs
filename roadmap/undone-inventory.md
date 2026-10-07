@@ -48,6 +48,7 @@ Everything here is checkable. The last section says how to regenerate the list, 
 
 | Item | Rule until it's done | Source |
 |---|---|---|
+| **One ordering for every list of venues.** Decided 07.10: discovery, city, district, category, drink and brand pages share one default ordering that rewards a generous offer and confirmed availability. Choose the formula, then build it. Must land before the owner switch | Drink and brand pages keep ordering by the newest confirmation; with only admin data that's harmless | `decisions/product/one-ordering-for-every-venue-list.md` |
 | **Admin "Potwierdź" for house drinks.** Catalogue products have it; house drinks can only be refreshed by editing or re-importing. Decided 07.10 that it's needed | Edit the drink's date and source when you re-check a menu | `tech/badges-and-menu.md`, "What can be done to a menu" |
 | **A retired product (`is_active` off) still shows on venue pages, counts in the score and keeps a venue live** (fault 3); **deleting a product writes no offer history** for the venues that carried it (fault 4) | Don't retire or delete a product that's on a menu; remove it from the menus first | `tech/change-flows.md`: What looks faulty, rows 3 and 4; Open Questions Q2, Q3 |
 | **"Oznacz jako sprawdzone" renews the Sprawdzona karta badge in one unrecorded click** (fault 8) | Renew it only after an actual check | `tech/change-flows.md`: row 8; Open Questions Q4 |
