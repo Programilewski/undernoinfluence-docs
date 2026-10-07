@@ -1,7 +1,3 @@
----
-description: "Every list of venues is ordered by one rule that rewards a generous offer and a confirmed one, combined; the formula is open."
----
-
 # One ordering for every list of venues
 
 **Date:** 2026-10-07
