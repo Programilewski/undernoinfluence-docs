@@ -1,7 +1,7 @@
 ---
-version: 1.0
+version: 1.1
 owner: Paweł Milewski
-updated: 2026-10-06
+updated: 2026-10-07
 status: living — the single list of what has not been done
 ---
 
@@ -13,7 +13,69 @@ Everything here is checkable. The last section says how to regenerate the list, 
 
 ---
 
+## Sorted by when it's needed (07.10)
+
+**The direction, 07.10:** launch V1 as soon as it's stable, so search engines start indexing it, and build V2 while it's live. V1 gets the minimum that keeps it stable and truthful; everything else waits for its version. The sections below this one stay as the detail; this is the order.
+
+**The buckets:**
+- **Launch**: the site doesn't go public without it.
+- **After launch**: V1 stays live without it, but it's work for the live site, not for a later version. Each item has a rule to follow until it's done.
+- **V2**: needed before `UNI_OWNER_ACCESS` is flipped, or before accounts and community contributions open.
+- **V3**: before anything is sold, or before a second city.
+
+"Cheap now, expensive later" isn't a bucket of its own. It's a reason something moves into Launch, and it's marked **⏳** where it applies.
+
+### Launch
+
+| Item | Why it can't wait |
+|---|---|
+| **Venues: answer 16 and 17**, then catalogue (best offer first, the 04.10 guardrails) | The only thing that sets the launch date. 16: where the 35 venues live (only you know). 17: what counts as "best" (recommended: at least 3 named NA items across at least 2 categories, from the venue's own menu). 18: recommended no district quota |
+| **The launch-load record, rehearsed on the home server** (products → venues → menus) | A wrong order fails silently into `failed_import_rows` on launch day |
+| ⏳ **Fault 9: imports and admin adds stamp "today"**, not the menu's check date | Checked 07.10: `RecordMenuItemAction` and the admin "Dodaj produkt" / "Potwierdź" set `confirmed_at` and the venue's freshness date to now. Load menus read in August and every venue reads "Zaktualizowano dziś", every drink "Potwierdzone dziś", and the 90-day clock starts at the import. Fixed before the load it's a small change; after, it means rewriting dates on live rows |
+| ⏳ **Nominatim geocoding check** (§F) | If the load geocodes venues through Nominatim, ODbL data is in production from day one. Cheaper to settle before the load than to re-geocode after |
+| ⏳ **Search Console verified before the import** (deploy-checklist A9) | The pre-launch baseline can't be recorded afterwards |
+| ⏳ **Sign off the seven filter parameter names** (pre-launch-checklist item 1) | Not indexed, but every shared link carries them. Free to rename now, never after |
+| **Infrastructure: deploy-checklist rows A and B, and the VPS** (firewall, certificates, Tailscale, first-login script, cron, queue worker, secrets, backups with a rehearsed restore, healthcheck URL, `/admin` on the `admin.` subdomain with allowlist and TOTP) | Section B of this file. Mail is needed too: the disk-space and waiting-claim alarms go to the admin by e-mail |
+| **Phase 0** (push both repositories, `gh auth login`, read the first CI run, tag, backup key, SSH config) | The deploy path starts from a green, tagged, pushed release |
+| **Privacy policy written from the app, plus the DPAs** (§C; the compliance hour) | It's a published page making legal statements; PostHog is named without a DPA today. The inputs already decided (logs, rate limiting) plus two open wording questions from 03.10: **9** (does `note` get cleared with the e-mail, so "anonymisation" is true) and **14** (recommended: "no session identifier" means none stored in analytics) |
+
+### After launch
+
+| Item | Until it's done |
+|---|---|
+| **Fault 3: a retired product stays on venue pages**, and **fault 4: deleting a product leaves no offer history** | Don't retire or delete a product that's on a menu; remove it from the menus first |
+| **Fault 8: "Oznacz jako sprawdzone" is one unrecorded click** | Renew the badge only after an actual check |
+| **Fault 10, admin side**: slug edits (no redirect, so a changed slug loses its ranking), report decisions, role changes, feature flags unrecorded | Don't change a venue's slug once it's live |
+| **The 90-day pill vs the 180-day badge**: the explaining sentence is in the FAQ, not yet on the venue page | — |
+| **Retire `RealVenueSeeder` and `warsaw-venues.json`** (question 19) | Load through the importers only |
+| **Staging** | Its trigger stands: the first migration that could damage real data |
+
+### V2
+
+| Item | Note |
+|---|---|
+| **Fault 1 and the evidence model** (E1–E3, the badge and ordering rules, provenance on the page: question 15) | Can't occur while the switch is off. Reference: `tech/badges-and-menu.md` |
+| **Faults 2, 5, 6, 7 and the owner side of 10** | Every one of them needs an owner in the panel. Q1 (release, not delete, on self-erasure) belongs here |
+| **The owner-access checklist** (UNI's Instagram, `UNI_INSTAGRAM_HANDLE`, one request on each path), the soft-delete window on self-erasure, owner-side follow-ups | §E |
+| **Which V2 features are built now behind a switch** (the ⭐ question below) | A V2 planning decision |
+| **The 01.10 community-driven idea, and 03.10 questions 1–5, 7, 8, 12** | Decided 06.10: contributions stay founder-reviewed. The guest proposal form (question 2) is sorted here, not into Launch: it adds moderation work to the launch weeks |
+| **Hard-coded `instagram_clicks`** | Checked 07.10: it is recorded, through the venue page's Instagram redirect (`VenueAnalytics`). It only feeds owner reports, so if anything is left it's a V2 check |
+| **The community-reporting record's drift**, silent-flag-weighting | Before accounts |
+
+### V3
+
+| Item | Note |
+|---|---|
+| **03.10 questions 6, 10, 11**: producer aggregates, the minimum count, open-licensing the data; "Trending Product Alerts" in `business/pricing.md` | Before any data or report is sold |
+| **`venue-lists-are-never-sold-as-leads` on the privacy policy** | Nothing sells lists. Write it into the policy at Launch if it costs one sentence; otherwise before the first sale |
+
+**Not in any version:** renaming research files, fixing misdated commute documents, `Growth Strategy.md`, re-running the model test. Housekeeping, done whenever.
+
+---
+
 ## ⭐ First, when asked "what needs to be done" — a decision waiting on Paweł
+
+*Sorted into V2 on 07.10; see above.*
 
 **Which V2 features get built now, complete, behind a switch?** On 18.09 the owner panel was built complete behind `UNI_OWNER_ACCESS`, so that V2 is a switch and not a build — which superseded `v2-work-is-not-built-early` *for the owner panel only*. Paweł asked for the rest to be put to him as a table: every V2 feature, what it would take, what it touches, and a recommendation, and he decides one by one.
 

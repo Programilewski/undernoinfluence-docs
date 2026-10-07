@@ -47,6 +47,8 @@ A house-drink **edit** runs only steps 1 and 2: the count does not change, so ne
 
 ### Badges these flows move
 
+The full tables (every menu operation by admin and owner, every badge, and the orderings they move) are in `badges-and-menu.md`.
+
 - **"Zaktualizowano X dni temu"**: `offer_updated_at`. Moved by any menu change and by any "still on the menu" confirmation, by anyone.
 - **"Sprawdzona karta"**: `is_verified` **and** `last_menu_check_at` within 180 days. Moved only by admin actions. It is about the whole venue, not about the rows on it.
 - **"Zarządza właściciel"**: `is_claimed`.
