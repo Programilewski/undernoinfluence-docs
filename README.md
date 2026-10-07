@@ -210,7 +210,6 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [prompts/community-reciprocity-run-2.md](research/prompts/community-reciprocity-run-2.md) | Prompt, run 2 of 3: open data, Poland, motivation. | 2026-10-03 |
 | [prompts/community-reciprocity-run-3.md](research/prompts/community-reciprocity-run-3.md) | Prompt, run 3 of 3: design questions. | 2026-10-03 |
 | [prompts/community-reciprocity.md](research/prompts/community-reciprocity.md) | Prompt: a community that is served, not harvested (first version). | 2026-10-03 |
-| [prompts/does-substitution-reduce-consumption.md](research/prompts/does-substitution-reduce-consumption.md) | Prompt: is the harm-reduction thesis true? | ≤ 2026-09-22 |
 | [prompts/llm-fitness-for-uni-key.md](research/prompts/llm-fitness-for-uni-key.md) | Grading key for the model test. Never paste into a candidate. | 2026-10-03 |
 | [prompts/llm-fitness-for-uni.md](research/prompts/llm-fitness-for-uni.md) | Test battery: which model for which UNI job. | 2026-10-03 |
 | [prompts/nav-versus-footer.md](research/prompts/nav-versus-footer.md) | Prompt: what belongs in the nav and what in the footer. | ≤ 2026-09-22 |
@@ -224,7 +223,6 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [results/deployment_research_1.md](research/results/deployment_research_1.md) | Deployment research report 1 (Polish). | 2026-09-29 |
 | [results/deployment_research_2.md](research/results/deployment_research_2.md) | Deployment research report 2 (English, sourced). | 2026-09-29 |
 | [results/deployment_research_assessment.md](research/results/deployment_research_assessment.md) | Assessment of the two deployment reports, checked against the code. | 2026-09-29 |
-| [results/does-substitution-reduce-consumption.md](research/results/does-substitution-reduce-consumption.md) | Result: the substitution thesis, partially supported. Rejected as grounds for product decisions on 10.09. | ≤ 2026-09-22 |
 | [results/nav-versus-footer.md](research/results/nav-versus-footer.md) | Result: primary navigation versus footer. | ≤ 2026-09-22 |
 | [results/owner-verification-other-llm.md](research/results/owner-verification-other-llm.md) | Result: owner verification, a second model's report (Polish). | ≤ 2026-09-22 |
 | [results/owner-verification.md](research/results/owner-verification.md) | Result: owner verification methods compared. | ≤ 2026-09-22 |
