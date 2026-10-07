@@ -1,0 +1,19 @@
+{
+  "archive/UNI_scoring_v2.jsx": "Interactive prototype of the abandoned weighted scoring system.",
+  "archive/map-errors.png": "Screenshot of old map errors.",
+  "archive/spec-versions/interactive_v1_feature_spec.html": "An earlier version of the interactive spec.",
+  "archive/spec-versions/interactive_v1_feature_spec_SSOT_29_06.html": "The interactive spec as of 29.06.",
+  "archive/spec-versions/interactive_v1_feature_spec_changelog.html": "Changelog of the interactive spec versions.",
+  "archive/tile.png": "Screenshot of an old venue tile design.",
+  "archive/view.png": "Screenshot of an old view.",
+  "brand/UNI-Brand-Book.html": "The brand book rendered as HTML.",
+  "brand/UNI-Brand-Book.pdf": "The brand book as PDF.",
+  "business/brd.docx": "The business requirements document as Word.",
+  "business/brd.html": "The business requirements document rendered as HTML.",
+  "business/user-stories.docx": "The user stories as Word.",
+  "business/user-stories.html": "The user stories rendered as HTML.",
+  "learning/interactive.html": "Interactive companion to the learning series.",
+  "learning/visualized-app.html": "A visual map of the application.",
+  "product/spec.html": "The product specification (single source of truth), with a drift banner listing later changes.",
+  "tech/test.bpmn": "A test BPMN diagram."
+}

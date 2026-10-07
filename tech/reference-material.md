@@ -1,6 +1,7 @@
 ---
+description: "Where third-party reference material went when it left the vault."
 owner: Paweł Milewski
-updated: 2026-09-22
+updated: 2026-10-07
 status: record — the material left the vault on 22.09.2026, step A3 of the repository migration
 ---
 
@@ -17,6 +18,7 @@ This page exists so that a document citing `docs/reference/…` still resolves t
 | `docs/reference/gus-api/` | `~/uni-reference/gus-api/` | 484 KB | Vendored GUS API documentation, cited by [[decisions/product/geocoding-comes-from-the-state-register]] |
 | `docs/reference/nominatim/` | `~/uni-reference/nominatim/` | 84 KB | Nominatim usage policy and notes |
 | `uni_filtered_venues.csv` / `.xlsx` | `~/uni-reference/` | 564 KB | The 2378-row OSM-derived export from the abandoned seeding approach. Kept for reference only: it is ODbL-licensed, it carries a `phone` column, and neither belongs in this project any more |
+| `docs/Pricing — Server Management Tool.html` and its `_files/` folder | `~/uni-reference/saved-pages/` | — | A saved Ploi pricing page. Moved on 07.10.2026, executing P30; Ploi was dropped on 28.09 |
 
 **Ten Syncthing conflict copies were deleted rather than moved** — 40.1 MB, five research files each saved twice on 25.08. Every one had its original beside it, verified byte-for-byte before deletion.
 

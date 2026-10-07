@@ -1,74 +1,304 @@
 ---
-version: 1.2
+description: "The index: how this workspace is organised, every document in it, and when each was last changed."
 owner: Paweł Milewski
-updated: 2026-08-18
-status: approved
+updated: 2026-10-07
+status: living — the index; the list below is generated
 ---
 
-# UNI Documentation
+# The UNI workspace
 
-Everything non-code lives here. One folder, one home per topic.
+The thinking behind Under No Influence: plans, decisions, references, runbooks and history. The application lives in its own repository. Open this folder as an Obsidian vault to follow `[[links]]`; setup is in `tech/obsidian-sync.md`.
 
-Open `docs/` as an Obsidian vault — not the repo root — to browse it with working `[[wikilinks]]`. Setup and Syncthing topology: `tech/obsidian-sync.md`.
+## Start here
 
-**Just came back to this?** [[new-notes]] is a dated reading guide to everything written between 25 and 27 August — ten new documents and eleven rewritten ones, in reading order.
-
-## Where things live
-
-| Folder | Question it answers | Contents |
-|---|---|---|
-| `product/` | **What is the product?** | `spec.html` (the SSOT), `features/`, `rules/`, `scoring.md` |
-| `decisions/` | **Why is it like this?** | `README.md` (index), `v1-locked.md`, `adr/`, `product/` |
-| `roadmap/` | **What's next?** | `undone-inventory.md` (what is not done), `deploy-checklist.md`, `v1.md`, `v2.md`, `v3.md` |
-| `journals/` | **What happened?** | One entry per session + the Canary Register |
-| `business/` | **How does it make money?** | BRD, model, pricing, metrics, competitors, growth, user stories |
-| `brand/` | **How does it speak and look?** | Brand book, brand overview |
-| `compliance/` | **What are we legally on the hook for?** | Audits, ROPA, data map, privacy notice, DPA/DPIA, breach runbook |
-| `tech/` | **How is it built?** | Architecture, stack, dependencies, analytics, security, vault sync |
-| `learning/` | **How does the code actually work?** | Guided walkthroughs 00–07 + interactive views |
-| `archive/` | **Superseded** | Dated one-offs and old spec versions, kept for history |
-| `Phone notes/` | **Raw capture** | Notes taken on the phone, unprocessed. Not a source of truth — decisions move out of here into `decisions/`. |
-
-## State of these docs — 2026-08-18
-
-A full audit ran on 2026-08-18: every claim in the planning and product docs was checked against
-running code and the database, not against other documents. What it found, and what to trust:
-
-| Folder | State after the audit |
+| If you want… | Read |
 |---|---|
-| `roadmap/` | **Current.** `next-session.md` was rewritten from scratch (the previous version was from 5 May and listed four already-finished tasks plus one that contradicts a locked decision). `v1.md` status tables corrected. |
-| `product/features/` | **Status lines current, specs aspirational.** Every `**Status:**` line was rewritten 18.08 — all fourteen were wrong, several claiming "not started" for features live for months. The prose under each status line is still the original spec: read it as the design target, not as a description of the code. |
-| `decisions/` | **Current and complete.** Index covers every record. |
-| `tech/` | `stack.md` and `dependencies.md` corrected 18.08 — they named five packages that were never installed, plus PostGIS and Redis, none of which exist here. `architecture.md` is an empty template stub, marked as such. |
-| `compliance/` | **Mixed.** `audits/` and `compliance.md` are substantive; `privacy-notice.md`, `ropa.md` and `data-map.md` are unfilled stubs. See the warning at the top of `compliance/README.md`. |
-| `product/spec.html` | **Last updated 8 July.** Still broadly accurate, with a known-drift banner at the top listing what changed after that date. |
-| `business/`, `brand/` | Not re-audited on 18.08. `brand/` is known to have drifted from the app. |
-| `learning/` | Accurate — checked, one line corrected. |
+| What UNI is, today | `product/what-uni-is.md` |
+| What to work on next | `roadmap/undone-inventory.md`, its first section (Launch, After launch, V2, V3) |
+| What happened recently | the newest file in `journals/` |
+| Why something is the way it is | `decisions/README.md` |
+| The last briefing you were sent | the ★ rows under `briefings/` below |
 
-**The rule this audit produced:** a planning document older than two weeks is a hypothesis, not a
-source of truth. Check it against the code before acting on it.
+## How it is organised
 
-## The sorting rule
+**By lifecycle, not by topic.** A document's folder says what kind of document it is, and so how far to trust it:
 
-Sort by **lifecycle, not topic** — decided in `decisions/product/ssot-docs-journals-boundaries.md`:
+| Kind | Folders | Trust it as |
+|---|---|---|
+| **Reference**: describes how things are now | `product/`, `tech/`, `business/`, `brand/`, `compliance/`, `learning/` | Current, but check against the code if it is older than two weeks |
+| **Plan**: what is next | `roadmap/` | The backlog is the single list of what is not done |
+| **Runbook**: steps you execute | `ops/` | Run line by line; each says whether it has been proven by use |
+| **Record**: why a fork went one way | `decisions/` | Settled until superseded by another record |
+| **History**: dated, never edited afterwards except for paths | `journals/`, `briefings/` | True on the day it was written |
+| **Input**: not ours, or not processed yet | `research/`, `inbox/` | Evidence and raw notes, never a decision on their own |
+| **Archive** | `archive/` | Superseded; kept for history |
 
-- Describes the **current or target state** of the product → `product/`
-- Records **why** a fork in the road went one way → `decisions/`
-- Is **dated session history** (what shipped today, bugs found, todos) → `journals/`
-- Is a **canonical reference or audit** → its topic folder, and `product/spec.html` links out to it
-- Is **third-party** and we did not write it → `~/uni-reference/` on the laptop, outside git and Syncthing. Record the departure in [[tech/reference-material]]
-- Is **superseded but worth keeping** → `archive/`
-
-When a topic folder is staler than the SSOT, move the fresh content out of the SSOT rather than linking to a stale file. When a section leaves the SSOT, leave a pointer stub that keeps its anchor id so sidebar links still resolve.
+**Where a new document goes:**
+- the current or target state of the product → `product/`; how it is built → `tech/`;
+- something you will execute step by step → `ops/`;
+- why a decision went one way → `decisions/`;
+- dated session history → `journals/`; a dated document written for you to answer → `briefings/`;
+- a prompt for a research model, or what it sent back → `research/`;
+- a raw note from the phone → `inbox/`, until its content moves into one of the above;
+- third-party material → `~/uni-reference/`, outside git and Syncthing, recorded in `tech/reference-material.md`;
+- superseded but worth keeping → `archive/`.
 
 ## Conventions
 
-- Markdown everywhere. PDF and DOCX only as released snapshots for audit, review, or signing.
-- Vault notes keep their `Title Case.md` filenames — renaming them breaks `[[wikilinks]]`.
+- **Every document carries a one-line `description:` in its frontmatter.** It is what the index below shows. Files that are not Markdown are described in `scripts/non-markdown.json`.
+- **After adding, moving or describing a document, run `node scripts/build-index.mjs`.** It rewrites the list below. `--check` only reports whether the list is out of date. `/wrap` runs it at the end of every session.
+- **A commit that only moves files or rewrites paths carries the trailer `Index-Date: skip`**, so the index keeps showing when each document's content last changed.
+- Prose is never hard-wrapped; one paragraph is one line.
+- Journals and decision records cite dates and descriptions, never commit ids.
+- Link instead of duplicating: a decision lives in one place.
 - Mark unknowns as `TODO` or `TBD`.
-- Link between documents instead of duplicating a decision in two places.
-- Update `version`, `updated`, and `status` when a document changes meaningfully.
+- A planning document older than two weeks is a hypothesis: check it against the code before acting on it.
 
-## Status legend
+## Every document
 
-`draft` — incomplete working document · `review` — ready for founder, legal, or technical review · `approved` — current source of truth · `archived` — kept for history only.
+**★** marks the newest of each series of briefings. Dates are the last change to a document's content.
+
+<!-- index:start -->
+<!-- Generated by scripts/build-index.mjs. Edit descriptions in each file's frontmatter, not here. -->
+
+### Indexed elsewhere
+
+| Folder | What it holds | Index |
+|---|---|---|
+| `decisions/` | 188 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `journals/` | 92 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+
+### `roadmap/` — What is next, and what is not done
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
+| [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-07 |
+| [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
+| [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
+| [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
+
+### `product/` — What the product is
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [features/Credibility Score.md](product/features/Credibility%20Score.md) | Credibility score. Superseded; will not be built. | ≤ 2026-09-22 |
+| [features/Discovery Page.md](product/features/Discovery%20Page.md) | The discovery page. Built. | ≤ 2026-09-22 |
+| [features/Features Index.md](product/features/Features%20Index.md) | Index of the feature records, and how to read their status lines. | 2026-08-18 |
+| [features/Freshness Decay.md](product/features/Freshness%20Decay.md) | Freshness: built in binary form; per-product decay is V2. | ≤ 2026-09-22 |
+| [features/Homepage.md](product/features/Homepage.md) | The homepage. Built. | ≤ 2026-09-22 |
+| [features/Map View.md](product/features/Map%20View.md) | The map view. Built (status line predates the MapLibre move). | ≤ 2026-09-22 |
+| [features/Owner Dashboard.md](product/features/Owner%20Dashboard.md) | The owner panel at /panel. Built, behind the switch. | ≤ 2026-09-22 |
+| [features/Owner Verification.md](product/features/Owner%20Verification.md) | How a request to manage a venue is checked. Built 19.09, behind the switch. | ≤ 2026-09-22 |
+| [features/Product Reference Database.md](product/features/Product%20Reference%20Database.md) | The product catalogue: schema and panels exist; tags do not. | ≤ 2026-09-22 |
+| [features/SEO Landing Pages.md](product/features/SEO%20Landing%20Pages.md) | The city, district and category landing pages. Built. | ≤ 2026-09-22 |
+| [features/Static Pages.md](product/features/Static%20Pages.md) | Static pages. Built, except /dla-lokali, deliberately deleted. | ≤ 2026-09-22 |
+| [features/User Flagging.md](product/features/User%20Flagging.md) | Inaccuracy reports from visitors: what exists and what does not. | ≤ 2026-09-22 |
+| [features/Venue Claiming.md](product/features/Venue%20Claiming.md) | How an owner claims a venue. Matches the code as of 19.09. | ≤ 2026-09-22 |
+| [features/Venue Profile.md](product/features/Venue%20Profile.md) | The venue page. Built. | ≤ 2026-09-22 |
+| [features/Verified Checkmark.md](product/features/Verified%20Checkmark.md) | The two trust badges as built, versus the original single checkmark. | ≤ 2026-09-22 |
+| [rules/Custom Drinks Rules.md](product/rules/Custom%20Drinks%20Rules.md) | Rules for house drinks. Built without photos. | ≤ 2026-09-22 |
+| [rules/Venue Rules.md](product/rules/Venue%20Rules.md) | What counts as a venue for UNI. | ≤ 2026-09-22 |
+| [scoring.md](product/scoring.md) | Scoring specification. Largely superseded; see ADR-008. | 2026-08-18 |
+| [spec.html](product/spec.html) | The product specification (single source of truth), with a drift banner listing later changes. | ≤ 2026-09-22 |
+| [what-uni-is.md](product/what-uni-is.md) | What UNI is today, in the present tense. The standing description. | 2026-09-25 |
+
+### `tech/` — How it is built
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [README.md](tech/README.md) | What tech/ is: how the system is built. | 2026-10-07 |
+| [analytics.md](tech/analytics.md) | Analytics: event capture, entitlements, the GDPR approach. | 2026-08-18 |
+| [architecture.md](tech/architecture.md) | Architecture. Empty template stub. | 2026-08-18 |
+| [badges-and-menu.md](tech/badges-and-menu.md) | Every menu operation by admin and owner, every badge and ordering, and what moves them. | 2026-10-07 |
+| [bpmn-notes.md](tech/bpmn-notes.md) | Where BPMN is useful in UNI: notes for modelling multi-actor flows. | ≤ 2026-09-22 |
+| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-07 |
+| [dependencies.md](tech/dependencies.md) | Dependency inventory and risk notes. Draft. | 2026-08-18 |
+| [freshness-and-verification.md](tech/freshness-and-verification.md) | The freshness and verification badges exactly as implemented, 31.08. | 2026-08-31 |
+| [migration-lessons.md](tech/migration-lessons.md) | The rules the Fedora migration taught. Read before any environment move. | 2026-08-26 |
+| [obsidian-sync.md](tech/obsidian-sync.md) | Opening docs/ as an Obsidian vault and syncing it with Syncthing. | 2026-08-10 |
+| [reference-material.md](tech/reference-material.md) | Where third-party reference material went when it left the vault. | 2026-10-07 |
+| [repository-migration.md](tech/repository-migration.md) | The move to two fresh repositories. Executed 22.09. | 2026-09-22 |
+| [scheduled-work.md](tech/scheduled-work.md) | Every scheduled command and the queue worker, and what each one does. | 2026-09-29 |
+| [security.md](tech/security.md) | Security. Template stub; points to where controls are actually documented. | 2026-08-18 |
+| [stack.md](tech/stack.md) | The technology stack. | 2026-08-27 |
+| [test.bpmn](tech/test.bpmn) | A test BPMN diagram. | ≤ 2026-09-22 |
+
+### `ops/` — What you run to build, deploy and move it
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [deploy-checklist.md](ops/deploy-checklist.md) | Run before calling a deploy finished, every line with its reason. | 2026-09-30 |
+| [deployment-plan.md](ops/deployment-plan.md) | The eight deployment phases, home server and production side by side. Not executed yet. | 2026-09-29 |
+| [deployment-runbook.md](ops/deployment-runbook.md) | Every command for each deployment phase, on both servers. | 2026-09-29 |
+| [going-to-production.md](ops/going-to-production.md) | What the Fedora migration's rules mean for the production servers. | 2026-09-08 |
+| [home-server-setup.md](ops/home-server-setup.md) | Putting UNI on the home server, step by step with checks. | 2026-09-30 |
+| [migrating-to-a-new-machine.md](ops/migrating-to-a-new-machine.md) | Runbook for rebuilding the dev environment on another machine. Executed 25.08. | 2026-08-26 |
+
+### `business/` — How it makes money
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [README.md](business/README.md) | Business documentation folder: what each file covers. | 2026-05-13 |
+| [brd.docx](business/brd.docx) | The business requirements document as Word. | ≤ 2026-09-22 |
+| [brd.html](business/brd.html) | The business requirements document rendered as HTML. | ≤ 2026-09-22 |
+| [brd.md](business/brd.md) | Business requirements document v1.0, 19.06. | ≤ 2026-09-22 |
+| [competitors.md](business/competitors.md) | Competitor and positioning notes. Draft. | 2026-05-13 |
+| [Growth Strategy.md](business/Growth%20Strategy.md) | Growth channels that run without ongoing effort. Contradicts some superseded records. | ≤ 2026-09-22 |
+| [metrics.md](business/metrics.md) | Business metrics. Empty template; the event catalogue in the journals is what exists. | 2026-08-18 |
+| [model.md](business/model.md) | The business model: B2B analytics subscription, no ads, no pay-to-rank. | 2026-07-24 |
+| [pricing.md](business/pricing.md) | Pricing assumptions and packaging. Draft. | 2026-05-13 |
+| [user-stories.docx](business/user-stories.docx) | The user stories as Word. | ≤ 2026-09-22 |
+| [user-stories.html](business/user-stories.html) | The user stories rendered as HTML. | ≤ 2026-09-22 |
+| [user-stories.md](business/user-stories.md) | User stories. Retired as a status document 17.09; the checkboxes are not maintained. | ≤ 2026-09-22 |
+
+### `brand/` — How it speaks and looks
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [Logo ideas.md](brand/Logo%20ideas.md) | Raw note: logo idea of scattered dots forming a shape. | 2026-10-07 |
+| [UNI-Brand-Book.html](brand/UNI-Brand-Book.html) | The brand book rendered as HTML. | ≤ 2026-09-22 |
+| [UNI-Brand-Book.md](brand/UNI-Brand-Book.md) | Brand book v1.0, 01.06: voice, visual identity. Known to have drifted from the app. | ≤ 2026-09-22 |
+| [UNI-Brand-Book.pdf](brand/UNI-Brand-Book.pdf) | The brand book as PDF. | ≤ 2026-09-22 |
+
+### `compliance/` — What UNI is legally on the hook for
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [dpa/README.md](compliance/dpa/README.md) | Data processing agreements. Placeholder register. | 2026-05-13 |
+| [dpia/README.md](compliance/dpia/README.md) | Data protection impact assessments. Placeholder. | 2026-05-13 |
+| [incidents/README.md](compliance/incidents/README.md) | Security and privacy incident register. Placeholder. | 2026-05-13 |
+| [README.md](compliance/README.md) | Compliance folder: what each file covers, and which ones are stubs. | 2026-08-18 |
+| [vendors/README.md](compliance/vendors/README.md) | Vendors, subprocessors and licences. Placeholder register. | 2026-05-13 |
+| [audits/cis.md](compliance/audits/cis.md) | CIS Controls v8 (IG1) security audit, 22.06. | 2026-07-24 |
+| [audits/eprivacy.md](compliance/audits/eprivacy.md) | ePrivacy / PKE audit, June. | 2026-07-24 |
+| [audits/gdpr.md](compliance/audits/gdpr.md) | GDPR compliance audit, June. | 2026-07-24 |
+| [audits/nis2.md](compliance/audits/nis2.md) | NIS2 applicability assessment, 22.06. | 2026-07-24 |
+| [breach-runbook.md](compliance/breach-runbook.md) | Data breach notification runbook: what counts, the 72-hour steps to UODO. | 2026-06-28 |
+| [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | ≤ 2026-09-22 |
+| [data-map.md](compliance/data-map.md) | How data enters, moves and leaves. Stub. | 2026-05-13 |
+| [privacy-notice.md](compliance/privacy-notice.md) | Privacy notice. Stub; the policy gets written from the app. | 2026-05-13 |
+| [ropa.md](compliance/ropa.md) | Record of processing activities (Art. 30). Stub with many TODOs. | 2026-05-13 |
+| [the-compliance-hour.md](compliance/the-compliance-hour.md) | Nine compliance items, about 75 minutes. Not yet run. | 2026-09-29 |
+
+### `learning/` — How the code works, explained
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [README.md](learning/README.md) | The learning series: reading order and when to read which. | ≤ 2026-09-22 |
+| [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | ≤ 2026-09-22 |
+| [01-overview.md](learning/01-overview.md) | The discovery map: files, technologies, who owns what. | ≤ 2026-09-22 |
+| [02-data-flow.md](learning/02-data-flow.md) | How a venue travels from the database to a map pin. | ≤ 2026-09-22 |
+| [03-filters-and-livewire.md](learning/03-filters-and-livewire.md) | How discovery filters keep state and become queries. | ≤ 2026-09-22 |
+| [04-map-markers-and-clustering.md](learning/04-map-markers-and-clustering.md) | Map initialisation, pins, category icons, clustering. Written for Leaflet, before the MapLibre move. | ≤ 2026-09-22 |
+| [05-interactivity.md](learning/05-interactivity.md) | Hover, click and popups between the list and the map. | ≤ 2026-09-22 |
+| [06-url-management.md](learning/06-url-management.md) | Why discovery URLs are managed two different ways. | ≤ 2026-09-22 |
+| [07-alpine-component.md](learning/07-alpine-component.md) | How the Alpine component connects Livewire and the map. | ≤ 2026-09-22 |
+| [ansible-explained.md](learning/ansible-explained.md) | Ansible from the beginning, and every file in ansible/ line by line. | 2026-09-30 |
+| [deployer-explained.md](learning/deployer-explained.md) | Deployer from the beginning, and deploy.php line by line. | 2026-09-30 |
+| [interactive.html](learning/interactive.html) | Interactive companion to the learning series. | ≤ 2026-09-22 |
+| [visualized-app.html](learning/visualized-app.html) | A visual map of the application. | ≤ 2026-09-22 |
+
+### `research/` — Questions sent to research models, and their answers
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [prompts/analytics-self-exclusion.md](research/prompts/analytics-self-exclusion.md) | Prompt: who is excluded from analytics an owner pays for. | ≤ 2026-09-22 |
+| [prompts/community-reciprocity-2.md](research/prompts/community-reciprocity-2.md) | Prompt: a community that is served, not harvested (second version). Superseded by runs 1–3. | 2026-10-03 |
+| [prompts/community-reciprocity-run-1.md](research/prompts/community-reciprocity-run-1.md) | Prompt, run 1 of 3: platform precedents. | 2026-10-03 |
+| [prompts/community-reciprocity-run-2.md](research/prompts/community-reciprocity-run-2.md) | Prompt, run 2 of 3: open data, Poland, motivation. | 2026-10-03 |
+| [prompts/community-reciprocity-run-3.md](research/prompts/community-reciprocity-run-3.md) | Prompt, run 3 of 3: design questions. | 2026-10-03 |
+| [prompts/community-reciprocity.md](research/prompts/community-reciprocity.md) | Prompt: a community that is served, not harvested (first version). | 2026-10-03 |
+| [prompts/does-substitution-reduce-consumption.md](research/prompts/does-substitution-reduce-consumption.md) | Prompt: is the harm-reduction thesis true? | ≤ 2026-09-22 |
+| [prompts/llm-fitness-for-uni-key.md](research/prompts/llm-fitness-for-uni-key.md) | Grading key for the model test. Never paste into a candidate. | 2026-10-03 |
+| [prompts/llm-fitness-for-uni.md](research/prompts/llm-fitness-for-uni.md) | Test battery: which model for which UNI job. | 2026-10-03 |
+| [prompts/nav-versus-footer.md](research/prompts/nav-versus-footer.md) | Prompt: what belongs in the nav and what in the footer. | ≤ 2026-09-22 |
+| [prompts/owner-verification.md](research/prompts/owner-verification.md) | Prompt: verifying venue owners without a phone call. | ≤ 2026-09-22 |
+| [results/analytics-self-exclusion.md](research/results/analytics-self-exclusion.md) | Result: exclude owners' own visits from billed views. | ≤ 2026-09-22 |
+| [results/community-reciprocity-2-partial.md](research/results/community-reciprocity-2-partial.md) | Result: partial answer to the second community prompt, 02.10. | 2026-10-03 |
+| [results/community-reciprocity-run-1.md](research/results/community-reciprocity-run-1.md) | Result of run 1: how eight platforms treated their contributors. | 2026-10-03 |
+| [results/community-reciprocity-run-2.md](research/results/community-reciprocity-run-2.md) | Result of run 2: open licensing, the Polish landscape, why people contribute. | 2026-10-03 |
+| [results/community-reciprocity-run-3.md](research/results/community-reciprocity-run-3.md) | Result of run 3: concrete design questions. | 2026-10-03 |
+| [results/community-reciprocity.md](research/results/community-reciprocity.md) | Result of the first community-reciprocity prompt. | 2026-10-03 |
+| [results/deployment_research_1.md](research/results/deployment_research_1.md) | Deployment research report 1 (Polish). | 2026-09-29 |
+| [results/deployment_research_2.md](research/results/deployment_research_2.md) | Deployment research report 2 (English, sourced). | 2026-09-29 |
+| [results/deployment_research_assessment.md](research/results/deployment_research_assessment.md) | Assessment of the two deployment reports, checked against the code. | 2026-09-29 |
+| [results/does-substitution-reduce-consumption.md](research/results/does-substitution-reduce-consumption.md) | Result: the substitution thesis, partially supported. Rejected as grounds for product decisions on 10.09. | ≤ 2026-09-22 |
+| [results/nav-versus-footer.md](research/results/nav-versus-footer.md) | Result: primary navigation versus footer. | ≤ 2026-09-22 |
+| [results/owner-verification-other-llm.md](research/results/owner-verification-other-llm.md) | Result: owner verification, a second model's report (Polish). | ≤ 2026-09-22 |
+| [results/owner-verification.md](research/results/owner-verification.md) | Result: owner verification methods compared. | ≤ 2026-09-22 |
+| [results/review_1.md](research/results/review_1.md) | An external model's architectural and strategic assessment of UNI. | 2026-10-03 |
+| [results/review_2.md](research/results/review_2.md) | An external review: research, product, Polish, engineering, menu extraction. | 2026-10-03 |
+
+### `briefings/` — Dated documents written for you to read and answer
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [README.md](briefings/README.md) | What briefings are, how they are named, and the renaming table for the commute documents. | 2026-10-07 |
+| [audit-2026-08-20.md](briefings/audit-2026-08-20.md) | Audit of the 20.08 commute notes against running code. | 2026-08-20 |
+| [audit-2026-08-24.md](briefings/audit-2026-08-24.md) | Audit of the 24.08 commute answers against running code. | 2026-08-24 |
+| [audit-2026-08-27.md](briefings/audit-2026-08-27.md) ★ | Audit of the 27.08 phone note and the infrastructure log against running code. | 2026-08-27 |
+| [commute-2026-09-09.md](briefings/commute-2026-09-09.md) | Commute document v1.0 (Polish): seven decisions, four with a deadline. | 2026-09-09 |
+| [commute-2026-09-10.md](briefings/commute-2026-09-10.md) | Commute document v1.1 (Polish): consequences of the 09.09 answers. | 2026-09-10 |
+| [commute-2026-09-12.md](briefings/commute-2026-09-12.md) | Commute document v1.8, the first in English. Superseded 14.09. | 2026-09-13 |
+| [commute-2026-09-14.md](briefings/commute-2026-09-14.md) | Commute document v2.0: questions after the 14.09 code session. | 2026-09-14 |
+| [commute-2026-09-16_2.md](briefings/commute-2026-09-16_2.md) | Commute document v4.0: answers to v3.0, five findings. | 2026-09-17 |
+| [commute-2026-09-16_3.md](briefings/commute-2026-09-16_3.md) | Commute document v5.0: the V1 owner-scope challenge. | 2026-09-18 |
+| [commute-2026-09-16_4.md](briefings/commute-2026-09-16_4.md) | Commute document v6.0: what was built after v5.0. | 2026-09-16 |
+| [commute-2026-09-16_5.md](briefings/commute-2026-09-16_5.md) | Commute document v7.0. | 2026-09-16 |
+| [commute-2026-09-16_6.md](briefings/commute-2026-09-16_6.md) | Commute document v8.0: the catalogue scope rule. | 2026-09-16 |
+| [commute-2026-09-16_7.md](briefings/commute-2026-09-16_7.md) | Commute document v9.0. | 2026-09-16 |
+| [commute-2026-09-16.md](briefings/commute-2026-09-16.md) | Commute document v3.0: rewritten with full context after "too little context". | 2026-09-16 |
+| [commute-2026-09-20.md](briefings/commute-2026-09-20.md) | Commute document v10.0. Answered 21.09, superseded by v11.0. | 2026-09-20 |
+| [commute-2026-09-21.md](briefings/commute-2026-09-21.md) | Commute document v11.0. | 2026-09-22 |
+| [commute-2026-09-25.md](briefings/commute-2026-09-25.md) | Commute document v12.0: the scheduler ran for the first time. | 2026-09-25 |
+| [commute-2026-09-30.md](briefings/commute-2026-09-30.md) ★ | Commute document v13.0, the latest: Ploi out, Ansible and Deployer in, what is left for you. | 2026-10-03 |
+| [decisions-waiting-on-you-v3-answered.md](briefings/decisions-waiting-on-you-v3-answered.md) | Decisions document v3 with your inline answers, kept unedited. | 2026-08-30 |
+| [decisions-waiting-on-you-v5.md](briefings/decisions-waiting-on-you-v5.md) | Decisions document v5, the launch-speed edition. | 2026-09-01 |
+| [decisions-waiting-on-you-v6.md](briefings/decisions-waiting-on-you-v6.md) | Decisions document v6: the part left unanswered on 02.09. | 2026-09-02 |
+| [decisions-waiting-on-you-v7.md](briefings/decisions-waiting-on-you-v7.md) | Decisions document v7: explanations you asked for instead of decisions. | 2026-09-04 |
+| [decisions-waiting-on-you-v8.md](briefings/decisions-waiting-on-you-v8.md) | Decisions document v8: ten product questions and the advertising-law finding. | 2026-09-04 |
+| [decisions-waiting-on-you-v9.md](briefings/decisions-waiting-on-you-v9.md) ★ | Decisions document v9, the latest: the substitution research came back. | 2026-09-04 |
+| [decisions-waiting-on-you.md](briefings/decisions-waiting-on-you.md) | Decisions document v4: the status record of what was settled, built and parked as of 31.08. | 2026-08-31 |
+| [new-notes.md](briefings/new-notes.md) | Reading guide to everything written between 25 and 27 August. | 2026-08-27 |
+| [next-session-2026-09-20.md](briefings/next-session-2026-09-20.md) | Brief prepared on 19.09 for the next working session. | 2026-09-19 |
+
+### `inbox/` — Raw capture, not yet sorted
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [27.08.md](inbox/27.08.md) | Phone note 27.08: launch-first priorities and an infrastructure decision log. Processed by the 27.08 audit. | ≤ 2026-09-22 |
+| [Decisions on owner panel.md](inbox/Decisions%20on%20owner%20panel.md) | Phone note: owner panel built but not exposed, a code toggle. Processed 18.08. | ≤ 2026-09-22 |
+| [sesja-2026-08-28 - new context.md](inbox/sesja-2026-08-28%20-%20new%20context.md) | Raw note from the 28.08 session (Polish), with where each item goes. | 2026-08-28 |
+| [Some idea from 01.10.2026.md](inbox/Some%20idea%20from%2001.10.2026.md) | Idea, 01.10: make UNI community-driven in V1/V2. Sorted into V2 on 07.10. | 2026-10-03 |
+| [Some todos.md](inbox/Some%20todos.md) | Phone note: assorted todos, including backend features not exposed publicly. | ≤ 2026-09-22 |
+
+### `archive/` — Superseded, kept for history
+
+| Document | What it is for | Updated |
+|---|---|---|
+| [2026-05-11-implementation-plan.md](archive/2026-05-11-implementation-plan.md) | Plan for the URL architecture and category taxonomy, 11.05. Executed; history only. | ≤ 2026-09-22 |
+| [adr-template-stub.md](archive/adr-template-stub.md) | Unused ADR template stub. | 2026-05-13 |
+| [DISCREPANCIES.md](archive/DISCREPANCIES.md) | Docs-versus-code discrepancy report, 30.04. Superseded by later audits. | ≤ 2026-09-22 |
+| [done-2026-05-06.md](archive/done-2026-05-06.md) | What was done on 06.05. Pre-journal session log. | ≤ 2026-09-22 |
+| [implementation_of_analytics_for_admin.md](archive/implementation_of_analytics_for_admin.md) | Plan for the admin per-venue analytics page with all 16 reports. History only. | ≤ 2026-09-22 |
+| [map-errors.png](archive/map-errors.png) | Screenshot of old map errors. | ≤ 2026-09-22 |
+| [next-session-2026-08-18.md](archive/next-session-2026-08-18.md) | The 18.08 next-session snapshot; retired 17.09 because it aged into a misleading one. | ≤ 2026-09-22 |
+| [perplexity-space-context.md](archive/perplexity-space-context.md) | Full project context written for a Perplexity space. Outdated. | ≤ 2026-09-22 |
+| [PLAN.md](archive/PLAN.md) | The original V1 implementation plan, by stages. Superseded by roadmap/v1.md. | ≤ 2026-09-22 |
+| [posthog-setup-report.md](archive/posthog-setup-report.md) | Report from the PostHog setup wizard. History only. | ≤ 2026-09-22 |
+| [spec-versions/interactive_v1_feature_spec_changelog.html](archive/spec-versions/interactive_v1_feature_spec_changelog.html) | Changelog of the interactive spec versions. | ≤ 2026-09-22 |
+| [spec-versions/interactive_v1_feature_spec_SSOT_29_06.html](archive/spec-versions/interactive_v1_feature_spec_SSOT_29_06.html) | The interactive spec as of 29.06. | ≤ 2026-09-22 |
+| [spec-versions/interactive_v1_feature_spec.html](archive/spec-versions/interactive_v1_feature_spec.html) | An earlier version of the interactive spec. | ≤ 2026-09-22 |
+| [spec-versions/UNI_V1_SPEC_FINAL.md](archive/spec-versions/UNI_V1_SPEC_FINAL.md) | The original V1 specification. Superseded by product/spec.html. | ≤ 2026-09-22 |
+| [tile.png](archive/tile.png) | Screenshot of an old venue tile design. | ≤ 2026-09-22 |
+| [UNI Home.md](archive/UNI%20Home.md) | The early vault home page describing UNI. Superseded by product/what-uni-is.md. | ≤ 2026-09-22 |
+| [UNI_claude_code_prompt.md](archive/UNI_claude_code_prompt.md) | A May prompt for implementing the scoring system. History only. | ≤ 2026-09-22 |
+| [UNI_scoring_v2.jsx](archive/UNI_scoring_v2.jsx) | Interactive prototype of the abandoned weighted scoring system. | ≤ 2026-09-22 |
+| [UNI-FEATURES-OVERVIEW.md](archive/UNI-FEATURES-OVERVIEW.md) | Feature overview sheet for offline reading, 03.05. Superseded. | ≤ 2026-09-22 |
+| [V1-READINESS-REVIEW.md](archive/V1-READINESS-REVIEW.md) | V1 readiness review, 29.04: functionally complete, not launch-ready. History only. | ≤ 2026-09-22 |
+| [VAULT REVIEW.md](archive/VAULT%20REVIEW.md) | An early review of the whole vault: strategy strong, tactics outdated. History only. | ≤ 2026-09-22 |
+| [vault-todos.md](archive/vault-todos.md) | An early todo list for the vault. Superseded by roadmap/undone-inventory.md. | ≤ 2026-09-22 |
+| [view.png](archive/view.png) | Screenshot of an old view. | ≤ 2026-09-22 |
+<!-- index:end -->
