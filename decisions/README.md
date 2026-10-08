@@ -57,6 +57,8 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/only-the-owner-can-say-new]] | "Nowe w karcie" comes only from an owner's own addition; anything UNI records is never new; re-adding within 180 days does not renew it; nothing shows in V1 | Decided and built 08.10 |
+| [[decisions/product/a-venue-is-as-fresh-as-its-oldest-drink]] | A venue's "Zaktualizowano" is its oldest confirmed drink, plus a "Wszystko nadal w ofercie" action; one click moves only its own drink | Decided 08.10; to build before the owner switch; may need a slight rework |
 | [[decisions/product/updated-means-vouched-for]] | "Zaktualizowano" is the day someone vouched for the offer in the panel (admin, import or owner), not the day the menu was read; the menus import has no date column and dates rows with the import day; fault 9 closed as intended | Decided and built 08.10 |
 | [[decisions/product/shared-recipes]] | A well-known drink (Mojito bezalkoholowe) is a shared recipe: a brandless catalogue product only UNI creates; a venue's own version keeps its name and links to it; the name decides the table, the description decides the link; noindex below 3 venues; never "0.0%" | Decided 08.10; built 08.10 |
 | [[decisions/product/one-ordering-for-every-venue-list]] | Every list of venues uses one default ordering that rewards a generous offer and confirmed availability, combined; confirmation counts as a state, never as recency, so no daily click buys position | Decided (direction) 07.10; formula open |

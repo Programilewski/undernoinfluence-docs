@@ -1,7 +1,7 @@
 # "Nowe w karcie" is dated by the offer log, for 30 days
 
 **Date:** 2026-09-19
-**Status:** Decided
+**Status:** Superseded in part (08.10.2026) by [[decisions/product/only-the-owner-can-say-new]]: only an owner's own addition counts now, and re-adding within 180 days does not renew
 **Executed:** 2026-09-19 — a "Nowe" tag on the item in the menu and a "Nowe w karcie" strip naming the three newest, on the venue page
 **Area:** Venues | UI/UX
 
