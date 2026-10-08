@@ -65,7 +65,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 190 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `decisions/` | 191 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
 | `journals/` | 94 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
@@ -114,7 +114,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [architecture.md](tech/architecture.md) | Architecture. Empty template stub. | 2026-08-18 |
 | [badges-and-menu.md](tech/badges-and-menu.md) | Every menu operation by admin and owner, every badge and ordering, and what moves them. | 2026-10-07 |
 | [bpmn-notes.md](tech/bpmn-notes.md) | Where BPMN is useful in UNI: notes for modelling multi-actor flows. | ≤ 2026-09-22 |
-| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-07 |
+| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-08 |
 | [dependencies.md](tech/dependencies.md) | Dependency inventory and risk notes. Draft. | 2026-08-18 |
 | [freshness-and-verification.md](tech/freshness-and-verification.md) | The freshness and verification badges exactly as implemented, 31.08. | 2026-08-31 |
 | [migration-lessons.md](tech/migration-lessons.md) | The rules the Fedora migration taught. Read before any environment move. | 2026-08-26 |
@@ -229,6 +229,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [results/deployment_research_2.md](research/results/deployment_research_2.md) | Deployment research report 2 (English, sourced). | 2026-09-29 |
 | [results/deployment_research_assessment.md](research/results/deployment_research_assessment.md) | Assessment of the two deployment reports, checked against the code. | 2026-09-29 |
 | [results/nav-versus-footer.md](research/results/nav-versus-footer.md) | Result: primary navigation versus footer. | ≤ 2026-09-22 |
+| [results/one-click-refreshes-the-whole-venue.md](research/results/one-click-refreshes-the-whole-venue.md) | Result: how a venue's "Zaktualizowano" should move when one item is confirmed — precedents (OpenStreetMap check_date, HappyCow, Google, freshness-UX notes) and the recommendation: the venue's date is its oldest confirmed item, plus an explicit whole-menu confirm. | — |
 | [results/owner-verification-other-llm.md](research/results/owner-verification-other-llm.md) | Result: owner verification, a second model's report (Polish). | ≤ 2026-09-22 |
 | [results/owner-verification.md](research/results/owner-verification.md) | Result: owner verification methods compared. | ≤ 2026-09-22 |
 | [results/review_1.md](research/results/review_1.md) | An external model's architectural and strategic assessment of UNI. | 2026-10-03 |
