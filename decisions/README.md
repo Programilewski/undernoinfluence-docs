@@ -57,6 +57,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/updated-means-vouched-for]] | "Zaktualizowano" is the day someone vouched for the offer in the panel (admin, import or owner), not the day the menu was read; the menus import has no date column and dates rows with the import day; fault 9 closed as intended | Decided and built 08.10 |
 | [[decisions/product/shared-recipes]] | A well-known drink (Mojito bezalkoholowe) is a shared recipe: a brandless catalogue product only UNI creates; a venue's own version keeps its name and links to it; the name decides the table, the description decides the link; noindex below 3 venues; never "0.0%" | Decided 08.10; built 08.10 |
 | [[decisions/product/one-ordering-for-every-venue-list]] | Every list of venues uses one default ordering that rewards a generous offer and confirmed availability, combined; confirmation counts as a state, never as recency, so no daily click buys position | Decided (direction) 07.10; formula open |
 | [[decisions/product/badges-are-rules-over-recorded-evidence]] | The final system is automatic: every badge and ordering is a rule computed from evidence recorded per fact (kind, date, source); an admin check is just one kind of evidence. First step: the evidence model, with no visible change | Decided (direction) 06.10; evidence shape and badge rules open |

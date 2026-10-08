@@ -68,11 +68,10 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 | Venue | yes | Its slug |
 | Drink, as the menu writes it | yes | "Heineken 0,0 but. 0,33". The import matches it to a catalogue product |
 | Source | yes | **The web address of the menu you read it from**: menu page, PDF, or the venue's own post |
-| Date read | yes | The day you read that menu |
 | House drink type | only for house drinks | `mocktail`, `koktajl_nolo` or `drink_spirytus_0`. Leave empty for catalogue products, classics included |
 | Recipe | only for a house drink built on a classic | The classic's slug, e.g. `mojito-bezalkoholowe`. The import refuses an unknown slug, and a slug on a row without a house drink type |
 
-**A web address is always required**, decided 07.10: a drink seen in the venue but not published anywhere online waits until it is. **Why the source and date are required:** they're what lets UNI say "checked, and here's where" if a visitor or an owner disputes a drink, and what tells you which menus are due for a re-check. The import refuses a drink row without them.
+**A web address is always required**, decided 07.10: a drink seen in the venue but not published anywhere online waits until it is. **Why the source is required:** it's what lets UNI say "checked, and here's where" if a visitor or an owner disputes a drink. The import refuses a drink row without it. **There is no date column** (decided 08.10, the updated-means-vouched-for record): every row is dated with the day of the import, and the venue reads "Zaktualizowano dziś", because loading the file is you vouching that the menu is current today. Load a menu only when you're sure it still holds.
 
 ### Per product (only when a drink isn't in the catalogue yet)
 
@@ -122,4 +121,3 @@ Three CSV files, imported in this order from the admin. Each import has a button
 
 - **Brands are created by hand** (built 08.10): add a brand in the admin (Marki) before importing its products. The products import finds a brand ignoring capitals and extra spaces, never creates one, and a row naming an unknown brand fails with the nearest existing name ("Nie ma marki „Heinken”. Najbliższa: Heineken"). Polish characters count: "Zywiec" is not "Żywiec".
 
-- **The menu's date isn't used yet.** Until fault 9 is fixed, every import and every "Dodaj produkt" marks the venue "Zaktualizowano dziś", whatever the date read. It must be fixed before the launch load (the backlog, Launch).
