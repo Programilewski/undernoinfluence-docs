@@ -65,8 +65,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 189 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 93 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `decisions/` | 190 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `journals/` | 94 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-07 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-08 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -98,7 +98,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [features/Venue Claiming.md](product/features/Venue%20Claiming.md) | How an owner claims a venue. Matches the code as of 19.09. | ≤ 2026-09-22 |
 | [features/Venue Profile.md](product/features/Venue%20Profile.md) | The venue page. Built. | ≤ 2026-09-22 |
 | [features/Verified Checkmark.md](product/features/Verified%20Checkmark.md) | The two trust badges as built, versus the original single checkmark. | ≤ 2026-09-22 |
-| [rules/Classics and House Drinks.md](product/rules/Classics%20and%20House%20Drinks.md) | Classic drinks versus a venue's own creations: both researches summarised (07.10 external, 08.10 own) and how it was settled 08.10 as shared recipes. | 2026-10-07 |
+| [rules/Classics and House Drinks.md](product/rules/Classics%20and%20House%20Drinks.md) | Classic drinks versus a venue's own creations: both researches summarised (07.10 external, 08.10 own) and how it was settled 08.10 as shared recipes. | 2026-10-08 |
 | [rules/Custom Drinks Rules.md](product/rules/Custom%20Drinks%20Rules.md) | Rules for house drinks. Built without photos. | ≤ 2026-09-22 |
 | [rules/Venue Rules.md](product/rules/Venue%20Rules.md) | What counts as a venue for UNI. | ≤ 2026-09-22 |
 | [scoring.md](product/scoring.md) | Scoring specification. Largely superseded; see ADR-008. | 2026-08-18 |
@@ -130,7 +130,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Document | What it is for | Updated |
 |---|---|---|
-| [adding-a-venue.md](ops/adding-a-venue.md) | How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch. | 2026-10-07 |
+| [adding-a-venue.md](ops/adding-a-venue.md) | How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch. | 2026-10-08 |
 | [deploy-checklist.md](ops/deploy-checklist.md) | Run before calling a deploy finished, every line with its reason. | 2026-09-30 |
 | [deployment-plan.md](ops/deployment-plan.md) | The eight deployment phases, home server and production side by side. Not executed yet. | 2026-09-29 |
 | [deployment-runbook.md](ops/deployment-runbook.md) | Every command for each deployment phase, on both servers. | 2026-09-29 |
@@ -218,7 +218,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [prompts/nav-versus-footer.md](research/prompts/nav-versus-footer.md) | Prompt: what belongs in the nav and what in the footer. | ≤ 2026-09-22 |
 | [prompts/owner-verification.md](research/prompts/owner-verification.md) | Prompt: verifying venue owners without a phone call. | ≤ 2026-09-22 |
 | [results/analytics-self-exclusion.md](research/results/analytics-self-exclusion.md) | Result: exclude owners' own visits from billed views. | ≤ 2026-09-22 |
-| [results/classics-versus-house-drinks-own-research.md](research/results/classics-versus-house-drinks-own-research.md) | Result: classics versus house drinks, Claude's own research (Warsaw menus, Polish search behaviour, the codebase), merged with the first result into one recommendation: a classic is a brandless product, a variant is a house drink linked to it. | — |
+| [results/classics-versus-house-drinks-own-research.md](research/results/classics-versus-house-drinks-own-research.md) | Result: classics versus house drinks, Claude's own research (Warsaw menus, Polish search behaviour, the codebase), merged with the first result into one recommendation: a classic is a brandless product, a variant is a house drink linked to it. | 2026-10-08 |
 | [results/classics-versus-house-drinks.md](research/results/classics-versus-house-drinks.md) | Result (Polish): classics as a curated layer over venue menu items, linked as exact or variant; the threshold, a starting list for Poland, owner gaming, owner-panel wording. | 2026-10-07 |
 | [results/community-reciprocity-2-partial.md](research/results/community-reciprocity-2-partial.md) | Result: partial answer to the second community prompt, 02.10. | 2026-10-03 |
 | [results/community-reciprocity-run-1.md](research/results/community-reciprocity-run-1.md) | Result of run 1: how eight platforms treated their contributors. | 2026-10-03 |

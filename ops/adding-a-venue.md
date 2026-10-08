@@ -120,6 +120,6 @@ Three CSV files, imported in this order from the admin. Each import has a button
 
 ## 8. Open
 
-- **Brand spelling.** Decided 07.10: brands are created by hand in the admin, and the products import will refuse a brand it doesn't know (matching ignores capitals). Until that's built, the import still creates any brand as spelled, so check spelling against the brand list first.
-- **Classic drinks** (Virgin Mojito and the like): whether they become catalogue products without a brand, rather than free-text house drinks, is open (07.10). It changes how they're recorded in step 4.
+- **Brands are created by hand** (built 08.10): add a brand in the admin (Marki) before importing its products. The products import finds a brand ignoring capitals and extra spaces, never creates one, and a row naming an unknown brand fails with the nearest existing name ("Nie ma marki „Heinken”. Najbliższa: Heineken"). Polish characters count: "Zywiec" is not "Żywiec".
+
 - **The menu's date isn't used yet.** Until fault 9 is fixed, every import and every "Dodaj produkt" marks the venue "Zaktualizowano dziś", whatever the date read. It must be fixed before the launch load (the backlog, Launch).
