@@ -98,7 +98,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [features/Venue Claiming.md](product/features/Venue%20Claiming.md) | How an owner claims a venue. Matches the code as of 19.09. | ≤ 2026-09-22 |
 | [features/Venue Profile.md](product/features/Venue%20Profile.md) | The venue page. Built. | ≤ 2026-09-22 |
 | [features/Verified Checkmark.md](product/features/Verified%20Checkmark.md) | The two trust badges as built, versus the original single checkmark. | ≤ 2026-09-22 |
-| [rules/Classics and House Drinks.md](product/rules/Classics%20and%20House%20Drinks.md) | Classic drinks versus a venue's own creations: what each gives an owner, and what is still open. Not yet decided. | 2026-10-07 |
+| [rules/Classics and House Drinks.md](product/rules/Classics%20and%20House%20Drinks.md) | Classic drinks versus a venue's own creations: both researches summarised (07.10 external, 08.10 own) and how it was settled 08.10 as shared recipes. | 2026-10-07 |
 | [rules/Custom Drinks Rules.md](product/rules/Custom%20Drinks%20Rules.md) | Rules for house drinks. Built without photos. | ≤ 2026-09-22 |
 | [rules/Venue Rules.md](product/rules/Venue%20Rules.md) | What counts as a venue for UNI. | ≤ 2026-09-22 |
 | [scoring.md](product/scoring.md) | Scoring specification. Largely superseded; see ADR-008. | 2026-08-18 |
@@ -218,6 +218,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [prompts/nav-versus-footer.md](research/prompts/nav-versus-footer.md) | Prompt: what belongs in the nav and what in the footer. | ≤ 2026-09-22 |
 | [prompts/owner-verification.md](research/prompts/owner-verification.md) | Prompt: verifying venue owners without a phone call. | ≤ 2026-09-22 |
 | [results/analytics-self-exclusion.md](research/results/analytics-self-exclusion.md) | Result: exclude owners' own visits from billed views. | ≤ 2026-09-22 |
+| [results/classics-versus-house-drinks-own-research.md](research/results/classics-versus-house-drinks-own-research.md) | Result: classics versus house drinks, Claude's own research (Warsaw menus, Polish search behaviour, the codebase), merged with the first result into one recommendation: a classic is a brandless product, a variant is a house drink linked to it. | — |
 | [results/classics-versus-house-drinks.md](research/results/classics-versus-house-drinks.md) | Result (Polish): classics as a curated layer over venue menu items, linked as exact or variant; the threshold, a starting list for Poland, owner gaming, owner-panel wording. | 2026-10-07 |
 | [results/community-reciprocity-2-partial.md](research/results/community-reciprocity-2-partial.md) | Result: partial answer to the second community prompt, 02.10. | 2026-10-03 |
 | [results/community-reciprocity-run-1.md](research/results/community-reciprocity-run-1.md) | Result of run 1: how eight platforms treated their contributors. | 2026-10-03 |

@@ -20,7 +20,9 @@ A venue goes into UNI when **both** are true:
 
 **Nothing else is a condition.** Not the number of NA drinks, not the categories, not the district. A wine bar with five 0% wines qualifies the same way a cocktail bar with fifteen mocktails does. Decided 07.10.2026: every eligible venue found is added, in the order it is found; there is no "best first" filter.
 
-**What is a drink, and what isn't:** a non-alcoholic member of a drinking category (beer, wine, sparkling, cider, spirits, mixed drinks), or a house drink of one of four types: `mocktail`, `koktajl_nolo`, `drink_spirytus_0`, `virgin_classic`. Juice, lemonade and soft drinks are not. Anything with actual alcohol in it is never catalogued.
+**What is a drink, and what isn't:** a non-alcoholic member of a drinking category (beer, wine, sparkling, cider, spirits, mixed drinks), or a house drink of one of three types: `mocktail`, `koktajl_nolo`, `drink_spirytus_0`. Juice, lemonade and soft drinks are not.
+
+**Classics and the venue's own drinks** (decided 08.10, the shared-recipes record): **the name decides the table, the description decides the link.** A line printed as a known classic ("Virgin Mojito", "Mojito 0", "Aperol Spritz 0") is the classic itself, a catalogue product like any bottle: leave the house-drink columns empty and the import matches it. A line with its own name ("Mojito rabarbarowe", "Torcello") is a house drink; when its description is built on a classic's core (lime, mint and fizz is a mojito; a 0% gin, bitter and vermouth is a negroni), also give the classic's slug in the `recipe` column, and it shows on the venue page as "Wariant klasyka" and on the classic's page under "Wersje lokali". Otherwise it is the venue's own creation. Classics are created only in the admin (Produkty, "Przepis wspólny"), when the first launch menu has one; their names end in "bezalkoholowe/-y/-a", e.g. "Mojito bezalkoholowe". Anything with actual alcohol in it is never catalogued.
 
 ## 2. Finding candidates
 
@@ -67,7 +69,8 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 | Drink, as the menu writes it | yes | "Heineken 0,0 but. 0,33". The import matches it to a catalogue product |
 | Source | yes | **The web address of the menu you read it from**: menu page, PDF, or the venue's own post |
 | Date read | yes | The day you read that menu |
-| House drink type | only for house drinks | `mocktail`, `koktajl_nolo`, `drink_spirytus_0` or `virgin_classic`. Leave empty for catalogue products |
+| House drink type | only for house drinks | `mocktail`, `koktajl_nolo` or `drink_spirytus_0`. Leave empty for catalogue products, classics included |
+| Recipe | only for a house drink built on a classic | The classic's slug, e.g. `mojito-bezalkoholowe`. The import refuses an unknown slug, and a slug on a row without a house drink type |
 
 **A web address is always required**, decided 07.10: a drink seen in the venue but not published anywhere online waits until it is. **Why the source and date are required:** they're what lets UNI say "checked, and here's where" if a visitor or an owner disputes a drink, and what tells you which menus are due for a re-check. The import refuses a drink row without them.
 

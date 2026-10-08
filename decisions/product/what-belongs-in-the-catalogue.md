@@ -27,7 +27,7 @@ A rule about the drink alone — fails, because the same bottle sits in a bar an
 
 **2. The offer.** The drink is a **named item in the venue's drinks offer, with a price** — on a menu, a board, or a standing list. **Not a bottle observed in a fridge.** *Did the venue decide to sell this?*
 
-**3. The drink.** Either a **non-alcoholic member of a drinking category** — beer, wine, sparkling, cider, spirits, mixed drinks — **or a house drink in one of the four categories the schema already enforces**: `mocktail`, `koktajl_nolo`, `drink_spirytus_0`, `virgin_classic`. *Is this what somebody orders instead of alcohol?*
+**3. The drink.** Either a **non-alcoholic member of a drinking category** — beer, wine, sparkling, cider, spirits, mixed drinks — **or a house drink in one of the three categories the schema enforces**: `mocktail`, `koktajl_nolo`, `drink_spirytus_0`. *Is this what somebody orders instead of alcohol?* (Amended 08.10.2026: the fourth, `virgin_classic`, was retired by the shared-recipes record; a classic as written is now a catalogue product, and a venue's version of one is a house drink linked to it.)
 
 Test 2 is `kebab-rule` (22.04) restored. Its Polish reads *"«Widziałem coś w lodówce» to za mało"* and it names kebab shops, Żabkas and petrol stations as what the rule filters out — the opposite of how it was cited in two commute documents on 18.09 and 19.09.
 

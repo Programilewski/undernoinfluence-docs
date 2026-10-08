@@ -2,7 +2,7 @@
 description: "The backlog: every open item, sorted into Launch, After launch, V2 and V3."
 version: 1.1
 owner: Paweł Milewski
-updated: 2026-10-07
+updated: 2026-10-08
 status: living — the single list of what has not been done
 ---
 
@@ -34,7 +34,7 @@ Everything here is checkable. The last section says how to regenerate the list, 
 |---|---|---|
 | **The venues: about 30 catalogued, then launch.** Decided 07.10: launch at ~30 rather than 50–60, keep adding after launch; every eligible venue found is added (no "best first" filter); the 35 done so far are in your own file, so no exporter is needed. Before launch, each district to be indexed needs 3 live venues | The only thing that sets the launch date | `ops/adding-a-venue.md` (the procedure); `journals/2026-10-04.md`: Open Questions 16–18, Decision Register 1 and 2 |
 | ⏳ **Brand spelling in the products import.** Decided 07.10: brands are created by hand; the import matches them ignoring capitals and refuses unknown ones. To build | A duplicate brand in production gets its own indexed `/marka/` page | `ops/adding-a-venue.md` §8 |
-| ⏳ **Classic drinks versus a venue's own creations.** Research is in and assessed (07.10): a house drink keeps its own name and may link to a UNI-curated classic as `exact` or `variant`, so a variant gets both its own name and the classic's listing. Five decisions left: adopt the model, the starting list of 15, the classic page's URL, retiring `virgin_classic`, and whether the link is built before the launch load | The launch data is entered in one shape or the other | `product/rules/Classics and House Drinks.md`, "Still to decide"; `research/results/classics-versus-house-drinks.md` |
+| ✅ **Shared recipes (formerly "classics"): done 08.10.** A well-known drink is a brandless product marked `is_recipe`; a venue's own version is a house drink linked by `recipe_product_id` and shows "Wariant klasyka"; `virgin_classic` and "Własna receptura" retired; committed, full suite green. Next in Launch: the brand check, then fault 9 | — | [[decisions/product/shared-recipes]]; journal 2026-10-08, Session 2 |
 | **The launch-load record, rehearsed on the home server.** Products CSV → venues CSV → menus CSV through the admin importers; after that, the production admin is the only source of truth | A wrong order fails silently into `failed_import_rows` on launch day | `journals/2026-10-04.md`: Decision Register 1; Technical Debt Log, "No written plan for how real data reaches production" |
 | ⏳ **Imports and admin adds stamp "today", not the menu's check date** (fault 9). `RecordMenuItemAction` and the admin "Dodaj produkt" / "Potwierdź" set `confirmed_at` and the venue's freshness date to now, whatever `checked_at` says | Load menus read in August and every venue reads "Zaktualizowano dziś", every drink "Potwierdzone dziś", and the 90-day clock starts at the import. Small before the load; after, it means rewriting dates on live rows | `tech/change-flows.md`: What looks faulty, row 9; checked in the code 07.10 |
 | ⏳ **Nominatim geocoding check.** The admin still offers Nominatim as a fallback geocoder, and its data is ODbL-licensed, which UNI dropped | If the load geocodes through it, ODbL data is in production from day one. Cheaper to settle than to re-geocode | Section F below; the osm-dropped and geocoding-comes-from-the-state-register records |

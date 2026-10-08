@@ -57,6 +57,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/shared-recipes]] | A well-known drink (Mojito bezalkoholowe) is a shared recipe: a brandless catalogue product only UNI creates; a venue's own version keeps its name and links to it; the name decides the table, the description decides the link; noindex below 3 venues; never "0.0%" | Decided 08.10; built 08.10 |
 | [[decisions/product/one-ordering-for-every-venue-list]] | Every list of venues uses one default ordering that rewards a generous offer and confirmed availability, combined; confirmation counts as a state, never as recency, so no daily click buys position | Decided (direction) 07.10; formula open |
 | [[decisions/product/badges-are-rules-over-recorded-evidence]] | The final system is automatic: every badge and ordering is a rule computed from evidence recorded per fact (kind, date, source); an admin check is just one kind of evidence. First step: the evidence model, with no visible change | Decided (direction) 06.10; evidence shape and badge rules open |
 | [[decisions/product/uni-grows-through-a-community-whose-contributions-are-reviewed]] | UNI becomes community-driven: anyone can propose venues and drinks or flag a change without an account, and nothing is published until the founder reviews it; V1 scope, timing and sign-in wait for the community-reciprocity research | Decided (direction) 02.10; scope open |
