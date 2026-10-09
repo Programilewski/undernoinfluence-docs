@@ -56,7 +56,7 @@ It lives outside both repositories and outside Syncthing, with your other workin
 | Type | yes | One of: restauracja, pub, bar, kawiarnia, hotel, inne |
 | City | yes | Must already exist (25 cities are seeded) |
 | Street, number, postcode | for the map | From the venue's **own** pages, never from the licence register |
-| District | yes, for Warsaw | One of the 18 seeded names, e.g. "Wola", "Śródmieście". **Geocoding does not fill it for Warsaw**: GUGiK's register leaves the district empty there (checked against live responses 09.10). A live venue without one is missing from its district page |
+| District | no | **Geocoding fills it** for Warsaw, from GUGiK's cadastre (built 09.10). Fill it only to override: a district already on the venue is never replaced. A live venue without one is missing from its district page, so check it after geocoding |
 | Slug | recommended | The venue's address on UNI, `/miejsce/<slug>`. If left empty, it's built from name + street. Fill it yourself when importing: the menu file refers to venues by slug. **Never change it once the venue is live**: there's no redirect, so the old address and its ranking are lost |
 | Description, phone, website, Instagram | no | Only what the venue publishes itself |
 
@@ -88,7 +88,7 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 For a single venue, any day after launch.
 
 1. **Lokale → Utwórz.** Fill in name, type, city, address; slug if you want a specific one. Leave "Aktywny" off: the venue switches itself on when it's ready (step 4).
-2. **Open the venue → "Geokodowanie (GUGiK)".** This fills in the coordinates from the state register. **It does not fill the district for Warsaw** (the register leaves it empty there), so pick the district in the form yourself.
+2. **Open the venue → "Geokodowanie (GUGiK)".** This fills in the coordinates and, for Warsaw, the district, both from the state register. Check the district it picked.
 3. **"Produkty w ofercie" tab → "Dodaj produkt"** for each catalogue drink, with the menu's address and the date read. If the drink isn't in the catalogue: create it first under **Produkty → Utwórz** (brand, category, ABV status), then come back.
 4. **"Autorskie drinki" tab → "Dodaj drinka"** for each house drink, with its type, the menu's address and the date read.
 5. **Done when** the venue is live on its own: once it has coordinates and at least one drink, it switches itself on, and the hourly check catches anything missed. Open `/miejsce/<slug>` and check that the menu shows.
@@ -102,8 +102,8 @@ Brands by hand, then three CSV files imported in this order from the admin. Each
 | 0 | Cities, districts, categories | Already there: created by the seeders on every server |
 | 1 | **Brands**, by hand, for every brand the products file names | Marki → Utwórz |
 | 2 | **Products** file, for drinks not yet in the catalogue. A row naming an unknown brand fails with the nearest name | Produkty → Importuj |
-| 3 | **Venues** file. **Fill `slug` and the district (`districtRelation`) on every row**: the menus file finds a venue by its slug, and geocoding won't supply a Warsaw district | Lokale → Importuj |
-| 4 | **Coordinates**: select the new venues, bulk action "Geokodowanie (GUGiK)". A venue without a street is skipped | Lokale, table |
+| 3 | **Venues** file. **Fill `slug` on every row**: the menus file finds a venue by its slug. The district (`districtRelation`) can stay empty; geocoding fills it | Lokale → Importuj |
+| 4 | **Coordinates and districts**: select the new venues, bulk action "Geokodowanie (GUGiK)". A venue without a street is skipped. Then look for an empty "Dzielnica" column and set those by hand | Lokale, table |
 | 5 | **Menus** file, one row per drink | Lokale → "Importuj karty" |
 | 6 | **Fix the failed rows and import them again**, until every import is clean | After each import |
 | 7 | Producers, linked to brands by hand. Optional; never shown publicly | Producenci |
@@ -124,5 +124,4 @@ Brands by hand, then three CSV files imported in this order from the admin. Each
 
 ## 8. Open
 
-- **The district could be filled automatically.** GUGiK's parcel service (ULDK) answers a point with its cadastral unit, and in Warsaw those units are the 18 districts. Until that is built, the district is typed in (step 3 above, or the form for a single venue).
 

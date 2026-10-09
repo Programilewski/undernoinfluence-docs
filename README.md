@@ -65,7 +65,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 193 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `decisions/` | 194 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
 | `journals/` | 94 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-08 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-09 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -125,14 +125,14 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [security.md](tech/security.md) | Security. Template stub; points to where controls are actually documented. | 2026-08-18 |
 | [stack.md](tech/stack.md) | The technology stack. | 2026-08-27 |
 | [test.bpmn](tech/test.bpmn) | A test BPMN diagram. | ≤ 2026-09-22 |
-| [venue-visibility.md](tech/venue-visibility.md) | When a venue is live: every path that publishes or hides it, what each public surface checks, and the gaps. | — |
+| [venue-visibility.md](tech/venue-visibility.md) | When a venue is live: every path that publishes or hides it, what each public surface checks, and the gaps. | 2026-10-09 |
 
 ### `ops/` — What you run to build, deploy and move it
 
 | Document | What it is for | Updated |
 |---|---|---|
-| [adding-a-venue.md](ops/adding-a-venue.md) | How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch. | 2026-10-08 |
-| [deploy-checklist.md](ops/deploy-checklist.md) | Run before calling a deploy finished, every line with its reason. | 2026-09-30 |
+| [adding-a-venue.md](ops/adding-a-venue.md) | How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch. | 2026-10-09 |
+| [deploy-checklist.md](ops/deploy-checklist.md) | Run before calling a deploy finished, every line with its reason. | 2026-10-09 |
 | [deployment-plan.md](ops/deployment-plan.md) | The eight deployment phases, home server and production side by side. Not executed yet. | 2026-09-29 |
 | [deployment-runbook.md](ops/deployment-runbook.md) | Every command for each deployment phase, on both servers. | 2026-09-29 |
 | [going-to-production.md](ops/going-to-production.md) | What the Fedora migration's rules mean for the production servers. | 2026-09-08 |

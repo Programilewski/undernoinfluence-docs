@@ -27,8 +27,8 @@ UNI's catalogue (products, brands, venues and their menus) has to reach producti
 1. **Reference data** (cities, districts, categories, canaries) is already there: the seeders create it on every server.
 2. **Brands, by hand** in the admin (Marki). The products import finds a brand, never creates one (the brand check, 08.10).
 3. **Products file.**
-4. **Venues file**, with an explicit `slug` and the district (`districtRelation`) on every row.
-5. **Coordinates:** select the new venues, bulk action "Geokodowanie (GUGiK)".
+4. **Venues file**, with an explicit `slug` on every row (the menus file refers to venues by it).
+5. **Coordinates and districts:** select the new venues, bulk action "Geokodowanie (GUGiK)"; the district comes from GUGiK's cadastre.
 6. **Menus file.**
 7. **Fix the failed rows and import them again**, until each import is clean.
 

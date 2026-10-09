@@ -3,6 +3,7 @@
 **Date:** 2026-09-12
 **Status:** Decided
 **Executed:** 2026-09-12
+**Superseded:** 2026-10-09, in part, by the amendment at the end of this record — the rule "No government service supplies the Warsaw district" was wrong: GUGiK's cadastre (ULDK) does
 **Area:** Data Model | Venues | Compliance
 
 ---
@@ -42,13 +43,15 @@ The score alone never decides a match. A result is accepted only when the city m
 
 **A venue without coordinates cannot go live.** `Venue::activateIfReady()` requires a point, and `MapData::forVenues()` filters out venues that lack one, because the map payload casts coordinates with `(float)` and a null becomes a pin at 0,0.
 
-**No government service supplies the Warsaw district.** `citypart` is null for every Warsaw address and the GUS equivalent is the gmina, which for Warsaw is "Warszawa". `district_id` therefore has to come from Nominatim's `suburb` or from a hand pass, and nothing should be written that assumes otherwise.
+**~~No government service supplies the Warsaw district.~~** *(Superseded 09.10, see the amendment below.)* `citypart` is null for every Warsaw address and the GUS equivalent is the gmina, which for Warsaw is "Warszawa". `district_id` therefore has to come from Nominatim's `suburb` or from a hand pass, and nothing should be written that assumes otherwise.
 
 If GUS is ever used as a source in production, its terms require citing the source: *"wykorzystanie… w celach komercyjnych lub niekomercyjnych dozwolone jest bezpłatnie, pod warunkiem podania źródła"*. Attribution has a home already — [[decisions/product/map-attribution-lives-in-the-style]].
 
 **An integration whose failure is invisible gets a live test.** `GeocodingLiveTest` calls the real services and sits in the `live` group, excluded from the default suite by `phpunit.xml`. Mocks assert that we parse a shape; only a live call asserts that anybody still sends it.
 
 **Amended 2026-09-14 — every point names its provider, and the launch-day button is tested.** The `Geocoder` contract gained `source()` and a `matched_label` in each forward result, so `GeocodeVenueAction` writes `geocoded_by` and `geocoded_at` with the point and the edit page shows what matched. Pressing `bulk_geocode_gugik` in a test for the first time found it threw a lazy-loading violation outside production — each provider reads the venue's city — so the action now loads the cities first.
+
+**Amended 2026-10-09 — the Warsaw district comes from GUGiK's cadastre.** The rule above, that only Nominatim or a hand pass could supply a district, was wrong. The address service's `teryt` for a Warsaw address is `146501`, the city as a whole, and `citypart` is null; but GUGiK's parcel service (ULDK, `uldk.gugik.gov.pl`, `GetRegionByXY`) answers a point with its cadastral unit, and in Warsaw the units are the 18 districts: the identifier's first six characters are the district's TERYT gmina code (`146518_8.0606` is Wola). All 18 codes were checked live on 09.10 against points inside each district, and they run alphabetically from 146502 Bemowo to 146519 Żoliborz, matching `DistrictSeeder`. `GugikGeocodingService` now asks the cadastre after every match whose `citypart` is empty, forward and reverse. A district already on the venue is never overwritten (`GeocodeVenueAction` fills only an empty one), and a cadastre that fails or times out (5 s) costs the district, never the point. Same state provider, so no new licence question; with it, nothing Nominatim offered is left that GUGiK does not. The suggestion came from outside (another assistant); its first claim — that the address service's TERYT carries the district — was checked and is false. Building it also found that `GeocodingLiveTest` could not run at all: `TestCase` refuses every real request, and the live group had never opted out.
 
 ## What this prevents
 
