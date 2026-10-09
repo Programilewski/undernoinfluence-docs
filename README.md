@@ -114,8 +114,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [architecture.md](tech/architecture.md) | Architecture. Empty template stub. | 2026-08-18 |
 | [badges-and-menu.md](tech/badges-and-menu.md) | Every menu operation by admin and owner, every badge and ordering, and what moves them. | 2026-10-07 |
 | [bpmn-notes.md](tech/bpmn-notes.md) | Where BPMN is useful in UNI: notes for modelling multi-actor flows. | ≤ 2026-09-22 |
-| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-08 |
-| [dependencies.md](tech/dependencies.md) | Dependency inventory and risk notes. Draft. | 2026-08-18 |
+| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-09 |
+| [dependencies.md](tech/dependencies.md) | Dependency inventory and risk notes. Draft. | 2026-10-09 |
 | [freshness-and-verification.md](tech/freshness-and-verification.md) | The freshness and verification badges exactly as implemented, 31.08. | 2026-08-31 |
 | [migration-lessons.md](tech/migration-lessons.md) | The rules the Fedora migration taught. Read before any environment move. | 2026-08-26 |
 | [obsidian-sync.md](tech/obsidian-sync.md) | Opening docs/ as an Obsidian vault and syncing it with Syncthing. | 2026-08-10 |
@@ -179,7 +179,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [audits/gdpr.md](compliance/audits/gdpr.md) | GDPR compliance audit, June. | 2026-07-24 |
 | [audits/nis2.md](compliance/audits/nis2.md) | NIS2 applicability assessment, 22.06. | 2026-07-24 |
 | [breach-runbook.md](compliance/breach-runbook.md) | Data breach notification runbook: what counts, the 72-hour steps to UODO. | 2026-06-28 |
-| [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | ≤ 2026-09-22 |
+| [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | 2026-10-09 |
 | [data-map.md](compliance/data-map.md) | How data enters, moves and leaves. Stub. | 2026-05-13 |
 | [privacy-notice.md](compliance/privacy-notice.md) | Privacy notice. Stub; the policy gets written from the app. | 2026-05-13 |
 | [ropa.md](compliance/ropa.md) | Record of processing activities (Art. 30). Stub with many TODOs. | 2026-05-13 |
@@ -190,7 +190,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Document | What it is for | Updated |
 |---|---|---|
 | [README.md](learning/README.md) | The learning series: reading order and when to read which. | ≤ 2026-09-22 |
-| [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | ≤ 2026-09-22 |
+| [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | 2026-10-09 |
 | [01-overview.md](learning/01-overview.md) | The discovery map: files, technologies, who owns what. | ≤ 2026-09-22 |
 | [02-data-flow.md](learning/02-data-flow.md) | How a venue travels from the database to a map pin. | ≤ 2026-09-22 |
 | [03-filters-and-livewire.md](learning/03-filters-and-livewire.md) | How discovery filters keep state and become queries. | ≤ 2026-09-22 |
