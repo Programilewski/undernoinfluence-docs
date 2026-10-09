@@ -226,6 +226,8 @@ exit
 
 Only `admin` is created by hand. Ansible creates `deploy`.
 
+**Check, before leaving the container:** `id -nG admin` lists `sudo`. On 09.10 it did not, and the first playbook run would have stopped at "not in the sudoers file"; `incus exec uni-next -- usermod -aG sudo admin` from the host fixed it.
+
 ### 3.3 Point the alias
 
 Fill `uni-home`'s `HostName` in `~/.ssh/config` with `uni-next`'s address from 3.1, and replace the `ssh_allow_from` / `http_allow_from` subnets in the home inventory with the one from 3.1.
@@ -243,6 +245,11 @@ ansible-playbook -i inventories/home provision.yml -K        # the second run: c
 
 **Check:** `ssh uni-home true` now lands as `deploy`, with no password prompt.
 
+**Learned 09.10, first run:**
+- **Ubuntu 26.04's `sudo` is `sudo-rs`,** and Ansible timed out waiting for its password prompt ("Timeout (12s) waiting for privilege escalation prompt"), although the password was right. `ansible/group_vars/all.yml` now sets `ansible_become_exe: sudo.ws`, the original sudo, which 26.04 still ships and which reads the same sudoers. Production needs it too.
+- `ufw`'s systemd unit reads `inactive` after the first run, because the package arrived after boot. The firewall is on: `ufw status verbose` says `active`, and `systemctl is-enabled ufw` says `enabled`. Check those, not `is-active`.
+- Run 1: `changed=35`. Run 2: `changed=0`.
+
 ### 3.5 GitHub deploy key — **not needed** (Finding 4)
 
 ### 3.6 `shared/.env`, written on the box
@@ -254,8 +261,9 @@ ssh -l admin uni-home
 
 ```bash
 # ==== on uni-next, as admin ====
-sudo cat /etc/uni/db-password                 # copy it; you paste it in a moment
-sudo -u deploy nano /var/www/undernoinfluence/shared/.env
+sudo -u deploy nano /var/www/undernoinfluence/shared/.env      # nano: in the playbook since 09.10; the image had only vi
+# DB_PASSWORD straight from the file, never on screen (it is 40 letters and digits):
+sudo sh -c 'k=DB_PASSWORD; v=$(cat /etc/uni/db-password); sed -i "s|^${k}=.*|${k}=${v}|" /var/www/undernoinfluence/shared/.env'
 ```
 
 Paste `.env.example` from the tagged release (open it on GitHub at the tag), then change exactly these lines:
@@ -278,6 +286,16 @@ BACKUP_ARCHIVE_PASSWORD=<a new one, into the password manager — the home box's
 ```
 
 `APP_KEY` stays empty for now. It is generated in 4.3.
+
+**Check without showing either secret** (09.10: the backup password had gone into both lines):
+
+```bash
+# ==== uni-next, as deploy ====
+f=/var/www/undernoinfluence/shared/.env
+db=$(grep '^DB_PASSWORD=' $f | cut -d= -f2-); bk=$(grep '^BACKUP_ARCHIVE_PASSWORD=' $f | cut -d= -f2-)
+[ "$db" = "$bk" ] && echo SAME || echo differ
+PGPASSWORD="$db" psql -h 127.0.0.1 -U preprod_uni_app -d preprod_uni -tAc 'select current_user'
+```
 
 ```bash
 # ==== on uni-next, as admin ====
@@ -329,6 +347,8 @@ sudo chmod 640 /var/www/undernoinfluence/shared/.env
 dep deploy homeserver --tag=v0.1.5 --first-deploy
 ```
 
+**Done 09.10.** The first attempt failed only its smoke test: `/up` answered 400 to a bare `127.0.0.1`, which is `trustHosts()` working. `uni:smoke` now sends the `Host` header read from the box's own `APP_URL`, and the second deploy passed end to end. The tag guard passed on its first real run.
+
 **The first tag the new process can deploy is `v0.1.5`**, not `v0.1.4`: the tag guard needs a green `tests` run on the tagged commit, and no commit before 29.09 contains the workflow, so no older tag can ever have one. `v0.1.5` is the first commit that does — cut it once its CI run is green.
 
 ### 4.17 Once, by hand
@@ -339,17 +359,18 @@ ssh uni-home
 ```
 
 ```bash
-# ==== uni-next, as deploy ====
+# ==== uni-next, as deploy (plain `ssh uni-home`, not -l admin: admin cannot write the logs) ====
 cd /var/www/undernoinfluence/current
 php artisan uni:create-admin
-php artisan db:seed --class=DemoDataSeeder     # allowed: APP_ENV is preprod, not production
 exit
 ```
 
 ```bash
 # ==== PC ====
-ssh -l admin uni-home sudo supervisorctl restart 'uni-worker:*'     # the worker FATALed before current existed (2.16)
+ssh -t -l admin uni-home sudo supervisorctl restart 'uni-worker:*'  # -t: sudo asks only on a terminal. The worker FATALed before current existed (2.16)
 ```
+
+**No demo seeder** (corrected 09.10): `DemoDataSeeder` needs `fakerphp/faker`, a dev dependency, and every deploy installs with `--no-dev`. The home server gets its test data by hand and through the admin's CSV importers, which also exercises them (the-real-catalogue-reaches-production-only record).
 
 ### 4.18 Tailscale moves to the new container
 
