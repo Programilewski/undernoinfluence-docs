@@ -71,7 +71,7 @@ The full tables (every menu operation by admin and owner, every badge, and the o
 | **Edit**: "Ostatnie sprawdzenie karty" / "Data weryfikacji" | The dates | Renews or expires the badge | **Not recorded** |
 | **Edit**: plan | `plan` | Which V2 reports the owner sees | Venue audit: plan |
 | **"Oznacz jako sprawdzone"** (table row) | `last_menu_check_at` = now. One click, no confirmation, `is_verified` untouched | Renews the badge for 180 days if `is_verified` is already on; does nothing visible if it is off | **Not recorded** |
-| **Geocode** (one or bulk, GUGiK / GUS; Nominatim removed 09.10) | Coordinates, district, `geocoded_by`, `geocoded_at` | Gate: may publish the venue | Venue audit: location |
+| **Geocode** (one or bulk, GUGiK only; Nominatim and GUS removed 09.10) | Coordinates, district, `geocoded_by`, `geocoded_at` | Gate: may publish the venue | Venue audit: location |
 | **Reverse geocode** | Street, number, postcode, district, city from the point | — | Venue audit: location |
 | **"Usuń dane lokalu"** | Creates an already-verified erasure request, then runs the erasure (see Erasure requests) | Venue and everything under it deleted | Erasure request kept, anonymised |
 | **Delete** | No delete button exists for venues; erasure is the only way out | — | — |

@@ -162,7 +162,7 @@ The four things this section tracked are all resolved: the credential is rotated
 
 - ~~**Verify the Nominatim geocoding in the admin panel**~~ — **done 09.10: removed** (see the Launch row).
 
-- **GUS geocoding has returned nothing since 12.09** and its buttons are still in the admin (added 09.10). `php artisan test --group=live` reports it (skipped = still down). Retest before the launch load; if still down, remove its buttons the way Nominatim's went, since a button that always fails is noise during the load.
+- ~~**GUS geocoding has returned nothing since 12.09**~~ — **done 09.10: removed.** Its address search was still dead and its reverse lookup less accurate than GUGiK's; GUGiK is the only geocoder.
 
 - **`.env` runs `SESSION_DRIVER=database`** while the decision record and `.env.example` both say `file`. Local drift only — production built from the example is correct — but it means 27 rows of `ip_address` are sitting in the local database against a record saying nothing stores one.
 - **No code-level debt markers at all** — zero TODO/FIXME/HACK across `app/`, `resources/`, `config/`, `routes/`, `database/`, `tests/`. The debt in this project lives in documents, not in the code.

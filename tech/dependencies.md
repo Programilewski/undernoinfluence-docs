@@ -71,7 +71,7 @@ Reasonable candidates, but wait for a specific feature or measured bottleneck.
 
 - **`Intervention/image`** or **`spatie/image-optimizer`** — add when venue/product photos become a real workflow requiring resizing, thumbnails, validation, or optimization.
 - **`spatie/laravel-pdf`** — if owners need downloadable analytics reports, venue summaries, invoices, claim confirmations, or compliance exports.
-- **`geocoder-php/GeocoderLaravel`** — if venue onboarding accepts plain addresses needing lat/lng enrichment. Largely covered already by the in-house GUGiK and GUS geocoding services used during manual venue entry.
+- **`geocoder-php/GeocoderLaravel`** — if venue onboarding accepts plain addresses needing lat/lng enrichment. Largely covered already by the in-house GUGiK geocoding service used during manual venue entry.
 - **`spatie/laravel-responsecache`** — possible fit for public city/category/venue SEO pages, but only after measuring response times. Keep dynamic discovery, owner panel, admin, and personalized routes out of full-response caching.
 - **`spatie/laravel-honeypot`** — if claim, report, or registration forms attract spam. Current throttling and custom safeguards make this non-urgent.
 

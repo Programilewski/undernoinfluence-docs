@@ -120,7 +120,7 @@ One invokable-style class per business operation, called from Filament pages/res
 
 ## 7. Contracts — the swap points
 
-- **`Geocoder`** (`app/Contracts/Geocoder.php`) — implementations `GugikGeocodingService` (the state address register, plus its cadastre for the Warsaw district) and `GusGeocodingService` (the statistical office; not answering since 12.09). `NominatimGeocodingService` (OSM) was removed on 09.10. Normalizes them to the same array shape so `GeocodeVenueAction`/`ReverseGeocodeVenueAction` stay provider-agnostic.
+- **`Geocoder`** (`app/Contracts/Geocoder.php`) — implementations `GugikGeocodingService` (the state address register, plus its cadastre for the Warsaw district) the only implementation; `NominatimGeocodingService` (OSM) and `GusGeocodingService` (the statistical office) were removed on 09.10. Normalizes to the same array shape so `GeocodeVenueAction`/`ReverseGeocodeVenueAction` stay provider-agnostic.
 - **`AnalyticsGateway`** — covered in §4.
 
 ---
