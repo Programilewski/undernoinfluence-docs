@@ -1,7 +1,7 @@
 ---
 description: "How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch."
 owner: Paweł Milewski
-updated: 2026-10-07
+updated: 2026-10-09
 status: runbook — the procedure for every venue, on launch day and after. Steps read from the admin's code on 07.10.2026
 ---
 
@@ -56,6 +56,7 @@ It lives outside both repositories and outside Syncthing, with your other workin
 | Type | yes | One of: restauracja, pub, bar, kawiarnia, hotel, inne |
 | City | yes | Must already exist (25 cities are seeded) |
 | Street, number, postcode | for the map | From the venue's **own** pages, never from the licence register |
+| District | yes, for Warsaw | One of the 18 seeded names, e.g. "Wola", "Śródmieście". **Geocoding does not fill it for Warsaw**: GUGiK's register leaves the district empty there (checked against live responses 09.10). A live venue without one is missing from its district page |
 | Slug | recommended | The venue's address on UNI, `/miejsce/<slug>`. If left empty, it's built from name + street. Fill it yourself when importing: the menu file refers to venues by slug. **Never change it once the venue is live**: there's no redirect, so the old address and its ranking are lost |
 | Description, phone, website, Instagram | no | Only what the venue publishes itself |
 
@@ -78,7 +79,7 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 | Field | Required | Note |
 |---|---|---|
 | Name | yes | The product's own name, e.g. "Heineken 0.0" |
-| Brand | yes | **The import creates any brand it doesn't know, exactly as spelled.** "heineken" or "Hieneken" would become a second brand. Check spelling against the brand list first |
+| Brand | yes | **Must already exist** (built 08.10): add it in the admin under Marki first. The import finds a brand ignoring capitals and extra spaces and never creates one; an unknown brand fails the row with the nearest existing name ("Nie ma marki „Heinken”. Najbliższa: Heineken"). Polish characters count: "Zywiec" is not "Żywiec" |
 | Category | yes | Its slug: `piwo`, `wino`, `drinki`, `niemocne`, `cydr`, `musujace` |
 | ABV and ABV status | no | Leave both empty if unknown. `0.0` only with `verified_zero`, and only when the producer states it |
 
@@ -87,37 +88,41 @@ Coordinates aren't typed in; the geocoder fills them from the address (step 5).
 For a single venue, any day after launch.
 
 1. **Lokale → Utwórz.** Fill in name, type, city, address; slug if you want a specific one. Leave "Aktywny" off: the venue switches itself on when it's ready (step 4).
-2. **Open the venue → "Geokodowanie (GUGiK)".** This fills in the coordinates and the district from the state register. Check the district it picked.
+2. **Open the venue → "Geokodowanie (GUGiK)".** This fills in the coordinates from the state register. **It does not fill the district for Warsaw** (the register leaves it empty there), so pick the district in the form yourself.
 3. **"Produkty w ofercie" tab → "Dodaj produkt"** for each catalogue drink, with the menu's address and the date read. If the drink isn't in the catalogue: create it first under **Produkty → Utwórz** (brand, category, ABV status), then come back.
 4. **"Autorskie drinki" tab → "Dodaj drinka"** for each house drink, with its type, the menu's address and the date read.
 5. **Done when** the venue is live on its own: once it has coordinates and at least one drink, it switches itself on, and the hourly check catches anything missed. Open `/miejsce/<slug>` and check that the menu shows.
 
 ## 6. Adding venues in a batch (and launch day)
 
-Three CSV files, imported in this order from the admin. Each import has a button to download an example file; for launch, templates matching your spreadsheet's columns will be prepared.
+Brands by hand, then three CSV files imported in this order from the admin. Each import has a button to download an example file. The order and every failure message below are rehearsed by `LaunchLoadTest` in the application.
 
 | # | Step | Where |
 |---|---|---|
 | 0 | Cities, districts, categories | Already there: created by the seeders on every server |
-| 1 | **Products** file, for drinks not yet in the catalogue. Brands are created from it | Produkty → Importuj |
-| 2 | **Venues** file | Lokale → Importuj |
-| 3 | **Coordinates**: select the new venues, bulk action "Geokodowanie (GUGiK)" | Lokale, table |
-| 4 | **Menus** file, one row per drink | Lokale → "Importuj karty" |
-| 5 | Producers, linked to brands by hand. Optional; never shown publicly | Producenci |
+| 1 | **Brands**, by hand, for every brand the products file names | Marki → Utwórz |
+| 2 | **Products** file, for drinks not yet in the catalogue. A row naming an unknown brand fails with the nearest name | Produkty → Importuj |
+| 3 | **Venues** file. **Fill `slug` and the district (`districtRelation`) on every row**: the menus file finds a venue by its slug, and geocoding won't supply a Warsaw district | Lokale → Importuj |
+| 4 | **Coordinates**: select the new venues, bulk action "Geokodowanie (GUGiK)". A venue without a street is skipped | Lokale, table |
+| 5 | **Menus** file, one row per drink | Lokale → "Importuj karty" |
+| 6 | **Fix the failed rows and import them again**, until every import is clean | After each import |
+| 7 | Producers, linked to brands by hand. Optional; never shown publicly | Producenci |
 
-**Rows that fail** are listed with a reason after each import. For a menu row, the usual reason is a drink the import can't match to the catalogue. Fix it by creating the product, or by adding the menu's spelling to an existing product ("Dodaj pisownię"), then import the failed rows again.
+**Rows that fail** are listed with a reason after each import ("pobierz plik z przyczynami"). The usual ones: a brand that doesn't exist yet (step 1); a venue type outside the six; a menu line the import can't match to the catalogue (create the product, add the menu's spelling to an existing product with "Dodaj pisownię", or fill `house_drink_type` if it's the venue's own drink); a venue slug the menus file names but the venues file didn't create. Fix the cause and import just the failed rows again. Running a whole file twice is safe: rows are matched on slug, so nothing is duplicated.
 
-**Launch day only:**
-1. **Rehearse the whole load on the home server first, with the same files.** The home server also carries demo data, so it proves the files and the order, not the result.
-2. Then run it once on production, which starts empty.
-3. **From then on, the production admin is the only source of truth.** The spreadsheet keeps candidates and rejections; venues and menus are edited in the admin.
+**Nobody switches venues on.** Every imported venue starts as a draft, and goes live by itself once it has a map point and at least one drink. **The venues still offline after step 6 are your to-do list**: filter the venue list on "Aktywny: nie", and each one is missing either coordinates (fix the address, geocode again) or a menu. Never switch one on by hand to finish a load (`tech/venue-visibility.md`).
+
+**Launch day only** (the-real-catalogue-reaches-production-only record):
+1. **Before the day:** download each import's example file and check every spreadsheet column has a matching header (deploy checklist, E7).
+2. **The real files run on production only**, which starts empty apart from the seeded reference data. The PC and the home server keep their own test data and never get the real files.
+3. **From then on, the production admin is the only source of truth.** The spreadsheet keeps candidates and rejections; venues and menus are edited in the admin, never re-imported from an old file.
 
 ## 7. Before launch, and after each batch
 
 - **Each district you want in Google needs at least 3 live venues.** A district page below that is served but kept out of the index (`uni.min_venues_for_indexable_district`). If a district you care about has one or two, add one or two more there.
-- **Spot-check three venue pages:** the address, the map point, the drinks, and "Zaktualizowano …" showing the date the menu was read.
+- **Spot-check three venue pages:** the address, the map point, the drinks, and "Zaktualizowano dziś" (an import dates every row with its own day: the updated-means-vouched-for record).
 
 ## 8. Open
 
-- **Brands are created by hand** (built 08.10): add a brand in the admin (Marki) before importing its products. The products import finds a brand ignoring capitals and extra spaces, never creates one, and a row naming an unknown brand fails with the nearest existing name ("Nie ma marki „Heinken”. Najbliższa: Heineken"). Polish characters count: "Zywiec" is not "Żywiec".
+- **The district could be filled automatically.** GUGiK's parcel service (ULDK) answers a point with its cadastral unit, and in Warsaw those units are the 18 districts. Until that is built, the district is typed in (step 3 above, or the form for a single venue).
 

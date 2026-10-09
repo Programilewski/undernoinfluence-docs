@@ -65,7 +65,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 191 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `decisions/` | 193 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
 | `journals/` | 94 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
@@ -125,6 +125,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [security.md](tech/security.md) | Security. Template stub; points to where controls are actually documented. | 2026-08-18 |
 | [stack.md](tech/stack.md) | The technology stack. | 2026-08-27 |
 | [test.bpmn](tech/test.bpmn) | A test BPMN diagram. | ≤ 2026-09-22 |
+| [venue-visibility.md](tech/venue-visibility.md) | When a venue is live: every path that publishes or hides it, what each public surface checks, and the gaps. | — |
 
 ### `ops/` — What you run to build, deploy and move it
 
