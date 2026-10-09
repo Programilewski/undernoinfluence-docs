@@ -57,6 +57,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/links-follow-the-site-address]] | Every link's scheme follows APP_URL, not the environment's name; no proxy trusted; fixed the home server's unstyled page | Decided and built 09.10 (`v0.1.6`) |
 | [[decisions/product/a-venue-that-is-not-live-returns-404]] | Drafts, emptied, switched-off and erased venues all answer 404 in V1; an honest noindex page is designed but waits for a Search Console trigger | Decided 09.10 |
 | [[decisions/product/every-house-drink-counts-for-drinki]] | A venue serves a category with a catalogue product of it; every house drink counts for Drinki; one rule for the filter, landing pages, counts and ranking | Decided and built 09.10 |
 | [[decisions/product/the-discovery-tile-brings-the-filtered-category-forward]] | With a filter on, the matching category row moves first in bold; the others go muted with faded dots; a trial in two revertible commits | Trial, built 09.10 |

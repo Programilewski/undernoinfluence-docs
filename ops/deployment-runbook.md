@@ -381,6 +381,8 @@ tailscale serve --bg --https=443 http://<uni-next address>:80
 tailscale serve status                                  # now uni-next
 ```
 
+**Learned 09.10:** `tailscale serve` needs `sudo` on the laptop (`ssh -t uni-home-host sudo tailscale serve …`); run as `pawel` it is refused with "Access denied" and nothing changes, so read `tailscale serve status` afterwards. The first page then rendered without CSS and JS: links were http on an https page, fixed in `v0.1.6` (the links-follow-the-site-address record).
+
 **Phase 4 is done when**, on your phone over mobile data: pages render, a map draws, the consent choice survives a reload, `/admin` shows the scheduler heartbeat green six minutes later, and after you trigger an owner e-mail it appears in `shared/storage/logs/laravel-<today>.log`.
 
 ---
