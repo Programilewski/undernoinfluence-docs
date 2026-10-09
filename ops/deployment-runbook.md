@@ -44,7 +44,7 @@ Found by reading Deployer's source and the PC against the plan, not asked about.
 
 ---
 
-## Phase 0 — Before any building (PC, ~1–1.5 h)
+## Phase 0 — Before any building (PC, ~1–1.5 h) — **done 09.10**
 
 ### 0.1 Ship `v0.1.4` with the current process
 
@@ -191,7 +191,7 @@ ansible-playbook -i inventories/home provision.yml -K          # -K asks for adm
 
 ---
 
-## Phase 3 — Rebuild the home server (host + PC, ~2–3 h)
+## Phase 3 — Rebuild the home server (host + PC, ~2–3 h) — **done 09.10** (`uni-next`)
 
 ### 3.1 The new container, next to the old one
 
@@ -373,7 +373,7 @@ exit
 ssh -t -l admin uni-home sudo supervisorctl restart 'uni-worker:*'  # -t: sudo asks only on a terminal. The worker FATALed before current existed (2.16)
 ```
 
-**No demo seeder** (corrected 09.10): `DemoDataSeeder` needs `fakerphp/faker`, a dev dependency, and every deploy installs with `--no-dev`. The home server gets its test data by hand and through the admin's CSV importers, which also exercises them (the-real-catalogue-reaches-production-only record).
+**No demo seeder** (corrected 09.10): `DemoDataSeeder` needs `fakerphp/faker`, a dev dependency, and every deploy installs with `--no-dev`. The home server gets its venues by hand and through the admin's CSV importers, which also exercises them (the-real-catalogue-reaches-production-only record); `db:seed` above brings the sample catalogue.
 
 ### 4.18 Tailscale moves to the new container
 
@@ -602,7 +602,7 @@ Section 6 names OVH as the host. No Ploi line is needed.
 ## Forward plan — what gates what
 
 1. **Done 29.09:** the 28.09 docs committed; Phase 8's document rows; Phases 1, 2, 4 and 6 written, and the playbook and the deploy recipe proved against an Ubuntu 26.04 container; Ansible and Deployer installed on the PC.
-2. **Yours, about an hour, any time:** Phase 0 — 0.1, the passphrase, the backup key into `ansible/files/keys/`, the key onto the laptop, `~/.ssh/config`, `gh`. And cut `v0.1.5` once the first CI run is green.
+2. **Done 09.10:** Phase 0 — 0.1, the passphrase, the backup key into `ansible/files/keys/`, the key onto the laptop, `~/.ssh/config`, `gh`. And cut `v0.1.5` once the first CI run is green.
 3. **Phases 3–5 in one sitting, together:** you type the sudo passwords and the `.env` secrets; the rest can be run from this session once your key is in the agent. The playbook and recipe are already proved, so the sitting is about the Incus-specific parts — ufw in the container, Tailscale serve — and 5.2, the rebuild from nothing, which is the proof everything after it rests on.
 4. **Phase 7**, only after 5.2. The Scaleway steps 7.6.1–7.6.3 and 7.7.1–7.7.3 can be done in the console at any point before then, and DNS propagation (7.1) can start a day early.
 5. **Open question 1 has to be answered before 7.3.** It decides what the `tailscale` role does.

@@ -99,7 +99,7 @@ Brands by hand, then three CSV files imported in this order from the admin. Each
 
 | # | Step | Where |
 |---|---|---|
-| 0 | Cities, districts, categories | Already there: created by the seeders on every server |
+| 0 | Cities, districts, categories | Already there: seeded once after the server's first deploy (deployment runbook 4.17 / 7.9). If the venue form lists no cities, that step was missed |
 | 1 | **Brands**, by hand, for every brand the products file names | Marki → Utwórz |
 | 2 | **Products** file, for drinks not yet in the catalogue. A row naming an unknown brand fails with the nearest name | Produkty → Importuj |
 | 3 | **Venues** file. **Fill `slug` on every row**: the menus file finds a venue by its slug. The district (`districtRelation`) can stay empty; geocoding fills it | Lokale → Importuj |

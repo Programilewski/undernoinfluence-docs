@@ -24,7 +24,7 @@ UNI's catalogue (products, brands, venues and their menus) has to reach producti
 
 **The order:**
 
-1. **Reference data** (cities, districts, categories, canaries) is already there: the seeders create it on every server.
+1. **Reference data** (cities, districts, categories, canaries) is there from one `php artisan db:seed --force` after the server's first deploy (runbook 4.17, 7.9; until 09.10 no step said so, and a deploy never seeds). On production it writes nothing else.
 2. **Brands, by hand** in the admin (Marki). The products import finds a brand, never creates one (the brand check, 08.10).
 3. **Products file.**
 4. **Venues file**, with an explicit `slug` on every row (the menus file refers to venues by it).
@@ -48,7 +48,7 @@ UNI's catalogue (products, brands, venues and their menus) has to reach producti
 - A row that fails is fixed at its cause (a brand, a product, a spelling, a slug) and re-imported. The importers match on slug, so a second run updates rather than duplicates.
 - A venue is never switched on by hand to finish a load; if it is still a draft, it is missing a point or a menu (`tech/venue-visibility.md`).
 
-**Amended 2026-10-09, the same day — no demo seeder on a deployed server.** `DemoDataSeeder` needs a development package that deploys leave out (`--no-dev`, as production), so the home server gets its test data by hand and through the same importers, which exercises them as well. Local development keeps its fake-data seeders, including twenty edge-case venues built to break things.
+**Amended 2026-10-09, the same day — no demo seeder on a deployed server.** `DemoDataSeeder` needs a development package that deploys leave out (`--no-dev`, as production), so the home server gets its venues by hand and through the same importers, which exercises them as well. Its one `db:seed` also brings the sample catalogue (about 30 products), which the demo-data-is-allowed-everywhere-except-production record allows there. Local development keeps its fake-data seeders, including twenty edge-case venues built to break things.
 
 ## What this prevents
 

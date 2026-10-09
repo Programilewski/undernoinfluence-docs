@@ -48,7 +48,7 @@ For now `DemoDataSeeder` checks for faker and says exactly what is missing and w
 - Invented data may exist in local, on the home server, and on staging. It may never exist in production, and the guard is `isProduction()` rather than a list of environment names — a list is a thing somebody forgets to add to.
 - A seeder that creates invented data calls `DemoData::isAllowed()` or `DemoData::guard()`. It does not read the environment name itself.
 - Seeded venues carry coordinates, because a venue without a point never passes [[decisions/product/venue-activation-gate]] and a seeder that produces permanently offline venues is worse than no seeder.
-- The canary venues are **not** demo data and keep their own seeder. They are a database-leak tripwire and they run everywhere.
+- The canary venues are **not** demo data and keep their own seeder. They are a database-leak tripwire and they run everywhere `db:seed` runs — on a server, once after its first deploy (deployment runbook 4.17, 7.9; added 09.10).
 
 ## What this prevents
 
