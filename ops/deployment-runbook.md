@@ -361,9 +361,12 @@ ssh uni-home
 ```bash
 # ==== uni-next, as deploy (plain `ssh uni-home`, not -l admin: admin cannot write the logs) ====
 cd /var/www/undernoinfluence/current
+php artisan db:seed --force                    # reference data: cities, categories, districts, canaries (+ sample products here, not on production)
 php artisan uni:create-admin
 exit
 ```
+
+**`db:seed` once, after the first deploy** (added 09.10): a deploy never seeds, so without this the box has no cities and the venue import fails at its first row. Re-run it only when the code adds a city or a category: `CategorySeeder` updates rows, so it would overwrite admin edits. `DatabaseSeederOnAServerTest` pins that the same command on production writes reference data and canaries only.
 
 ```bash
 # ==== PC ====
@@ -535,8 +538,10 @@ ssh -l admin uni-prod sudo supervisorctl restart 'uni-worker:*'
 
 ```bash
 ssh uni-prod
-cd /var/www/undernoinfluence/current && php artisan uni:create-admin
+cd /var/www/undernoinfluence/current && php artisan db:seed --force && php artisan uni:create-admin
 ```
+
+`db:seed --force` writes the reference data only: cities, categories, districts and the two canaries. The sample products refuse to run in production (`DemoData::isAllowed()`), and the local login and fake venues are local-only.
 
 No demo seeder. It refuses to run in production, and production starts empty by design.
 
