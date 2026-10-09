@@ -33,7 +33,7 @@ Nine geocoding tests existed and none of this was visible from them, because eve
 
 **Coordinates are derived from GUGiK's Universal Address Service (`services.gugik.gov.pl/uug/`), and `VenueImporter` no longer requires them.** A worklist is imported without coordinates and geocoded afterwards with the bulk action, which already existed.
 
-`GugikGeocodingService` implements the existing `Geocoder` contract, so it drops into the single and bulk actions on the venue resource with no other change. GUGiK leads the provider list; GUS and Nominatim stay as fallbacks, and the missing `miejsc_nazwa` in the GUS request is fixed so that if their index recovers, the request is at least well formed.
+`GugikGeocodingService` implements the existing `Geocoder` contract, so it drops into the single and bulk actions on the venue resource with no other change. GUGiK leads the provider list; GUS and Nominatim stay as fallbacks *(Nominatim removed 09.10, see the osm-dropped record)*, and the missing `miejsc_nazwa` in the GUS request is fixed so that if their index recovers, the request is at least well formed.
 
 **Geocoding is never called inside the import job.** It couples a queued batch to an external service, turning an API hiccup into failed rows mid-run and one batched call into seventy separate ones.
 

@@ -3,6 +3,7 @@
 **Date:** 2026-06-01
 **Status:** Decided
 **Executed:** 2026-06-01
+**Superseded:** 2026-10-09, in part — Nominatim is no longer "retained": it was removed from the application (amendment below)
 **Area:** Data Model | Venues
 
 ---
@@ -25,6 +26,8 @@ Drop OSM entirely as a venue data source. All venue data is now manually curated
 ## Rules
 
 No OSM venue attributes may be stored in the venues table. Map tiles from OSM/CARTO are permitted (tile rendering is explicitly allowed under ODbL). Nominatim and GUS geocoding services are permitted. Every venue must be manually verified before going live.
+
+**Amended 2026-10-09 — Nominatim removed.** The decision above kept Nominatim as a permitted service call. On 09.10 it was taken out of the application entirely: its four admin buttons (geocode and reverse geocode, single and bulk), `NominatimGeocodingService` and its tests. Three reasons, none of them a new reading of the licence. **Nothing was left that only it provided:** GUGiK supplies the point (the geocoding-comes-from-the-state-register record) and, since 09.10, the Warsaw district through its cadastre, which was the last reason it was kept. **Its reverse lookup broke the rule of this record:** it wrote OSM's street, house number, postcode and district into the venue, which is an OSM venue attribute stored in the venues table. **It sat one click from GUGiK during the launch load**, so a mis-click would have put OSM-derived points into production on day one. The venue form keeps the label "Nominatim (OpenStreetMap)" in its `geocoded_by` list so a point placed with it earlier still says where it came from. Map tiles are untouched by this; the rule above on tiles stands.
 
 ## What this prevents
 

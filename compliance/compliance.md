@@ -76,5 +76,5 @@ suggests shortening to 90 days after the record is redacted by an erasure reques
 | Honeypot anti-scraping endpoint | Done |
 | Accessibility: ARIA labels, skip-to-content, live regions | Done |
 | All legal pages accessible (`/regulamin`, `/polityka-prywatności`) | Done |
-| EU-friendly APIs only (Nominatim, GUS) | Done |
+| EU-friendly APIs only (GUGiK, GUS; Nominatim removed 09.10) | Done |
 | Bcrypt password hashing (rounds=12) | Done |
