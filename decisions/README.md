@@ -57,6 +57,9 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-venue-that-is-not-live-returns-404]] | Drafts, emptied, switched-off and erased venues all answer 404 in V1; an honest noindex page is designed but waits for a Search Console trigger | Decided 09.10 |
+| [[decisions/product/every-house-drink-counts-for-drinki]] | A venue serves a category with a catalogue product of it; every house drink counts for Drinki; one rule for the filter, landing pages, counts and ranking | Decided and built 09.10 |
+| [[decisions/product/the-discovery-tile-brings-the-filtered-category-forward]] | With a filter on, the matching category row moves first in bold; the others go muted with faded dots; a trial in two revertible commits | Trial, built 09.10 |
 | [[decisions/product/the-real-catalogue-reaches-production-only]] | The real venues, menus and products reach production once, through the admin importers (brands by hand → products → venues with slugs → GUGiK, which also fills the Warsaw district → menus); the real files never run on the PC or the home server, which carry test data; the order is rehearsed by `LaunchLoadTest`; after the load the production admin is the only source of truth | Decided 09.10; partly executed (tested; the load is launch day) |
 | [[decisions/product/only-the-owner-can-say-new]] | "Nowe w karcie" comes only from an owner's own addition; anything UNI records is never new; re-adding within 180 days does not renew it; nothing shows in V1 | Decided and built 08.10 |
 | [[decisions/product/a-venue-is-as-fresh-as-its-oldest-drink]] | A venue's "Zaktualizowano" is its oldest confirmed drink, plus a "Wszystko nadal w ofercie" action; one click moves only its own drink | Decided 08.10; to build before the owner switch; may need a slight rework |

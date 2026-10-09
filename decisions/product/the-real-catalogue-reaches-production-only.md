@@ -48,6 +48,8 @@ UNI's catalogue (products, brands, venues and their menus) has to reach producti
 - A row that fails is fixed at its cause (a brand, a product, a spelling, a slug) and re-imported. The importers match on slug, so a second run updates rather than duplicates.
 - A venue is never switched on by hand to finish a load; if it is still a draft, it is missing a point or a menu (`tech/venue-visibility.md`).
 
+**Amended 2026-10-09, the same day — no demo seeder on a deployed server.** `DemoDataSeeder` needs a development package that deploys leave out (`--no-dev`, as production), so the home server gets its test data by hand and through the same importers, which exercises them as well. Local development keeps its fake-data seeders, including twenty edge-case venues built to break things.
+
 ## What this prevents
 
 A launch day spent re-typing venues that sat in a database nobody could carry over. Invented venues reaching production through a dump. Real venues becoming indistinguishable from test fixtures. A half-loaded venue, with no pin or no drinks, going public because a file said so.
