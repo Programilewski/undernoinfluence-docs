@@ -199,6 +199,16 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [06-url-management.md](learning/06-url-management.md) | Why discovery URLs are managed two different ways. | ≤ 2026-09-22 |
 | [07-alpine-component.md](learning/07-alpine-component.md) | How the Alpine component connects Livewire and the map. | ≤ 2026-09-22 |
 | [ansible-explained.md](learning/ansible-explained.md) | Ansible from the beginning, and every file in ansible/ line by line. | 2026-09-30 |
+| [crash-00-start-here.md](learning/crash-00-start-here.md) | Holiday reading, 10–16.10.2026: six crash courses on what launch needs next. Start here. | — |
+| [crash-01-seo-for-a-new-site.md](learning/crash-01-seo-for-a-new-site.md) | Crash course: how Google finds, indexes and ranks a brand-new site, and what that means for UNI's first 90 days. | — |
+| [crash-02-running-the-live-server.md](learning/crash-02-running-the-live-server.md) | Crash course: day-two operations — how the live box fits together, where to look when it breaks, and the habits that keep it boring. | — |
+| [crash-03-postgresql-survival.md](learning/crash-03-postgresql-survival.md) | Crash course: PostgreSQL for the person who owns the only copy of the data — looking safely, migrations on live tables, backups, growth. | — |
+| [crash-04-gdpr-for-the-privacy-policy.md](learning/crash-04-gdpr-for-the-privacy-policy.md) | Crash course: the GDPR you need to write UNI's privacy policy from the app, and to close the DPAs — what must be in it, how to inventory, where people slip. | — |
+| [crash-05-measuring-with-small-numbers.md](learning/crash-05-measuring-with-small-numbers.md) | Crash course: reading UNI's first 12 weeks of numbers without fooling yourself — noise, the funnel already in the events, and decisions written before the data. | — |
+| [crash-06-the-keys-to-uni.md](learning/crash-06-the-keys-to-uni.md) | Crash course: which accounts could end UNI if someone else took them, how they chain together, and a one-page check for each — written for a trip. | — |
+| [crash-07-ansible.md](learning/crash-07-ansible.md) | Crash course: Ansible as a way of thinking — desired state, idempotence, what the playbook owns on UNI's servers, and how to reason when a run fails. | — |
+| [crash-08-deployer.md](learning/crash-08-deployer.md) | Crash course: Deployer as a way of thinking — atomic releases, the order of UNI's deploy steps and what each guard protects, failures by where they stop, and rollback's limits. | — |
+| [crash-09-the-deployment-cycle.md](learning/crash-09-the-deployment-cycle.md) | Crash course: the whole cycle from a change on the PC to production — the normal loop, and the variants for hotfixes, migrations, .env changes, server changes, dependency updates and a new box. | — |
 | [deployer-explained.md](learning/deployer-explained.md) | Deployer from the beginning, and deploy.php line by line. | 2026-09-30 |
 | [interactive.html](learning/interactive.html) | Interactive companion to the learning series. | ≤ 2026-09-22 |
 | [visualized-app.html](learning/visualized-app.html) | A visual map of the application. | ≤ 2026-09-22 |

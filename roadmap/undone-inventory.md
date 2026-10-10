@@ -2,7 +2,7 @@
 description: "The backlog: every open item, sorted into Launch, After launch, V2 and V3."
 version: 1.1
 owner: Paweł Milewski
-updated: 2026-10-08
+updated: 2026-10-10
 status: living — the single list of what has not been done
 ---
 
@@ -43,6 +43,7 @@ Everything here is checkable. The last section says how to regenerate the list, 
 | ✅ **Reference data on a deployed server: done 09.10.** Deploys never seed and no runbook step did, so the rebuilt home server had no cities, categories or districts. The runbook now runs `php artisan db:seed --force` once after a first deploy (4.17, 7.9); `DatabaseSeederOnAServerTest` pins that on production it writes reference data and canaries only (`ProductSeeder` was already guarded by `DemoData::isAllowed()`; an earlier note here claiming otherwise was wrong) | — | `ops/deployment-runbook.md` 4.17 and 7.9 |
 | **Infrastructure.** *Progress 09.10: the home server is rebuilt (runbook Phases 3–4; 4.18's phone check pending), Phase 5 next, then production (Phase 7).* The VPS (firewall, certificates, Tailscale, first-login script), cron, queue worker, secrets, backups with a rehearsed restore, healthcheck URL, mail (the disk-space and waiting-claim alarms reach the admin by e-mail), `/admin` on the `admin.` subdomain with allowlist and TOTP | The site has to run, be backed up and raise its alarms | `ops/deploy-checklist.md`, every `TODO` row; section B below; `journals/2026-09-30.md` for the 30.09 answers |
 | ✅ **Phase 0, done 09.10.** Repositories pushed, `gh` logged in on the PC, CI green for the first time, `v0.1.5` and `v0.1.6` tagged, the break-glass key in the password manager and the playbook, a new PC key with a passphrase, `~/.ssh/config` | — | `ops/deployment-runbook.md` Phase 0 |
+| **Found while writing the 10.10 crash courses, each to be decided (not yet discussed):** (a) a runbook section for changing `shared/.env` on a live box: the config is cached at deploy, so an edit does nothing until `config:cache` + reloads, and the password-manager copy is the only off-box copy of `.env` (course 9 §5); (b) an external uptime check on the public URL and the certificate, since no alarm covers "pages return 500 while the box is healthy" (course 2 §4); (c) check runbook 7.5 sets a production `LOG_LEVEL` other than `debug`; (d) `uni_no_count` on every device you browse from, plus the home IP in the internal list (course 5 §2); (e) the account-takeover checklist (OVH, e-mail, password manager 2FA and recovery codes, domain auto-renew) as a gate before going public (course 6 §6); ⏳ (f) whether slug redirects move from After launch into Launch (course 1, question 2) | Each is small; (a)–(c) belong to Phase 7, (e) to the gates before going public | `learning/crash-00-start-here.md` and each course's "Questions to bring back"; journal 2026-10-10 |
 | **Privacy policy written from the app, plus the DPAs.** Includes two wording questions: does the inaccuracy report's `note` get cleared along with the e-mail, so that "anonymisation" is true? And does "no session identifier" mean none stored in analytics (recommended), or no session at all? | A published page making legal statements; PostHog is named without a DPA today | Section C below; `compliance/the-compliance-hour.md`; `journals/2026-10-03.md`: Open Questions 9 and 14 |
 
 ### After launch

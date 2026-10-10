@@ -32,3 +32,19 @@ Read in order — each doc builds on the previous.
 **When URLs/links are broken:** Go to 06.
 
 **When something feels broken between list and map:** Go to 07 (how Livewire and Alpine talk).
+
+---
+
+## Crash courses (written for the 10–16.10.2026 trip)
+
+What starts the day the site is public, tied to UNI's own code and records. Start at **[crash-00-start-here.md](crash-00-start-here.md)**; each course ends with "Questions to bring back".
+
+1. **[crash-01-seo-for-a-new-site.md](crash-01-seo-for-a-new-site.md)**: how Google treats a new domain; Search Console; the first 90 days
+2. **[crash-02-running-the-live-server.md](crash-02-running-the-live-server.md)**: the box in one picture, symptom → first look, alarms, disk, reboots
+3. **[crash-03-postgresql-survival.md](crash-03-postgresql-survival.md)**: looking safely, migrations on live data, backups, growth
+4. **[crash-04-gdpr-for-the-privacy-policy.md](crash-04-gdpr-for-the-privacy-policy.md)**: what Article 13 requires, the V1 data-flow inventory, DPAs, cookies
+5. **[crash-05-measuring-with-small-numbers.md](crash-05-measuring-with-small-numbers.md)**: noise, the funnel already in `events`, the weekly review
+6. **[crash-06-the-keys-to-uni.md](crash-06-the-keys-to-uni.md)**: the accounts that could end UNI, and a phone-sized check
+7. **[crash-07-ansible.md](crash-07-ansible.md)**: desired state and idempotence, what the playbook owns, when to run it, reading a failed run
+8. **[crash-08-deployer.md](crash-08-deployer.md)**: build beside then switch, the four acts of a deploy, what each guard prevents, rollback's limits
+9. **[crash-09-the-deployment-cycle.md](crash-09-the-deployment-cycle.md)**: the loop from PC to production and its variants (hotfix, migration, `.env`, server, dependencies, new box)
