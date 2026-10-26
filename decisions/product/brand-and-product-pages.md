@@ -3,6 +3,7 @@
 **Date:** 2026-08-30
 **Status:** Decided
 **Executed:** 2026-09-17 — `/napoj/{slug}` and `/marka/{slug}` live, text-only, each with the counted call to action. Venue pages link every catalogue drink and its brand. Drinks and brands nobody serves render `noindex, follow` and stay out of the sitemap
+**Superseded:** in part, 2026-10-26 by [[decisions/product/no-brand-names-on-public-drink-labels]] — no branded product or brand is named publicly, so `/marka` and branded `/napoj` pages go; style pages ([[decisions/product/menu-lines-describe-style-not-brand]]) take over as the way in through search
 **Area:** Venues | Brand
 
 ---

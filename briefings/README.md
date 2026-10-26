@@ -13,7 +13,7 @@ Four series live here:
 
 | Series | What it is | Newest |
 |---|---|---|
-| `commute-*` | The commute documents, v1.0 to v13.0, 09.09 to 30.09 | `commute-2026-09-30.md` |
+| `commute-*` | The commute documents, v1.0 to v15.0, 09.09 to 26.10 | `commute-2026-10-27.md` |
 | `decisions-waiting-on-you*` | Question documents answered inline, v3 to v9 (v4 is the file without a number); the rule for writing the next one is in `CLAUDE.md` | `decisions-waiting-on-you-v9.md` |
 | `audit-2026-08-*` | Notes and answers checked against running code, August | `audit-2026-08-27.md` |
 | `next-session-*`, `new-notes.md` | One-off session briefs and reading guides | — |
@@ -46,6 +46,8 @@ Each renamed file carries a `renamed:` line in its frontmatter saying what it us
 | `commute-2026-09-30.md` | v13.0 | 30.09 | — | 30.09 |
 | `commute-2026-09-30_2.md` | v1.0 (own track) | 30.09 | — | any — Ansible explained, every file in `ansible/` line by line |
 | `commute-2026-09-30_3.md` | v1.0 (own track) | 30.09 | — | any — Deployer and CI explained, `deploy.php` line by line |
+| `commute-2026-10-18.md` | v14.0 | 18.10 | — | 19.10 — pivot options if the anti-alcohol bill passes, and ways to reach people without brand advertising |
+| `commute-2026-10-27.md` | v15.0 | 26.10 | — | 27.10 — after the brand decisions: what stripping every brand touches, the style list, the stay metric, the KCPU follow-up |
 
 **Seven of the thirteen were written on 16.09** — one per session of that day, each answering the one before it. That is why the `_2` … `_7` run exists and why the old names spread across six different days in the filename.
 

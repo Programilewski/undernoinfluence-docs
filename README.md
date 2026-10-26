@@ -66,7 +66,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Folder | What it holds | Index |
 |---|---|---|
 | `decisions/` | 198 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 95 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `journals/` | 96 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-09 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-10 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -189,7 +189,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Document | What it is for | Updated |
 |---|---|---|
-| [README.md](learning/README.md) | The learning series: reading order and when to read which. | ≤ 2026-09-22 |
+| [README.md](learning/README.md) | The learning series: reading order and when to read which. | 2026-10-10 |
 | [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | 2026-10-09 |
 | [01-overview.md](learning/01-overview.md) | The discovery map: files, technologies, who owns what. | ≤ 2026-09-22 |
 | [02-data-flow.md](learning/02-data-flow.md) | How a venue travels from the database to a map pin. | ≤ 2026-09-22 |
@@ -199,16 +199,16 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [06-url-management.md](learning/06-url-management.md) | Why discovery URLs are managed two different ways. | ≤ 2026-09-22 |
 | [07-alpine-component.md](learning/07-alpine-component.md) | How the Alpine component connects Livewire and the map. | ≤ 2026-09-22 |
 | [ansible-explained.md](learning/ansible-explained.md) | Ansible from the beginning, and every file in ansible/ line by line. | 2026-09-30 |
-| [crash-00-start-here.md](learning/crash-00-start-here.md) | Holiday reading, 10–16.10.2026: six crash courses on what launch needs next. Start here. | — |
-| [crash-01-seo-for-a-new-site.md](learning/crash-01-seo-for-a-new-site.md) | Crash course: how Google finds, indexes and ranks a brand-new site, and what that means for UNI's first 90 days. | — |
-| [crash-02-running-the-live-server.md](learning/crash-02-running-the-live-server.md) | Crash course: day-two operations — how the live box fits together, where to look when it breaks, and the habits that keep it boring. | — |
-| [crash-03-postgresql-survival.md](learning/crash-03-postgresql-survival.md) | Crash course: PostgreSQL for the person who owns the only copy of the data — looking safely, migrations on live tables, backups, growth. | — |
-| [crash-04-gdpr-for-the-privacy-policy.md](learning/crash-04-gdpr-for-the-privacy-policy.md) | Crash course: the GDPR you need to write UNI's privacy policy from the app, and to close the DPAs — what must be in it, how to inventory, where people slip. | — |
-| [crash-05-measuring-with-small-numbers.md](learning/crash-05-measuring-with-small-numbers.md) | Crash course: reading UNI's first 12 weeks of numbers without fooling yourself — noise, the funnel already in the events, and decisions written before the data. | — |
-| [crash-06-the-keys-to-uni.md](learning/crash-06-the-keys-to-uni.md) | Crash course: which accounts could end UNI if someone else took them, how they chain together, and a one-page check for each — written for a trip. | — |
-| [crash-07-ansible.md](learning/crash-07-ansible.md) | Crash course: Ansible as a way of thinking — desired state, idempotence, what the playbook owns on UNI's servers, and how to reason when a run fails. | — |
-| [crash-08-deployer.md](learning/crash-08-deployer.md) | Crash course: Deployer as a way of thinking — atomic releases, the order of UNI's deploy steps and what each guard protects, failures by where they stop, and rollback's limits. | — |
-| [crash-09-the-deployment-cycle.md](learning/crash-09-the-deployment-cycle.md) | Crash course: the whole cycle from a change on the PC to production — the normal loop, and the variants for hotfixes, migrations, .env changes, server changes, dependency updates and a new box. | — |
+| [crash-00-start-here.md](learning/crash-00-start-here.md) | Holiday reading, 10–16.10.2026: six crash courses on what launch needs next. Start here. | 2026-10-10 |
+| [crash-01-seo-for-a-new-site.md](learning/crash-01-seo-for-a-new-site.md) | Crash course: how Google finds, indexes and ranks a brand-new site, and what that means for UNI's first 90 days. | 2026-10-10 |
+| [crash-02-running-the-live-server.md](learning/crash-02-running-the-live-server.md) | Crash course: day-two operations — how the live box fits together, where to look when it breaks, and the habits that keep it boring. | 2026-10-10 |
+| [crash-03-postgresql-survival.md](learning/crash-03-postgresql-survival.md) | Crash course: PostgreSQL for the person who owns the only copy of the data — looking safely, migrations on live tables, backups, growth. | 2026-10-10 |
+| [crash-04-gdpr-for-the-privacy-policy.md](learning/crash-04-gdpr-for-the-privacy-policy.md) | Crash course: the GDPR you need to write UNI's privacy policy from the app, and to close the DPAs — what must be in it, how to inventory, where people slip. | 2026-10-10 |
+| [crash-05-measuring-with-small-numbers.md](learning/crash-05-measuring-with-small-numbers.md) | Crash course: reading UNI's first 12 weeks of numbers without fooling yourself — noise, the funnel already in the events, and decisions written before the data. | 2026-10-10 |
+| [crash-06-the-keys-to-uni.md](learning/crash-06-the-keys-to-uni.md) | Crash course: which accounts could end UNI if someone else took them, how they chain together, and a one-page check for each — written for a trip. | 2026-10-10 |
+| [crash-07-ansible.md](learning/crash-07-ansible.md) | Crash course: Ansible as a way of thinking — desired state, idempotence, what the playbook owns on UNI's servers, and how to reason when a run fails. | 2026-10-10 |
+| [crash-08-deployer.md](learning/crash-08-deployer.md) | Crash course: Deployer as a way of thinking — atomic releases, the order of UNI's deploy steps and what each guard protects, failures by where they stop, and rollback's limits. | 2026-10-10 |
+| [crash-09-the-deployment-cycle.md](learning/crash-09-the-deployment-cycle.md) | Crash course: the whole cycle from a change on the PC to production — the normal loop, and the variants for hotfixes, migrations, .env changes, server changes, dependency updates and a new box. | 2026-10-10 |
 | [deployer-explained.md](learning/deployer-explained.md) | Deployer from the beginning, and deploy.php line by line. | 2026-09-30 |
 | [interactive.html](learning/interactive.html) | Interactive companion to the learning series. | ≤ 2026-09-22 |
 | [visualized-app.html](learning/visualized-app.html) | A visual map of the application. | ≤ 2026-09-22 |
@@ -269,7 +269,9 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [commute-2026-09-20.md](briefings/commute-2026-09-20.md) | Commute document v10.0. Answered 21.09, superseded by v11.0. | 2026-09-20 |
 | [commute-2026-09-21.md](briefings/commute-2026-09-21.md) | Commute document v11.0. | 2026-09-22 |
 | [commute-2026-09-25.md](briefings/commute-2026-09-25.md) | Commute document v12.0: the scheduler ran for the first time. | 2026-09-25 |
-| [commute-2026-09-30.md](briefings/commute-2026-09-30.md) ★ | Commute document v13.0, the latest: Ploi out, Ansible and Deployer in, what is left for you. | 2026-10-03 |
+| [commute-2026-09-30.md](briefings/commute-2026-09-30.md) | Commute document v13.0, the latest: Ploi out, Ansible and Deployer in, what is left for you. | 2026-10-03 |
+| [commute-2026-10-18.md](briefings/commute-2026-10-18.md) | Commute document v14.0: what to do if the anti-alcohol bill passes — pivot options for the catalogue and the business, and ways to reach people without brand advertising. | — |
+| [commute-2026-10-27.md](briefings/commute-2026-10-27.md) ★ | Commute document v15.0: after the brand decisions — what stripping every brand touches in the app, how the menu stays above the value threshold, the KCPU e-mail, and the questions to answer before the build. | — |
 | [decisions-waiting-on-you-v3-answered.md](briefings/decisions-waiting-on-you-v3-answered.md) | Decisions document v3 with your inline answers, kept unedited. | 2026-08-30 |
 | [decisions-waiting-on-you-v5.md](briefings/decisions-waiting-on-you-v5.md) | Decisions document v5, the launch-speed edition. | 2026-09-01 |
 | [decisions-waiting-on-you-v6.md](briefings/decisions-waiting-on-you-v6.md) | Decisions document v6: the part left unanswered on 02.09. | 2026-09-02 |

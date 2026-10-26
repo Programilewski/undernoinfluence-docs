@@ -132,7 +132,7 @@ Adopted 2026-09-16.
 | [[decisions/product/osm-dropped]] | OSM dropped as data source (ODbL); manual curation only | Decided |
 | [[decisions/product/abv-trust-model]] | ABV trust tiers: verified_zero / under_0.5 / unknown + strict-zero filter | Decided |
 | [[decisions/product/venue-url-structure]] | Flat /miejsce/{slug}, no city prefix, no locale prefix | Decided |
-| [[decisions/product/no-venue-photos-v1]] | No venue or drink photos in V1 | Decided |
+| [[decisions/product/no-venue-photos-v1]] | No venue or drink photos in V1; **amended 26.10:** house drinks text only beyond V1 too, `venue_drinks.photo_path` removed | Decided, executed 26.10 |
 | [[decisions/product/no-opening-hours-v1]] | No opening hours; link to Google Maps instead | Decided |
 | [[decisions/product/venue-activation-gate]] | A venue is live only with a map point and something on its menu — a catalogue product or a house drink; it goes offline when emptied, and a CSV cannot switch it on (amended 13.09) | Decided, executed 13.09 |
 | [[decisions/product/category-taxonomy]] | Drinki 0% merge, -bezalkoholowe SEO slugs, (Nie)mocne hidden | Decided |
@@ -212,8 +212,8 @@ Adopted 2026-09-16.
 | [[decisions/product/accent-only-map-clusters]] | Grouped pins stay the accent colour; colouring them by dominant category was built and rejected | Decided |
 | [[decisions/product/map-attribution-lives-in-the-style]] | The ODbL credit is declared once on the source in our style file; no map adds its own | Decided |
 | [[decisions/product/map-correctness-needs-a-browser]] | Layer definitions validated against the spec, and every map surface loaded in a real browser — nothing else can see a map that renders into a zero-sized box | Decided |
-| [[decisions/product/custom-drink-photo-gate-retired]] | House-drink photo requirement retired for V1 — generated images killed the cost barrier and nobody can self-submit | Decided |
-| [[decisions/product/brand-and-product-pages]] | Brand and drink pages become a primary search surface; text-only at launch, images only with provenance | Decided |
+| [[decisions/product/custom-drink-photo-gate-retired]] | House-drink photo requirement retired for V1 — generated images killed the cost barrier and nobody can self-submit | Decided; **extended beyond V1 on 26.10** by no-venue-photos-v1 |
+| [[decisions/product/brand-and-product-pages]] | Brand and drink pages become a primary search surface; text-only at launch, images only with provenance | Decided; **superseded in part 26.10:** no brand is named publicly |
 | [[decisions/product/discovery-filters-are-not-indexable]] | Filter combinations carry noindex-follow; the existing city cluster is the search surface | Decided |
 | [[decisions/product/faq-gets-its-own-page]] | FAQ moves to `/faq` at eight questions or more; `/jak-to-dziala` links instead of repeating. Supersedes the 19.06 in-page decision | Decided |
 | [[decisions/product/dry-january-is-a-permanent-page]] | `/suchy-styczen` exists all year at one address, carries a live venue list, and is refreshed rather than rebuilt | Decided |
@@ -243,6 +243,9 @@ Adopted 2026-09-16.
 | [[decisions/product/owner-access-opens-only-once-owners-can-be-checked]] | `UNI_OWNER_ACCESS` is switched on only after the replacement owner check is built — the first step of the V2 opening list | Decided, standing rule |
 | [[decisions/product/an-owner-can-have-several-claims-waiting]] | One account may wait on any number of claims, and the admin can give an existing owner another venue; one waiting claim per venue stays; bulk recording waits for a real chain | Decided, executed 19.09 |
 | [[decisions/product/owner-line-comes-before-corrections]] | Under a venue's buttons: "To Twój lokal?" first and more visible, "Coś się nie zgadza?" second and the same in both switch states; analytics only on `/zglos-lokal` | Decided, executed 19.09 |
+| [[decisions/product/no-paid-legal-opinion-in-v1]] | No paid lawyer while UNI earns nothing; a free e-mail to KCPU instead, cocktail-named recipes included; revisit before the first paid feature or paying venue | Decided 19.10, standing rule; e-mail sent 18.10, no reply by 26.10 |
+| [[decisions/product/no-brand-names-on-public-drink-labels]] | No product of any brand is named publicly, alcoholic line or not: no flag, no monitoring; panels keep names; revisit on the stay metric or KCPU's answer | Decided 19.10, confirmed 26.10; not built |
+| [[decisions/product/menu-lines-describe-style-not-brand]] | A branded product shows as category + a style from a closed list + 0,0/≤0,5; nothing that lets anyone work out the brand; the same field drives style pages | Decided in principle 26.10; style list, draught, KCPU follow-up open |
 
 ## Pending Decisions
 

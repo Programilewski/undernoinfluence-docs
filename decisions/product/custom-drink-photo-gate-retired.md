@@ -3,6 +3,7 @@
 **Date:** 2026-08-30
 **Status:** Decided — supersedes [[decisions/product/custom-drink-photo-gate]] for V1
 **Executed:** yes — verified in the code 2026-09-14
+**Superseded:** 2026-10-26 by [[decisions/product/no-venue-photos-v1]] (amended 26.10) — "no image for house drinks" now holds beyond V1 too, and the unused `venue_drinks.photo_path` column is removed
 **Area:** Venues
 
 ---
