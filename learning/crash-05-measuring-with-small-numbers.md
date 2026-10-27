@@ -49,7 +49,7 @@ Google impressions (Search Console)            ← someone saw UNI in a result
    │
 Google clicks (Search Console)
    │
-Landing:  city_viewed · district_viewed · category_browsed · drink_viewed · brand_viewed · dry_january_viewed
+Landing:  city_viewed · district_viewed · category_browsed · drink_viewed (recipes only) · ~~brand_viewed~~ (retired 27.10) · dry_january_viewed
    │
 venue_viewed                                    ← a specific place considered
    │

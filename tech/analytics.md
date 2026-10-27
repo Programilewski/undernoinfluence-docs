@@ -85,8 +85,8 @@ indexed in time, weeks before the traffic it was built for arrives.
 | `city_viewed` | City overview page loaded | city_slug, venue_count |
 | `district_viewed` | District page loaded | city_slug, district_slug, venue_count |
 | `dry_january_viewed` | `/suchy-styczen` loaded | venue_count |
-| `drink_viewed` | A drink page loaded | product_slug, venue_count |
-| `brand_viewed` | A brand page loaded | brand_slug, venue_count |
+| `drink_viewed` | A shared recipe's page loaded (the only drink pages since 27.10) | product_slug, venue_count, variant_count |
+| ~~`brand_viewed`~~ | **Retired 27.10:** brand pages were removed (no-brand-names-on-public-drink-labels). Old rows stay in the tables | brand_slug, venue_count |
 | `user_logged_in` | Panel login | user_id |
 
 **Corrected 2026-08-30.** `discovery_searched` used to fire on every debounced keystroke of the
