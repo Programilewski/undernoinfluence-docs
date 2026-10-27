@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-19
 **Status:** Decided — confirmed 26.10
-**Executed:** no — the record is a task, in the Launch backlog
+**Executed:** 2026-10-27 — only a shared recipe's name is public (`Product::isNamedPublicly()`); branded products show as their style; `/marka` and branded `/napoj` pages removed (404); sitemap, structured data, discovery tiles, the "Nowe w karcie" strip and the homepage demo follow; site search matches recipes and styles, never a brand or its spellings. One test renders every public surface with a fixture brand and asserts the name appears nowhere
 **Area:** Brand | Venues
 
 ---

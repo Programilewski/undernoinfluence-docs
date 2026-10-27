@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-26
 **Status:** Decided in principle — the style list, draught vs bottle and one KCPU question are open
-**Executed:** no — the record is a task, in the Launch backlog
+**Executed:** 2026-10-27 in code — `products.style` from a closed list (`App\Enums\ProductStyle`), refused by the database outside it and refused by the import and the admin form outside the product's category; menu lines group by style and ABV line ("Lager ×2 · 0.0%"); a product with no style shows its category name. **Not done: a style entered for each catalogue product** (data entry, in the Launch backlog)
 **Area:** Venues | Data Model | Categories
 
 ---

@@ -66,7 +66,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Folder | What it holds | Index |
 |---|---|---|
 | `decisions/` | 201 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 97 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `journals/` | 98 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-26 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-27 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -180,7 +180,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [audits/nis2.md](compliance/audits/nis2.md) | NIS2 applicability assessment, 22.06. | 2026-07-24 |
 | [breach-runbook.md](compliance/breach-runbook.md) | Data breach notification runbook: what counts, the 72-hour steps to UODO. | 2026-06-28 |
 | [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | 2026-10-09 |
-| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026) and the 27.10 follow-up, verbatim. | — |
+| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026) and the 27.10 follow-up, verbatim. | 2026-10-27 |
 | [data-map.md](compliance/data-map.md) | How data enters, moves and leaves. Stub. | 2026-05-13 |
 | [privacy-notice.md](compliance/privacy-notice.md) | Privacy notice. Stub; the policy gets written from the app. | 2026-05-13 |
 | [ropa.md](compliance/ropa.md) | Record of processing activities (Art. 30). Stub with many TODOs. | 2026-05-13 |
@@ -272,7 +272,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [commute-2026-09-25.md](briefings/commute-2026-09-25.md) | Commute document v12.0: the scheduler ran for the first time. | 2026-09-25 |
 | [commute-2026-09-30.md](briefings/commute-2026-09-30.md) | Commute document v13.0, the latest: Ploi out, Ansible and Deployer in, what is left for you. | 2026-10-03 |
 | [commute-2026-10-18.md](briefings/commute-2026-10-18.md) | Commute document v14.0: what to do if the anti-alcohol bill passes — pivot options for the catalogue and the business, and ways to reach people without brand advertising. | 2026-10-26 |
-| [commute-2026-10-27.md](briefings/commute-2026-10-27.md) ★ | Commute document v15.0: after the brand decisions — what stripping every brand touches in the app, how the menu stays above the value threshold, the KCPU e-mail, and the questions to answer before the build. | 2026-10-26 |
+| [commute-2026-10-27.md](briefings/commute-2026-10-27.md) ★ | Commute document v15.0: after the brand decisions — what stripping every brand touches in the app, how the menu stays above the value threshold, the KCPU e-mail, and the questions to answer before the build. | 2026-10-27 |
 | [decisions-waiting-on-you-v3-answered.md](briefings/decisions-waiting-on-you-v3-answered.md) | Decisions document v3 with your inline answers, kept unedited. | 2026-08-30 |
 | [decisions-waiting-on-you-v5.md](briefings/decisions-waiting-on-you-v5.md) | Decisions document v5, the launch-speed edition. | 2026-09-01 |
 | [decisions-waiting-on-you-v6.md](briefings/decisions-waiting-on-you-v6.md) | Decisions document v6: the part left unanswered on 02.09. | 2026-09-02 |

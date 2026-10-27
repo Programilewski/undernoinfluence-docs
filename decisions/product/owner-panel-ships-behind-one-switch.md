@@ -40,6 +40,7 @@ Amended 2026-09-19 — the list the Rules above promise, in one place. Anything 
 | The report modal's pointer to the request form, for "To mój lokal" | Absent | Same venues as above | `isClaimable`, passed to `x-venue-report-modal` |
 | "Dla lokali: Zgłoś swój lokal · Panel lokalu" in the footer | Absent | Links to the form and the panel's sign-in | `partials/footer.blade.php` |
 | The owner card on `/jak-to-dziala` | "Zgłoszenie przez e-mail" | "Zgłoszenie lub przejęcie profilu" | `how-it-works.blade.php` |
+| The updates card on `/jak-to-dziala` (27.10) | "Aktualizacje na żądanie": every change confirmed before publication | "Aktualizacje na bieżąco": the owner's edit is live at once | `how-it-works.blade.php` |
 | Privacy policy: owner accounts, claim data and its retention, the claim-handling purpose, owner e-mails | Absent | Present | `privacy-policy.blade.php`, five places |
 | Admin: "send a set-password link" on a user | Hidden | Shown for accounts that can use the panel | `Admin/Resources/Users/Pages/EditUser.php` |
 | The claim-approval e-mail | Says what changed on the venue page and where menu changes go; no panel, no password | Sends the owner into the panel | `ClaimApproved::toMail()` |
