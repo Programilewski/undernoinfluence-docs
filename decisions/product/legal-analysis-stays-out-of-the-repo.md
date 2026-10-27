@@ -27,6 +27,8 @@ No file in the project analyses alcohol-advertising law, cites its provisions, o
 
 A project whose documentation points at a risk nobody has ever been prosecuted for, at the expense of the catalogue and the venues that are the actual work. It also prevents the quieter failure: a body of analysis large enough that every future session reads it first and answers through it, which is what happened across three consecutive sessions.
 
+**Amended 27.10.2026, a second deliberate exception:** the correspondence with KCPU is kept verbatim in `compliance/correspondence/kcpu-2026.md`, by the founder's explicit decision. It is a copy of letters, not analysis; decisions drawn from it cite it by date and reference number, never by article. (The first exception is the 18.10 commute briefing.)
+
 ## Revisit when
 
 The founder asks for legal work again — that is his call to reopen, and it does not return to the repository without it.

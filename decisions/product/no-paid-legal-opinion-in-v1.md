@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-19
 **Status:** Decided
-**Executed:** standing rule — the KCPU e-mail was sent 18.10.2026; no reply by 26.10. Waiting on it is in the After launch backlog
+**Executed:** standing rule — the KCPU e-mail was sent 18.10.2026 and answered 27.10.2026 (their reference DP.44.237.2026); a follow-up was sent the same day. Waiting on it is in the After launch backlog
 **Area:** Strategy | Brand
 
 ---
@@ -22,6 +22,10 @@ Pay for one opinion after the Senate text is known (the briefing's recommendatio
 **The free alternative is an e-mail to KCPU** asking how the rule reads for a directory like UNI. Paweł sent it on 18.10, the day before this decision, asking about the current law and the amendment. It asks four questions: whether naming a 0.0 drink sold under an alcohol trademark on a venue profile is advertising; whether purely factual information about low-alcohol drinks from the venue's menu is allowed; whether social posts showing several venues, with no alcohol brands, can fall under the ban; and whether selling producers aggregated, anonymous interest data affects that assessment. It asks KCPU to name the competent body if the questions aren't theirs.
 
 **What it didn't ask:** the grey area left open by the shared-recipes record, i.e. whether a recipe named after a cocktail ("Mojito bezalkoholowe") counts under the bill's *podobieństwo* (similarity) wording, and whether generic style words ("lager", "gin 0%") do. Both are for a follow-up. The low-alcohol question describes drinks UNI refuses to list ([[decisions/product/catalogue-excludes-actual-alcohol]]), and the e-mail's description of the service mentions "niskoalkoholowe"; a follow-up can correct that, so the answer is about the service UNI actually is.
+
+**KCPU's answer, 27.10.** On the first question: yes. In KCPU's reading, any public use of a trademark that matches an alcoholic drink's name is advertising, and that includes a non-alcoholic drink sold under it, with no exception for intent or for a neutral directory. On low-alcohol drinks: anything above 0,5% is alcoholic, which is the line the catalogue already draws. On social posts and data sales: too little information to say. On the amendment: KCPU doesn't interpret a law that isn't in force. It recommends a lawyer. **What follows:** the reading is of the law as it stands today, so the brand decision no longer depends on the bill passing.
+
+**The follow-up, 27.10,** sent as a reply the same day. It corrects "niskoalkoholowe" in one sentence and describes the service in the conditional, since it isn't live. It asks three questions: the social-post question again, with the details KCPU said were missing (a "5 lokali z piwem bezalkoholowym na Mokotowie" post with counts by category and no product names); whether generic style words ("lager", "pszeniczne", "IPA") count as a symbol referring to an alcoholic drink; and whether classic cocktail names ("Mojito bezalkoholowe", "Gin z tonikiem bezalkoholowy") do. Data sales were left out on purpose: that's V3, and this record's own revisit comes first. Brands without any alcoholic line weren't asked either, since KCPU's reasoning only concerns marks shared with alcoholic drinks.
 
 ## Rules
 

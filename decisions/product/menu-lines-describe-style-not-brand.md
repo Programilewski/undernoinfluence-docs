@@ -31,7 +31,7 @@ A menu that names nothing a visitor can picture, which was the original worry ab
 
 The stay metric after launch shows the style lines aren't enough, or KCPU reads generic style words as "a symbol referring to alcohol". In that case the same reading would hit the category names too, and the whole naming question reopens.
 
-**Open, 26.10:** (1) the closed list. Proposed: lager, pils, pszeniczne, IPA, stout, radler, sour; wine: musujące, białe, czerwone, różowe; cydr. Spirit alternatives to be named. (2) Whether draught vs bottle is recorded: a strong signal, but a new fact per venue to keep current. (3) Whether a follow-up to KCPU asks about generic style words and cocktail-named recipes; the 18.10 e-mail asked neither.
+**Open, 26.10:** (1) the closed list. Proposed: lager, pils, pszeniczne, IPA, stout, radler, sour; wine: musujące, białe, czerwone, różowe; cydr. Spirit alternatives to be named. (2) Whether draught vs bottle is recorded: a strong signal, but a new fact per venue to keep current. (3) ~~Whether a follow-up to KCPU asks about generic style words and cocktail-named recipes~~ **asked 27.10** in the follow-up; no answer yet. **27.10:** the list is accepted, with spirit alternatives named by use ("alternatywa aperitifu", "bitter") until KCPU answers, and it may still change before V1. Draught vs bottle is not recorded for launch.
 
 ---
 

@@ -19,6 +19,8 @@ Keep showing every brand and rely on being a neutral, unpaid directory (the 07.0
 
 **No product of any brand is named on a public page.** Decided 19.10 in a claude.ai chat, confirmed 26.10. Stripping only the brands that share an alcohol name would need almost the same code, plus a promise to keep checking: a non-alcoholic-only brand can start an alcoholic line, and a missed check fails by showing a name that has become risky. Stripping all brands needs no flag, no classification and no monitoring. Occam's razor: the simplest rule that holds whatever a brand does next. The cost is detail on the menu, not search traffic: the brand searches that mattered were for beer brands, which share an alcohol name and would be stripped under either rule.
 
+**KCPU's answer, 27.10 (their reference DP.44.237.2026):** naming a 0.0 drink sold under an alcohol trademark is advertising, in their reading of the law as it stands today, not of the bill. The decision therefore holds whatever the Senate or the President does with the amendment. See [[decisions/product/no-paid-legal-opinion-in-v1]].
+
 ## Rules
 
 Public means every page and everything that leaves the site: venue pages, `/marka` and `/napoj`, page titles, descriptions, structured data, the sitemap, share cards, search results and social posts. A branded product appears as its category, described by its style (see [[decisions/product/menu-lines-describe-style-not-brand]]). Shared recipes and house drinks have no brand and keep their names. The admin and owner panels keep full names, because a closed audience isn't public. Producers stay internal as before. A stripped page is removed, never just marked `noindex`. Social content leads with a category, the map or a count, never a product.

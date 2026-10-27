@@ -243,9 +243,9 @@ Adopted 2026-09-16.
 | [[decisions/product/owner-access-opens-only-once-owners-can-be-checked]] | `UNI_OWNER_ACCESS` is switched on only after the replacement owner check is built — the first step of the V2 opening list | Decided, standing rule |
 | [[decisions/product/an-owner-can-have-several-claims-waiting]] | One account may wait on any number of claims, and the admin can give an existing owner another venue; one waiting claim per venue stays; bulk recording waits for a real chain | Decided, executed 19.09 |
 | [[decisions/product/owner-line-comes-before-corrections]] | Under a venue's buttons: "To Twój lokal?" first and more visible, "Coś się nie zgadza?" second and the same in both switch states; analytics only on `/zglos-lokal` | Decided, executed 19.09 |
-| [[decisions/product/no-paid-legal-opinion-in-v1]] | No paid lawyer while UNI earns nothing; a free e-mail to KCPU instead, cocktail-named recipes included; revisit before the first paid feature or paying venue | Decided 19.10, standing rule; e-mail sent 18.10, no reply by 26.10 |
+| [[decisions/product/no-paid-legal-opinion-in-v1]] | No paid lawyer while UNI earns nothing; a free e-mail to KCPU instead, cocktail-named recipes included; revisit before the first paid feature or paying venue | Decided 19.10, standing rule; e-mail sent 18.10, answered 27.10; follow-up sent 27.10 |
 | [[decisions/product/no-brand-names-on-public-drink-labels]] | No product of any brand is named publicly, alcoholic line or not: no flag, no monitoring; panels keep names; revisit on the stay metric or KCPU's answer | Decided 19.10, confirmed 26.10; not built |
-| [[decisions/product/menu-lines-describe-style-not-brand]] | A branded product shows as category + a style from a closed list + 0,0/≤0,5; nothing that lets anyone work out the brand; the same field drives style pages | Decided in principle 26.10; style list, draught, KCPU follow-up open |
+| [[decisions/product/menu-lines-describe-style-not-brand]] | A branded product shows as category + a style from a closed list + 0,0/≤0,5; nothing that lets anyone work out the brand; the same field drives style pages | Decided in principle 26.10; list accepted and draught not recorded 27.10; KCPU follow-up sent 27.10 |
 
 ## Pending Decisions
 
