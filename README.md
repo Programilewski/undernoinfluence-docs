@@ -66,7 +66,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Folder | What it holds | Index |
 |---|---|---|
 | `decisions/` | 204 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 98 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `journals/` | 99 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-27 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-28 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -255,7 +255,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [README.md](briefings/README.md) | What briefings are, how they are named, and the renaming table for the commute documents. | 2026-10-26 |
 | [audit-2026-08-20.md](briefings/audit-2026-08-20.md) | Audit of the 20.08 commute notes against running code. | 2026-08-20 |
 | [audit-2026-08-24.md](briefings/audit-2026-08-24.md) | Audit of the 24.08 commute answers against running code. | 2026-08-24 |
-| [audit-2026-08-27.md](briefings/audit-2026-08-27.md) ★ | Audit of the 27.08 phone note and the infrastructure log against running code. | 2026-08-27 |
+| [audit-2026-08-27.md](briefings/audit-2026-08-27.md) | Audit of the 27.08 phone note and the infrastructure log against running code. | 2026-08-27 |
+| [audit-2026-10-28.md](briefings/audit-2026-10-28.md) ★ | Engineering audit of the application, 28.10: security, correctness, performance, architecture; 15 findings, report only. | — |
 | [commute-2026-09-09.md](briefings/commute-2026-09-09.md) | Commute document v1.0 (Polish): seven decisions, four with a deadline. | 2026-09-09 |
 | [commute-2026-09-10.md](briefings/commute-2026-09-10.md) | Commute document v1.1 (Polish): consequences of the 09.09 answers. | 2026-09-10 |
 | [commute-2026-09-12.md](briefings/commute-2026-09-12.md) | Commute document v1.8, the first in English. Superseded 14.09. | 2026-09-13 |
@@ -282,6 +283,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [decisions-waiting-on-you.md](briefings/decisions-waiting-on-you.md) | Decisions document v4: the status record of what was settled, built and parked as of 31.08. | 2026-08-31 |
 | [new-notes.md](briefings/new-notes.md) | Reading guide to everything written between 25 and 27 August. | 2026-08-27 |
 | [next-session-2026-09-20.md](briefings/next-session-2026-09-20.md) | Brief prepared on 19.09 for the next working session. | 2026-09-19 |
+| [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | — |
 
 ### `inbox/` — Raw capture, not yet sorted
 

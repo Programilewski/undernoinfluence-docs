@@ -15,7 +15,7 @@ Four series live here:
 |---|---|---|
 | `commute-*` | The commute documents, v1.0 to v15.0, 09.09 to 26.10 | `commute-2026-10-27.md` |
 | `decisions-waiting-on-you*` | Question documents answered inline, v3 to v9 (v4 is the file without a number); the rule for writing the next one is in `CLAUDE.md` | `decisions-waiting-on-you-v9.md` |
-| `audit-2026-08-*` | Notes and answers checked against running code, August | `audit-2026-08-27.md` |
+| `audit-*` | Notes and answers checked against running code (August), and the engineering audit of 28.10 | `audit-2026-10-28.md` |
 | `next-session-*`, `new-notes.md` | One-off session briefs and reading guides | — |
 
 **Three documents used to be in the commute sequence and are not briefings:** the standing description of what UNI is (now `product/what-uni-is.md`) and the Ansible and Deployer explainers (now `learning/ansible-explained.md` and `learning/deployer-explained.md`). They were moved on 07.10.2026; the table below still lists them under their old names so an old reference can be traced.
