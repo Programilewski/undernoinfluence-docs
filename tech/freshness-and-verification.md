@@ -42,7 +42,7 @@ pressing "mark checked" makes it verified.
 ## Freshness in detail
 
 **The column.** `venues.offer_updated_at`. Written by `Venue::markOfferFresh()`
-(`app/Models/Venue.php:332`), which is called from `VenueProductObserver`,
+(`app/Models/Venue.php:332`), which is called from `App\Services\Catalogue\OfferChange`,
 `VenueDrinkObserver`, `ApproveProductProposalAction`, two Filament relation managers, and
 the repair cron.
 
@@ -119,7 +119,7 @@ disagrees with a fresh calculation.
 
 **Why drift happens at all.** `venue_products` is a pivot table and Eloquent fires no model
 events on it, so both columns are kept correct by call sites remembering to call the
-observer — see the comment at the top of `VenueProductObserver`. Any write that does not go
+observer — see the comment at the top of `OfferChange`. Any write that does not go
 through a Filament relation manager silently skips it.
 
 **The operational rule:** run it by hand immediately after any bulk import or direct

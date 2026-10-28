@@ -46,7 +46,7 @@ Not part of "ready", deliberately or not yet: a district, a description, photos,
 
 | Trigger | What runs | Where |
 |---|---|---|
-| A catalogue product attached (admin, owner, product proposal approved, menus import) | Menu follow-up step 4 → `activateIfReady()` | `VenueProductObserver::productAttached()` (`:34`) |
+| A catalogue product attached (admin, owner, product proposal approved, menus import) | Menu follow-up step 4 → `activateIfReady()` | `OfferChange::attached()` |
 | A house drink created | `activateIfReady()` | `VenueDrinkObserver` (`:17`) |
 | Coordinates written by geocoding (single or bulk button, any provider) | `activateIfReady()` after the point and, if empty, the district are saved | `GeocodeVenueAction::applyResult()` (`:99`) |
 | Hourly net: offline, not a canary, no `switched_off_at`, has a point and something to serve | `activateIfReady()` per venue (so the audit row is written) | `CheckOfferFreshness::activateReadyVenues()` |
@@ -58,7 +58,7 @@ Not part of "ready", deliberately or not yet: a district, a description, photos,
 
 | Trigger | What runs | Where |
 |---|---|---|
-| The last catalogue product detached (admin, owner, bulk "Usuń zaznaczone", menus import removal) | Menu follow-up step 4 → `deactivateIfEmpty()` | `VenueProductObserver::productDetached()` (`:53`) |
+| The last catalogue product detached (admin, owner, bulk "Usuń zaznaczone", menus import removal) | Menu follow-up step 4 → `deactivateIfEmpty()` | `OfferChange::detached()` |
 | The last house drink deleted | `deactivateIfEmpty()` | `VenueDrinkObserver` (`:31`) |
 | A catalogue product deleted: its venue links go in the database, where no observer runs | Caught by the hourly net within the hour | `CheckOfferFreshness::takeEmptyVenuesOffline()` |
 | An admin switches the toggle **off** | `is_active` false, `switched_off_at` = now. A toggle nobody moved is ignored (the a-control-speaks-only-when-it-is-moved record) | `EditVenue::mutateFormDataBeforeSave()` |

@@ -111,7 +111,7 @@ Read this fully; almost everything references it.
 One invokable-style class per business operation, called from Filament pages/resources instead of putting logic in controllers or fat models.
 
 - **`ApproveVenueClaimAction`**: `DB::transaction` wrapping claim status + venue ownership + user role promotion to `Owner` + audit log — four writes, one transaction, one place. Guards against double-claiming a venue mid-flight.
-- **`AttachVenueProductAction`** delegates the actual side effects (freshness touch, audit log, score recalc, `activateIfReady()`) to **`VenueProductObserver`** — because pivot-table attach/detach doesn't fire Eloquent model events, so this observer is called manually rather than being a real Eloquent observer (its own docblock says so).
+- **`OfferChange`** (`app/Services/Catalogue`) carries the side effects of a catalogue product attached or detached (freshness touch, offer log, score recount, `activateIfReady()` / `deactivateIfEmpty()`) — called by every path that changes `venue_products`, because pivot-table attach/detach doesn't fire Eloquent model events. Until 28.10 it was named `VenueProductObserver`, though it observed nothing.
 - **`SubmitProductProposalAction`**: duplicate-name check (case-insensitive, pending-only) before insert, `ValidationException::withMessages()` on conflict — same validation-inside-a-service pattern as `ClaimVenue::submit()` below.
 - **`EraseVenueAction`** (GDPR erasure): the `complete()` method is the most defensive code in the app — `lockForUpdate()` inside the transaction, idempotency check (`isCompleted()` short-circuits), collects file paths *before* deleting the DB row so orphaned files can still be cleaned up after commit, and **redacts rather than deletes** audit logs (nulls out the actor/subject but keeps the row with a `redacted: true` marker) — deliberate compliance-vs-audit-trail tradeoff.
 - **`GeocodeVenueAction`** — thin wrapper around the `Geocoder` contract (§7), single or batch, applies district lookup by name if the venue doesn't already have one.
@@ -128,7 +128,7 @@ One invokable-style class per business operation, called from Filament pages/res
 ## 8. Observers, Policy, Console
 
 - **`VenueDrinkObserver`** — real Eloquent observer (`created`/`updated`/`deleted`), touches freshness + logs to `VenueOfferLog` + recalculates score on create/delete (not on plain update, since breadth doesn't change on an edit).
-- **`VenueProductObserver`** — *not* a real observer (see §6), called manually for the pivot table.
+- **`OfferChange`** is not an observer (see §6): the pivot table fires no events, so it is called by hand.
 - **`VenuePolicy`** (`app/Policies/VenuePolicy.php`) — `before()` short-circuits everything to `true` for admins; every owner-facing ability (`view`, `update`, `delete`, `attachProduct`, `detachProduct`) reduces to `$venue->claimed_by === $user->id`. One invariant to remember.
 - **Console** (`routes/console.php` + `app/Console/Commands/`):
   - `uni:check-offer-freshness` (daily; hourly until 2026-08-24) — the repair-pass cron described in §5, three independent fixups (timestamp drift, streak clearing, breadth score drift), each logs a warning if it had to fix anything (so these show up in logs as a signal something upstream skipped the observer path).
@@ -150,7 +150,7 @@ Both panel providers (`app/Providers/Filament/{Admin,Owner}PanelProvider.php`) a
 1. New user signs up → gets default `UserRole` (not owner).
 2. `ClaimVenue` page (`app/Filament/Owner/Pages/ClaimVenue.php`) — only shows in nav if the user isn't already an owner and has no pending claim (`shouldRegisterNavigation()`, line 41). Options list explicitly excludes already-claimed venues and venues with a pending/approved claim (line 73-77).
 3. `submit()` (line 110) — **re-validates the venue against the DB** rather than trusting the Livewire-bound `venue_id`, with a comment explaining why (client-side state can be tampered with). Wrapped in `DB::transaction`, catches `UniqueConstraintViolationException` for the race where two people claim simultaneously.
-4. Admin approves via `ApproveVenueClaimAction` (§6) → user becomes `Owner`, venue gets `claimed_by`, and — notably — `is_active` is set to `false` on approval (`ApproveVenueClaimAction.php:33`), meaning a freshly claimed venue drops off the public site until the owner actively re-publishes/confirms products (`activateIfReady()` in `VenueProductObserver` flips it back on once products exist).
+4. Admin approves via `ApproveVenueClaimAction` (§6) → user becomes `Owner`, venue gets `claimed_by`, and — notably — `is_active` is set to `false` on approval (`ApproveVenueClaimAction.php:33`), meaning a freshly claimed venue drops off the public site until the owner actively re-publishes/confirms products (`activateIfReady()`, called from `OfferChange`, flips it back on once products exist).
 5. Owner manages drinks/products via `DrinksRelationManager`/`ProductsRelationManager`/`FreshnessRelationManager` under `Owner/Resources/VenueResource/`, gated by `VenuePolicy`.
 6. Owner can request deletion via `EraseVenueAction::createSelfServiceRequest()` (§6), admin completes it via `EraseVenueAction::complete()`.
 

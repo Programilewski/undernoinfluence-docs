@@ -22,7 +22,7 @@ These are named once here and referred to by name in the tables.
 
 ### Menu follow-up
 
-`VenueProductObserver::productAttached()` / `productDetached()` for catalogue products; `VenueDrinkObserver` does the same by itself for house drinks, because they are full records with events. The catalogue-links-change-through-one-path record requires every path that changes what a venue serves to run it.
+`App\Services\Catalogue\OfferChange::attached()` / `detached()` for catalogue products; `VenueDrinkObserver` does the same by itself for house drinks, because they are full records with events. The catalogue-links-change-through-one-path record requires every path that changes what a venue serves to run it.
 
 | Step | What it does | Where |
 |---|---|---|
