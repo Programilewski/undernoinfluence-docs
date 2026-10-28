@@ -65,7 +65,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 201 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `decisions/` | 204 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
 | `journals/` | 98 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
@@ -110,13 +110,13 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Document | What it is for | Updated |
 |---|---|---|
 | [README.md](tech/README.md) | What tech/ is: how the system is built. | 2026-10-07 |
-| [analytics.md](tech/analytics.md) | Analytics: event capture, entitlements, the GDPR approach. | 2026-08-18 |
+| [analytics.md](tech/analytics.md) | Analytics: event capture, entitlements, the GDPR approach. | 2026-10-27 |
 | [architecture.md](tech/architecture.md) | Architecture. Empty template stub. | 2026-08-18 |
 | [badges-and-menu.md](tech/badges-and-menu.md) | Every menu operation by admin and owner, every badge and ordering, and what moves them. | 2026-10-07 |
 | [bpmn-notes.md](tech/bpmn-notes.md) | Where BPMN is useful in UNI: notes for modelling multi-actor flows. | ≤ 2026-09-22 |
-| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-09 |
+| [change-flows.md](tech/change-flows.md) | What every admin and owner panel action writes and sets off, with ten faults. | 2026-10-28 |
 | [dependencies.md](tech/dependencies.md) | Dependency inventory and risk notes. Draft. | 2026-10-09 |
-| [freshness-and-verification.md](tech/freshness-and-verification.md) | The freshness and verification badges exactly as implemented, 31.08. | 2026-08-31 |
+| [freshness-and-verification.md](tech/freshness-and-verification.md) | The freshness and verification badges exactly as implemented, 31.08. | 2026-10-28 |
 | [migration-lessons.md](tech/migration-lessons.md) | The rules the Fedora migration taught. Read before any environment move. | 2026-08-26 |
 | [obsidian-sync.md](tech/obsidian-sync.md) | Opening docs/ as an Obsidian vault and syncing it with Syncthing. | 2026-08-10 |
 | [reference-material.md](tech/reference-material.md) | Where third-party reference material went when it left the vault. | 2026-10-07 |
@@ -125,7 +125,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [security.md](tech/security.md) | Security. Template stub; points to where controls are actually documented. | 2026-08-18 |
 | [stack.md](tech/stack.md) | The technology stack. | 2026-08-27 |
 | [test.bpmn](tech/test.bpmn) | A test BPMN diagram. | ≤ 2026-09-22 |
-| [venue-visibility.md](tech/venue-visibility.md) | When a venue is live: every path that publishes or hides it, what each public surface checks, and the gaps. | 2026-10-09 |
+| [venue-visibility.md](tech/venue-visibility.md) | When a venue is live: every path that publishes or hides it, what each public surface checks, and the gaps. | 2026-10-28 |
 
 ### `ops/` — What you run to build, deploy and move it
 
@@ -191,7 +191,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | Document | What it is for | Updated |
 |---|---|---|
 | [README.md](learning/README.md) | The learning series: reading order and when to read which. | 2026-10-10 |
-| [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | 2026-10-09 |
+| [00-app-flow-overview.md](learning/00-app-flow-overview.md) | Whole-app tour: routes, controllers, the Venue model, analytics, panels, the claim flow. | 2026-10-28 |
 | [01-overview.md](learning/01-overview.md) | The discovery map: files, technologies, who owns what. | ≤ 2026-09-22 |
 | [02-data-flow.md](learning/02-data-flow.md) | How a venue travels from the database to a map pin. | ≤ 2026-09-22 |
 | [03-filters-and-livewire.md](learning/03-filters-and-livewire.md) | How discovery filters keep state and become queries. | ≤ 2026-09-22 |
@@ -205,7 +205,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [crash-02-running-the-live-server.md](learning/crash-02-running-the-live-server.md) | Crash course: day-two operations — how the live box fits together, where to look when it breaks, and the habits that keep it boring. | 2026-10-10 |
 | [crash-03-postgresql-survival.md](learning/crash-03-postgresql-survival.md) | Crash course: PostgreSQL for the person who owns the only copy of the data — looking safely, migrations on live tables, backups, growth. | 2026-10-10 |
 | [crash-04-gdpr-for-the-privacy-policy.md](learning/crash-04-gdpr-for-the-privacy-policy.md) | Crash course: the GDPR you need to write UNI's privacy policy from the app, and to close the DPAs — what must be in it, how to inventory, where people slip. | 2026-10-10 |
-| [crash-05-measuring-with-small-numbers.md](learning/crash-05-measuring-with-small-numbers.md) | Crash course: reading UNI's first 12 weeks of numbers without fooling yourself — noise, the funnel already in the events, and decisions written before the data. | 2026-10-10 |
+| [crash-05-measuring-with-small-numbers.md](learning/crash-05-measuring-with-small-numbers.md) | Crash course: reading UNI's first 12 weeks of numbers without fooling yourself — noise, the funnel already in the events, and decisions written before the data. | 2026-10-27 |
 | [crash-06-the-keys-to-uni.md](learning/crash-06-the-keys-to-uni.md) | Crash course: which accounts could end UNI if someone else took them, how they chain together, and a one-page check for each — written for a trip. | 2026-10-10 |
 | [crash-07-ansible.md](learning/crash-07-ansible.md) | Crash course: Ansible as a way of thinking — desired state, idempotence, what the playbook owns on UNI's servers, and how to reason when a run fails. | 2026-10-10 |
 | [crash-08-deployer.md](learning/crash-08-deployer.md) | Crash course: Deployer as a way of thinking — atomic releases, the order of UNI's deploy steps and what each guard protects, failures by where they stop, and rollback's limits. | 2026-10-10 |
