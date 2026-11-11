@@ -65,7 +65,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 204 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `decisions/` | 205 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
 | `journals/` | 99 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
@@ -180,7 +180,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [audits/nis2.md](compliance/audits/nis2.md) | NIS2 applicability assessment, 22.06. | 2026-07-24 |
 | [breach-runbook.md](compliance/breach-runbook.md) | Data breach notification runbook: what counts, the 72-hour steps to UODO. | 2026-06-28 |
 | [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | 2026-10-09 |
-| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026) and the 27.10 follow-up, verbatim. | 2026-10-27 |
+| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026), the 27.10 follow-up and KCPU's 10.11 answer, verbatim. | 2026-10-27 |
 | [data-map.md](compliance/data-map.md) | How data enters, moves and leaves. Stub. | 2026-05-13 |
 | [privacy-notice.md](compliance/privacy-notice.md) | Privacy notice. Stub; the policy gets written from the app. | 2026-05-13 |
 | [ropa.md](compliance/ropa.md) | Record of processing activities (Art. 30). Stub with many TODOs. | 2026-05-13 |
@@ -252,11 +252,11 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Document | What it is for | Updated |
 |---|---|---|
-| [README.md](briefings/README.md) | What briefings are, how they are named, and the renaming table for the commute documents. | 2026-10-26 |
+| [README.md](briefings/README.md) | What briefings are, how they are named, and the renaming table for the commute documents. | 2026-10-28 |
 | [audit-2026-08-20.md](briefings/audit-2026-08-20.md) | Audit of the 20.08 commute notes against running code. | 2026-08-20 |
 | [audit-2026-08-24.md](briefings/audit-2026-08-24.md) | Audit of the 24.08 commute answers against running code. | 2026-08-24 |
 | [audit-2026-08-27.md](briefings/audit-2026-08-27.md) | Audit of the 27.08 phone note and the infrastructure log against running code. | 2026-08-27 |
-| [audit-2026-10-28.md](briefings/audit-2026-10-28.md) ★ | Engineering audit of the application, 28.10: security, correctness, performance, architecture; 15 findings, report only. | — |
+| [audit-2026-10-28.md](briefings/audit-2026-10-28.md) ★ | Engineering audit of the application, 28.10: security, correctness, performance, architecture; 15 findings, report only. | 2026-10-28 |
 | [commute-2026-09-09.md](briefings/commute-2026-09-09.md) | Commute document v1.0 (Polish): seven decisions, four with a deadline. | 2026-09-09 |
 | [commute-2026-09-10.md](briefings/commute-2026-09-10.md) | Commute document v1.1 (Polish): consequences of the 09.09 answers. | 2026-09-10 |
 | [commute-2026-09-12.md](briefings/commute-2026-09-12.md) | Commute document v1.8, the first in English. Superseded 14.09. | 2026-09-13 |
@@ -283,7 +283,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [decisions-waiting-on-you.md](briefings/decisions-waiting-on-you.md) | Decisions document v4: the status record of what was settled, built and parked as of 31.08. | 2026-08-31 |
 | [new-notes.md](briefings/new-notes.md) | Reading guide to everything written between 25 and 27 August. | 2026-08-27 |
 | [next-session-2026-09-20.md](briefings/next-session-2026-09-20.md) | Brief prepared on 19.09 for the next working session. | 2026-09-19 |
-| [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | — |
+| [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | 2026-10-28 |
+| [next-session-2026-11-10.md](briefings/next-session-2026-11-10.md) | Resume point for the venue-sourcing pipeline: what the 10.11 handoffs, addenda and prototype runs established, conflicts with existing records, the UNI extraction schema, and ten decisions waiting before any code. | 2026-11-11 |
 
 ### `inbox/` — Raw capture, not yet sorted
 
@@ -322,4 +323,5 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [VAULT REVIEW.md](archive/VAULT%20REVIEW.md) | An early review of the whole vault: strategy strong, tactics outdated. History only. | ≤ 2026-09-22 |
 | [vault-todos.md](archive/vault-todos.md) | An early todo list for the vault. Superseded by roadmap/undone-inventory.md. | ≤ 2026-09-22 |
 | [view.png](archive/view.png) | Screenshot of an old view. | ≤ 2026-09-22 |
+
 <!-- index:end -->
