@@ -45,6 +45,8 @@ Test 2 is `kebab-rule` (22.04) restored. Its Polish reads *"«Widziałem coś w 
 
 **Kombucha, craft soda, tonic and flavoured water are out**, at test 3, everywhere, however they are presented.
 
+**So are smoothies, fruit and milk shakes, lemonades, juices and iced tea — even under a "Mocktaile" heading** (amended 2026-11-11, Paweł). What the drink is decides, not where the menu prints it: a house drink qualifies when it is built like a cocktail, mixed or shaken and served as a drink at the bar. Polish "koktajl" is no evidence either way — "koktajl truskawkowy" is a smoothie. The sourcing pipeline's extraction routes these lines as `out_of_scope` ([[decisions/adr/ADR-012-automated-venue-sourcing]]); the 10.11 prototype's one routing error was exactly this, on a café's "Mocktaile" list.
+
 ## What this prevents
 
 Prevents the slow drift from a venue directory to a retail stock checker, which happens one defensible-looking row at a time and is expensive to reverse once venues are catalogued. Prevents eligibility depending on menu layout or on a cataloguer's mood at 11 pm. And prevents the specific hole that the café question exposed — a house-drink clause wide enough to admit a coffee shop on the strength of a named latte.

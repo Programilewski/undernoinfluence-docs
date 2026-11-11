@@ -109,7 +109,7 @@ Adopted 2026-09-16.
 | [[decisions/product/mission-is-the-healthy-choice]] | **Foundational.** The mission is the healthy choice; venues, brands and products are instruments | Decided |
 | [[decisions/product/price-is-not-tracked]] | Prices not recorded — unmaintainable, and a stale price discredits the freshness claim | Decided |
 | [[decisions/product/catalogue-excludes-actual-alcohol]] | Only genuinely non-alcoholic drinks — nothing above 0,5% ABV, ever | Decided |
-| [[decisions/product/what-belongs-in-the-catalogue]] | Three tests — the place, the offer, the drink — all required | Decided |
+| [[decisions/product/what-belongs-in-the-catalogue]] | Three tests — the place, the offer, the drink — all required; **11.11:** smoothies, shakes, lemonades and juices are out under any heading | Decided; amended 11.11 |
 | [[decisions/product/admin-access-is-three-layers]] | nginx allowlist, then TOTP, then a per-account counter — and `/panel` behind none of them | Decided |
 | [[decisions/product/venue-types-track-capacity-not-cuisine]] | Six types, chosen for NoLo capacity; no default | Decided |
 | [[decisions/product/fixtures-are-not-evidence]] | A state only a factory can produce is a factory bug | Standing rule |
