@@ -29,14 +29,22 @@ All in `research/prompts/`, **untracked in git on purpose** — read the "Do not
 ## 0. Updates on 11.11
 
 - **The pipeline is decided:** [[decisions/adr/ADR-012-automated-venue-sourcing]] replaces the manual-only rule (ADR-002 and *venue-data-acquisition-flow* marked superseded). Your words: the rule "came from fear of doing something illegal. If the automated flow is legal, we are fine." The record turns that condition into rules: first-party pages only, every opt-out honoured, no Brave results stored, no personal data, nothing published without approval.
-- **Brave:** account, credits and API key exist. Next is the five test queries (§7).
+- **Brave:** account, credits and API key exist (`BRAVE_SEARCH_API_KEY` in the PC's `.env`).
 - **Brave's own pricing and terms pages:** you'll check them later.
 - **Source B's format, from your screenshots** (the list host doesn't resolve from the PC's sandbox, so I haven't loaded it myself):
   - The list page `cbip_zezwolenia_lst.asp` holds 16,671 permits on 834 pages of 20, newest "Ważne od" first. Filters: Adres punktu (text), Dzielnica punktu, Rodzaj, Typ zezwolenia. Columns: Lp., Ważne od, Rodzaj (A ≤4.5% and beer, B 4.5–18% except beer, C >18%), Typ (e.g. "Jednorazowy"), Punkt, Szczegóły.
   - A detail page holds Numer zezwolenia, Data wydania, Ważne od, Ważne do, Punkt, Adres, Rodzaj zezwolenia, and a "Wniosek" link.
   - **Better than the addendum assumed:** neither page shows an owner name, firm name or NIP. "Punkt" is the point's own name. The address is only on the detail page. The "Wniosek" link is the one place personal data could sit, so it is never followed.
   - **To filter out:** one-off event permits ("Jednorazowy", e.g. the Jarmark Warszawski stalls, dozens per event). One venue usually holds up to three permits (A, B, C), so dedupe by normalised address.
-  - **Unknown:** the options of "Typ zezwolenia" and "Rodzaj" (the dropdowns), whether the list separates on-premises (gastronomy) from shops, and whether filtering by district keeps the page count small enough to fetch politely.
+  - **The dropdowns (your screenshots, 11.11):** Typ zezwolenia = Detal, **Gastronomia**, Jednorazowy, Na wyprzedaż, Na org. przyjęć. Rodzaj = A, B, C. Dzielnica = the 18 Warsaw districts. So the list *does* separate on-premises from shops: **Source B reads Typ = Gastronomia, one district at a time**, and skips the other four types. Still unknown: how many Gastronomia permits a district holds (it decides how many detail pages must be fetched for the addresses), and the query-string parameters behind the form.
+- **The five Brave test queries (11.11, 7 requests, nothing stored):**
+  - **Content query works, with noise.** `"piwo bezalkoholowe" karta Warszawa` returned real venue menus (Słoik, Tygmont, Sipizza), but half the ten were supermarkets (Leclerc, Makro), Wolt, a brewery's product page and an article. A domain blocklist plus step 2 (address or phone on the page) has to remove these; shops and producers are never venues.
+  - **`country=PL` + `search_lang=pl` change little** (the same top results, a few swapped). Keep them; they cost nothing.
+  - **`filetype:pdf` works and is the most productive form:** 10 of 10 were PDFs, most of them real Warsaw venue menus (Pinta, Czerwony Wieprz, Semolino, Miejsce), plus noise: a Ukrainian chain's domain, a train menu, a hotel room-service menu. Several were years old (2021), which is fine: only the domain is taken from them.
+  - **`site:` works on a real domain**, and the response says so (`query.search_operators.applied`, `sites`, `cleaned_query`). `site:semolino.pl menu` listed seven menu PDFs of different dates, which is exactly the fallback the menu finder needs, and why date detection matters. A domain with no indexed pages returns no web results (`bad_results: true`), a cheap signal in itself.
+  - **A quoted street name does not pin the city:** `"ul. Chmielna"` also returned Gdańsk's Chmielna. Address queries need the city and still need step 2's verification.
+  - **Rate limit:** the headers report 50 requests per second.
+  - **What follows for the design:** source A runs a small set of content queries, mostly `filetype:pdf` forms, per category and per district name. Every result's domain goes through the blocklist and step 2 before it becomes a candidate. `site:` is the menu finder's fallback.
 
 ## 1. KCPU, 10.11 (DP.44.237.2026)
 
