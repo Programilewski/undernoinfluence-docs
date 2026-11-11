@@ -52,7 +52,7 @@ They did not answer the three questions one by one; they restated the test: **is
 
 For the product: style words ("lager", "IPA", "musujące") and classic cocktail names ("Mojito bezalkoholowe") are ordinary names, so they pass the test. The planned social post contains no trademark. The brand decision already stood on current law; this confirms it. **No code change follows from the letter itself.**
 
-Still to do: close the open KCPU question in *menu-lines-describe-style-not-brand* and the "Revisit when KCPU answers" in *category-names-carry-no-alcoholic-drink-name*, citing the letter by date and reference number only.
+✅ Both KCPU-dependent records closed 11.11, citing the letter by date and reference number only.
 
 ## 2. What the inputs got wrong against existing records
 
@@ -152,7 +152,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 | 1 | Unbranded lines ("Piwo bezalkoholowe") | One hidden generic product per category that counts towards going live and shows as its category; needs a record, since the kebab rule says "a named item" |
 | 2 | Smoothies under a mocktail heading | Out (test 3): only alcohol-free versions of normally alcoholic drinks |
 | 3 | House-drink descriptions | ✅ **Decided and built 11.11: hidden** — an internal note, never published ([[decisions/product/house-drink-descriptions-are-internal]]) |
-| 4 | Recipe names with a spirit name | Extend the category-names rule; rename G&T, fix the descriptions; Espresso martini your call (I lean keep) |
+| 4 | Recipe names with a spirit name | ✅ **Decided and built 11.11:** the category-names rule extended to recipes; G&T → "Botaniczny tonik bezalkoholowy"; Espresso martini kept as the one exception; the product form refuses listed words |
 | 5 | Cold-outreach mailbox | Retire it; claim button, social, in person instead |
 | 6 | Menu files | Keep the current file per venue, private, never served; delete replaced, rejected and opted-out files; keep URL, hash and dates |
 | 7 | Rejected candidates | Keep, with the reason |

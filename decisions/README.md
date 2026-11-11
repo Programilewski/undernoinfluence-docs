@@ -249,7 +249,7 @@ Adopted 2026-09-16.
 | [[decisions/product/no-brand-names-on-public-drink-labels]] | No product of any brand is named publicly, alcoholic line or not: no flag, no monitoring; panels keep names; revisit on the stay metric or KCPU's answer | Decided 19.10, confirmed 26.10; executed 27.10 |
 | [[decisions/product/menu-lines-describe-style-not-brand]] | A branded product shows as category + a style from a closed list + 0,0/≤0,5; nothing that lets anyone work out the brand; the same field drives style pages | Executed in code 27.10; style data entry open; KCPU follow-up sent 27.10 |
 | [[decisions/product/only-a-shared-recipe-is-named-publicly]] | A product's name is public only if it's a shared recipe; everything else shows its style; fails closed when data is missing | Decided 27.10; executed 27.10 |
-| [[decisions/product/category-names-carry-no-alcoholic-drink-name]] | Category names use the generic word (musujące), never a specific alcoholic drink, spirit or protected origin; "Szampan 0%" → "Musujące 0%" | Decided 27.10; executed 27.10 |
+| [[decisions/product/category-names-carry-no-alcoholic-drink-name]] | Category names use the generic word (musujące), never a specific alcoholic drink, spirit or protected origin; "Szampan 0%" → "Musujące 0%"; **extended 11.11 to shared recipes** (the product form refuses spirit, origin and trademark words; "Espresso martini" the one exception) | Decided 27.10; executed 27.10; extended and executed 11.11 |
 | [[decisions/product/badge-copy-does-not-say-who-checked]] | Badge copy names the check and its window, not the checker, so it holds in V1 and V2 | Decided 27.10; executed 27.10 |
 
 ## Pending Decisions
