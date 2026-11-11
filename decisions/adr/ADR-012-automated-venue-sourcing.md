@@ -27,6 +27,8 @@ Stay manual. Automate the whole chain including publishing. Automate finding and
 - **Brave results are not stored.** Only the final URL of UNI's own fetch is kept, and only after the venue's address or phone has been found on that page. Titles, snippets, rankings and raw responses are discarded after the run.
 - **No personal data enters.** From the permit list only the point's address, its trade name, district, permit type and dates are kept; owner names, firm names, NIP and the application documents are never fetched or stored. From venue pages only general contacts are kept, never a named person's e-mail or mobile ([[decisions/product/venue-data-acquisition-flow]] still holds here).
 - **Item names are facts; descriptions are not copied.** The model extracts names, category, strength as printed and the menu section; no prices, no written descriptions.
+- **Menu files: the current one only** (decided 11.11). One private copy per venue, never served publicly and opened only by the admin; a replaced file, a rejected candidate's files and an opted-out or erased venue's files are deleted. The page URL, the file URL, its SHA-256 and the dates (with where each date came from) are always kept; they are facts, and enough for the refresh to notice a change.
+- **Each menu is read twice** (decided 11.11). Two runs of the same model and instructions; a line on which they disagree is highlighted in the approval queue with both readings. Agreement is not proof, so approval still covers every line.
 - **Rejected candidates are kept, with the reason** — they are what stops the pipeline proposing the same venue again (anonymisation, not deletion).
 - **Every fact still carries where it was read and when** (`source_url`, `checked_at`).
 

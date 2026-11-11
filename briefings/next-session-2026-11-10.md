@@ -154,7 +154,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 | 3 | House-drink descriptions | ✅ **Decided and built 11.11: hidden** — an internal note, never published ([[decisions/product/house-drink-descriptions-are-internal]]) |
 | 4 | Recipe names with a spirit name | ✅ **Decided and built 11.11:** the category-names rule extended to recipes; G&T → "Botaniczny tonik bezalkoholowy"; Espresso martini kept as the one exception; the product form refuses listed words |
 | 5 | Cold-outreach mailbox | Retire it; claim button, social, in person instead |
-| 6 | Menu files | Keep the current file per venue, private, never served; delete replaced, rejected and opted-out files; keep URL, hash and dates |
+| 6 | Menu files | ✅ **Decided 11.11: the current file only** — one private copy per venue, opened only by the admin; replaced, rejected and opted-out files deleted; page URL, file URL, SHA-256 and dates always kept |
 | 7 | Rejected candidates | Keep, with the reason |
 | 8 | Contacts the pipeline saves | Only the venue's general contacts; no names, sole-trader firm names, NIP, named e-mails; business mobiles printed on menus are not saved |
 | 9 | The "October pause until the Senate and President decide" the chat mentions | Not found in any record or journal; the 07.10 decision says launch ASAP. Is it real? |
@@ -162,7 +162,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 | 11 | Venues named after an alcohol brand | ✅ **Decided 11.11: not in V1** — a rejection reason at approval, kept with the candidate (*no-brand-names-on-public-drink-labels* amended) |
 | 12 | Category "Cydr 0%" (the chat flagged a legal definition of cider) | Keep: the same argument would hit "Piwo 0%" and "Wino 0%", and both the category-names record and KCPU's test allow generic words |
 | 13 | "(Nie)mocne" SEO slug contains "destylat" | Not urgent — the category is hidden; decide before it goes visible |
-| 14 | Run each menu twice | Yes — about $0.001 per menu, and disagreement marks what to check |
+| 14 | Run each menu twice | ✅ **Decided 11.11: twice, flag differences** — two Haiku runs, lines where they disagree highlighted with both readings; approval still covers every line |
 
 ## 9. Order of work once decided
 
