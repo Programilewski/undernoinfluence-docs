@@ -151,7 +151,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 |---|---|---|
 | 1 | Unbranded lines ("Piwo bezalkoholowe") | One hidden generic product per category that counts towards going live and shows as its category; needs a record, since the kebab rule says "a named item" |
 | 2 | Smoothies under a mocktail heading | Out (test 3): only alcohol-free versions of normally alcoholic drinks |
-| 3 | House-drink descriptions | Hide them in V1; name + "wersja klasyka" is enough (the chat suggested brand-stripped ingredient lists as the alternative) |
+| 3 | House-drink descriptions | ✅ **Decided and built 11.11: hidden** — an internal note, never published ([[decisions/product/house-drink-descriptions-are-internal]]) |
 | 4 | Recipe names with a spirit name | Extend the category-names rule; rename G&T, fix the descriptions; Espresso martini your call (I lean keep) |
 | 5 | Cold-outreach mailbox | Retire it; claim button, social, in person instead |
 | 6 | Menu files | Keep the current file per venue, private, never served; delete replaced, rejected and opted-out files; keep URL, hash and dates |
