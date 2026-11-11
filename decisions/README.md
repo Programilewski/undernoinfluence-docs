@@ -42,7 +42,7 @@ Adopted 2026-09-16.
 | ID | Decision | Status |
 |---|---|---|
 | ADR-001 | [[decisions/adr/ADR-001 Venue Name Column]] | Decided: plain string for V1 |
-| ADR-002 | [[decisions/adr/ADR-002 Venue Seeding]] | Decided: CEIDG + manual enrichment |
+| ADR-002 | [[decisions/adr/ADR-002 Venue Seeding]] | **Superseded 11.11** by ADR-012: automated sourcing with approval |
 | ADR-003 | [[decisions/adr/ADR-003 Analytics Architecture]] | Decided: own event capture + optional PostHog |
 | ADR-004 | [[decisions/adr/ADR-004 Scoring Simplification]] | Decided: binary checkmark, no tiers |
 | ADR-005 | [[decisions/adr/ADR-005 Layout Architecture]] | Decided: 60/40 desktop, FAB toggle mobile |
@@ -52,6 +52,7 @@ Adopted 2026-09-16.
 | ADR-009 | [[decisions/adr/ADR-009 AI Scraping Protection]] | Decided: 4-layer protection, implemented |
 | ADR-010 | [[decisions/adr/ADR-010-migration-squash]] | Decided: one migration per table, 27 files; **revisited 12.09** — schema dump deleted, five later migrations folded in, test guards it |
 | ADR-011 | [[decisions/adr/ADR-011-reserved-top-level-paths]] | Decided: static top-level paths reserved; a city slug may not take one, guarded at the model and by a test that walks the router |
+| ADR-012 | [[decisions/adr/ADR-012-automated-venue-sourcing]] | Decided 11.11: candidates found and menus read automatically (Brave, Warsaw permit list), first-party only, opt-outs honoured; nothing publishes without approval. Supersedes ADR-002's manual enrichment |
 
 ## Product Decisions
 

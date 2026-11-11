@@ -3,6 +3,7 @@
 ## Status
 **Decided: CEIDG prospecting + manual enrichment.**
 **Executed:** no, and overtaken — the register never entered the app; [[decisions/product/venue-data-acquisition-flow]] keeps it as a prospect list outside the repository
+**Superseded:** 2026-11-11 by [[decisions/adr/ADR-012-automated-venue-sourcing]] — candidates are found and menus read automatically (Brave search, Warsaw's permit list); a person still approves every venue. Point 4 (no empty shells) still holds.
 **Updated 2026-06-01:** OSM was dropped entirely as a data source due to ODbL license incompatibility. The CEIDG + manual enrichment approach remains valid. See [[decisions/product/osm-dropped]] for the full decision record.
 
 ## Context

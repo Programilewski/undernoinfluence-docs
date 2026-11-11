@@ -3,6 +3,7 @@
 **Date:** 2026-08-30
 **Status:** Decided
 **Executed:** 2026-09-14
+**Superseded:** 2026-11-11, in part, by [[decisions/adr/ADR-012-automated-venue-sourcing]] — venues are no longer only found and entered by hand: a pipeline proposes them and Paweł approves each one. Still holding: no owner name or register address in the application, provenance on every fact, rejected venues recorded with the reason (now in the application, not a spreadsheet), descriptions never copied.
 **Area:** Data Model | Venues
 
 ---
