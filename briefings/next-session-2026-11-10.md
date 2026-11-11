@@ -149,7 +149,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 
 | # | Question | My recommendation |
 |---|---|---|
-| 1 | Unbranded lines ("Piwo bezalkoholowe") | One hidden generic product per category that counts towards going live and shows as its category; needs a record, since the kebab rule says "a named item" |
+| 1 | Unbranded lines ("Piwo bezalkoholowe") | ✅ **Decided 11.11: they don't count** — not recorded, not qualifying; the pipeline drops `generic_line` before the queue (*kebab-rule* amended). Open for the brand queue: "Lech free (różne smaki)" |
 | 2 | Smoothies under a mocktail heading | Out (test 3): only alcohol-free versions of normally alcoholic drinks |
 | 3 | House-drink descriptions | ✅ **Decided and built 11.11: hidden** — an internal note, never published ([[decisions/product/house-drink-descriptions-are-internal]]) |
 | 4 | Recipe names with a spirit name | ✅ **Decided and built 11.11:** the category-names rule extended to recipes; G&T → "Botaniczny tonik bezalkoholowy"; Espresso martini kept as the one exception; the product form refuses listed words |

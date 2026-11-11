@@ -92,7 +92,7 @@ Adopted 2026-09-16.
 | [[decisions/product/the-scheduler-reports-that-it-ran]] | A heartbeat every five minutes and a dashboard that says how long ago, because a broken crontab is silent | Decided, executed 12.09 |
 | [[decisions/product/mocked-integrations-need-a-live-check]] | Integrations whose failure is invisible get a deliberately-run live check, at phone width where a browser is involved | Decided, executed 12.09 |
 | [[decisions/product/venue-type-filtering]] | Absolute scoring + venue type filter | Decided |
-| [[decisions/product/kebab-rule]] | Venue eligibility requires named menu item | Decided |
+| [[decisions/product/kebab-rule]] | Venue eligibility requires a named menu item with a price; **11.11:** an unbranded line ("Piwo bezalkoholowe") names a kind, not a product, and does not count | Decided; amended 11.11 |
 | [[decisions/product/silent-flag-weighting]] | New user flags silently zero-weighted, no visible gating | Decided |
 | [[decisions/product/show-only-present]] | Render only present categories, never grey out absent ones | Decided |
 | [[decisions/product/no-batch-confirm]] | Item-by-item reconfirmation only, no "confirm all" | Decided |
