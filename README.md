@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-10-28 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-11 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -180,7 +180,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [audits/nis2.md](compliance/audits/nis2.md) | NIS2 applicability assessment, 22.06. | 2026-07-24 |
 | [breach-runbook.md](compliance/breach-runbook.md) | Data breach notification runbook: what counts, the 72-hour steps to UODO. | 2026-06-28 |
 | [compliance.md](compliance/compliance.md) | Law-compliance issues in the app ranked by risk, 10.06. | 2026-10-09 |
-| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026), the 27.10 follow-up and KCPU's 10.11 answer, verbatim. | 2026-10-27 |
+| [correspondence/kcpu-2026.md](compliance/correspondence/kcpu-2026.md) | Correspondence with KCPU, 2026: the 18.10 e-mail, KCPU's 27.10 answer (DP.44.237.2026), the 27.10 follow-up and KCPU's 10.11 answer, verbatim. | 2026-11-11 |
 | [data-map.md](compliance/data-map.md) | How data enters, moves and leaves. Stub. | 2026-05-13 |
 | [privacy-notice.md](compliance/privacy-notice.md) | Privacy notice. Stub; the policy gets written from the app. | 2026-05-13 |
 | [ropa.md](compliance/ropa.md) | Record of processing activities (Art. 30). Stub with many TODOs. | 2026-05-13 |
@@ -283,8 +283,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [decisions-waiting-on-you.md](briefings/decisions-waiting-on-you.md) | Decisions document v4: the status record of what was settled, built and parked as of 31.08. | 2026-08-31 |
 | [new-notes.md](briefings/new-notes.md) | Reading guide to everything written between 25 and 27 August. | 2026-08-27 |
 | [next-session-2026-09-20.md](briefings/next-session-2026-09-20.md) | Brief prepared on 19.09 for the next working session. | 2026-09-19 |
-| [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | 2026-10-28 |
-| [next-session-2026-11-10.md](briefings/next-session-2026-11-10.md) | Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions (most taken 11.11), and where the build stands — step 3, commits 1–2 done, resume at commit 3. | 2026-11-11 |
+| [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | 2026-11-11 |
+| [next-session-2026-11-10.md](briefings/next-session-2026-11-10.md) | Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions, and the build — all of steps 3–6 done 11.11 (§11 lists what is open). | 2026-11-11 |
 
 ### `inbox/` — Raw capture, not yet sorted
 

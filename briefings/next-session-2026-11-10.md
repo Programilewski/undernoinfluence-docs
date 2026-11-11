@@ -1,8 +1,8 @@
 ---
-description: "Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions (most taken 11.11), and where the build stands — step 3, commits 1–2 done, resume at commit 3."
+description: "Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions, and the build — all of steps 3–6 done 11.11 (§11 lists what is open)."
 owner: Paweł Milewski
 updated: 2026-11-11
-status: written 10.11 (talk only); updated 11.11 with the decisions taken and the first two build commits. **Next session: read §10 first, then continue at commit 3.**
+status: written 10.11 (talk only); updated 11.11 with the decisions taken and the build. **The build plan is done (§11); what is left is using it and the open items there.**
 ---
 
 # Next session: the venue-sourcing pipeline
@@ -175,7 +175,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 
 Before step 3: check the Haiku pricing and the API details the prototype used against current Anthropic docs.
 
-## 10. Where step 3 stands (end of 11.11) — resume here
+## 10. Where step 3 stood (end of 11.11, session 1) — superseded by §11
 
 **Paweł, 11.11:** "keep for next session, we don't have time today, make sure we get back to 100% of it next session." So: nothing below is half-done in the working tree; both commits are complete, tested (full suite 1,238 green) and committed on `main` in the application, not pushed.
 
@@ -208,4 +208,23 @@ Then step 4 (menu finding from ~20 Warsaw homepages), step 5 (Brave source A, mo
 ### Still open, not blocking commit 3
 
 §8 #5 (retire the cold-outreach mailbox), #9 (the "October pause" the chat mentioned — real?), #10, #12, #13; #7 and #8 are already rules in ADR-012, to be ticked. §9 step 1 leftovers: the trust-signals record (text in the chat addendum §1.1) and retiring the cold-outreach plan in *transactional-email-provider*. Ops, later by Paweł's choice: the home server's `migrate:fresh --seed` and one Ansible run. Brave's own pricing and terms pages: Paweł checks later.
+
+## 11. The build, done (11.11, session 2) — resume here
+
+Everything in §9 steps 3–6 is built, tested (full suite 1,344 green) and committed on `main` in the application, not pushed. Full account in [[journals/2026-11-11]] session 2. Paweł's instruction that shaped it: the pipeline's operations are **admin-panel buttons**, not console commands (`uni:fetch` removed).
+
+**In the admin panel, in the order of use:** Kandydaci → *Szukaj lokali (Brave)* (runs listed in Wyszukiwania, counts only) → *Znajdź menu* (per candidate or bulk) → Biblioteka menu → *Wyodrębnij* (Haiku twice, cost shown) → the menu's page: *Utwórz lokal* (GUGiK) or *Powiąż z lokalem*, then *Zatwierdź / Popraw / Odrzuć* per line or *Zatwierdź pewne* → weekly *Odśwież* (and *Zniknęło z karty*). Pozycje z menu filtered to *Nieznana marka* is the brand queue.
+
+**Five matching decisions taken 11.11 (all as recommended):** the model's product guess is only a suggestion; no brand-queue table; a brand without a product never qualifies ("Lech free (różne smaki)"); GUGiK at approval; `has_price` in the schema (no price → doesn't qualify).
+
+**Measured live:** reading ≈ $0.005 per menu (read twice), 27 s for two menus; 5 Brave searches → 22 domains → 8 verified candidates → 4 venues; the finder right on 2 of the 4 before fixes (kids' and half-board menus, bar photos), and from Semolino's Woronicza page it found the May 2026 menu.
+
+**Open:**
+1. **Before the first bulk run:** the processor agreement with Anthropic (the privacy policy names it as a recipient, without claiming an agreement).
+2. Source A's yield — tune the query templates (`config/uni.php` → `sourcing.search.queries`) over a few runs; the blocklist is there too.
+3. Chains — one candidate per domain keeps one current menu; Semolino has six locations. Workaround: start from a location's page.
+4. Haiku picking the menu link when the ranking is unsure — not built.
+5. Source B (permit list) — only if A runs dry; its host doesn't resolve from the PC's sandbox.
+6. §8 #5, #9, #10, #12, #13; the trust-signals record (chat addendum §1.1).
+7. The home server: `migrate:fresh --seed` and one Ansible run (poppler), deferred.
 
