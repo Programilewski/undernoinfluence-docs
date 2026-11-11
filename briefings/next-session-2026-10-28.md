@@ -24,7 +24,7 @@ status: prepared at the end of the 28.10 afternoon; updated at the end of the 28
 
 ## Where to pick up
 
-**F3 is next.** Describe it, take the answer, build, test, commit, then F6, F8, the `.env.example` rule, and the two follow-ups. The evening's journal (`journals/2026-10-28.md`, Session 3) has the F1 details.
+**All four decisions done 11.11** (F3, F6, F8, the `.env.example` rule). Left: the two follow-ups below, plus one new one — F8 edited the products create migration (is_approved dropped), so the home server needs `migrate:fresh --seed` on its next deploy. The evening's journal (`journals/2026-10-28.md`, Session 3) has the F1 details.
 
 ## Two follow-ups from those fixes
 
@@ -45,7 +45,7 @@ status: prepared at the end of the 28.10 afternoon; updated at the end of the 28
 - **When the registry budget is spent.** Suggestion: keep a reserve for the admin (e.g. stop automatic lookups at 80), and mark further claims "pending lookup" to be looked up the next day, instead of calling the API and failing.
 - **Venue name in mail.** No decision really needed: it will be written as plain text (escape Markdown or `Markdown::withSecuredEncoding()`). Listed so you know it is part of the change.
 
-### 2. F3: contact details on requests nobody decides — NEXT
+### 2. ✅ F3: contact details on requests nobody decides — done 11.11 (12 months from created_at; rejected erasures lose requester name, e-mail and id 12 months after rejected_at; open erasures untouched)
 
 **The problem.** Anonymisation clears contacts 12 months after a claim is decided or a report closed (`AnonymiseExpiredData` requires `reviewed_at IS NOT NULL`). A claim or report that is never decided keeps the email, NIP and registry extract forever. Rejected erasure requests keep `requester_name` and `requester_email` forever too ("kept — it is the evidence"). Claims get a morning reminder, so they are unlikely to sit forever; reports have nothing that nudges you.
 
@@ -55,7 +55,7 @@ status: prepared at the end of the 28.10 afternoon; updated at the end of the 28
 
 `database/schema.md` gets updated in the same commit.
 
-### 3. F6: the old `ClaimVenue` owner page
+### 3. ✅ F6: the old `ClaimVenue` owner page — done 11.11 (deleted; the dashboard button opens /zglos-lokal)
 
 **The problem.** An owner with no venues can still reach this page by URL. It offers "Telefon" as a contact method, against "nobody is phoned", and creates the claim directly: no confirmation token, no registry lookup, no confirmation email. Approval still requires a confirmed channel or a written reason, so nothing gets approved through it unchecked, but it is a second way to claim a venue with different rules.
 
@@ -63,7 +63,7 @@ status: prepared at the end of the 28.10 afternoon; updated at the end of the 28
 - **Delete the page and its view** (suggested): claims are made from the public venue page through `SubmitVenueClaimAction`, which already exists.
 - Keep it as a panel entry point, routed through `SubmitVenueClaimAction`, with the phone option removed.
 
-### 4. F8: what a product's `is_active` / `is_approved` mean
+### 4. ✅ F8: what a product's `is_active` / `is_approved` mean — done 11.11 (hidden everywhere; is_approved removed)
 
 **The problem.** The drink page, the sitemap and the menu resolver respect these flags. Venue pages, discovery, the breadth counts and the owner's "attach product" picker ignore them. So a product you deactivate keeps showing on every venue that carries it, and owners can still attach it.
 
@@ -73,7 +73,7 @@ status: prepared at the end of the 28.10 afternoon; updated at the end of the 28
 
 Once you pick, it becomes one scope used in every place, so the rule lives in one spot.
 
-### 5. F4 follow-up: the `.env.example` rule contradicts the file
+### 5. ✅ F4 follow-up: the `.env.example` rule contradicts the file — done 11.11 (the file now ships production values live; a test pins them)
 
 **The problem.** `.ai/rules/general.md` and the "`.env.example` is production" memory say the file is copied to production as-is, so every value ships. But it ships `APP_ENV=local` and `APP_DEBUG=true`, with the safe values in a commented "Production Baseline" block. The deploy now refuses those values, so nothing unsafe can ship, but the rule and the file still disagree.
 

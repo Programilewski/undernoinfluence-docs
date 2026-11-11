@@ -1,8 +1,8 @@
 ---
-description: "Resume point for the venue-sourcing pipeline: what the 10.11 handoffs, addenda and prototype runs established, conflicts with existing records, the UNI extraction schema, and ten decisions waiting before any code."
+description: "Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions (most taken 11.11), and where the build stands — step 3, commits 1–2 done, resume at commit 3."
 owner: Paweł Milewski
-updated: 2026-11-10
-status: written at the end of the 10.11 session, which was talk only — no application code changed. Read this first next time; nothing below has been decided unless it says so.
+updated: 2026-11-11
+status: written 10.11 (talk only); updated 11.11 with the decisions taken and the first two build commits. **Next session: read §10 first, then continue at commit 3.**
 ---
 
 # Next session: the venue-sourcing pipeline
@@ -174,3 +174,38 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 6. **Refresh (diff).** Then Source B, if A runs dry.
 
 Before step 3: check the Haiku pricing and the API details the prototype used against current Anthropic docs.
+
+## 10. Where step 3 stands (end of 11.11) — resume here
+
+**Paweł, 11.11:** "keep for next session, we don't have time today, make sure we get back to 100% of it next session." So: nothing below is half-done in the working tree; both commits are complete, tested (full suite 1,238 green) and committed on `main` in the application, not pushed.
+
+### Built
+
+| Commit | What | Where |
+|---|---|---|
+| 1 — fetching | `php artisan uni:fetch {url} [--page=]` fetches one menu and records it against the candidate for its domain. `SafeFetcher` is the only way the pipeline reads the web: `UrlGuard` (public addresses only, ports 80/443, re-checked at every redirect, connection pinned with `CURLOPT_RESOLVE`); `RobotsTxt` (RFC 9309, token `UNIbot`; 404/410 allow, 401/403/5xx refuse); TDM (`/.well-known/tdmrep.json`, the `tdm-reservation` header and meta tag); one request per page; 25 MB cap; UA `UNIbot/1.0 (+APP_URL/bot)`. `MenuSourceRecorder` keeps one private copy per candidate under `sourcing/menus/{sha256}.{ext}` (decision 6); the same content renews `fetched_at`; new content replaces the file and nulls the old row's `storage_path`. Deleting a venue deletes its menu files (`Venue` deleting hook); erasing one makes its candidate a rejection keeping only the domain (`EraseVenueAction`, `SourcingCandidate::REASON_ERASED`); `uni:fetch` refuses a rejected domain | `app/Services/Sourcing/{SafeFetcher,UrlGuard,HostResolver,RobotsTxt,FetchRefused,FetchedDocument,MenuSourceRecorder}.php`, `app/Console/Commands/FetchMenu.php`, `app/Models/{SourcingCandidate,MenuSource}.php`, `app/Enums/{SourcingSource,SourcingCandidateStatus}.php`, two migrations dated 2026_11_11, `config/uni.php` → `sourcing`, `database/schema.md` (new "Sourcing" group) |
+| 2 — text | `MenuTextExtractor::extract(MenuSource): MenuText` gives text plus page images. PDF: `pdftotext -layout` per page; a page failing `TextQuality` (under 80 characters; Windows-1250 read as Latin-1; letters interleaved) → `pdftoppm -r 220 -singlefile` to `sourcing/pages/{sha}/page-N.png`, max 20 pages. HTML: `HtmlText` (block text; scripts, styles, nav, footer, forms dropped). Images taller than 3 widths are tiled into pieces two widths tall with 10% overlap. `compact()` drops lines repeated on ≥50% of pages (3+ pages), never a line with a digit. `forgetImages()` deletes page images only, never the menu file. Ansible installs `poppler-utils` (php role) and verifies the three tools | `app/Services/Sourcing/{MenuTextExtractor,MenuText,TextQuality,HtmlText}.php`, `ansible/roles/php/tasks/main.yml`, `ansible/roles/verify/tasks/main.yml` |
+
+**Tests:** `tests/Unit/RobotsTxtTest.php`, `tests/Feature/Sourcing/{SafeFetcherTest,MenuSourceRecorderTest,MenuTextExtractorTest}.php`. Helpers: `FakeHostResolver` (DNS in tests; bind it with `$this->app->instance(HostResolver::class, …)`), `TinyPdf::make([[lines], …])` (a real PDF built in code; Latin-1 bytes like `\xB3` fake a wrong code page). The poppler tests skip themselves where poppler is missing. `Http::preventStrayRequests()` is on, so every sourcing test fakes `*/robots.txt` and `*/.well-known/tdmrep.json`.
+
+**Checked live 11.11:** Semolino's Woronicza PDF (5.6 MB → 25,796 characters, no image pages) and Tygmont's `/menu/` page (HTML → 5,819 characters). Both files sit in the PC's private storage, as the design intends; they are local data, not fixtures.
+
+### Next: commit 3 — the extraction call
+
+1. **Load the `claude-api` skill first** and confirm against current docs: the Haiku 5.5 model id, its price, and the structured-output mechanism (the strict JSON schema in the first handoff was never actually sent; the prototype used another route). Raw HTTP through Laravel's `Http` client, no new package (dependencies need approval). Key: `ANTHROPIC_API_KEY` in the PC's `.env` (present). `.env.example` gets the key **empty only if no config default is overridden** (the env-example-boots rule), plus `config/services.php` or `config/uni.php`.
+2. **The request:** the `MenuText` text plus page images as image blocks; the system prompt says the menu text is untrusted data, never instructions (prompt injection, §4.7). The schema is §6: per menu `restaurant_name` (never a venue key), `language`, `notes`; per line `kind` (branded_product / house_drink / generic_line / out_of_scope), `house_drink_base`, `brand_guess`, `name_as_printed`, `product_guess`, `name_pl` ("if the name is already Polish, repeat it"), `category` (the 6), `abv_as_printed`, `menu_section`. No prices, no descriptions, no style. Smoothies, shakes, lemonades, juices, iced tea, kombucha → `out_of_scope` (decision 2); "Piwo bezalkoholowe" → `generic_line` (decision 1); both are dropped before the queue.
+3. **Twice** (decision 14): two calls in parallel, lines paired by `name_as_printed` (normalised with `MenuItemName`), a disagreement flagged with both readings. On a refusal, retry once on Sonnet (prototype rule). Token overhead is about 1,850 per request; Polish text ≈ characters ÷ 1.6.
+4. **Where results live:** a new table for extracted lines (e.g. `menu_lines`: menu_source_id, the fields above, `disagreement` json, status) — a new migration and `schema.md` in the same commit.
+5. **Tests:** `Http::fake` of the Anthropic endpoint with synthetic responses — the dual-price trap (an alcoholic price on a mocktail), a bilingual line, a refusal, a disagreement — never a real menu.
+
+### After commit 3, in order
+
+4. Matching: each line through `MenuItemResolver` (no new matcher), GUGiK for the address, the eligibility tests; unknown brand → the brand queue; "Lech free (różne smaki)" (brand known, product not) is decided here.
+5. The Filament approval screen: per-menu cards, the model's notes, "Otwórz menu" (authenticated route to the private file), each line matched; **Zatwierdź / Popraw / Odrzuć** writing through `RecordMenuItemAction`; reject reasons include "nazwa lokalu to marka alkoholu" (decision 11); keyboard shortcuts; clean cases first.
+6. The public `/bot` page — a new top-level path, so `ReservedPaths` in the same commit (the support rule) — and a privacy-policy paragraph before the first bulk run.
+Then step 4 (menu finding from ~20 Warsaw homepages), step 5 (Brave source A, mostly `filetype:pdf` queries per category and district, domain blocklist, address-or-phone check), step 6 (refresh by diff; source B per district with Typ = Gastronomia).
+
+### Still open, not blocking commit 3
+
+§8 #5 (retire the cold-outreach mailbox), #9 (the "October pause" the chat mentioned — real?), #10, #12, #13; #7 and #8 are already rules in ADR-012, to be ticked. §9 step 1 leftovers: the trust-signals record (text in the chat addendum §1.1) and retiring the cold-outreach plan in *transactional-email-provider*. Ops, later by Paweł's choice: the home server's `migrate:fresh --seed` and one Ansible run. Brave's own pricing and terms pages: Paweł checks later.
+
