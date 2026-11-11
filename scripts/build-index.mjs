@@ -42,7 +42,12 @@ const FOLDERS = [
 
 const EXCLUDED = /^(decisions|journals|scripts)\/|^\.|^README\.md$|^CLAUDE\.md$/;
 
-const files = git('ls-files', '--cached', '--others', '--exclude-standard').split('\n').filter((f) => f && !EXCLUDED.test(f));
+// Tracked or staged files only — never untracked ones. research/ holds material that is kept
+// out of git on purpose (real venues' menus, legal analysis); listing it here committed its
+// file names through README.md on 11.11.2026. A new document is `git add`ed, then indexed.
+// -z, because git quotes a path with non-ASCII characters otherwise ("…odpowied\305\272…"),
+// and the quoted form matched no folder.
+const files = git('ls-files', '-z', '--cached').split('\0').filter((f) => f && !EXCLUDED.test(f));
 const nonMarkdown = JSON.parse(readFileSync(join(root, 'scripts/non-markdown.json'), 'utf8'));
 
 function frontmatter(file) {

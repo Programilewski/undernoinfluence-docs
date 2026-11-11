@@ -323,5 +323,4 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [VAULT REVIEW.md](archive/VAULT%20REVIEW.md) | An early review of the whole vault: strategy strong, tactics outdated. History only. | ≤ 2026-09-22 |
 | [vault-todos.md](archive/vault-todos.md) | An early todo list for the vault. Superseded by roadmap/undone-inventory.md. | ≤ 2026-09-22 |
 | [view.png](archive/view.png) | Screenshot of an old view. | ≤ 2026-09-22 |
-
 <!-- index:end -->
