@@ -159,7 +159,7 @@ Full names, brands and descriptions are fine in the admin panel (closed audience
 | 8 | Contacts the pipeline saves | Only the venue's general contacts; no names, sole-trader firm names, NIP, named e-mails; business mobiles printed on menus are not saved |
 | 9 | The "October pause until the Senate and President decide" the chat mentions | Not found in any record or journal; the 07.10 decision says launch ASAP. Is it real? |
 | 10 | Approval publishes within the hour | Fine as it is while production isn't live |
-| 11 | Venues named after an alcohol brand | Not in V1; a reject reason at approval |
+| 11 | Venues named after an alcohol brand | ✅ **Decided 11.11: not in V1** — a rejection reason at approval, kept with the candidate (*no-brand-names-on-public-drink-labels* amended) |
 | 12 | Category "Cydr 0%" (the chat flagged a legal definition of cider) | Keep: the same argument would hit "Piwo 0%" and "Wino 0%", and both the category-names record and KCPU's test allow generic words |
 | 13 | "(Nie)mocne" SEO slug contains "destylat" | Not urgent — the category is hidden; decide before it goes visible |
 | 14 | Run each menu twice | Yes — about $0.001 per menu, and disagreement marks what to check |
