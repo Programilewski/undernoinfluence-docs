@@ -58,7 +58,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
-| [[decisions/product/a-sourcing-candidate-is-a-location]] | A chain's locations each become their own candidate (one venue, one current menu, one refresh page); a shared menu file is stored once. Today a domain is one candidate, and a second location's menu deletes the first | **Open — recommended 12.11, waiting on Paweł** |
+| [[decisions/product/a-sourcing-candidate-is-a-location]] | A chain's locations each become their own candidate (one venue, one current menu, one refresh page), added with *Dodaj lokalizacje*; a shared menu file is stored once; a site rejected as a chain leaves its locations open | Decided and built 12.11 |
 | [[decisions/product/menus-are-read-as-text-images-on-request]] | Menus are read as text; *Wyodrębnij z obrazami* sends every PDF page as text and image, per menu, when the layout matters | Decided and built 12.11 |
 | [[decisions/product/house-drink-descriptions-are-internal]] | A house drink's description is an internal note ("Notatka wewnętrzna"), never on the venue page, JSON-LD, recipe page or tile; menus put alcohol brands in it | Decided and built 11.11 |
 | [[decisions/product/links-follow-the-site-address]] | Every link's scheme follows APP_URL, not the environment's name; no proxy trusted; fixed the home server's unstyled page | Decided and built 09.10 (`v0.1.6`) |

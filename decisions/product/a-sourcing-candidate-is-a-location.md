@@ -1,8 +1,8 @@
 # A sourcing candidate is a location, not a domain
 
 **Date:** 2026-11-12
-**Status:** Open — recommended, waiting on Paweł
-**Executed:** no
+**Status:** Decided — Paweł, 12.11: "if it does handle it, build it now"
+**Executed:** 2026-11-12 — candidates unique on domain + location page; *Dodaj lokalizacje* on Kandydaci; fetch and find resolve to the location; link and rejection per location; tests in `ChainLocationsTest` and `AdminSourcingCandidatesTest`
 **Area:** Data Model | Venues
 
 ---
@@ -19,11 +19,11 @@ The first option is to keep one candidate per domain and let chains be typed by 
 
 ## Decision
 
-Recommended: **a candidate is a location**. A candidate is what becomes one venue, so it carries one venue, one current menu and one page to refresh. Two locations sharing a menu file each hold it as their current menu; the file is stored once and deleted only when no location holds it any more (the application already deletes shared files this way).
+**A candidate is a location.** A candidate is what becomes one venue, so it carries one venue, one current menu and one page to refresh. Six locations with six menus each keep their own. Locations sharing one menu file each hold it as their current menu, and the file is stored once, deleted only when no location holds it any more. Paweł asked whether this covers both cases; it does, and he said to build it.
 
 ## Rules
 
-Several candidates may share a domain; each is told apart by its location page, and a candidate without one stands for the whole site. A search result still creates at most one candidate per domain. Locations are added by the admin with *Dodaj lokalizację* (the location page's address) on the candidate, or found from the sitemap when the domain's pages look like locations. Fetching or finding a menu from a page belongs to the location whose page it is under, otherwise to the whole-site candidate. Linking a menu to a venue links only that location. Rejecting the whole site blocks every location; rejecting one location blocks only it. A file shared by two locations is read once per location for now. Reusing the first reading is an optimisation for later, measured first.
+Several candidates may share a domain, each told apart by its location page; a candidate without one stands for the whole site. A search result still creates at most one candidate per domain, the whole site. The admin adds a chain's locations with *Dodaj lokalizacje* on the site's candidate, pasting their pages, at most 20 at once. Each location inherits how the site was found, so a query's yield counts every venue it led to, and its menu is searched at once. A location's menu is searched from its own page only, never from the site's sitemap, which would offer the other locations' menus. A menu fetched by hand belongs to the location whose page it is on or linked from, otherwise to the whole site. Linking a menu to a venue links only that location; rejecting a location blocks only it. Once its locations are in, the site itself is rejected with the reason "Sieć — każda lokalizacja osobno", which leaves the locations open; any other rejection of the site blocks every location. A file shared by two locations is read once per location for now. Finding locations from the sitemap automatically is deferred until chains prove common.
 
 ## What this prevents
 
@@ -31,6 +31,6 @@ It stops a chain's second menu silently deleting the first, and stops a link to 
 
 ## Revisit when
 
-When chains turn out to share one menu almost always (then a menu serving several venues may be simpler), or when the first ~100 Brave candidates show chains are too rare to matter in Warsaw.
+When adding locations by hand proves slow (then detect them from the sitemap), when chains turn out to share one menu almost always (then a menu serving several venues may be simpler), or when the first ~100 Brave candidates show chains are too rare to matter in Warsaw.
 
 See also: [[decisions/adr/ADR-012-automated-venue-sourcing]], [[decisions/product/venue-data-acquisition-flow]].

@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-11
 **Status:** Decided
-**Executed:** no — design in the 10.11 briefing (next-session-2026-11-10), build order in its §9
+**Executed:** partly — built 11.11–12.11 in the admin panel: source A, menu finding, reading twice (and with page images on request), matching, approval, refresh, chain locations; source B (the permit list) not built — design in the 10.11 briefing (next-session-2026-11-10)
 **Area:** Venues | Data Model | Catalogue
 
 ---
@@ -29,6 +29,7 @@ Stay manual. Automate the whole chain including publishing. Automate finding and
 - **Item names are facts; descriptions are not copied.** The model extracts names, category, strength as printed and the menu section; no prices, no written descriptions.
 - **Menu files: the current one only** (decided 11.11). One private copy per venue, never served publicly and opened only by the admin; a replaced file, a rejected candidate's files and an opted-out or erased venue's files are deleted. The page URL, the file URL, its SHA-256 and the dates (with where each date came from) are always kept; they are facts, and enough for the refresh to notice a change.
 - **Each menu is read twice** (decided 11.11). Two runs of the same model and instructions; a line on which they disagree is highlighted in the approval queue with both readings. Agreement is not proof, so approval still covers every line.
+- **A candidate is a location, not a domain** (decided 12.11, [[decisions/product/a-sourcing-candidate-is-a-location]]). A chain's locations are candidates of their own, each with one venue and one current menu; a file several locations share is stored once. A site rejected as a chain leaves its locations open; any other site rejection blocks them.
 - **Rejected candidates are kept, with the reason** — they are what stops the pipeline proposing the same venue again (anonymisation, not deletion).
 - **Every fact still carries where it was read and when** (`source_url`, `checked_at`).
 

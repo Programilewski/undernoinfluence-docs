@@ -241,8 +241,11 @@ Full account in [[journals/2026-11-12]].
 
 **Later on 12.11:** Paweł asked whether the chains recommendation covers six locations with six menus as well as several locations sharing one; it does (each location holds its own current menu; a shared file is stored once). He hasn't accepted it in so many words, so confirm before building. Both repositories were pushed. The permit-list CSV and the home server are for next time.
 
-**Resume here, in order:**
-1. Paweł decides [[decisions/product/a-sourcing-candidate-is-a-location]] (recommended: a candidate is a location), then build it: unique on domain + location page, *Dodaj lokalizację*, fetch/find resolve to the location by page, link and rejection per location, shared files stored once.
-2. The first real small batch on the PC: one *Szukaj lokali* run → *Znajdź menu* → *Wyodrębnij* (try *z obrazami* on one PDF to measure its cost) → approve. Read *Wydajność zapytań* after it.
-3. Source B: Paweł sends the permit-list CSV; check its columns (Typ = Gastronomia, the address) before designing the import (an upload action on Kandydaci; each address still has to become a website).
-4. Still open: §8 #5, #9, #10, #12, #13; the trust-signals record; Haiku picking the menu link (held until the batch shows the ranking failing); the home server (`migrate:fresh --seed`, Ansible for poppler).
+**Session 2, 12.11:** Paweł said "if it does handle it, build it now", so chains are **built**: a candidate is a location ([[decisions/product/a-sourcing-candidate-is-a-location]], decided). *Dodaj lokalizacje* is on Kandydaci; each location has its own current menu and venue; a shared file is stored once; a site rejected with "Sieć — każda lokalizacja osobno" leaves its locations open. Full suite 1,364 green, pushed.
+
+**Resume here, in order (13.11):**
+1. **The home server** (Paweł's choice for next time): `migrate:fresh --seed` (create migrations edited 28.10, 11.11 and 12.11, and the searches migration renamed), one Ansible run for poppler, then deploy the current `main`. Sudo needs Paweł (`ssh -t`).
+2. **The first real small batch** on the PC: one *Szukaj lokali* run → *Znajdź menu* → *Wyodrębnij* (try *z obrazami* on one PDF to measure its cost) → approve. Try *Dodaj lokalizacje* on a chain (Semolino: Piastów and Ursus share a PDF, Wilanów has its own). Read *Wydajność zapytań* afterwards.
+3. **Source B:** Paweł sends the permit-list CSV; check its columns (Typ = Gastronomia, the address) before designing the import (an upload action on Kandydaci; each address still has to become a website).
+4. Before a bulk run: read the Anthropic DPA's own text once and note its version in `compliance/dpa/README.md`.
+5. Still open: §8 #5, #9, #10, #12, #13; the trust-signals record; Haiku picking the menu link (held until the batch shows the ranking failing).
