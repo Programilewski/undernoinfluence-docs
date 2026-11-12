@@ -228,3 +228,19 @@ Everything in §9 steps 3–6 is built, tested (full suite 1,344 green) and comm
 6. §8 #5, #9, #10, #12, #13; the trust-signals record (chat addendum §1.1).
 7. The home server: `migrate:fresh --seed` and one Ansible run (poppler), deferred.
 
+
+## 12. 12.11 — what changed, and the resume point for 13.11
+
+Full account in [[journals/2026-11-12]].
+
+**Done 12.11 (application, tested, committed, not pushed):** *Wyodrębnij z obrazami* — a PDF menu read with every page as text and image, per menu ([[decisions/product/menus-are-read-as-text-images-on-request]]); Brave candidates keep their run and the query that found them, and Wyszukiwania → *Wydajność zapytań* shows candidates / with a menu / venues / rejected per query. Full suite 1,355 green. The PC's dev database was rebuilt (`migrate:fresh --seed`) for the edited create migrations, so the 11.11 local candidates and menus are gone; the home server needs the same on its next deploy.
+
+**Answered 12.11:** the Anthropic DPA is incorporated by reference in Anthropic's Commercial Terms (recorded in `compliance/dpa/README.md` and `compliance/vendors/README.md`); its own text, sub-processors and transfer mechanism are still to be read once from the console before a bulk run.
+
+**Corrected 12.11:** §11's chain workaround ("start from a location's page") does not work — a domain is one candidate, a second location's menu deletes the first's file, and linking moves every menu. Semolino's site shows locations both sharing a menu (Piastów and Ursus: one PDF) and having their own (Wilanów).
+
+**Resume here, in order:**
+1. Paweł decides [[decisions/product/a-sourcing-candidate-is-a-location]] (recommended: a candidate is a location), then build it: unique on domain + location page, *Dodaj lokalizację*, fetch/find resolve to the location by page, link and rejection per location, shared files stored once.
+2. The first real small batch on the PC: one *Szukaj lokali* run → *Znajdź menu* → *Wyodrębnij* (try *z obrazami* on one PDF to measure its cost) → approve. Read *Wydajność zapytań* after it.
+3. Source B: Paweł sends the permit-list CSV; check its columns (Typ = Gastronomia, the address) before designing the import (an upload action on Kandydaci; each address still has to become a website).
+4. Still open: §8 #5, #9, #10, #12, #13; the trust-signals record; Haiku picking the menu link (held until the batch shows the ranking failing); the home server (`migrate:fresh --seed`, Ansible for poppler).

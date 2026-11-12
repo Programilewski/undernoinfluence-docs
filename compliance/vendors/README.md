@@ -19,6 +19,7 @@ Internal register of third-party services, subprocessors, and relevant dependenc
 | Payment provider | TODO | TODO | TBD | TBD | TBD | TODO | draft |
 | Analytics provider | TODO | TBD | TBD | TBD | TBD | TODO | draft |
 | Error monitoring | TODO | TBD | TBD | TBD | TBD | TODO | draft |
+| Anthropic | Reading menu files (Claude Haiku, twice per menu) | Menu text and page images; incidental contact details printed on menus | US | DPA incorporated in the Commercial Terms — see `../dpa/README.md` | TBD (read the DPA) | Not checked | draft |
 
 ## Dependency License Register
 
