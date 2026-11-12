@@ -11,7 +11,7 @@
 
 The pipeline ([[decisions/adr/ADR-012-automated-venue-sourcing]]) keys a candidate by its domain, so a chain is one candidate: all of Semolino's locations are `semolino.pl`. In the application, fetching a second location's menu replaces the first location's as the candidate's current file (and deletes it), linking a menu to a venue moves *every* menu of the candidate to that venue, and the refresh follows one page. So a chain can get exactly one venue through the pipeline. The 11.11 briefing's workaround ("start from a location's page") does not work; the code was checked on 12.11. ADR-012 itself says "one private copy per venue", which the code does not do.
 
-The real site settles the shape. On 12.11 Semolino had a page per location in its sitemap. Piastów and Ursus link the same `Menu-Kleszczowa.pdf`, while Wilanów links its own 2026 PDF. Locations of one chain sometimes share a menu and sometimes don't.
+The real site settles the shape. On 12.11 Semolino had a page per location in its sitemap. Piastów and Ursus link the same `Menu-Kleszczowa.pdf`, while Wilanów links its own 2026 PDF. Locations of one chain sometimes share a menu and sometimes don't. Paweł added on 12.11 that a chain can also give each of its six locations its own menu; the design has to cover one shared file, one file per location, and any mix of the two.
 
 ## Options considered
 

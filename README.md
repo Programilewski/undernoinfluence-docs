@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-11 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-12 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -169,11 +169,11 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Document | What it is for | Updated |
 |---|---|---|
-| [dpa/README.md](compliance/dpa/README.md) | Data processing agreements. Placeholder register. | 2026-05-13 |
+| [dpa/README.md](compliance/dpa/README.md) | Data processing agreements. Placeholder register. | 2026-11-12 |
 | [dpia/README.md](compliance/dpia/README.md) | Data protection impact assessments. Placeholder. | 2026-05-13 |
 | [incidents/README.md](compliance/incidents/README.md) | Security and privacy incident register. Placeholder. | 2026-05-13 |
 | [README.md](compliance/README.md) | Compliance folder: what each file covers, and which ones are stubs. | 2026-08-18 |
-| [vendors/README.md](compliance/vendors/README.md) | Vendors, subprocessors and licences. Placeholder register. | 2026-05-13 |
+| [vendors/README.md](compliance/vendors/README.md) | Vendors, subprocessors and licences. Placeholder register. | 2026-11-12 |
 | [audits/cis.md](compliance/audits/cis.md) | CIS Controls v8 (IG1) security audit, 22.06. | 2026-07-24 |
 | [audits/eprivacy.md](compliance/audits/eprivacy.md) | ePrivacy / PKE audit, June. | 2026-07-24 |
 | [audits/gdpr.md](compliance/audits/gdpr.md) | GDPR compliance audit, June. | 2026-07-24 |
@@ -284,7 +284,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [new-notes.md](briefings/new-notes.md) | Reading guide to everything written between 25 and 27 August. | 2026-08-27 |
 | [next-session-2026-09-20.md](briefings/next-session-2026-09-20.md) | Brief prepared on 19.09 for the next working session. | 2026-09-19 |
 | [next-session-2026-10-28.md](briefings/next-session-2026-10-28.md) | What is left of the 28.10 engineering audit: F1 done in the evening; four decisions to take one at a time (F3 next), and two follow-ups. | 2026-11-11 |
-| [next-session-2026-11-10.md](briefings/next-session-2026-11-10.md) | Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions, and the build — all of steps 3–6 done 11.11 (§11 lists what is open). | 2026-11-11 |
+| [next-session-2026-11-10.md](briefings/next-session-2026-11-10.md) | Resume point for the venue-sourcing pipeline: the 10.11 findings, the extraction schema, the decisions, and the build — all of steps 3–6 done 11.11 (§11 lists what is open). | 2026-11-12 |
 
 ### `inbox/` — Raw capture, not yet sorted
 

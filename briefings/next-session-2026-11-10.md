@@ -239,6 +239,8 @@ Full account in [[journals/2026-11-12]].
 
 **Corrected 12.11:** §11's chain workaround ("start from a location's page") does not work — a domain is one candidate, a second location's menu deletes the first's file, and linking moves every menu. Semolino's site shows locations both sharing a menu (Piastów and Ursus: one PDF) and having their own (Wilanów).
 
+**Later on 12.11:** Paweł asked whether the chains recommendation covers six locations with six menus as well as several locations sharing one; it does (each location holds its own current menu; a shared file is stored once). He hasn't accepted it in so many words, so confirm before building. Both repositories were pushed. The permit-list CSV and the home server are for next time.
+
 **Resume here, in order:**
 1. Paweł decides [[decisions/product/a-sourcing-candidate-is-a-location]] (recommended: a candidate is a location), then build it: unique on domain + location page, *Dodaj lokalizację*, fetch/find resolve to the location by page, link and rejection per location, shared files stored once.
 2. The first real small batch on the PC: one *Szukaj lokali* run → *Znajdź menu* → *Wyodrębnij* (try *z obrazami* on one PDF to measure its cost) → approve. Read *Wydajność zapytań* after it.
