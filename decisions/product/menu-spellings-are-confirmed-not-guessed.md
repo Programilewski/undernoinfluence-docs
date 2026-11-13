@@ -27,6 +27,8 @@ A fuzzy match never attaches and never writes a spelling; only a person does. No
 
 An alcoholic beer published as its 0.0 version because a matcher found the names close. A lookup table that teaches itself mistakes. And the slower failure: 400 hand attaches before launch, done again by every owner later.
 
+**Reconfirmed 2026-11-13 — not even at 90%.** Asked whether verified drinks could match new menus above a 90% similarity, the answer stayed no: the risky pairs are exactly the near-identical ones ("Lech Free 0,0% Limonka z miętą" and "… Grejpfrut z guawą"), and a wrong certain match repeats on every menu printing that spelling. Learning already happens through confirmed spellings. Deferred instead: open *Popraw* with a single ≥ 90% suggestion pre-selected, still confirmed by a person, once real menus show how often it would help.
+
 ## Revisit when
 
 The owner panel opens — owners' unresolved rows become product proposals rather than failed rows — or confirmed spellings reach a size where matching in PHP is slow, at which point PostgreSQL's `pg_trgm` is worth installing.

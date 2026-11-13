@@ -58,6 +58,11 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-mocktail-with-a-spirit-is-flagged]] | A drink called alcohol-free that lists a normally alcoholic ingredient not marked 0% is flagged, never approved as clean; approving it alone asks first | Decided and built 13.11 |
+| [[decisions/product/a-search-result-must-read-as-a-venue]] | A Brave result becomes a candidate only when its site shows hours, a reservation or a venue type beside a food or drink word; guides blocked by domain | Decided and built 13.11 |
+| [[decisions/product/search-queries-are-templates-measured-by-yield]] | Queries are templates edited in the admin, never deleted, measured per template; flagged for a person at 50 domains with no venue | Decided and built 13.11 |
+| [[decisions/product/venue-form-starts-from-the-venues-own-site]] | The venue form starts from the name and address read from the venue's own pages; empty fields only; a person confirms, GUGiK places | Decided and built 13.11 |
+| [[decisions/product/sourcing-test-data-is-disposable]] | Pipeline data on test machines is disposable until it works ~80%; *Wyczyść dane testowe*, refused in production | Decided and built 13.11 |
 | [[decisions/product/a-sourcing-candidate-is-a-location]] | A chain's locations each become their own candidate (one venue, one current menu, one refresh page), added with *Dodaj lokalizacje*; a shared menu file is stored once; a site rejected as a chain leaves its locations open | Decided and built 12.11 |
 | [[decisions/product/menus-are-read-as-text-images-on-request]] | Menus are read as text; *Wyodrębnij z obrazami* sends every PDF page as text and image, per menu, when the layout matters | Decided and built 12.11 |
 | [[decisions/product/house-drink-descriptions-are-internal]] | A house drink's description is an internal note ("Notatka wewnętrzna"), never on the venue page, JSON-LD, recipe page or tile; menus put alcohol brands in it | Decided and built 11.11 |

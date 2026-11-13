@@ -59,6 +59,8 @@ If GUS is ever used as a source in production, its terms require citing the sour
 
 It removes the licence question from the coordinate column of the venue table rather than arguing about it: a point derived from the state address register is not an OSM attribute and carries no share-alike clause. It also prevents the quieter failure, which is a launch import that silently stores nothing useful — a dead provider and a mocked test suite agreeing with each other while sixty venues end up unplaceable on a map.
 
+**Amended 2026-11-13 — what a venue's site prints, GUGiK accepts.** The first real batch found three right buildings rejected by our own check. "Rondo Daszyńskiego 2": the street-type word is now stripped from both sides before comparing. "Pożaryskiego Mieczysława 35a/4U": a street matches when all its words are in the register's in any order, and a number with a unit is tried once more as the building. "Woronicza 31" scored 0.55 because the register says "Jana Pawła Woronicza": when a low score has the same city, street words and number, the register's own name is asked once more and must clear the same 0.7. The 0.7 floor is unchanged; lowering it was rejected because nothing would check the result twice. The cached verdict's key was versioned so an old "no match" does not stand.
+
 ## Revisit when
 
 GUGiK changes its terms or its response shape, which the live test would surface. Or when a second city outside Poland is added, at which point the national register stops covering the catalogue and the provider list needs a non-Polish entry.

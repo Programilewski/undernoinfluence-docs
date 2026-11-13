@@ -65,8 +65,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 208 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 102 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `decisions/` | 213 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `journals/` | 103 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -273,7 +273,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [commute-2026-09-25.md](briefings/commute-2026-09-25.md) | Commute document v12.0: the scheduler ran for the first time. | 2026-09-25 |
 | [commute-2026-09-30.md](briefings/commute-2026-09-30.md) | Commute document v13.0, the latest: Ploi out, Ansible and Deployer in, what is left for you. | 2026-10-03 |
 | [commute-2026-10-18.md](briefings/commute-2026-10-18.md) | Commute document v14.0: what to do if the anti-alcohol bill passes — pivot options for the catalogue and the business, and ways to reach people without brand advertising. | 2026-10-26 |
-| [commute-2026-10-27.md](briefings/commute-2026-10-27.md) ★ | Commute document v15.0: after the brand decisions — what stripping every brand touches in the app, how the menu stays above the value threshold, the KCPU e-mail, and the questions to answer before the build. | 2026-10-27 |
+| [commute-2026-10-27.md](briefings/commute-2026-10-27.md) | Commute document v15.0: after the brand decisions — what stripping every brand touches in the app, how the menu stays above the value threshold, the KCPU e-mail, and the questions to answer before the build. | 2026-10-27 |
+| [commute-2026-11-13.md](briefings/commute-2026-11-13.md) ★ | Commute document v16.0: the venue-sourcing pipeline as built 11.11–13.11 — what it does, the decisions behind it, what keeps it clean (data, copyright, privacy), what it costs, and what the first real batch broke; business and law first, the technical part separate; the questions waiting on you. | — |
 | [decisions-waiting-on-you-v3-answered.md](briefings/decisions-waiting-on-you-v3-answered.md) | Decisions document v3 with your inline answers, kept unedited. | 2026-08-30 |
 | [decisions-waiting-on-you-v5.md](briefings/decisions-waiting-on-you-v5.md) | Decisions document v5, the launch-speed edition. | 2026-09-01 |
 | [decisions-waiting-on-you-v6.md](briefings/decisions-waiting-on-you-v6.md) | Decisions document v6: the part left unanswered on 02.09. | 2026-09-02 |
