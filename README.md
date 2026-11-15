@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-13 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-15 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
@@ -134,7 +134,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 | [adding-a-venue.md](ops/adding-a-venue.md) | How a venue gets into UNI: what qualifies, where to find candidates, what to record, and the steps in the admin, one at a time or in a batch. | 2026-10-09 |
 | [deploy-checklist.md](ops/deploy-checklist.md) | Run before calling a deploy finished, every line with its reason. | 2026-10-09 |
 | [deployment-plan.md](ops/deployment-plan.md) | The eight deployment phases, home server and production side by side. Not executed yet. | 2026-09-29 |
-| [deployment-runbook.md](ops/deployment-runbook.md) | Every command for each deployment phase, on both servers. | 2026-10-09 |
+| [deployment-runbook.md](ops/deployment-runbook.md) | Every command for each deployment phase, on both servers. | 2026-11-15 |
 | [going-to-production.md](ops/going-to-production.md) | What the Fedora migration's rules mean for the production servers. | 2026-09-08 |
 | [home-server-setup.md](ops/home-server-setup.md) | Putting UNI on the home server, step by step with checks. | 2026-09-30 |
 | [migrating-to-a-new-machine.md](ops/migrating-to-a-new-machine.md) | Runbook for rebuilding the dev environment on another machine. Executed 25.08. | 2026-08-26 |
