@@ -424,14 +424,16 @@ ln -sfn releases/<previous> current.new && mv -Tf current.new current
 sudo systemctl reload php8.5-fpm && php current/artisan reload
 ```
 
-### 5.4 Retire the old container
+### 5.4 Retire the old container — **done 15.11** (Tailscale devices still to remove)
 
 ```bash
 # ==== HOST ====
 incus delete uni --force                             # takes .env.bak-20260925 with it
 ```
 
-In GitHub, repository → Settings → Deploy keys: delete `uni-homeserver`. With Finding 4 there is no replacement key.
+In GitHub, repository → Settings → Deploy keys: delete the old container's key. It was named `homeserver`, not `uni-homeserver` as this step first said (`gh repo deploy-key list`, then `gh repo deploy-key delete <id>`). With Finding 4 there is no replacement key.
+
+**Also, found 15.11:** the old container had joined the tailnet as a device of its own (`uni-1`, serving `uni-1.<tailnet>.ts.net`), and an even older `uni` device was still listed. Deleting the container leaves both in the Tailscale admin console under Machines; remove them there. Before deleting, check that `tailscale serve status` on the host points at the new container's address.
 
 **Phase 5 is done when:** a container built only by the playbook and one `dep deploy` passes the Phase 4 phone check.
 

@@ -25,7 +25,7 @@ A rule about the drink alone — fails, because the same bottle sits in a bar an
 
 **1. The place.** A venue where drinks are consumed on the premises — a bar, café, restaurant, club, hotel, a kebab shop with tables. **Not** a shop, supermarket, petrol station, off-licence, or delivery-only kitchen. *Can you drink it there?*
 
-**2. The offer.** The drink is a **named item in the venue's drinks offer, with a price** — on a menu, a board, or a standing list. **Not a bottle observed in a fridge.** *Did the venue decide to sell this?*
+**2. The offer.** The drink is a **named item in the venue's drinks offer** — on a menu, a board, or a standing list. **Not a bottle observed in a fridge.** *Did the venue decide to sell this?* (Amended 15.11.2026: "with a price" removed. UNI shows no prices, and a taproom's tap list prints none, so whether a price is printed is not evidence either way — [[decisions/product/a-drink-without-a-price-still-counts]].)
 
 **3. The drink.** Either a **non-alcoholic member of a drinking category** — beer, wine, sparkling, cider, spirits, mixed drinks — **or a house drink in one of the three categories the schema enforces**: `mocktail`, `koktajl_nolo`, `drink_spirytus_0`. *Is this what somebody orders instead of alcohol?* (Amended 08.10.2026: the fourth, `virgin_classic`, was retired by the shared-recipes record; a classic as written is now a catalogue product, and a venue's version of one is a house drink linked to it.)
 
@@ -57,4 +57,4 @@ Never on tests 1 and 2. Test 3's category list moves only if the catalogue's own
 
 ---
 
-*See also: [[decisions/product/kebab-rule]] · [[decisions/product/catalogue-excludes-actual-alcohol]] · [[decisions/product/venue-type-filtering]] · [[decisions/product/mission-is-the-healthy-choice]]*
+*See also: [[decisions/product/a-drink-without-a-price-still-counts]] · [[decisions/product/kebab-rule]] · [[decisions/product/catalogue-excludes-actual-alcohol]] · [[decisions/product/venue-type-filtering]] · [[decisions/product/mission-is-the-healthy-choice]]*

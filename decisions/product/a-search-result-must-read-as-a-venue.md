@@ -17,7 +17,7 @@ A blacklist of institution words (fundacja, instytut, związek…). A list of bl
 
 ## Decision
 
-The homepage, or its contact page, must also show a place a guest comes to: opening hours, a reservation, or a schema.org restaurant, bar, café or hotel type, alongside a word about food or drink. A page declaring a language other than Polish or English fails. Guides and platforms that still pass are blocked by domain as they appear.
+The homepage, or its contact page, must also show a place a guest comes to: opening hours, a reservation, or a schema.org restaurant, bar, café or hotel type, alongside a word about food or drink. A page declaring a language other than Polish or English fails. Guides and platforms that still pass are blocked by domain as they appear. **An online shop fails too** (amended 15.11.2026, Paweł: "proceed as you recommended"): a "dodaj do koszyka" or "add to cart" button, "regulamin sklepu", a Shopify storefront, or a schema.org shop type. The 15.11 round made five shops candidates, because each had opening hours, a Warsaw address and a wine word. A restaurant, bar, café or hotel type still outranks a shop sign, and the word "koszyk" alone does not count, because restaurants with online ordering use it.
 
 ## Rules
 
@@ -25,7 +25,7 @@ A dropped domain is counted as "Nie lokal" in its run and against the query that
 
 ## What this prevents
 
-Candidate lists dominated by institutions, and query statistics that reward searches finding reports about alcohol-free beer rather than places serving it. Tested on the batch and on 45 domains from venue searches: the four non-venues, a magazine and a city portal dropped, no venue lost.
+Candidate lists dominated by institutions, and query statistics that reward searches finding reports about alcohol-free beer rather than places serving it. Tested on the batch and on 45 domains from venue searches: the four non-venues, a magazine and a city portal dropped, no venue lost. The shop rule was checked on the 15.11 round's 17 real homepages: the five shops and a whisky shop with a Gdańsk bar dropped, and all eleven venues still passed.
 
 ## Revisit when
 

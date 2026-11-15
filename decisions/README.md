@@ -58,6 +58,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-drink-without-a-price-still-counts]] | A drink named on a venue's menu, board or tap list qualifies it whether or not a price is printed; the price is recorded as information only | Decided and built 15.11 |
 | [[decisions/product/a-mocktail-with-a-spirit-is-flagged]] | A drink called alcohol-free that lists a normally alcoholic ingredient not marked 0% is flagged, never approved as clean; approving it alone asks first | Decided and built 13.11 |
 | [[decisions/product/a-search-result-must-read-as-a-venue]] | A Brave result becomes a candidate only when its site shows hours, a reservation or a venue type beside a food or drink word; guides blocked by domain | Decided and built 13.11 |
 | [[decisions/product/search-queries-are-templates-measured-by-yield]] | Queries are templates edited in the admin, never deleted, measured per template; flagged for a person at 50 domains with no venue | Decided and built 13.11 |
