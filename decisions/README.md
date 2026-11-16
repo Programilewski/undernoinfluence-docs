@@ -58,6 +58,10 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-search-query-sent-within-30-days-is-skipped]] | A Brave query sent successfully in the last 30 days is left out of a new run; "Szukaj mimo to" sends it anyway; the run counts the skipped | Decided 15.11; built 16.11 |
+| [[decisions/product/a-registers-place-is-matched-by-name-and-address]] | Source B: a permit-register place gets a site only when the page gives its name and the register's street and number; domains carrying the name checked first; register ids keep re-uploads from duplicating or reopening rejections | Decided and built 16.11 |
+| [[decisions/product/a-product-made-from-a-menu-line-has-unknown-strength]] | "Utwórz produkt" from a line creates the product with strength unknown; a menu's printed strength is not a verified one | Decided and built 16.11 |
+| [[decisions/product/a-line-printed-above-half-a-percent-is-dropped]] | A drink printed above 0,5% is dropped when the readings are compared; a pair is judged by its lowest value | Decided and built 16.11 |
 | [[decisions/product/a-drink-without-a-price-still-counts]] | A drink named on a venue's menu, board or tap list qualifies it whether or not a price is printed; the price is recorded as information only | Decided and built 15.11 |
 | [[decisions/product/a-mocktail-with-a-spirit-is-flagged]] | A drink called alcohol-free that lists a normally alcoholic ingredient not marked 0% is flagged, never approved as clean; approving it alone asks first | Decided and built 13.11 |
 | [[decisions/product/a-search-result-must-read-as-a-venue]] | A Brave result becomes a candidate only when its site shows hours, a reservation or a venue type beside a food or drink word; guides blocked by domain | Decided and built 13.11 |

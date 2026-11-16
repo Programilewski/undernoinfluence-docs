@@ -65,8 +65,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 214 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 104 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `decisions/` | 218 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `journals/` | 105 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 

@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-11
 **Status:** Decided
-**Executed:** partly — built 11.11–12.11 in the admin panel: source A, menu finding, reading twice (and with page images on request), matching, approval, refresh, chain locations; source B (the permit list) not built — design in the 10.11 briefing (next-session-2026-11-10)
+**Executed:** partly — built 11.11–12.11 in the admin panel: source A, menu finding, reading twice (and with page images on request), matching, approval, refresh, chain locations; source B (the permit list) built 16.11.2026: the register's CSV uploaded on Kandydaci, and each place's site found by one search and its name and register address on the page
 **Area:** Venues | Data Model | Catalogue
 
 ---
