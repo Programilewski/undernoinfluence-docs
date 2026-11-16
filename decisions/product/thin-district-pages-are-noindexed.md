@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-31
 **Status:** Decided
-**Executed:** yes — verified in the code 2026-09-14
+**Executed:** yes — verified in the code 2026-09-14; the district × category amendment built 2026-11-16
 **Area:** UI/UX | Venues
 
 ---
@@ -21,7 +21,7 @@ A district page below three active venues is served normally and marked `noindex
 
 ## Rules
 
-The threshold lives in configuration, not in a view, so it can be raised as coverage improves without touching code. `follow` is mandatory on the noindexed variant, so link equity keeps flowing through the cluster. The sitemap applies the same threshold, because a submitted URL that is noindexed is a contradiction a crawler sees before it sees the page. The threshold gates the district page only: a district × category page is gated separately, on that pair having any venues at all, and extending the rule downwards is a larger change than this decision settles.
+The threshold lives in configuration, not in a view, so it can be raised as coverage improves without touching code. `follow` is mandatory on the noindexed variant, so link equity keeps flowing through the cluster. The sitemap applies the same threshold, because a submitted URL that is noindexed is a contradiction a crawler sees before it sees the page. **Amended 16.11.2026:** a district × category page (`/warszawa/mokotow/piwo-bezalkoholowe`) follows the same rule with its own setting, `uni.min_venues_for_indexable_district_category`, also three, counted as the page counts: venues with a fresh drink of that category. Until then it indexed from one venue, so the thinnest pages of the cluster were open while the thicker district page above them was gated. The sourcing pipeline makes this matter: venues now arrive in bulk, and pages multiplied by district and category with one or two entries are the shape Google's scaled-content policy describes. Paweł asked for it on 16.11, after the review of a claude.ai forecast that raised the same risk.
 
 ## What this prevents
 
@@ -29,7 +29,7 @@ It prevents the cluster's weakest pages from defining what the site looks like t
 
 ## Revisit when
 
-As soon as the real venue set replaces the seeded one — the current distribution is fake data, and three was chosen against it. Also revisit if district × category pages under thin districts start appearing in the index, since that inconsistency is known and deliberately left open.
+As soon as the real venue set replaces the seeded one — the current distribution is fake data, and three was chosen against it. The district × category inconsistency this line used to name was closed on 16.11.
 
 ---
 
