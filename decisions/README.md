@@ -58,6 +58,8 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/new-search-templates-come-from-menu-words-and-run-city-wide]] | New source A templates are hand-written from the words UNI's menu lines print, venue kinds and title/body operators, run for the whole city, kept or pruned on yield; no generator | Decided and built 17.11 |
+| [[decisions/product/a-venue-page-is-read-with-its-metadata-not-its-javascript]] | A venue's page is checked against its visible text plus meta descriptions and schema.org data; UNIbot never runs JavaScript | Decided and built 17.11 |
 | [[decisions/product/a-search-query-sent-within-30-days-is-skipped]] | A Brave query sent successfully in the last 30 days is left out of a new run; "Szukaj mimo to" sends it anyway; the run counts the skipped | Decided 15.11; built 16.11 |
 | [[decisions/product/a-registers-place-is-matched-by-name-and-address]] | Source B: a permit-register place gets a site only when the page gives its name and the register's street and number; domains carrying the name checked first; register ids keep re-uploads from duplicating or reopening rejections | Decided and built 16.11 |
 | [[decisions/product/a-product-made-from-a-menu-line-has-unknown-strength]] | "Utwórz produkt" from a line creates the product with strength unknown; a menu's printed strength is not a verified one | Decided and built 16.11 |
