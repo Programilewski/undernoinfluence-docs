@@ -1,7 +1,7 @@
 # The real catalogue reaches production only, through the importers, once
 
 **Date:** 2026-10-09 (decided in principle 2026-10-04, journal Decision Register 1; the rehearsal clause corrected 09.10)
-**Status:** Decided
+**Status:** Decided. Reaffirmed by Paweł 18.11 for the sourcing pipeline: "homeserver is test data too". A round there measures the pipeline (precision, minutes per venue); records there are not corrected as if for production.
 **Executed:** partly — the order and its failure handling are tested (`LaunchLoadTest`, 09.10); the load itself happens on launch day
 **Area:** Venues | Data Model | Operations
 

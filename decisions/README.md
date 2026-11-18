@@ -58,6 +58,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-venue-site-that-is-down-is-tried-twice-more]] | Source B: a place whose own site (its name in the domain) didn't answer is searched again after 3 and 10 days, then only by hand; a dead directory link triggers nothing | Decided and built 18.11 |
 | [[decisions/product/new-search-templates-come-from-menu-words-and-run-city-wide]] | New source A templates are hand-written from the words UNI's menu lines print, venue kinds and title/body operators, run for the whole city, kept or pruned on yield; no generator | Decided and built 17.11 |
 | [[decisions/product/a-venue-page-is-read-with-its-metadata-not-its-javascript]] | A venue's page is checked against its visible text plus meta descriptions and schema.org data; UNIbot never runs JavaScript | Decided and built 17.11 |
 | [[decisions/product/a-search-query-sent-within-30-days-is-skipped]] | A Brave query sent successfully in the last 30 days is left out of a new run; "Szukaj mimo to" sends it anyway; the run counts the skipped | Decided 15.11; built 16.11 |
