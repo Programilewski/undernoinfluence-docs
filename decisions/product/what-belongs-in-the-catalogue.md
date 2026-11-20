@@ -23,7 +23,7 @@ A rule about the drink alone — fails, because the same bottle sits in a bar an
 
 **A row enters the catalogue only when all three tests pass.**
 
-**1. The place.** A venue where drinks are consumed on the premises — a bar, café, restaurant, club, hotel, a kebab shop with tables. **Not** a shop, supermarket, petrol station, off-licence, or delivery-only kitchen. *Can you drink it there?*
+**1. The place.** A venue where drinks are consumed on the premises — a bar, café, restaurant, hotel, a kebab shop with tables. **Not** a shop, supermarket, petrol station, off-licence, or delivery-only kitchen. *Can you drink it there?* (Amended 20.11.2026, Paweł: **not a club** either — a nightclub, a disco, a music club with a dance floor. A klubokawiarnia is a café. [[decisions/product/a-venue-type-is-suggested-and-a-person-confirms-it]].)
 
 **2. The offer.** The drink is a **named item in the venue's drinks offer** — on a menu, a board, or a standing list. **Not a bottle observed in a fridge.** *Did the venue decide to sell this?* (Amended 15.11.2026: "with a price" removed. UNI shows no prices, and a taproom's tap list prints none, so whether a price is printed is not evidence either way — [[decisions/product/a-drink-without-a-price-still-counts]].)
 

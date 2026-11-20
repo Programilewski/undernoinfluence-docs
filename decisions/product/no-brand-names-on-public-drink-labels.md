@@ -21,6 +21,8 @@ Keep showing every brand and rely on being a neutral, unpaid directory (the 07.0
 
 **KCPU's answer, 27.10 (their reference DP.44.237.2026):** naming a 0.0 drink sold under an alcohol trademark is advertising, in their reading of the law as it stands today, not of the bill. The decision therefore holds whatever the Senate or the President does with the amendment. See [[decisions/product/no-paid-legal-opinion-in-v1]].
 
+**19.11.2026:** the Sejm rejected the Senate's exception allowing advertising of 0.0% beer and accepted the other Senate amendments; the bill goes to the President and would apply from 01.06.2027. Nothing here changes, because the decision rests on KCPU's 27.10 answer about the law already in force.
+
 ## Rules
 
 Public means every page and everything that leaves the site: venue pages, `/marka` and `/napoj`, page titles, descriptions, structured data, the sitemap, share cards, search results and social posts. A branded product appears as its category, described by its style (see [[decisions/product/menu-lines-describe-style-not-brand]]). Shared recipes and house drinks have no brand and keep their names. The admin and owner panels keep full names, because a closed audience isn't public. Producers stay internal as before. A stripped page is removed, never just marked `noindex`. Social content leads with a category, the map or a count, never a product.
