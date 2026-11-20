@@ -36,7 +36,7 @@
 - **Skipping:** "Pomiń" leaves a menu without a venue, for later.
 - **No suggestion:** a menu with no suggestion must have its type chosen; the field is required.
 - **Clubs and source B:** *Znajdź strony lokali* never searches for a register place whose entry starts with "klub", and "Kluby" is gone from its kinds. A search would only cost a request.
-- **Menus read before 20.11** have no type from the menu reader. They are not read again for it, because reading a menu again re-queues its lines. They get the register's and the site's signals only.
+- **Menus read before 20.11** have no type from the menu reader until they are read again. A menu with any decided line can't be read again; one with only waiting lines can, and the new reading replaces them.
 - **Cost:** the rules add about 1,150 input tokens to each of a menu's two readings. On Haiku 5.5 ($0.10 per million tokens) that is about $0.00023 a menu.
 
 ## What this prevents
