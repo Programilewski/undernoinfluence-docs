@@ -65,8 +65,8 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 
 | Folder | What it holds | Index |
 |---|---|---|
-| `decisions/` | 221 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
-| `journals/` | 107 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
+| `decisions/` | 223 decision records: why something is the way it is | [decisions/README.md](decisions/README.md) |
+| `journals/` | 108 session journals, one per working day, and the Canary Register | [journals/README.md](journals/README.md) |
 
 ### `roadmap/` — What is next, and what is not done
 
@@ -74,7 +74,7 @@ The thinking behind Under No Influence: plans, decisions, references, runbooks a
 |---|---|---|
 | [README.md](roadmap/README.md) | What roadmap/ holds: the version plans and the backlog, and how to read their statuses. | 2026-10-07 |
 | [pre-launch-checklist.md](roadmap/pre-launch-checklist.md) | Things whose cost of change spikes on launch day. | 2026-08-20 |
-| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-17 |
+| [undone-inventory.md](roadmap/undone-inventory.md) | The backlog: every open item, sorted into Launch, After launch, V2 and V3. | 2026-11-18 |
 | [v1.md](roadmap/v1.md) | V1, Data Authority MVP: what it is and what is exposed at launch. | 2026-08-27 |
 | [v2.md](roadmap/v2.md) | V2, Engagement and Trust Loop: features and entry triggers. | ≤ 2026-09-22 |
 | [v3.md](roadmap/v3.md) | V3, Expansion and Monetisation: the entry gate and features. | ≤ 2026-09-22 |
