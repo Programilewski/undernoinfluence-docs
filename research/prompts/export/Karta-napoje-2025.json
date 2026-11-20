@@ -1,0 +1,220 @@
+{
+  "menu_file": "src/Karta-napoje-2025.pdf",
+  "menu_file_not_included": true,
+  "sha256": "7e0b1c762f9b739eca2fa49d427b23af19c42a877706ba11d1659f2bb3c0b45f",
+  "bytes": 336606,
+  "format": "pdf",
+  "pages": 6,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 1054,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 2,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 977,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 3,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 743,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 4,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 634,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 5,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 669,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 6,
+      "w_pt": 612,
+      "h_pt": 792,
+      "nonws_chars": 1196,
+      "images": 1,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": {
+    "date": "2025",
+    "matched": "2025",
+    "rule": "year",
+    "from": "file name"
+  },
+  "optimizer_standard": {
+    "est_tokens": 1613,
+    "naive_est_tokens": 12060,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "Karta-napoje-2025.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 1613
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "Lech free (różne smaki)",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": "różne smaki",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 15.0,
+              "size": "0,33l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        },
+        {
+          "name": "Książęce IPA",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0.0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        }
+      ],
+      "notes": "Lech free is listed under the low-alcohol beer section but its ABV is not printed; included based on section heading. Restaurant name not stated on the menu."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 5875,
+      "output_tokens": 694,
+      "cost_usd": 0.0009345,
+      "seconds": 7.2
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "Lech free (różne smaki)",
+          "category": "na_beer",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 15.0,
+              "size": "0,33l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        },
+        {
+          "name": "Książęce IPA",
+          "category": "na_beer",
+          "brand": null,
+          "description": null,
+          "abv": "0.0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        }
+      ],
+      "notes": "Only the two low-alcohol beers are clearly alcohol-free. The 'Lech free' flavours are listed under one entry without individual flavour names."
+    },
+    "usage": {
+      "input_tokens": 5875,
+      "output_tokens": 646,
+      "thinking_tokens": 350,
+      "service_tier": "batch",
+      "cost_usd": 0.00045525
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "U Barssa",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "Lech free (różne smaki)",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 15.0,
+              "size": "0,33l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        },
+        {
+          "name": "Książęce IPA 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / LOW-ALCOHOL BEER"
+        }
+      ],
+      "notes": "Section heading reads 'bezalkoholowe' (non-alcoholic) in Polish but 'LOW-ALCOHOL BEER' in English; Lech Free has no ABV printed. Restaurant name inferred from website/email (ubarssa.pl). Three Cents Ginger beer is a soft drink and was excluded. A 10% service charge is added to the bill."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 5875,
+      "output_tokens": 385,
+      "cost_usd": 0.0312,
+      "seconds": 4.2
+    }
+  },
+  "comparison_mismatches": []
+}

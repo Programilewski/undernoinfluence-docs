@@ -1,0 +1,292 @@
+{
+  "menu_file": "src/MENU-PL-PPN-PPM-PPN-210-scaled-1166x1654.webp",
+  "menu_file_not_included": true,
+  "sha256": "951a377c8fd14ac239043dab40a8b062e94f76e9414bea31ade714ec0a80244f",
+  "bytes": 171584,
+  "format": "WEBP",
+  "pages": 1,
+  "pdf_pages": null,
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": null,
+  "optimizer_standard": {
+    "est_tokens": 1532,
+    "naive_est_tokens": 1532,
+    "parts": [
+      {
+        "kind": "image",
+        "source": "MENU-PL-PPN-PPM-PPN-210-scaled-1166x1654.webp",
+        "width": 906,
+        "height": 1268,
+        "est_tokens": 1532
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ZANIN ZERO SPRITZ",
+          "category": "mocktail",
+          "brand": null,
+          "description": "orzeźwiający, lekki, cytrusowy Zanin 1895 Aperitivo Zero, prosecco 0%, soda, pomarańcza",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "VIRGIN PASSION GIMLET",
+          "category": "mocktail",
+          "brand": null,
+          "description": "słodko-kwaśny, tropikalny, soczysty gin 0%, puree marakuja, syrop z zielonej herbaty, sok z limonki",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 36.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "PEAR LIMONCELLO FIZZ",
+          "category": "mocktail",
+          "brand": null,
+          "description": "owocowy, delikatny, kremowy Zanin 1895 Limoncello Zero, sok gruszkowy, limonka, imbir, fioletowa pianka ube",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "CORONA FREE COOLER",
+          "category": "mocktail",
+          "brand": null,
+          "description": "lekki, tropikalny, wyjątkowo orzeźwiający gin 0%, corona cero, syrop z zielonej herbaty, sok yuzu, tajska bazylia",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 39.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "FLOREALE BLOSSOM",
+          "category": "mocktail",
+          "brand": null,
+          "description": "kwiatowy, orzeźwiający, subtelnie wytrawny martini floreale, tonic, syrop liczi, cytryna, płatki róży",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 35.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        }
+      ],
+      "notes": "Menu is a happy hours menu (pon-pt 15:00-18:00) with a 2-for-1 offer on mocktails and cocktails. Only the MOCKTAILE section was included; the alcoholic cocktails section was excluded. Restaurant name not visible."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 3392,
+      "output_tokens": 1282,
+      "cost_usd": 0.0009802,
+      "seconds": 6.2
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ZANIN ZERO SPRITZ",
+          "category": "mocktail",
+          "brand": "Zanin 1895",
+          "description": "orzeźwiający, lekki, cytrusowy; Zanin 1895 Aperitivo Zero, prosecco 0%, soda, pomarańcza",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "VIRGIN PASSION GIMLET",
+          "category": "mocktail",
+          "brand": null,
+          "description": "słodko-kwaśny, tropikalny, soczysty; gin 0%, puree marakuja, syrop z zielonej herbaty, sok z limonki",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 36.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "PEAR LIMONCELLO FIZZ",
+          "category": "mocktail",
+          "brand": "Zanin 1895",
+          "description": "owocowy, delikatny, kremowy; Zanin 1895 Limoncello Zero, sok gruszkowy, limonka, imbir, fioletowa pianka ube",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "CORONA FREE COOLER",
+          "category": "mocktail",
+          "brand": null,
+          "description": "lekki, tropikalny, wyjątkowo orzeźwiający; gin 0%, corona cero, syrop z zielonej herbaty, sok yuzu, tajska bazylia",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 39.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        },
+        {
+          "name": "FLOREALE BLOSSOM",
+          "category": "mocktail",
+          "brand": null,
+          "description": "kwiatowy, orzeźwiający, subtelnie wytrawny; martini floreale, tonic, syrop liczi, cytryna, płatki róży",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 35.0,
+              "size": null
+            }
+          ],
+          "menu_section": "MOCKTAILE"
+        }
+      ],
+      "notes": "Mocktails were included based on the MOCKTAILE section heading. The Floreale Blossom lists martini floreale, which is normally alcoholic; its alcohol-free status is inferred from the section heading only. Currency PLN is inferred from the Polish menu language, not printed on the menu. Prices have no size listed."
+    },
+    "usage": {
+      "input_tokens": 3392,
+      "output_tokens": 1255,
+      "thinking_tokens": 422,
+      "service_tier": "batch",
+      "cost_usd": 0.00048335
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ZANIN ZERO SPRITZ",
+          "category": "mocktail",
+          "brand": null,
+          "description": "orzeźwiający, lekki, cytrusowy. Zanin 1895 Aperitivo Zero, prosecco 0%, soda, pomarańcza",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Mocktajle"
+        },
+        {
+          "name": "VIRGIN PASSION GIMLET",
+          "category": "mocktail",
+          "brand": null,
+          "description": "słodko-kwaśny, tropikalny, soczysty. gin 0%, puree marakuja, syrop z zielonej herbaty, sok z limonki",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 36.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Mocktajle"
+        },
+        {
+          "name": "PEAR LIMONCELLO FIZZ",
+          "category": "mocktail",
+          "brand": null,
+          "description": "owocowy, delikatny, kremowy. Zanin 1895 Limoncello Zero, sok gruszkowy, limonka, imbir, fioletowa pianka ube",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 34.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Mocktajle"
+        },
+        {
+          "name": "CORONA FREE COOLER",
+          "category": "mocktail",
+          "brand": null,
+          "description": "lekki, tropikalny, wyjątkowo orzeźwiający. gin 0%, corona cero, syrop z zielonej herbaty, sok yuzu, tajska bazylia",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 39.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Mocktajle"
+        },
+        {
+          "name": "FLOREALE BLOSSOM",
+          "category": "mocktail",
+          "brand": null,
+          "description": "kwiatowy, orzeźwiający, subtelnie wytrawny. martini floreale, tonic, syrop liczi, cytryna, płatki róży",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 35.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Mocktajle"
+        }
+      ],
+      "notes": "Happy hours Mon-Fri 15:00-18:00: order 2 identical cocktails/mocktails, pay for 1."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 3392,
+      "output_tokens": 746,
+      "cost_usd": 0.028488,
+      "seconds": 6.9
+    }
+  },
+  "comparison_mismatches": []
+}

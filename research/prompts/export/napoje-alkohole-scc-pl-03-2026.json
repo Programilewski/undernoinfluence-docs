@@ -1,0 +1,313 @@
+{
+  "menu_file": "src/napoje-alkohole-scc-pl-03-2026.pdf",
+  "menu_file_not_included": true,
+  "sha256": "71944cb02b0480c5dc1411f1045e027fa38e962076bb59e1414e7004708896c0",
+  "bytes": 185795,
+  "format": "pdf",
+  "pages": 1,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 595,
+      "h_pt": 842,
+      "nonws_chars": 0,
+      "images": 1,
+      "text_layer_used": false
+    }
+  ],
+  "origin": {
+    "url": "https://jeffs.com/images/nasze-menu/napoje-alkohole-scc-pl-03-2026.pdf",
+    "final_url": null,
+    "page_url": null,
+    "link_text": null,
+    "fetched_at": "2026-11-09T20:20:23+01:00",
+    "last_checked": "2026-11-09T20:31:52+01:00",
+    "http_last_modified": "2026-04-22",
+    "content_type": "application/pdf"
+  },
+  "date_guess": {
+    "date": "2026-03",
+    "from": "link",
+    "matched": "03-2026",
+    "rule": "my"
+  },
+  "optimizer_standard": {
+    "est_tokens": 1531,
+    "naive_est_tokens": 1532,
+    "parts": [
+      {
+        "kind": "image",
+        "source": "napoje-alkohole-scc-pl-03-2026.pdf p1",
+        "width": 840,
+        "height": 1367,
+        "est_tokens": 1531
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Jeff's",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "LECH FREE LAGER",
+          "category": "na_beer",
+          "brand": "Lech Free",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "LECH FREE LIMONKA MIĘTA",
+          "category": "na_beer",
+          "brand": "Lech Free",
+          "description": "limonka mięta",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE PSZENICZNE 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE IPA 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KOŹLE 0,0%",
+          "category": "na_beer",
+          "brand": "Kozel",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "Section 'PIWO BEZALKOHOLOWE' lists the alcohol-free beers. The Lech Free entries show no ABV printed. The Kozel item is printed as 'KOZEL 0,0%' in the image; the name is transcribed as printed. Some small print in the image is hard to read, so the restaurant name and item descriptions may be imperfect."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 3336,
+      "output_tokens": 1246,
+      "cost_usd": 0.0009566,
+      "seconds": 6.0
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "LECH FREE LAGER",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "LECH FREE LIMONKA MIĘTA",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE PSZENICZNE 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE IPA 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KOZEL 0,0%",
+          "category": "na_beer",
+          "brand": "Kozel",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "Lech Free ABV not printed on the menu. Menu image is small and low-resolution, so some small print may be imprecise. Restaurant name not clearly printed."
+    },
+    "usage": {
+      "input_tokens": 3336,
+      "output_tokens": 1141,
+      "thinking_tokens": 553,
+      "service_tier": "batch",
+      "cost_usd": 0.00045205
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Jeff's",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "LECH FREE LAGER",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "LECH FREE LIMONKA MIĘTA",
+          "category": "na_beer",
+          "brand": "Lech",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 13.0,
+              "size": "0,33 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE PSZENICZNE 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KSIĄŻĘCE IPA 0,0%",
+          "category": "na_beer",
+          "brand": "Książęce",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        },
+        {
+          "name": "KOZEL 0,0%",
+          "category": "na_beer",
+          "brand": "Kozel",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 23.0,
+              "size": "0,5 L"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "Kinley tonic waters (ZERO CUKRU = sugar-free) are soft drinks and were excluded."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 3336,
+      "output_tokens": 580,
+      "cost_usd": 0.024944,
+      "seconds": 5.7
+    }
+  },
+  "comparison_mismatches": []
+}

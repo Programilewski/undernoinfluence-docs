@@ -1,0 +1,104 @@
+{
+  "menu_file": "src/Pod-Menu-New-V5.pdf",
+  "menu_file_not_included": true,
+  "sha256": "5464ce6d956099e0727467d5ee83eb1e4f76e55246a38a0e7b20ef208d287711",
+  "bytes": 3610904,
+  "format": "pdf",
+  "pages": 2,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 842,
+      "h_pt": 596,
+      "nonws_chars": 1888,
+      "images": 6,
+      "text_layer_used": true
+    },
+    {
+      "page": 2,
+      "w_pt": 842,
+      "h_pt": 596,
+      "nonws_chars": 1609,
+      "images": 8,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "url": "https://restauracjapodniebna.pl/wp-content/uploads/2026/03/Pod-Menu-New-V5.pdf",
+    "final_url": null,
+    "page_url": null,
+    "link_text": null,
+    "fetched_at": "2026-11-09T20:36:11+01:00",
+    "last_checked": "2026-11-09T20:36:11+01:00",
+    "http_last_modified": "2026-03-05",
+    "content_type": "application/pdf"
+  },
+  "date_guess": {
+    "date": "2026-03",
+    "from": "link",
+    "matched": "2026/03",
+    "rule": "path"
+  },
+  "optimizer_standard": {
+    "est_tokens": 1099,
+    "naive_est_tokens": 6483,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "Pod-Menu-New-V5.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 1099
+      }
+    ]
+  },
+  "haiku_compare_run": null,
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": "Pod Niebną",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "Ogórek-Mięta-Ginger Beer",
+          "category": "mocktail",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [],
+          "menu_section": "MOCKTAILE/ MOCKTAILS"
+        },
+        {
+          "name": "Aperol Spritz Zero",
+          "category": "mocktail",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [],
+          "menu_section": "MOCKTAILE/ MOCKTAILS"
+        },
+        {
+          "name": "Mojito Zero",
+          "category": "mocktail",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [],
+          "menu_section": "MOCKTAILE/ MOCKTAILS"
+        }
+      ],
+      "notes": "The mocktail prices could not be reliably matched to items because the PDF text layout is scrambled. Possible candidate values near the section are 8, 15 and 25, but the assignment is uncertain, so prices were left empty. Restaurant name taken from the footer address/website and may be inferred."
+    },
+    "usage": {
+      "input_tokens": 4438,
+      "output_tokens": 1457,
+      "thinking_tokens": 1093,
+      "service_tier": "batch",
+      "cost_usd": 0.00058615
+    }
+  },
+  "opus_reference": null,
+  "comparison_mismatches": []
+}

@@ -1,0 +1,416 @@
+{
+  "menu_file": "src/Menu-Spaccanapoli-202506.pdf",
+  "menu_file_not_included": true,
+  "sha256": "02855c5a34270e2f94a76d217bfbd061806009f18a4080e3956c41f5c4f77946",
+  "bytes": 6616600,
+  "format": "pdf",
+  "pages": 24,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 0,
+      "images": 1,
+      "text_layer_used": false
+    },
+    {
+      "page": 2,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 0,
+      "images": 3,
+      "text_layer_used": false
+    },
+    {
+      "page": 3,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 2285,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 4,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1299,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 5,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 2933,
+      "images": 3,
+      "text_layer_used": true
+    },
+    {
+      "page": 6,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 3464,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 7,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 2894,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 8,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1950,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 9,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 2598,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 10,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1916,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 11,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1505,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 12,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1483,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 13,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1575,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 14,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1152,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 15,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1255,
+      "images": 4,
+      "text_layer_used": true
+    },
+    {
+      "page": 16,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1556,
+      "images": 4,
+      "text_layer_used": true
+    },
+    {
+      "page": 17,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1421,
+      "images": 4,
+      "text_layer_used": true
+    },
+    {
+      "page": 18,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 2252,
+      "images": 7,
+      "text_layer_used": true
+    },
+    {
+      "page": 19,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1772,
+      "images": 6,
+      "text_layer_used": true
+    },
+    {
+      "page": 20,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 1759,
+      "images": 7,
+      "text_layer_used": true
+    },
+    {
+      "page": 21,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 418,
+      "images": 1,
+      "text_layer_used": true
+    },
+    {
+      "page": 22,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 117,
+      "images": 2,
+      "text_layer_used": true
+    },
+    {
+      "page": 23,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 127,
+      "images": 2,
+      "text_layer_used": true
+    },
+    {
+      "page": 24,
+      "w_pt": 326,
+      "h_pt": 907,
+      "nonws_chars": 662,
+      "images": 1,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "url": "https://spaccanapoli.pl/wp-content/uploads/2025/06/Menu-Spaccanapoli-202506.pdf",
+    "final_url": null,
+    "page_url": null,
+    "link_text": null,
+    "fetched_at": "2026-11-09T20:36:11+01:00",
+    "last_checked": "2026-11-09T20:36:11+01:00",
+    "http_last_modified": "2025-06-19",
+    "content_type": "application/pdf"
+  },
+  "date_guess": {
+    "date": "2025-06",
+    "from": "link",
+    "matched": "2025/06",
+    "rule": "path"
+  },
+  "optimizer_standard": {
+    "est_tokens": 15261,
+    "naive_est_tokens": 41993,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "Menu-Spaccanapoli-202506.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 9133
+      },
+      {
+        "kind": "image",
+        "source": "Menu-Spaccanapoli-202506.pdf p1 tile 1/2",
+        "width": 758,
+        "height": 1516,
+        "est_tokens": 1532
+      },
+      {
+        "kind": "image",
+        "source": "Menu-Spaccanapoli-202506.pdf p1 tile 2/2",
+        "width": 758,
+        "height": 1516,
+        "est_tokens": 1532
+      },
+      {
+        "kind": "image",
+        "source": "Menu-Spaccanapoli-202506.pdf p2 tile 1/2",
+        "width": 758,
+        "height": 1516,
+        "est_tokens": 1532
+      },
+      {
+        "kind": "image",
+        "source": "Menu-Spaccanapoli-202506.pdf p2 tile 2/2",
+        "width": 758,
+        "height": 1516,
+        "est_tokens": 1532
+      }
+    ]
+  },
+  "haiku_compare_run": null,
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": "Spaccanapoli",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "Żywiec 0,0%",
+          "category": "na_beer",
+          "brand": "Żywiec",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 14.0,
+              "size": "500 ml."
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Radler Warka 0,0%",
+          "category": "na_beer",
+          "brand": "Warka",
+          "description": "zapytaj obsługę o dostępne smaki",
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 14.0,
+              "size": "500 ml."
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Grzane wino bezalkoholowe/Mulled wine",
+          "category": "na_wine",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": null
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Wino bezalkoholowe białe lub czerwone",
+          "category": "na_wine",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "kieliszek"
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Prosecco bezalkoholowe",
+          "category": "na_sparkling",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 22.0,
+              "size": null
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Mojito bezalkoholowe",
+          "category": "mocktail",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": null
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Spritz bezalkoholowy",
+          "category": "mocktail",
+          "brand": null,
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 28.0,
+              "size": null
+            }
+          ],
+          "menu_section": "NAPOJE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Glamour 0.0% Alcohol Sparkling Vegan",
+          "category": "na_sparkling",
+          "brand": "Bella",
+          "description": "(\"Prosecco\" bezalkoholowe), Region: Veneto",
+          "abv": "0.0%",
+          "prices": [
+            {
+              "amount": 90.0,
+              "size": null
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        },
+        {
+          "name": "Białe wino bezalkoholowe 0% (Traminer)",
+          "category": "na_wine",
+          "brand": "600 campi",
+          "description": "Region: Friuli",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 100.0,
+              "size": null
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        },
+        {
+          "name": "Czerwone wino bezalkoholowe 0% (Merlot)",
+          "category": "na_wine",
+          "brand": null,
+          "description": null,
+          "abv": "0%",
+          "prices": [],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "The Merlot alcohol-free red wine on page 20 has no price printed. The Mulled wine listed on page 13 (Grzane wino/Mulled wine, 18 PLN) has no alcohol-free marker, so it was excluded."
+    },
+    "usage": {
+      "input_tokens": 28244,
+      "output_tokens": 2881,
+      "thinking_tokens": 1770,
+      "service_tier": "batch",
+      "cost_usd": 0.0021324499999999997
+    }
+  },
+  "opus_reference": null,
+  "comparison_mismatches": []
+}

@@ -1,0 +1,824 @@
+{
+  "menu_file": "src/loreta-menu.pdf",
+  "menu_file_not_included": true,
+  "sha256": "b990dd9f58e7b84aaf2179d14cfdb57bc03d2e1a5eb8cfa1ee41bee5737a0d52",
+  "bytes": 180575,
+  "format": "pdf",
+  "pages": 23,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 6,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 2,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 0,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 3,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 799,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 4,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 0,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 5,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1658,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 6,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 931,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 7,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1148,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 8,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1035,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 9,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1021,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 10,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1027,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 11,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 840,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 12,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 0,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 13,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 15,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 14,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 910,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 15,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 809,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 16,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 927,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 17,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1073,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 18,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 1040,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 19,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 974,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 20,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 0,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 21,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 41,
+      "images": 0,
+      "text_layer_used": false
+    },
+    {
+      "page": 22,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 790,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 23,
+      "w_pt": 425,
+      "h_pt": 737,
+      "nonws_chars": 739,
+      "images": 0,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": null,
+  "optimizer_standard": {
+    "est_tokens": 5477,
+    "naive_est_tokens": 43429,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "loreta-menu.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 4780
+      },
+      {
+        "kind": "image",
+        "source": "loreta-menu.pdf p1",
+        "width": 779,
+        "height": 430,
+        "est_tokens": 447
+      },
+      {
+        "kind": "image",
+        "source": "loreta-menu.pdf p13",
+        "width": 294,
+        "height": 176,
+        "est_tokens": 69
+      },
+      {
+        "kind": "image",
+        "source": "loreta-menu.pdf p21",
+        "width": 770,
+        "height": 176,
+        "est_tokens": 181
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Loreta",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PUMPKIN SWIZZLE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Captain Morgan 0% rum, apple, kvass, pumpkin spiced, lime, Fever-Tree Tonic",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "180 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "PADDINGTON",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Martini Floreal, rooibos, orange marmalade, Fever-Tree Tonic, Sūpāsawā",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "150 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "MŁODE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Amaro Lucano 0%, Osco, domowe whisky 0%, bitter 0%",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "100 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "Weingut Dr. Fischer Steinbock Alkoholfrei",
+          "category": "na_wine",
+          "brand": "Weingut Dr. Fischer",
+          "description": "Riesling - Mosel - Germany",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 28.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 159.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Kombucha by Lauren Blanc Floral",
+          "category": "other",
+          "brand": "Lauren Blanc",
+          "description": "Poland",
+          "abv": "0,5%",
+          "prices": [
+            {
+              "amount": 22.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 120.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Bla, Copenhagen Sparkling Tea Company",
+          "category": "other",
+          "brand": "Copenhagen Sparkling Tea Company",
+          "description": "Denmark",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 198.0,
+              "size": null
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Tanqueray 0%",
+          "category": "na_spirit",
+          "brand": "Tanqueray",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Osco L'Original 0%",
+          "category": "na_spirit",
+          "brand": "Osco",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Fluère Smoked Agave 0%",
+          "category": "na_spirit",
+          "brand": "Fluère",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Captain Morgan Spiced Gold 0%",
+          "category": "na_spirit",
+          "brand": "Captain Morgan",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Piwo bezalkoholowe 0% / Non-alcoholic beer",
+          "category": "na_beer",
+          "brand": null,
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 21.0,
+              "size": null
+            }
+          ],
+          "menu_section": "PIWO / BEER"
+        }
+      ],
+      "notes": "Beer price 21 is listed without a size (0,33 l or 0,5 l unclear). Kombucha and Bla sparkling tea are in the non-alcoholic wine section; included as they are alcohol-free but are closer to soft drinks, so you may want to exclude them. Bla price has no size. MŁODE price 37 is for 100 ml, the add-on layout was ambiguous. Menu lists Captain Morgan 0% and Tanqueray 0% as alternatives in the no-% section. Prices for the cocktail section were partially garbled in the text extraction."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 13436,
+      "output_tokens": 4133,
+      "cost_usd": 0.0034101000000000005,
+      "seconds": 20.7
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": "Loreta",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PUMPKIN SWIZZLE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Queen's Park Swizzle, Queen's Park Hotel (London). Captain Morgan rum 0%, jabłko, kwas chlebowy, pumpkin spiced, limonka, Fever-Tree Tonic",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "180 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE"
+        },
+        {
+          "name": "PADDINGTON",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Breakfast Martini, The Lanesborough Hotel (London). Floreal, rooibos, marmolada pomarańczowa, Fever-Tree Tonic, Sūpāsawā",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "150 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE"
+        },
+        {
+          "name": "MŁODE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Vieux Carré, Monteleone Hotel (New Orleans). Amaro Lucano 0%, Martini Vibrante, Osco, domowe whisky 0%, bitter 0%",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "100 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE"
+        },
+        {
+          "name": "Weingut Dr. Fischer Steinbock Alkoholfrei",
+          "category": "na_wine",
+          "brand": "Weingut Dr. Fischer",
+          "description": "Riesling - Mosel - Germany",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 28.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 159.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE"
+        },
+        {
+          "name": "Kombucha by Lauren Blanc Floral",
+          "category": "other",
+          "brand": "Lauren Blanc",
+          "description": "Poland",
+          "abv": "0,5%",
+          "prices": [
+            {
+              "amount": 22.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 120.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE"
+        },
+        {
+          "name": "Bla",
+          "category": "other",
+          "brand": "Copenhagen Sparkling Tea Company",
+          "description": "Denmark",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 198.0,
+              "size": null
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE"
+        },
+        {
+          "name": "Tanqueray 0%",
+          "category": "na_spirit",
+          "brand": "Tanqueray",
+          "description": "Gin alternative",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ %"
+        },
+        {
+          "name": "Osco L'Original 0%",
+          "category": "na_spirit",
+          "brand": "Osco",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ %"
+        },
+        {
+          "name": "Fluère Smoked Agave 0%",
+          "category": "na_spirit",
+          "brand": "Fluère",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ %"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ %"
+        },
+        {
+          "name": "Captain Morgan Spiced Gold 0%",
+          "category": "na_spirit",
+          "brand": "Captain Morgan",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ %"
+        },
+        {
+          "name": "Piwo bezalkoholowe 0% / Non-alcoholic beer",
+          "category": "na_beer",
+          "brand": null,
+          "description": "Non-alcoholic beer",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 21.0,
+              "size": null
+            }
+          ],
+          "menu_section": "PIWO"
+        }
+      ],
+      "notes": "Cocktail sizes for PUMPKIN SWIZZLE and PADDINGTON were inferred from a garbled layout. MŁODE is the listed cocktail name, based on the Vieux Carré recipe. Kombucha (0,5%) and Bla (sparkling tea) are listed in the non-alcoholic wine section but are not clearly alcohol-free wine versions; included for review. Sizes for the NA beer and Bla are not stated. The Vieux Carré add-on price of 49 was ignored."
+    },
+    "usage": {
+      "input_tokens": 13436,
+      "output_tokens": 4293,
+      "thinking_tokens": 2680,
+      "service_tier": "batch",
+      "cost_usd": 0.0017450500000000002
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Loreta Bar (Puro Warszawa Centrum)",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PUMPKIN SWIZZLE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Queen's Park Swizzle, Queen's Park Hotel (London). Captain Morgan rum 0%, jabłko, kwas chlebowy, pumpkin spiced, limonka (owocowy - korzenny - aksamitny / fruity - spiced - velvety)",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "180 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "PADDINGTON",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Breakfast Martini, The Lanesborough Hotel (London). Martini Floreal, rooibos, marmolada pomarańczowa, Fever-Tree Tonic, Sūpāsawā (herbaciany - przytulny - owocowy / tea - cozy - fruity)",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "150 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "MŁODE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Vieux Carré, Monteleone Hotel (New Orleans). Amaro Lucano 0%, Martini Vibrante, Osco, domowe whisky 0%, bitter 0% (ziołowy - dymny - cytrusowy / herbal - smoky - citrusy)",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 37.0,
+              "size": "100 ml"
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / NON-ALCOHOLIC COCTAILS"
+        },
+        {
+          "name": "Steinbock Alkoholfrei",
+          "category": "na_wine",
+          "brand": "Weingut Dr. Fischer",
+          "description": "Riesling - Mosel - Germany",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 28.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 159.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Kombucha by Lauren Blanc Floral",
+          "category": "other",
+          "brand": null,
+          "description": "Poland",
+          "abv": "0,5%",
+          "prices": [
+            {
+              "amount": 22.0,
+              "size": "125 ml"
+            },
+            {
+              "amount": 120.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Bla, Copenhagen Sparkling Tea Company",
+          "category": "na_sparkling",
+          "brand": null,
+          "description": "Denmark",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 198.0,
+              "size": "750 ml"
+            }
+          ],
+          "menu_section": "BEZALKOHOLOWE / NON-ALCOHOLIC"
+        },
+        {
+          "name": "Tanqueray 0%",
+          "category": "na_spirit",
+          "brand": "Tanqueray",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Osco L'Original 0%",
+          "category": "na_spirit",
+          "brand": "Osco",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Fluère Smoked Agave 0%",
+          "category": "na_spirit",
+          "brand": "Fluère",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 24.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Captain Morgan Spiced Gold 0%",
+          "category": "na_spirit",
+          "brand": "Captain Morgan",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4 cl"
+            }
+          ],
+          "menu_section": "PROPOZYCJE BEZ % / NO % ALTERNATIVES"
+        },
+        {
+          "name": "Piwo bezalkoholowe 0% / Non-alcoholic beer",
+          "category": "na_beer",
+          "brand": null,
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 21.0,
+              "size": null
+            }
+          ],
+          "menu_section": "PIWO / BEER"
+        }
+      ],
+      "notes": "Mocktail sizes garbled in source ('0% ml', '1500% ml'); interpreted as 180 ml and 150 ml. Mocktails can have alcohol added for 44/49 PLN (not listed). Non-alcoholic beer size (0,33 l or 0,5 l) unclear. Kombucha and sparkling tea included as they are listed in the non-alcoholic wine section. 10% service charge added."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 13436,
+      "output_tokens": 1750,
+      "cost_usd": 0.088744,
+      "seconds": 13.3
+    }
+  },
+  "comparison_mismatches": [
+    {
+      "file": "src/loreta-menu.pdf",
+      "model": "gemini-3.8-flash",
+      "kind": "missing",
+      "drink": "Kombucha by Lauren Blanc Floral",
+      "detail": "[22.0, 120.0] in reference"
+    }
+  ]
+}

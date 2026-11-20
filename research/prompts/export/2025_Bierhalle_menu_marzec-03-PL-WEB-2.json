@@ -1,0 +1,154 @@
+{
+  "menu_file": "src/2025_Bierhalle_menu_marzec-03-PL-WEB-2.pdf",
+  "menu_file_not_included": true,
+  "sha256": "5f8e4c2cb12b6c449c608bd18b0eedcc2d883f609760845a5530a3b30c63d6be",
+  "bytes": 10720323,
+  "format": "pdf",
+  "pages": 3,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 1191,
+      "h_pt": 842,
+      "nonws_chars": 1861,
+      "images": 156,
+      "text_layer_used": true
+    },
+    {
+      "page": 2,
+      "w_pt": 1191,
+      "h_pt": 842,
+      "nonws_chars": 3067,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 3,
+      "w_pt": 595,
+      "h_pt": 842,
+      "nonws_chars": 2575,
+      "images": 0,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": {
+    "date": "2025-03",
+    "matched": "marzec … 2025",
+    "rule": "month-name",
+    "from": "file name"
+  },
+  "optimizer_standard": {
+    "est_tokens": 2281,
+    "naive_est_tokens": 9370,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "2025_Bierhalle_menu_marzec-03-PL-WEB-2.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 2281
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Bierhalle",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PIWO BEZALKOHOLOWE TUCHER",
+          "category": "na_beer",
+          "brand": "Tucher",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 19.0,
+              "size": "0,5 l"
+            }
+          ],
+          "menu_section": "PIWA W STAEJ OFERCIE"
+        }
+      ],
+      "notes": null
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 7988,
+      "output_tokens": 688,
+      "cost_usd": 0.0011428000000000002,
+      "seconds": 7.9
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": "Bierhalle",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PIWO BEZALKOHOLOWE TUCHER",
+          "category": "na_beer",
+          "brand": "Tucher",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 19.0,
+              "size": "0,5 l"
+            }
+          ],
+          "menu_section": "PIWA W STAEJ OFERCIE"
+        }
+      ],
+      "notes": "Menu text is garbled in places (mojibake); the price 'z³' was read as złoty. The section heading for the Tucher item is inferred from layout."
+    },
+    "usage": {
+      "input_tokens": 7988,
+      "output_tokens": 535,
+      "thinking_tokens": 338,
+      "service_tier": "batch",
+      "cost_usd": 0.0005331500000000001
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "Bierhalle",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "PIWO BEZALKOHOLOWE TUCHER",
+          "category": "na_beer",
+          "brand": "Tucher",
+          "description": null,
+          "abv": null,
+          "prices": [
+            {
+              "amount": 19.0,
+              "size": "0,5 l"
+            }
+          ],
+          "menu_section": "PIWA W STAŁEJ OFERCIE"
+        }
+      ],
+      "notes": "Text has encoding issues (Polish diacritics garbled). Pepsi Zero Cukru is a sugar-free soft drink, not an alcohol-free alternative, so it was excluded."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 7988,
+      "output_tokens": 213,
+      "cost_usd": 0.036212,
+      "seconds": 2.9
+    }
+  },
+  "comparison_mismatches": []
+}

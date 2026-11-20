@@ -1,0 +1,688 @@
+{
+  "menu_file": "src/THE-ROOF-04.2026-strona.pdf",
+  "menu_file_not_included": true,
+  "sha256": "df098ed28e24889dfb7a2ff8b0e39e7379fd34c62199cb41ca1c7e90b6ff6372",
+  "bytes": 549949,
+  "format": "pdf",
+  "pages": 13,
+  "pdf_pages": [
+    {
+      "page": 1,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 971,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 2,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1329,
+      "images": 2,
+      "text_layer_used": true
+    },
+    {
+      "page": 3,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1279,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 4,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1519,
+      "images": 2,
+      "text_layer_used": true
+    },
+    {
+      "page": 5,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1407,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 6,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1726,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 7,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1266,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 8,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1034,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 9,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1146,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 10,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1135,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 11,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1387,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 12,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 1209,
+      "images": 0,
+      "text_layer_used": true
+    },
+    {
+      "page": 13,
+      "w_pt": 425,
+      "h_pt": 842,
+      "nonws_chars": 938,
+      "images": 0,
+      "text_layer_used": true
+    }
+  ],
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": {
+    "date": "2026-04",
+    "matched": "04.2026",
+    "rule": "my",
+    "from": "file name"
+  },
+  "optimizer_standard": {
+    "est_tokens": 4945,
+    "naive_est_tokens": 27157,
+    "parts": [
+      {
+        "kind": "text",
+        "source": "THE-ROOF-04.2026-strona.pdf",
+        "width": 0,
+        "height": 0,
+        "est_tokens": 4945
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "THE ROOF",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ALMOST PURE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Owocowa świeżość z fermentowanym twistem 0% / Fruity freshness with a fermented twist. Beefeater 0% · Martini Floreale · lychee · sherry gastrique · passion fruit & mango kombucha",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE* / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "GROW WILS",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Wszystko jest elementem kreacji 0% / Everything is part of the creative process. Fluère Smoked Agave · corn silk · chamomile · pineapple · creole bitters",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE* / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "FAULT LINE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "trzesięnie ziemi pomiędzy owocem a dymem 0% / An earthquake between the fruit and the smoke. Gnista Barrel Oak · white tea · apple · honey · smoked salt · pear · muscovado · Turkish tobacco bitter",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE* / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "DIRRRTY TIKI",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Mai Tai, tylko w wersji bezalkoholowej / Like Mai Tai, only on the sunny side of sober. Captain Morgan 0% · almond · pineapple · lime · bitter orange · ginger",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "GOOD GIRL LIKE YOU",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Pornstar Martini, tylko z aureolką na wierzchu / Like Pornstar Martini but with halo on top. Raspberry Tea · elderflower · passion fruit · lime · Fever-Tree Rhubarb & Raspberry Tonic",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "NO DEPRESSO",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Espresso Martini, ale zapewnia czujność aż do samego końca / Like Espresso Martini but staying sharp until the end. Gnista Barrel Oak 0% · Amaro Lucano 0% · espresso · vanilla",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "QUASI ITALIANO",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Aperol Spritz, ale wyłącznie dla miłośników dolce vita / Like Aperol Spritz but strictly for the dolce vita. Giffard Bitter 0% · Thompson & Scott Noughty Prosecco 0% · sparkling water",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "NAKED PALOMA",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Paloma, tyle że ubrana w czysty smak zamiast w moc alkoholu / Like Paloma but dressed in pure flavor instead of proof. Fleure Smoked Agave 0% · agave · lime · grapefruit juice · salt · Thomas Henry Pink Grapefruit · soda",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "N-0%-groni",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Negroni, ale z zachowaniem goryczki bez ostrości / Like Negroni but keeping the bitter without the bite. Beefeater 0% · Giffard Bitter · Undone Not Vermouth",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "Heineken 0,0%",
+          "category": "na_beer",
+          "brand": "Heineken",
+          "description": null,
+          "abv": "0.0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / NON-ALCOHOLIC BEER"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4cl"
+            }
+          ],
+          "menu_section": "APERITIF / LIQUEURS"
+        }
+      ],
+      "notes": "ALMOST PURE, GROW WILS and FAULT LINE are listed at 45 PLN for the 0% version and 55 PLN with spirit (alcoholic version, excluded); only the 45 PLN price is included. Price for Heineken 0,0% and Amaro Lucano 0% taken as printed. Restaurant name inferred from the file name."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 13634,
+      "output_tokens": 3091,
+      "cost_usd": 0.0029089000000000003,
+      "seconds": 11.2
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": "THE ROOF",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ALMOST PURE",
+          "category": "mocktail",
+          "brand": "Beefeater 0%",
+          "description": "Owocowa świeżość z fermentowanym twistem 0% / with Beefeater gin. Fruity freshness with a fermented twist. Beefeater 0% · Martini Floreale · lychee · sherry gastrique · passion fruit & mango kombucha",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            },
+            {
+              "amount": 55.0,
+              "size": "with Beefeater gin (alcoholic version)"
+            }
+          ],
+          "menu_section": "Autorskie koktajle bezalkoholowe / Signature non-alcoholic cocktails"
+        },
+        {
+          "name": "GROW WILS",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Wszystko jest elementem kreacji 0% / with Olmeca tequila. Everything is part of the creative process. Fluère Smoked Agave · corn silk · chamomile · pineapple · creole bitters",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            },
+            {
+              "amount": 55.0,
+              "size": "with Olmeca tequila (alcoholic version)"
+            }
+          ],
+          "menu_section": "Autorskie koktajle bezalkoholowe / Signature non-alcoholic cocktails"
+        },
+        {
+          "name": "FAULT LINE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "trzesięnie ziemi pomiędzy owocem a dymem 0% / with Jameson whisky. An earthquake between the fruit and the smoke. Gnista Barrel Oak · white tea · apple · honey · smoked salt · pear · muscovado · Turkish tobacco bitter",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            },
+            {
+              "amount": 55.0,
+              "size": "with Jameson whisky (alcoholic version)"
+            }
+          ],
+          "menu_section": "Autorskie koktajle bezalkoholowe / Signature non-alcoholic cocktails"
+        },
+        {
+          "name": "DIRRRTY TIKI",
+          "category": "mocktail",
+          "brand": "Captain Morgan 0%",
+          "description": "Jak Mai Tai, tylko w wersji bezalkoholowej. Like Mai Tai, only on the sunny side of sober. Captain Morgan 0% · almond · pineapple · lime · bitter orange · ginger",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "GOOD GIRL LIKE YOU",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Pornstar Martini, tylko z aureolką na wierzchu. Like Pornstar Martini but with halo on top. Raspberry Tea · elderflower · passion fruit · lime · Fever-Tree Rhubarb & Raspberry Tonic",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "NO DEPRESSO",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Espresso Martini, ale zapewnia czujność aż do samego końca. Like Espresso Martini but staying sharp until the end. Gnista Barrel Oak 0% · Amaro Lucano 0% · espresso · vanilla",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "QUASI ITALIANO",
+          "category": "mocktail",
+          "brand": "Giffard Bitter 0% / Thompson & Scott Noughty Prosecco 0%",
+          "description": "Jak Aperol Spritz, ale wyłącznie dla miłośników dolce vita. Like Aperol Spritz but strictly for the dolce vita. Giffrad Bitter 0% · Thompson & Scott Noughty Prosecco 0% · sparkling water",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "NAKED PALOMA",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Paloma, tyle że ubrana w czysty smak zamiast w moc alkoholu. Like Paloma but dressed in pure flavor instead of proof. Fleure Smoked Agave 0% · agave · lime · grapefruit juice · salt · Thomas Henry Pink Grapefruit · soda",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "N-0%-groni",
+          "category": "mocktail",
+          "brand": "Beefeater 0%",
+          "description": "Jak Negroni, ale z zachowaniem goryczki bez ostrości. Like Negroni but keeping the bitter without the bite. Beefeater 0% · Giffard Bitter · Undone Not Vermouth",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "Koktajle bezalkoholowe / Still non-alcoholic cocktails"
+        },
+        {
+          "name": "Heineken 0,0%",
+          "category": "na_beer",
+          "brand": "Heineken",
+          "description": "Piwo bezalkoholowe / Non-alcoholic beer",
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "Piwo bezalkoholowe / Non-alcoholic beer"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": "Alcohol-free amaro",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4cl"
+            }
+          ],
+          "menu_section": "Aperitif / Liqueurs"
+        }
+      ],
+      "notes": "Ornamental cocktails listed with a choice of alcoholic or 0% base: prices for the alcoholic versions (55 PLN) were recorded only as alternatives on the first three items. Several 0% cocktails (e.g. NO DEPRESSO, QUASI ITALIANO) contain 0% ingredients but the drink itself is listed as an alcohol-free cocktail. Amaro Lucano 0% is included as a standalone NA spirit. The Chandon Garden Spritz and Pedro Ximenez etc. were excluded as alcoholic. 'Still non-alcoholic' section items are included. Some ingredient names may be OCR-approximate (e.g. 'Giffrad', 'Fleure')."
+    },
+    "usage": {
+      "input_tokens": 13634,
+      "output_tokens": 2288,
+      "thinking_tokens": 0,
+      "service_tier": "batch",
+      "cost_usd": 0.0012537
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": "The Roof",
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "ALMOST PURE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Owocowa świeżość z fermentowanym twistem / Fruity freshness with a fermented twist. Beefeater 0% · Martini Floreale · lychee · sherry gastrique · passion fruit & mango kombucha",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": "0%"
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "GROW WILS",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Wszystko jest elementem kreacji / Everything is part of the creative process. Fluère Smoked Agave · corn silk · chamomile · pineapple · creole bitters",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": "0%"
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "FAULT LINE",
+          "category": "mocktail",
+          "brand": null,
+          "description": "trzesięnie ziemi pomiędzy owocem a dymem / An earthquake between the fruit and the smoke. Gnista Barrel Oak · white tea · apple · honey · smoked salt · pear · muscovado · Turkish tobacco bitter",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": "0%"
+            }
+          ],
+          "menu_section": "AUTORSKIE KOKTAJLE BEZALKOHOLOWE / SIGNATURE NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "DIRRRTY TIKI",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Mai Tai, tylko w wersji bezalkoholowej / Like Mai Tai, only on the sunny side of sober. Captain Morgan 0% · almond · pineapple · lime · bitter orange · ginger",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "GOOD GIRL LIKE YOU",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Pornstar Martini, tylko z aureolką na wierzchu / Like Pornstar Martini but with halo on top. Raspberry Tea · elderflower · passion fruit · lime · Fever-Tree Rhubarb & Raspberry Tonic",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "NO DEPRESSO",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Espresso Martini, ale zapewnia czujność aż do samego końca / Like Espresso Martini but staying sharp until the end. Gnista Barrel Oak 0% · Amaro Lucano 0% · espresso · vanilla",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "QUASI ITALIANO",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Aperol Spritz, ale wyłącznie dla miłośników dolce vita / Like Aperol Spritz but strictly for the dolce vita. Giffrad Bitter 0% · Thompson & Scott Noughty Prosecco 0% · sparkling water",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 45.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "NAKED PALOMA",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Paloma, tyle że ubrana w czysty smak zamiast w moc alkoholu / Like Paloma but dressed in pure flavor instead of proof. Fleure Smoked Agave 0% · agave · lime · grapefruit juice · salt · Thomas Henry Pink Grapefruit · soda",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "N-0%-groni",
+          "category": "mocktail",
+          "brand": null,
+          "description": "Jak Negroni, ale z zachowaniem goryczki bez ostrości / Like Negroni but keeping the bitter without the bite. Beefeater 0% · Giffard Bitter · Undone Not Vermouth",
+          "abv": null,
+          "prices": [
+            {
+              "amount": 50.0,
+              "size": null
+            }
+          ],
+          "menu_section": "KOKTAJLE BEZALKOHOLOWE / STILL NON-ALCOHOLIC COCKTAILS"
+        },
+        {
+          "name": "Amaro Lucano 0%",
+          "category": "na_spirit",
+          "brand": "Amaro Lucano",
+          "description": null,
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 20.0,
+              "size": "4cl"
+            }
+          ],
+          "menu_section": "APERITIF / LIQUEURS"
+        },
+        {
+          "name": "Heineken 0,0%",
+          "category": "na_beer",
+          "brand": "Heineken",
+          "description": null,
+          "abv": "0,0%",
+          "prices": [
+            {
+              "amount": 18.0,
+              "size": "0,5l"
+            }
+          ],
+          "menu_section": "PIWO BEZALKOHOLOWE / NON-ALCOHOLIC BEER"
+        }
+      ],
+      "notes": "Signature non-alcoholic cocktails (Almost Pure, Grow Wils, Fault Line) are also offered in alcoholic versions at 55 PLN; only the 0% price (45 PLN) is listed."
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 13634,
+      "output_tokens": 1956,
+      "cost_usd": 0.093656,
+      "seconds": 14.0
+    }
+  },
+  "comparison_mismatches": [
+    {
+      "file": "src/THE-ROOF-04.2026-strona.pdf",
+      "model": "claude-sonnet-5-5",
+      "kind": "price differs",
+      "drink": "FAULT LINE",
+      "detail": "[45.0, 55.0] vs reference [45.0]"
+    },
+    {
+      "file": "src/THE-ROOF-04.2026-strona.pdf",
+      "model": "claude-sonnet-5-5",
+      "kind": "price differs",
+      "drink": "GROW WILS",
+      "detail": "[45.0, 55.0] vs reference [45.0]"
+    },
+    {
+      "file": "src/THE-ROOF-04.2026-strona.pdf",
+      "model": "claude-sonnet-5-5",
+      "kind": "price differs",
+      "drink": "ALMOST PURE",
+      "detail": "[45.0, 55.0] vs reference [45.0]"
+    }
+  ]
+}

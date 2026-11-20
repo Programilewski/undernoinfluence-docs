@@ -1,0 +1,166 @@
+{
+  "menu_file": "src/8-724x1024.jpg",
+  "menu_file_not_included": true,
+  "sha256": "a78387eb20e017705e8e6cae271fc7b83e59b3c9c533f6cc2eec363698e87076",
+  "bytes": 91787,
+  "format": "JPEG",
+  "pages": 1,
+  "pdf_pages": null,
+  "origin": {
+    "added_by_hand": true
+  },
+  "date_guess": null,
+  "optimizer_standard": {
+    "est_tokens": 560,
+    "naive_est_tokens": 989,
+    "parts": [
+      {
+        "kind": "image",
+        "source": "8-724x1024.jpg",
+        "width": 565,
+        "height": 744,
+        "est_tokens": 560
+      }
+    ]
+  },
+  "haiku_compare_run": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "The Very Cautious Gewurtztraminer/Riesling",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Wino o jasnosłomkowej barwie i orzeźwiającym, kwiatowym zapachu z wyraźną nutą róży. W smaku różana konfitura, nieco korzennych przypraw, zrównoważony orzeźwiającą owocową kwasowością.",
+          "abv": "0% alk.",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75 cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        },
+        {
+          "name": "The Very Cautious Shiraz",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Ciemnoczerwone wino pachnące dojrzałymi wiśniami, wanilią i czekoladą. Subtelne taniny. Na finiszu przyjemne i krągłe z owocowo-waniliowymi motywami.",
+          "abv": "0% alk.",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75 cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "Only the two wines listed under WINA BEZALKOHOLOWE (0% alk.) were included; the menu page is cut off at the bottom, so further alcohol-free wines may exist below the visible area."
+    },
+    "usage": {
+      "model": "claude-haiku-5-5",
+      "input_tokens": 2419,
+      "output_tokens": 487,
+      "cost_usd": 0.0004854,
+      "seconds": 3.3
+    }
+  },
+  "haiku_batch_run": {
+    "run": "msgbatch_01HZme6TtzTKBG4QmjFQ6Y2T (batch, effort low, standard, grayscale)",
+    "stop_reason": "end_turn",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "The Very Cautious Gewurztraminer/Riesling",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Wino o jasnosłomkowej barwie i orzeźwiającym, kwiatowym zapachu z wyraźną nutą róży. W smaku różana konfitura, nieco korzennych przypraw, zrównoważony orzeźwiającą owocową kwasowością.",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        },
+        {
+          "name": "The Very Cautious Shiraz",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Ciemnoczerwone wino pachnące dojrzałymi wiśniami, wanilią i czekoladą. Subtelne taniny. Na finiszu przyjemne i kręgle z owocowo-waniliowymi motywami.",
+          "abv": "0%",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        }
+      ],
+      "notes": "Menu shows 'WINA BEZALKOHOLOWE' (alcohol-free wines) section; descriptions transcribed as printed. Restaurant name not visible."
+    },
+    "usage": {
+      "input_tokens": 2419,
+      "output_tokens": 468,
+      "thinking_tokens": 0,
+      "service_tier": "batch",
+      "cost_usd": 0.00023794999999999998
+    }
+  },
+  "opus_reference": {
+    "run": "compare-20261109-143629 (live, effort low, standard, grayscale)",
+    "result": {
+      "restaurant_name": null,
+      "currency": "PLN",
+      "language": "pl",
+      "drinks": [
+        {
+          "name": "The Very Cautious Gewurtztraminer/Riesling",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Wino o jasnosłomkowej barwie i orzeźwiającym, kwiatowym zapachu z wyraźną nutą róży. W smaku różana konfitura, nieco korzennych przypraw, zrównoważony orzeźwiającą owocową kwasowością.",
+          "abv": "0% alk.",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75 cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        },
+        {
+          "name": "The Very Cautious Shiraz",
+          "category": "na_wine",
+          "brand": "The Very Cautious",
+          "description": "Ciemnoczerwone wino pachnące dojrzałymi wiśniami, wanilią i czekoladą. Subtelne taniny. Na finiszu przyjemne i krągłe z owocowo-waniliowymi motywami.",
+          "abv": "0% alk.",
+          "prices": [
+            {
+              "amount": 95.0,
+              "size": "75 cl"
+            }
+          ],
+          "menu_section": "WINA BEZALKOHOLOWE"
+        }
+      ],
+      "notes": null
+    },
+    "usage": {
+      "model": "claude-opus-5-5",
+      "input_tokens": 2419,
+      "output_tokens": 420,
+      "cost_usd": 0.018076,
+      "seconds": 4.7
+    }
+  },
+  "comparison_mismatches": []
+}
