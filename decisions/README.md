@@ -58,6 +58,7 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/an-approval-round-is-timed-from-its-decisions]] | A timed approval round is measured from the gaps between `decided_at` timestamps: pauses over 3 min cut, the first line after a pause at the average, Utwórz lokale estimated until logged. First baseline 21.11: about 4.4 min per venue; creating products is the whole cost | Decided 21.11; standing rule |
 | [[decisions/product/a-venue-type-is-suggested-and-a-person-confirms-it]] | Utwórz lokale: each venue's type is suggested from the register, the two menu readings when they agree, and the site's schema.org type, shown with its source and confirmed by a person; one set of rules (`VenueType::guidelines()`) for person and model; clubs are not listed. Supersedes 17.11 decision 6 | Decided and built 20.11 |
 | [[decisions/product/a-menu-heading-vouches-for-its-own-lines-strength]] | A heading that says alcohol-free ("Wina bezalkoholowe") vouches for its own line's strength in Utwórz produkt and Popraw; the bare spelling is not kept as an alias, so another menu asks again; a heading without strength vouches for nothing | Decided and built 20.11 |
 | [[decisions/product/a-model-identifies-a-drink-on-request-and-a-person-decides]] | Przegląd pozycji: "Zapytaj AI" asks Haiku 5.5 with web search what one drink is (brand, producer, strength, sources), on request; only the drink goes out; the answer fills Utwórz produkt and a person submits; plus "Kopiuj nazwę" | Decided and built 20.11 |
