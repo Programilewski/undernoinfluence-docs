@@ -31,6 +31,12 @@ Every timed round reports minutes per venue, time per line, and time per decisio
 
 42 lines, all decided, all five venues active. About 20.5 minutes of review plus 1.5 minutes of Utwórz lokale: **about 4.4 min per venue**, or about 3.5 without the one 4.6-minute line. Approving a house drink, approving a certain match and correcting to an existing product took 7–8 s each; creating a product took 40 s on 20.11 (mostly wines, 45–76 s) and 11 s on 21.11 (mostly known beers); the one rejection took 55 s. Only one AI-assisted line has a clean time (29 s, answer included), so the AI comparison is still open.
 
+Paweł confirmed on 24.11 that Martini Floreale's 4.6 minutes were real work (he searched for the product), so the baseline stays at 4.4 min per venue; the 65 minutes after Cabernet Light Live were a break, cut as one.
+
+## Later batches (24.11)
+
+**Utwórz lokale now has a time without logging:** created one at a time, venues' own `created_at` are 38–50 s apart, so **about 40 s per venue**, not the 1.5 min per five first estimated. Batch 2 (menus 40, 51, 55, 58, 59, 75; 16 lines; short cards) took about 5.5 minutes for 4 venues and 2 menus rejected as not venues (a Łódź restaurant, an online grocery), with approvals at about 10 s a line. Batch 3 (menus 60, 63, 68, 70, 78; 42 lines, with The Chef House's wines and Taproom's 23 craft beers) took about 15 minutes for 4 venues once about 3 minutes of Paweł writing a message and about 4 minutes lost on a refused strength were cut: **about 3.8 min per venue**. Known drinks took 2–8 s a line; lines with "Zapytaj AI" took **15–30 s, answer included**, against 45–76 s for creating a wine without it on 20.11. **The AI roughly halves the cost of an unknown drink.** Approval is no longer the slow step; creating venues and throwing out menus that are not venues (about 50 s each) now take a large share.
+
 ## What this prevents
 
 Tuning the pipeline against a number nobody can check, and blaming the wrong step: the numbers show that approving is already cheap and that the whole cost sits in creating products the catalogue doesn't know yet, wines above all.
