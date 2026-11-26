@@ -6,7 +6,7 @@ description: "When a drink's name carries no brand but the menu prints its produ
 
 **Date:** 2026-11-26
 **Status:** Decided
-**Executed:** 2026-11-26
+**Executed:** 2026-11-26, `v0.1.22`
 **Area:** Sourcing
 
 ---

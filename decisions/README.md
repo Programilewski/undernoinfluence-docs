@@ -58,6 +58,8 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/a-rotating-menu-is-checked-more-often]] | A venue whose card rotates gets its own refresh interval (7–90 days, empty = 28; Taproom 7); the refresh runs daily and counts calendar days | Decided and built 26.11 |
+| [[decisions/product/a-producer-printed-beside-a-line-is-its-brand]] | When a name carries no brand and the menu prints its producer beside it (tap lists), the producer is the brand and the line is kept; a name with a brand keeps it, never the brewery | Decided and built 26.11 |
 | [[decisions/product/a-strength-printed-beside-a-line-vouches-for-it]] | A strength printed beside a line in its own column (a tap list's "0,0%") vouches for that line like a heading, line only, no alias; a printed 0,5% or less satisfies a name saying alcohol-free in words, not one stating 0,0% | Decided and built 24.11 |
 | [[decisions/product/otworz-menu-opens-the-venues-own-menu]] | Otwórz menu / O open the menu on the venue's site; the stored copy stays as Kopia w UNI; W opens the homepage, M the menu's page in UNI | Decided and built 24.11 |
 | [[decisions/product/a-house-drink-that-names-a-product-is-suggested-the-product]] | A house-drink line printing a catalogue product's name whole (strength words aside, strength vouched by the menu) is suggested that product; Popraw opens on it; a person decides (Martini Vibrante) | Decided and built 24.11 |

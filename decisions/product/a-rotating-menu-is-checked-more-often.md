@@ -6,7 +6,7 @@ description: "A venue whose card rotates (Taproom's tap list, 26.11) gets its ow
 
 **Date:** 2026-11-26
 **Status:** Decided
-**Executed:** 2026-11-26
+**Executed:** 2026-11-26, `v0.1.22`
 **Area:** Sourcing
 
 ---
