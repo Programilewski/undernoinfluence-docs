@@ -58,6 +58,9 @@ Adopted 2026-09-16.
 
 | File | Decision | Status |
 |---|---|---|
+| [[decisions/product/candidates-are-split-by-stage]] | Licence-register places without a website wait on Lista zezwoleń; Kandydaci shows only candidates with a website, from either source; a place moves by itself when its website is found | Decided and built 27.11 |
+| [[decisions/product/a-page-drawn-by-javascript-is-read-from-its-published-menu]] | A menu page whose visible text is unusable or has no number is read from its schema.org menu, sections as headings; with neither, the read fails visibly and nothing is sent | Decided and built 27.11 |
+| [[decisions/product/a-menu-on-a-qr-menu-vendors-page-is-the-venues-own]] | A menu on a QR-menu vendor's page (ChoiceQR, eatbu, UpMenu) is the venue's own; the vendor page is the website only when the venue has none; never publish a vendor's full card or price list | Decided 27.11, standing rule |
 | [[decisions/product/a-rotating-menu-is-checked-more-often]] | A venue whose card rotates gets its own refresh interval (7–90 days, empty = 28; Taproom 7); the refresh runs daily and counts calendar days | Decided and built 26.11 |
 | [[decisions/product/a-producer-printed-beside-a-line-is-its-brand]] | When a name carries no brand and the menu prints its producer beside it (tap lists), the producer is the brand and the line is kept; a name with a brand keeps it, never the brewery | Decided and built 26.11 |
 | [[decisions/product/a-strength-printed-beside-a-line-vouches-for-it]] | A strength printed beside a line in its own column (a tap list's "0,0%") vouches for that line like a heading, line only, no alias; a printed 0,5% or less satisfies a name saying alcohol-free in words, not one stating 0,0% | Decided and built 24.11 |
